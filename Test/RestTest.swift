@@ -8,11 +8,27 @@ class RestTest : XCTestCase {
 	override func tearDown() {
 	}
 
+	func testDelete() {
+		let expectation = expectationWithDescription("delete")
+		let pad = Launchpad(server: "http://localhost:8080")
+
+		pad.delete("/books/85216554738542310") { status in
+			XCTAssertEqual(204, status)
+			expectation.fulfill()
+		}
+
+		waitForExpectationsWithTimeout(1) { (error) in
+			if (error != nil) {
+				XCTFail(error.localizedDescription)
+			}
+		}
+	}
+
 	func testGet() {
 		let expectation = expectationWithDescription("get")
 		let pad = Launchpad(server: "http://localhost:8080")
 
-		pad.get("/books/85024121006487456") { book in
+		pad.get("/books/85216554258390563") { book in
 			XCTAssertEqual(
 				"Neuromancer", book["document"]!["title"]!! as String)
 
@@ -35,7 +51,7 @@ class RestTest : XCTestCase {
 				println(book["document"]!["title"]!!)
 			}
 
-			XCTAssertEqual(2, books.count)
+			XCTAssertEqual(1, books.count)
 
 			expectation.fulfill()
 		}
