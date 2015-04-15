@@ -11,24 +11,16 @@ public class Launchpad {
 	public func get(path: String, success: ([String: AnyObject] -> ()))
 		-> Self {
 
-		let URL = NSURL(string: self.server + path)!
-		let session = NSURLSession.sharedSession()
-
-		session.dataTaskWithURL(
-			URL,
-			completionHandler: { (data, response, error) in
-				let collection = NSJSONSerialization.JSONObjectWithData(
-					data, options: NSJSONReadingOptions.AllowFragments,
-					error: nil) as [String: AnyObject]
-
-				success(collection)
-			}
-		).resume()
-		
-		return self
+		return self.request(path, success)
 	}
 
 	public func list(path: String, success: ([[String: AnyObject]] -> ()))
+		-> Self {
+
+		return self.request(path, success)
+	}
+
+	public func request<T>(path: String, success: (T -> ()))
 		-> Self {
 
 		let URL = NSURL(string: self.server + path)!
@@ -37,11 +29,11 @@ public class Launchpad {
 		session.dataTaskWithURL(
 			URL,
 			completionHandler: { (data, response, error) in
-				let collection = NSJSONSerialization.JSONObjectWithData(
+				let result = NSJSONSerialization.JSONObjectWithData(
 					data, options: NSJSONReadingOptions.AllowFragments,
-					error: nil) as [[String: AnyObject]]
+					error: nil) as T
 
-				success(collection)
+				success(result)
 			}
 		).resume()
 
