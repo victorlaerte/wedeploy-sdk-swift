@@ -13,7 +13,7 @@ public class Launchpad {
 			success: ([String: AnyObject] -> ()))
 		-> Self {
 
-		return self.request(
+		return request(
 			path, success: success, method: "POST", body: document)
 	}
 
@@ -21,19 +21,19 @@ public class Launchpad {
 			path: String, id: String, success: ([String: AnyObject] -> ()))
 		-> Self {
 
-		return self.request("\(path)/\(id)", success: success)
+		return request("\(path)/\(id)", success: success)
 	}
 
 	public func list(path: String, success: ([[String: AnyObject]] -> ()))
 		-> Self {
 
-		return self.request(path, success: success)
+		return request(path, success: success)
 	}
 
 	public func remove(path: String, id: String, success: (Int -> ()))
 		-> Self {
 
-		return self.request("\(path)/\(id)", success: success, method: "DELETE")
+		return request("\(path)/\(id)", success: success, method: "DELETE")
 	}
 
 	public func update(
@@ -41,7 +41,7 @@ public class Launchpad {
 			success: ([String: AnyObject] -> ()))
 		-> Self {
 
-		return self.request(
+		return request(
 			"\(path)/\(id)", success: success, method: "PUT", body: document)
 	}
 

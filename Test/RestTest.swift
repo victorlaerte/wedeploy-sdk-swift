@@ -19,7 +19,7 @@ class RestTest : XCTestCase {
 			expectation.fulfill()
 		}
 
-		waitForExpectationsWithTimeout(timeout) { (error) in
+		waitForExpectationsWithTimeout(timeout) { error in
 			self.hasError(error)
 		}
 	}
@@ -33,7 +33,7 @@ class RestTest : XCTestCase {
 				expectation.fulfill()
 			}
 
-			waitForExpectationsWithTimeout(timeout) { (error) in
+			waitForExpectationsWithTimeout(timeout) { error in
 				self.hasError(error)
 			}
 		}
@@ -49,7 +49,7 @@ class RestTest : XCTestCase {
 			expectation.fulfill()
 		}
 
-		waitForExpectationsWithTimeout(timeout) { (error) in
+		waitForExpectationsWithTimeout(timeout) { error in
 			self.hasError(error)
 		}
 	}
@@ -63,7 +63,7 @@ class RestTest : XCTestCase {
 			expectation.fulfill()
 		}
 
-		waitForExpectationsWithTimeout(timeout) { (error) in
+		waitForExpectationsWithTimeout(timeout) { error in
 			self.hasError(error)
 		}
 	}
@@ -82,7 +82,7 @@ class RestTest : XCTestCase {
 			expectation.fulfill()
 		}
 
-		waitForExpectationsWithTimeout(timeout) { (error) in
+		waitForExpectationsWithTimeout(timeout) { error in
 			self.hasError(error)
 		}
 	}
@@ -96,7 +96,7 @@ class RestTest : XCTestCase {
 			expectation.fulfill()
 		}
 
-		waitForExpectationsWithTimeout(timeout) { (error) in
+		waitForExpectationsWithTimeout(timeout) { error in
 			self.hasError(error)
 		}
 	}
@@ -110,7 +110,7 @@ class RestTest : XCTestCase {
 			expectation.fulfill()
 		}
 
-		waitForExpectationsWithTimeout(timeout) { (error) in
+		waitForExpectationsWithTimeout(timeout) { error in
 			self.hasError(error)
 		}
 	}
