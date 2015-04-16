@@ -5,7 +5,7 @@ class RestTest : XCTestCase {
 	var books: [[String: AnyObject]] = []
 	var pad: Launchpad?
 	let server: String = "http://localhost:8080"
-	let title = "Cien anos de soledad"
+	let title = "Cien años de soledad"
 
 	override func setUp() {
 		self.pad = Launchpad(server: self.server)
