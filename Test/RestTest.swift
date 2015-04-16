@@ -106,7 +106,7 @@ class RestTest : XCTestCase {
 		let id = self.books[0]["id"] as String
 
 		self.pad!.remove(self.path, id: id) { status in
-			XCTAssertEqual(200, status)
+			XCTAssertEqual(204, status)
 			expectation.fulfill()
 		}
 
