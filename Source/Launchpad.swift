@@ -8,12 +8,6 @@ public class Launchpad {
 		self.server = server
 	}
 
-	public func delete(path: String, success: (Int -> ()))
-		-> Self {
-
-		return self.request(path, success: success, method: "DELETE")
-	}
-
 	public func get(path: String, success: ([String: AnyObject] -> ()))
 		-> Self {
 
@@ -26,7 +20,13 @@ public class Launchpad {
 		return self.request(path, success: success)
 	}
 
-	public func request<T>(
+	public func remove(path: String, success: (Int -> ()))
+		-> Self {
+
+		return self.request(path, success: success, method: "DELETE")
+	}
+
+	func request<T>(
 			path: String, success: (T -> ()), method: String = "GET")
 		-> Self {
 
