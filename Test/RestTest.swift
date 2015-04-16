@@ -2,20 +2,54 @@ import XCTest
 
 class RestTest : XCTestCase {
 
+	var books: [[String: AnyObject]] = []
+	var pad: Launchpad?
+	let server: String = "http://localhost:8080"
+	let title = "Cien anos de soledad"
+
 	override func setUp() {
+		self.pad = Launchpad(server: self.server)
+		let expectation = expectationWithDescription("setUp")
+		let document = ["title": self.title]
+
+		self.pad!.add("/books", document: document) { book in
+			self.books.append(book)
+			expectation.fulfill()
+		}
+
+		waitForExpectationsWithTimeout(1) { (error) in
+			if (error != nil) {
+				XCTFail(error.localizedDescription)
+			}
+		}
 	}
 
 	override func tearDown() {
+		for book in self.books {
+			let expectation = expectationWithDescription("tearDown")
+			let id = book["id"] as String
+
+			self.pad!.remove("/books/\(id)") { status in
+				expectation.fulfill()
+			}
+
+			waitForExpectationsWithTimeout(1) { (error) in
+				if (error != nil) {
+					XCTFail(error.localizedDescription)
+				}
+			}
+		}
 	}
 
 	func testAdd() {
 		let expectation = expectationWithDescription("add")
-		let pad = Launchpad(server: "http://localhost:8080")
+		let document = ["title": self.title]
 
-		pad.add("/books", document: ["title": "Cien anos de soledad"]) { book in
+		self.pad!.add("/books", document: document) { book in
 			XCTAssertEqual(
-				"Cien anos de soledad", book["document"]!["title"]!! as String)
+				self.title, book["document"]!["title"]!! as String)
 
+			self.books.append(book)
 			expectation.fulfill()
 		}
 
@@ -28,11 +62,11 @@ class RestTest : XCTestCase {
 
 	func testGet() {
 		let expectation = expectationWithDescription("get")
-		let pad = Launchpad(server: "http://localhost:8080")
+		let id = self.books[0]["id"] as String
 
-		pad.get("/books/85216554258390563") { book in
+		self.pad!.get("/books/\(id)") { book in
 			XCTAssertEqual(
-				"Neuromancer", book["document"]!["title"]!! as String)
+				self.title, book["document"]!["title"]!! as String)
 
 			expectation.fulfill()
 		}
@@ -46,15 +80,13 @@ class RestTest : XCTestCase {
 
 	func testList() {
 		let expectation = expectationWithDescription("list")
-		let pad = Launchpad(server: "http://localhost:8080")
 
-		pad.list("/books") { books in
+		self.pad!.list("/books") { books in
 			for book in books {
 				println(book["document"]!["title"]!!)
 			}
 
 			XCTAssertEqual(1, books.count)
-
 			expectation.fulfill()
 		}
 
@@ -67,10 +99,10 @@ class RestTest : XCTestCase {
 
 	func testRemove() {
 		let expectation = expectationWithDescription("remove")
-		let pad = Launchpad(server: "http://localhost:8080")
+		let id = self.books[0]["id"] as String
 
-		pad.remove("/books/85216554738542310") { status in
-			XCTAssertEqual(204, status)
+		self.pad!.remove("/books/\(id)") { status in
+			XCTAssertEqual(200, status)
 			expectation.fulfill()
 		}
 

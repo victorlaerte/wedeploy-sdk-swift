@@ -57,9 +57,8 @@ public class Launchpad {
 				let httpResponse = response as NSHTTPURLResponse
 				let status = httpResponse.statusCode
 
-				if (status == 204) {
+				if ((data.length == 0) || (status == 204)) {
 					success(status as T)
-
 					return
 				}
 
