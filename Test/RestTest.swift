@@ -8,6 +8,24 @@ class RestTest : XCTestCase {
 	override func tearDown() {
 	}
 
+	func testAdd() {
+		let expectation = expectationWithDescription("add")
+		let pad = Launchpad(server: "http://localhost:8080")
+
+		pad.add("/books", document: ["title": "Cien anos de soledad"]) { book in
+			XCTAssertEqual(
+				"Cien anos de soledad", book["document"]!["title"]!! as String)
+
+			expectation.fulfill()
+		}
+
+		waitForExpectationsWithTimeout(1) { (error) in
+			if (error != nil) {
+				XCTFail(error.localizedDescription)
+			}
+		}
+	}
+
 	func testGet() {
 		let expectation = expectationWithDescription("get")
 		let pad = Launchpad(server: "http://localhost:8080")

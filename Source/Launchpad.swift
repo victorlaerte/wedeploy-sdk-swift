@@ -8,6 +8,15 @@ public class Launchpad {
 		self.server = server
 	}
 
+	public func add(
+			path: String, document: AnyObject,
+			success: ([String: AnyObject] -> ()))
+		-> Self {
+
+		return self.request(
+			path, success: success, method: "POST", body: document)
+	}
+
 	public func get(path: String, success: ([String: AnyObject] -> ()))
 		-> Self {
 
@@ -27,12 +36,18 @@ public class Launchpad {
 	}
 
 	func request<T>(
-			path: String, success: (T -> ()), method: String = "GET")
+			path: String, success: (T -> ()), method: String = "GET",
+			body: AnyObject? = nil)
 		-> Self {
 
 		let URL = NSURL(string: self.server + path)!
 		let request = NSMutableURLRequest(URL: URL)
 		request.HTTPMethod = method
+
+		if let obj: AnyObject = body {
+			request.HTTPBody = NSJSONSerialization.dataWithJSONObject(
+				obj, options: NSJSONWritingOptions.allZeros, error: nil)
+		}
 
 		let session = NSURLSession.sharedSession()
 
