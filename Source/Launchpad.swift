@@ -17,10 +17,11 @@ public class Launchpad {
 			path, success: success, method: "POST", body: document)
 	}
 
-	public func get(path: String, success: ([String: AnyObject] -> ()))
+	public func get(
+			path: String, id: String, success: ([String: AnyObject] -> ()))
 		-> Self {
 
-		return self.request(path, success: success)
+		return self.request("\(path)/\(id)", success: success)
 	}
 
 	public func list(path: String, success: ([[String: AnyObject]] -> ()))
@@ -29,10 +30,10 @@ public class Launchpad {
 		return self.request(path, success: success)
 	}
 
-	public func remove(path: String, success: (Int -> ()))
+	public func remove(path: String, id: String, success: (Int -> ()))
 		-> Self {
 
-		return self.request(path, success: success, method: "DELETE")
+		return self.request("\(path)/\(id)", success: success, method: "DELETE")
 	}
 
 	func request<T>(

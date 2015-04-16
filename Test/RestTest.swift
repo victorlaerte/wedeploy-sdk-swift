@@ -4,7 +4,8 @@ class RestTest : XCTestCase {
 
 	var books: [[String: AnyObject]] = []
 	var pad: Launchpad?
-	let server: String = "http://localhost:8080"
+	let path = "/books"
+	let server = "http://localhost:8080"
 	let title = "Cien años de soledad"
 
 	override func setUp() {
@@ -12,7 +13,7 @@ class RestTest : XCTestCase {
 		let expectation = expectationWithDescription("setUp")
 		let document = ["title": self.title]
 
-		self.pad!.add("/books", document: document) { book in
+		self.pad!.add(self.path, document: document) { book in
 			self.books.append(book)
 			expectation.fulfill()
 		}
@@ -29,7 +30,7 @@ class RestTest : XCTestCase {
 			let expectation = expectationWithDescription("tearDown")
 			let id = book["id"] as String
 
-			self.pad!.remove("/books/\(id)") { status in
+			self.pad!.remove(self.path, id: id) { status in
 				expectation.fulfill()
 			}
 
@@ -45,7 +46,7 @@ class RestTest : XCTestCase {
 		let expectation = expectationWithDescription("add")
 		let document = ["title": self.title]
 
-		self.pad!.add("/books", document: document) { book in
+		self.pad!.add(self.path, document: document) { book in
 			XCTAssertEqual(
 				self.title, book["document"]!["title"]!! as String)
 
@@ -64,7 +65,7 @@ class RestTest : XCTestCase {
 		let expectation = expectationWithDescription("get")
 		let id = self.books[0]["id"] as String
 
-		self.pad!.get("/books/\(id)") { book in
+		self.pad!.get("/books", id: id) { book in
 			XCTAssertEqual(
 				self.title, book["document"]!["title"]!! as String)
 
@@ -81,12 +82,11 @@ class RestTest : XCTestCase {
 	func testList() {
 		let expectation = expectationWithDescription("list")
 
-		self.pad!.list("/books") { books in
-			for book in books {
-				println(book["document"]!["title"]!!)
-			}
-
+		self.pad!.list(self.path) { books in
 			XCTAssertEqual(1, books.count)
+			XCTAssertEqual(
+				self.title, books[0]["document"]!["title"]!! as String)
+
 			expectation.fulfill()
 		}
 
@@ -101,7 +101,7 @@ class RestTest : XCTestCase {
 		let expectation = expectationWithDescription("remove")
 		let id = self.books[0]["id"] as String
 
-		self.pad!.remove("/books/\(id)") { status in
+		self.pad!.remove(self.path, id: id) { status in
 			XCTAssertEqual(200, status)
 			expectation.fulfill()
 		}
