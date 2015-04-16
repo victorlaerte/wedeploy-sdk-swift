@@ -36,6 +36,15 @@ public class Launchpad {
 		return self.request("\(path)/\(id)", success: success, method: "DELETE")
 	}
 
+	public func update(
+			path: String, id: String, document: AnyObject,
+			success: ([String: AnyObject] -> ()))
+		-> Self {
+
+		return self.request(
+			"\(path)/\(id)", success: success, method: "PUT", body: document)
+	}
+
 	func request<T>(
 			path: String, success: (T -> ()), method: String = "GET",
 			body: AnyObject? = nil)

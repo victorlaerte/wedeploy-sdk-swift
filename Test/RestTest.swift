@@ -47,9 +47,7 @@ class RestTest : XCTestCase {
 		let document = ["title": self.title]
 
 		self.pad!.add(self.path, document: document) { book in
-			XCTAssertEqual(
-				self.title, book["document"]!["title"]!! as String)
-
+			self.assertBook(self.title, book: book)
 			self.books.append(book)
 			expectation.fulfill()
 		}
@@ -65,10 +63,29 @@ class RestTest : XCTestCase {
 		let expectation = expectationWithDescription("get")
 		let id = self.books[0]["id"] as String
 
-		self.pad!.get("/books", id: id) { book in
-			XCTAssertEqual(
-				self.title, book["document"]!["title"]!! as String)
+		self.pad!.get(self.path, id: id) { book in
+			self.assertBook(self.title, book: book)
+			expectation.fulfill()
+		}
 
+		waitForExpectationsWithTimeout(1) { (error) in
+			if (error != nil) {
+				XCTFail(error.localizedDescription)
+			}
+		}
+	}
+
+	func testUpdate() {
+		let expectation = expectationWithDescription("update")
+
+		let book = self.books[0]
+		var document = book["document"] as [String: String]
+		document["title"] = "La fiesta del chivo"
+
+		let id = book["id"] as String
+
+		self.pad!.update(self.path, id: id, document: document) { updatedBook in
+			self.assertBook(document["title"]!, book: updatedBook)
 			expectation.fulfill()
 		}
 
@@ -84,9 +101,7 @@ class RestTest : XCTestCase {
 
 		self.pad!.list(self.path) { books in
 			XCTAssertEqual(1, books.count)
-			XCTAssertEqual(
-				self.title, books[0]["document"]!["title"]!! as String)
-
+			self.assertBook(self.title, book: books[0])
 			expectation.fulfill()
 		}
 
@@ -111,6 +126,10 @@ class RestTest : XCTestCase {
 				XCTFail(error.localizedDescription)
 			}
 		}
+	}
+
+	private func assertBook(title: String, book: [String: AnyObject]) {
+		XCTAssertEqual(title, book["document"]!["title"]!! as String)
 	}
 
 }
