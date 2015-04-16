@@ -6,6 +6,7 @@ class RestTest : XCTestCase {
 	var pad: Launchpad?
 	let path = "/books"
 	let server = "http://localhost:8080"
+	var timeout = 1 as Double
 	let title = "Cien años de soledad"
 
 	override func setUp() {
@@ -18,10 +19,8 @@ class RestTest : XCTestCase {
 			expectation.fulfill()
 		}
 
-		waitForExpectationsWithTimeout(1) { (error) in
-			if (error != nil) {
-				XCTFail(error.localizedDescription)
-			}
+		waitForExpectationsWithTimeout(timeout) { (error) in
+			self.hasError(error)
 		}
 	}
 
@@ -34,10 +33,8 @@ class RestTest : XCTestCase {
 				expectation.fulfill()
 			}
 
-			waitForExpectationsWithTimeout(1) { (error) in
-				if (error != nil) {
-					XCTFail(error.localizedDescription)
-				}
+			waitForExpectationsWithTimeout(timeout) { (error) in
+				self.hasError(error)
 			}
 		}
 	}
@@ -52,10 +49,8 @@ class RestTest : XCTestCase {
 			expectation.fulfill()
 		}
 
-		waitForExpectationsWithTimeout(1) { (error) in
-			if (error != nil) {
-				XCTFail(error.localizedDescription)
-			}
+		waitForExpectationsWithTimeout(timeout) { (error) in
+			self.hasError(error)
 		}
 	}
 
@@ -68,10 +63,8 @@ class RestTest : XCTestCase {
 			expectation.fulfill()
 		}
 
-		waitForExpectationsWithTimeout(1) { (error) in
-			if (error != nil) {
-				XCTFail(error.localizedDescription)
-			}
+		waitForExpectationsWithTimeout(timeout) { (error) in
+			self.hasError(error)
 		}
 	}
 
@@ -89,10 +82,8 @@ class RestTest : XCTestCase {
 			expectation.fulfill()
 		}
 
-		waitForExpectationsWithTimeout(1) { (error) in
-			if (error != nil) {
-				XCTFail(error.localizedDescription)
-			}
+		waitForExpectationsWithTimeout(timeout) { (error) in
+			self.hasError(error)
 		}
 	}
 
@@ -105,10 +96,8 @@ class RestTest : XCTestCase {
 			expectation.fulfill()
 		}
 
-		waitForExpectationsWithTimeout(1) { (error) in
-			if (error != nil) {
-				XCTFail(error.localizedDescription)
-			}
+		waitForExpectationsWithTimeout(timeout) { (error) in
+			self.hasError(error)
 		}
 	}
 
@@ -121,15 +110,21 @@ class RestTest : XCTestCase {
 			expectation.fulfill()
 		}
 
-		waitForExpectationsWithTimeout(1) { (error) in
-			if (error != nil) {
-				XCTFail(error.localizedDescription)
-			}
+		waitForExpectationsWithTimeout(timeout) { (error) in
+			self.hasError(error)
 		}
 	}
 
 	private func assertBook(title: String, book: [String: AnyObject]) {
 		XCTAssertEqual(title, book["document"]!["title"]!! as String)
+	}
+
+	private func hasError(error: NSError?) {
+		if (error == nil) {
+			return
+		}
+
+		XCTFail(error!.localizedDescription)
 	}
 
 }
