@@ -35,6 +35,18 @@ public class Launchpad {
 		return request("\(path)/\(id)", success: success, failure: failure)
 	}
 
+	public func get(
+			path: String, query: Query?,
+			success: ([[String: AnyObject]] -> ())? = nil,
+			failure: Failure? = nil)
+		-> Self {
+
+		return request(
+			path, success: success, failure: failure,
+			query: query?.queryItems())
+	}
+
+
 	public func list(
 			path: String, success: ([[String: AnyObject]] -> ())? = nil,
 			failure: Failure? = nil)
@@ -66,11 +78,14 @@ public class Launchpad {
 
 	func request<T>(
 			path: String, success: (T -> ())?, failure: (NSError -> ())?,
-			method: Verb = Verb.GET, body: AnyObject? = nil)
+			method: Verb = Verb.GET, query: [NSURLQueryItem]? = nil,
+			body: AnyObject? = nil)
 		-> Self {
 
-		let URL = NSURL(string: server + path)!
-		let request = NSMutableURLRequest(URL: URL)
+		let URL = NSURLComponents(string: server + path)!
+		URL.queryItems = query
+
+		let request = NSMutableURLRequest(URL: URL.URL!)
 		request.HTTPMethod = method.rawValue
 
 		var error: NSError?

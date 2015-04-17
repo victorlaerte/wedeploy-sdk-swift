@@ -12,4 +12,20 @@ class QueryTest : BaseTest {
 		XCTAssertEqual("{\"limit\":10}", query.description)
 	}
 
+	func testLimitRequest() {
+		let expectation = expectationWithDescription("limitRequest")
+		let query = Query().limit(1)
+
+		pad.get(path, query: query) { books in
+			XCTAssertEqual(1, books.count)
+			self.assertBook(self.title, book: books[0])
+			expectation.fulfill()
+		}
+
+		waitForExpectationsWithTimeout(timeout) { error in
+			self.hasError(error)
+		}
+	}
+
+
 }

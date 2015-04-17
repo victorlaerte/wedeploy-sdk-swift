@@ -21,4 +21,14 @@ public class Query : Printable {
 		return self
 	}
 
+	func queryItems() -> [NSURLQueryItem] {
+		var items = [NSURLQueryItem]()
+
+		for (name, value) in query {
+			items.append(NSURLQueryItem(name: name, value: value.description))
+		}
+
+		return items
+	}
+
 }
