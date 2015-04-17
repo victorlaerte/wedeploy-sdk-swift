@@ -73,8 +73,15 @@ public class Launchpad {
 		let request = NSMutableURLRequest(URL: URL)
 		request.HTTPMethod = method.rawValue
 
+		var error: NSError?
+
 		if (body != nil) {
-			setRequestBody(request, body: body!)
+			setRequestBody(request, body: body!, error: &error)
+		}
+
+		if let e = error {
+			failure?(e)
+			return self
 		}
 
 		let session = NSURLSession.sharedSession()
@@ -82,6 +89,11 @@ public class Launchpad {
 		session.dataTaskWithRequest(
 			request,
 			completionHandler: { (data, response, error) in
+				if let e = error {
+					failure?(e)
+					return
+				}
+
 				let httpResponse = response as NSHTTPURLResponse
 				let status = httpResponse.statusCode
 
@@ -90,10 +102,17 @@ public class Launchpad {
 					return
 				}
 
+				var parseError: NSError?
+
 				let result = NSJSONSerialization.JSONObjectWithData(
 						data, options: NSJSONReadingOptions.AllowFragments,
-						error: nil)
+						error: &parseError)
 					as T
+
+				if let e = parseError {
+					failure?(e)
+					return
+				}
 
 				success?(result)
 			}
@@ -102,7 +121,9 @@ public class Launchpad {
 		return self
 	}
 
-	func setRequestBody(request: NSMutableURLRequest, body: AnyObject) {
+	func setRequestBody(
+		request: NSMutableURLRequest, body: AnyObject, error: NSErrorPointer) {
+
 		if let stream = body as? NSInputStream {
 			request.HTTPBodyStream = stream
 		}
@@ -112,7 +133,7 @@ public class Launchpad {
 		}
 		else {
 			request.HTTPBody = NSJSONSerialization.dataWithJSONObject(
-				body, options: NSJSONWritingOptions.allZeros, error: nil)
+				body, options: NSJSONWritingOptions.allZeros, error: error)
 		}
 	}
 
