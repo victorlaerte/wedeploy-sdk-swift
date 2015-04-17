@@ -2,7 +2,10 @@ import Foundation
 
 public class Launchpad {
 
-	public typealias Failure = NSError -> ()
+	public typealias FailureCallback = NSError -> ()
+	public typealias SuccessArrayCallback = [[String: AnyObject]] -> ()
+	public typealias SuccessDictionaryCallback = [String: AnyObject] -> ()
+	public typealias SuccessStatusCodeCallback = Int -> ()
 
 	let server: String
 
@@ -17,8 +20,8 @@ public class Launchpad {
 
 	public func add(
 			path: String, document: AnyObject,
-			success: ([String: AnyObject] -> ())? = nil,
-			failure: Failure? = nil)
+			success: SuccessDictionaryCallback? = nil,
+			failure: FailureCallback? = nil)
 		-> Self {
 
 		return request(
@@ -27,18 +30,16 @@ public class Launchpad {
 	}
 
 	public func get(
-			path: String, id: String,
-			success: ([String: AnyObject] -> ())? = nil,
-			failure: Failure? = nil)
+			path: String, id: String, success: SuccessDictionaryCallback? = nil,
+			failure: FailureCallback? = nil)
 		-> Self {
 
 		return request("\(path)/\(id)", success: success, failure: failure)
 	}
 
 	public func get(
-			path: String, query: Query?,
-			success: ([[String: AnyObject]] -> ())? = nil,
-			failure: Failure? = nil)
+			path: String, query: Query?, success: SuccessArrayCallback? = nil,
+			failure: FailureCallback? = nil)
 		-> Self {
 
 		return request(
@@ -48,16 +49,16 @@ public class Launchpad {
 
 
 	public func list(
-			path: String, success: ([[String: AnyObject]] -> ())? = nil,
-			failure: Failure? = nil)
+			path: String, success: SuccessArrayCallback? = nil,
+			failure: FailureCallback? = nil)
 		-> Self {
 
 		return request(path, success: success, failure: failure)
 	}
 
 	public func remove(
-			path: String, id: String, success: (Int -> ())? = nil,
-			failure: Failure? = nil)
+			path: String, id: String, success: SuccessStatusCodeCallback? = nil,
+			failure: FailureCallback? = nil)
 		-> Self {
 
 		return request(
@@ -67,8 +68,8 @@ public class Launchpad {
 
 	public func update(
 			path: String, id: String, document: AnyObject,
-			success: ([String: AnyObject] -> ())? = nil,
-			failure: Failure? = nil)
+			success: SuccessDictionaryCallback? = nil,
+			failure: FailureCallback? = nil)
 		-> Self {
 
 		return request(
@@ -77,7 +78,7 @@ public class Launchpad {
 	}
 
 	func request<T>(
-			path: String, success: (T -> ())?, failure: (NSError -> ())?,
+			path: String, success: (T -> ())?, failure: FailureCallback?,
 			method: Verb = Verb.GET, query: [NSURLQueryItem]? = nil,
 			body: AnyObject? = nil)
 		-> Self {
