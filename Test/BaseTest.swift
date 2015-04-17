@@ -3,7 +3,7 @@ import XCTest
 class BaseTest : XCTestCase {
 
 	var books = [[String: AnyObject]]()
-	var pad: Launchpad?
+	var pad: Launchpad!
 	let path = "/books"
 	let server = "http://localhost:8080"
 	var timeout = 1 as Double
@@ -14,7 +14,7 @@ class BaseTest : XCTestCase {
 		let expectation = expectationWithDescription("setUp")
 		let document = ["title": title]
 
-		pad!.add(path, document: document) { book in
+		pad.add(path, document: document) { book in
 			self.books.append(book)
 			expectation.fulfill()
 		}
@@ -29,7 +29,7 @@ class BaseTest : XCTestCase {
 			let expectation = expectationWithDescription("tearDown")
 			let id = book["id"] as String
 
-			pad!.remove(self.path, id: id) { status in
+			pad.remove(self.path, id: id) { status in
 				expectation.fulfill()
 			}
 
