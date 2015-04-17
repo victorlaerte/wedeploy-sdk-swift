@@ -31,25 +31,6 @@ class RestTest : BaseTest {
 		}
 	}
 
-	func testUpdate() {
-		let expectation = expectationWithDescription("update")
-
-		let book = books[0]
-		var document = book["document"] as [String: String]
-		document["title"] = "La fiesta del chivo"
-
-		let id = book["id"] as String
-
-		pad!.update(path, id: id, document: document) { updatedBook in
-			self.assertBook(document["title"]!, book: updatedBook)
-			expectation.fulfill()
-		}
-
-		waitForExpectationsWithTimeout(timeout) { error in
-			self.hasError(error)
-		}
-	}
-
 	func testList() {
 		let expectation = expectationWithDescription("list")
 
@@ -70,6 +51,25 @@ class RestTest : BaseTest {
 
 		pad!.remove(path, id: id) { status in
 			XCTAssertEqual(204, status)
+			expectation.fulfill()
+		}
+
+		waitForExpectationsWithTimeout(timeout) { error in
+			self.hasError(error)
+		}
+	}
+
+	func testUpdate() {
+		let expectation = expectationWithDescription("update")
+
+		let book = books[0]
+		var document = book["document"] as [String: String]
+		document["title"] = "La fiesta del chivo"
+
+		let id = book["id"] as String
+
+		pad!.update(path, id: id, document: document) { updatedBook in
+			self.assertBook(document["title"]!, book: updatedBook)
 			expectation.fulfill()
 		}
 

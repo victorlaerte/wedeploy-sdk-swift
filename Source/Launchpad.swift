@@ -2,12 +2,14 @@ import Foundation
 
 public class Launchpad {
 
+	public typealias Failure = NSError -> ()
+
+	let server: String
+
 	public enum Verb: String {
 		case DELETE = "DELETE", GET = "GET", PATCH = "PATCH", POST = "POST",
 		PUT = "PUT"
 	}
-
-	let server: String
 
 	init(server: String) {
 		self.server = server
@@ -15,44 +17,56 @@ public class Launchpad {
 
 	public func add(
 			path: String, document: AnyObject,
-			success: ([String: AnyObject] -> ()))
+			success: ([String: AnyObject] -> ())? = nil,
+			failure: Failure? = nil)
 		-> Self {
 
 		return request(
-			path, success: success, method: Verb.POST, body: document)
+			path, success: success, failure: failure, method: Verb.POST,
+			body: document)
 	}
 
 	public func get(
-			path: String, id: String, success: ([String: AnyObject] -> ()))
+			path: String, id: String,
+			success: ([String: AnyObject] -> ())? = nil,
+			failure: Failure? = nil)
 		-> Self {
 
-		return request("\(path)/\(id)", success: success)
+		return request("\(path)/\(id)", success: success, failure: failure)
 	}
 
-	public func list(path: String, success: ([[String: AnyObject]] -> ()))
+	public func list(
+			path: String, success: ([[String: AnyObject]] -> ())? = nil,
+			failure: Failure? = nil)
 		-> Self {
 
-		return request(path, success: success)
+		return request(path, success: success, failure: failure)
 	}
 
-	public func remove(path: String, id: String, success: (Int -> ()))
+	public func remove(
+			path: String, id: String, success: (Int -> ())? = nil,
+			failure: Failure? = nil)
 		-> Self {
 
-		return request("\(path)/\(id)", success: success, method: Verb.DELETE)
+		return request(
+			"\(path)/\(id)", success: success, failure: failure,
+			method: Verb.DELETE)
 	}
 
 	public func update(
 			path: String, id: String, document: AnyObject,
-			success: ([String: AnyObject] -> ()))
+			success: ([String: AnyObject] -> ())? = nil,
+			failure: Failure? = nil)
 		-> Self {
 
 		return request(
-			"\(path)/\(id)", success: success, method: Verb.PUT, body: document)
+			"\(path)/\(id)", success: success, failure: failure,
+			method: Verb.PUT, body: document)
 	}
 
 	func request<T>(
-			path: String, success: (T -> ()), method: Verb = Verb.GET,
-			body: AnyObject? = nil)
+			path: String, success: (T -> ())?, failure: (NSError -> ())?,
+			method: Verb = Verb.GET, body: AnyObject? = nil)
 		-> Self {
 
 		let URL = NSURL(string: server + path)!
@@ -72,7 +86,7 @@ public class Launchpad {
 				let status = httpResponse.statusCode
 
 				if ((data.length == 0) || (status == 204)) {
-					success(status as T)
+					success?(status as T)
 					return
 				}
 
@@ -81,7 +95,7 @@ public class Launchpad {
 						error: nil)
 					as T
 
-				success(result)
+				success?(result)
 			}
 		).resume()
 
