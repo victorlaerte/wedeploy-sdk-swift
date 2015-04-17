@@ -4,6 +4,10 @@ public class Query : Printable {
 
 	var query = [String: AnyObject]()
 
+	public enum Order: String {
+		case ASC = "asc", DESC = "desc"
+	}
+
 	public var description: String {
 		let data = NSJSONSerialization.dataWithJSONObject(
 			query, options: NSJSONWritingOptions.allZeros, error: nil)!
@@ -21,11 +25,38 @@ public class Query : Printable {
 		return self
 	}
 
+	public func sort(name: String, order: Order = Order.ASC) -> Self {
+		var sort = query["sort"] as? [[String: String]]
+
+		if (sort == nil) {
+			sort = [[String: String]]()
+		}
+
+		sort!.append([name: order.rawValue])
+		query["sort"] = sort
+
+		return self
+	}
+
 	func queryItems() -> [NSURLQueryItem] {
 		var items = [NSURLQueryItem]()
 
 		for (name, value) in query {
-			items.append(NSURLQueryItem(name: name, value: value.description))
+			var item: NSURLQueryItem
+
+			if let v = value as? [String: AnyObject] {
+				let data = NSJSONSerialization.dataWithJSONObject(
+					v, options: NSJSONWritingOptions.allZeros, error: nil)
+
+				let json = NSString(data: data!, encoding: NSUTF8StringEncoding)
+
+				item = NSURLQueryItem(name: name, value: json!)
+			}
+			else {
+				item = NSURLQueryItem(name: name, value: value.description)
+			}
+
+			items.append(item)
 		}
 
 		return items

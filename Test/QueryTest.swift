@@ -27,4 +27,15 @@ class QueryTest : BaseTest {
 		}
 	}
 
+	func testSort() {
+		let query = Query().sort("title")
+		XCTAssertEqual("{\"sort\":[{\"title\":\"asc\"}]}", query.description)
+
+		query.sort("author", order: Query.Order.DESC)
+
+		XCTAssertEqual(
+			"{\"sort\":[{\"title\":\"asc\"},{\"author\":\"desc\"}]}",
+			query.description)
+	}
+
 }
