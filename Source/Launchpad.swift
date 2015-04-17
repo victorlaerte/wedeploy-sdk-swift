@@ -54,7 +54,11 @@ public class Launchpad {
 		let request = NSMutableURLRequest(URL: URL)
 		request.HTTPMethod = method
 
-		if let obj: AnyObject = body {
+		if let string = body as? String {
+			request.HTTPBody = string.dataUsingEncoding(
+				NSUTF8StringEncoding, allowLossyConversion: false)
+		}
+		else if let obj: AnyObject = body {
 			request.HTTPBody = NSJSONSerialization.dataWithJSONObject(
 				obj, options: NSJSONWritingOptions.allZeros, error: nil)
 		}
