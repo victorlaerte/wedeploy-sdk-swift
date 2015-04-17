@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		CC7CE7551ADEC66B001165D1 /* Launchpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7CE7541ADEC66B001165D1 /* Launchpad.swift */; };
 		CCA17BA21ADEC3D7000BF430 /* RestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA17BA01ADEC3D7000BF430 /* RestTest.swift */; };
+		CCE540901AE146B4004C7041 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE5408F1AE146B4004C7041 /* Query.swift */; };
+		CCE540921AE14E2A004C7041 /* QueryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE540911AE14E2A004C7041 /* QueryTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -16,6 +18,8 @@
 		CC7CE7541ADEC66B001165D1 /* Launchpad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Launchpad.swift; sourceTree = "<group>"; };
 		CCA17B9F1ADEC3D7000BF430 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCA17BA01ADEC3D7000BF430 /* RestTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestTest.swift; sourceTree = "<group>"; };
+		CCE5408F1AE146B4004C7041 /* Query.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
+		CCE540911AE14E2A004C7041 /* QueryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				CC7CE7541ADEC66B001165D1 /* Launchpad.swift */,
+				CCE5408F1AE146B4004C7041 /* Query.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -58,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				CCA17B9F1ADEC3D7000BF430 /* Info.plist */,
+				CCE540911AE14E2A004C7041 /* QueryTest.swift */,
 				CCA17BA01ADEC3D7000BF430 /* RestTest.swift */,
 			);
 			path = Test;
@@ -129,7 +135,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCE540921AE14E2A004C7041 /* QueryTest.swift in Sources */,
 				CC7CE7551ADEC66B001165D1 /* Launchpad.swift in Sources */,
+				CCE540901AE146B4004C7041 /* Query.swift in Sources */,
 				CCA17BA21ADEC3D7000BF430 /* RestTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -50,7 +50,7 @@ public class Launchpad {
 			body: AnyObject? = nil)
 		-> Self {
 
-		let URL = NSURL(string: self.server + path)!
+		let URL = NSURL(string: server + path)!
 		let request = NSMutableURLRequest(URL: URL)
 		request.HTTPMethod = method
 

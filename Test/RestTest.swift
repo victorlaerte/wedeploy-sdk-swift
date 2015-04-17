@@ -2,7 +2,7 @@ import XCTest
 
 class RestTest : XCTestCase {
 
-	var books: [[String: AnyObject]] = []
+	var books = [[String: AnyObject]]()
 	var pad: Launchpad?
 	let path = "/books"
 	let server = "http://localhost:8080"
