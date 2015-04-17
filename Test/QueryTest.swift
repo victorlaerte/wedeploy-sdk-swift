@@ -1,6 +1,6 @@
 import XCTest
 
-class QueryTest : XCTestCase {
+class QueryTest : BaseTest {
 
 	func testOffset() {
 		let query = Query().offset(5)
