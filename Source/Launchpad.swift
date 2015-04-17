@@ -59,13 +59,8 @@ public class Launchpad {
 		let request = NSMutableURLRequest(URL: URL)
 		request.HTTPMethod = method.rawValue
 
-		if let string = body as? String {
-			request.HTTPBody = string.dataUsingEncoding(
-				NSUTF8StringEncoding, allowLossyConversion: false)
-		}
-		else if let obj: AnyObject = body {
-			request.HTTPBody = NSJSONSerialization.dataWithJSONObject(
-				obj, options: NSJSONWritingOptions.allZeros, error: nil)
+		if (body != nil) {
+			setRequestBody(request, body: body!)
 		}
 
 		let session = NSURLSession.sharedSession()
@@ -91,6 +86,20 @@ public class Launchpad {
 		).resume()
 
 		return self
+	}
+
+	func setRequestBody(request: NSMutableURLRequest, body: AnyObject) {
+		if let stream = body as? NSInputStream {
+			request.HTTPBodyStream = stream
+		}
+		else if let string = body as? String {
+			request.HTTPBody = string.dataUsingEncoding(
+				NSUTF8StringEncoding, allowLossyConversion: false)
+		}
+		else {
+			request.HTTPBody = NSJSONSerialization.dataWithJSONObject(
+				body, options: NSJSONWritingOptions.allZeros, error: nil)
+		}
 	}
 
 }
