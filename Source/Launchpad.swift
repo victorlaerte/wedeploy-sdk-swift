@@ -2,6 +2,11 @@ import Foundation
 
 public class Launchpad {
 
+	public enum Verb: String {
+		case DELETE = "DELETE", GET = "GET", PATCH = "PATCH", POST = "POST",
+		PUT = "PUT"
+	}
+
 	let server: String
 
 	init(server: String) {
@@ -14,7 +19,7 @@ public class Launchpad {
 		-> Self {
 
 		return request(
-			path, success: success, method: "POST", body: document)
+			path, success: success, method: Verb.POST, body: document)
 	}
 
 	public func get(
@@ -33,7 +38,7 @@ public class Launchpad {
 	public func remove(path: String, id: String, success: (Int -> ()))
 		-> Self {
 
-		return request("\(path)/\(id)", success: success, method: "DELETE")
+		return request("\(path)/\(id)", success: success, method: Verb.DELETE)
 	}
 
 	public func update(
@@ -42,17 +47,17 @@ public class Launchpad {
 		-> Self {
 
 		return request(
-			"\(path)/\(id)", success: success, method: "PUT", body: document)
+			"\(path)/\(id)", success: success, method: Verb.PUT, body: document)
 	}
 
 	func request<T>(
-			path: String, success: (T -> ()), method: String = "GET",
+			path: String, success: (T -> ()), method: Verb = Verb.GET,
 			body: AnyObject? = nil)
 		-> Self {
 
 		let URL = NSURL(string: server + path)!
 		let request = NSMutableURLRequest(URL: URL)
-		request.HTTPMethod = method
+		request.HTTPMethod = method.rawValue
 
 		if let string = body as? String {
 			request.HTTPBody = string.dataUsingEncoding(
