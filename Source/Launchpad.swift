@@ -30,7 +30,7 @@ public class Launchpad {
 	}
 
 	public func get(
-			path: String, id: String, success: SuccessDictionaryCallback? = nil,
+			path: String, id: String, success: SuccessDictionaryCallback,
 			failure: FailureCallback? = nil)
 		-> Self {
 
@@ -38,7 +38,7 @@ public class Launchpad {
 	}
 
 	public func get(
-			path: String, query: Query?, success: SuccessArrayCallback? = nil,
+			path: String, query: Query?, success: SuccessArrayCallback,
 			failure: FailureCallback? = nil)
 		-> Self {
 
@@ -49,7 +49,7 @@ public class Launchpad {
 
 
 	public func list(
-			path: String, success: SuccessArrayCallback? = nil,
+			path: String, success: SuccessArrayCallback,
 			failure: FailureCallback? = nil)
 		-> Self {
 
