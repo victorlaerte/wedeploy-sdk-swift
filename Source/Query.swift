@@ -44,9 +44,9 @@ public class Query : Printable {
 		for (name, value) in query {
 			var item: NSURLQueryItem
 
-			if let v = value as? [String: AnyObject] {
+			if ((value is [AnyObject]) || (value is [String: AnyObject])) {
 				let data = NSJSONSerialization.dataWithJSONObject(
-					v, options: NSJSONWritingOptions.allZeros, error: nil)
+					value, options: NSJSONWritingOptions.allZeros, error: nil)
 
 				let json = NSString(data: data!, encoding: NSUTF8StringEncoding)
 
