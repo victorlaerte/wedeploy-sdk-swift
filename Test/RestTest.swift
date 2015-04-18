@@ -4,10 +4,10 @@ class RestTest : BaseTest {
 
 	func testAdd() {
 		let expectation = expectationWithDescription("add")
-		let document = ["title": title]
+		let bookToAdd = booksToAdd.first!
 
-		pad.add(path, document: document) { book in
-			self.assertBook(self.title, book: book)
+		pad.add(path, document: bookToAdd) { book in
+			self.assertBook(bookToAdd, result: book)
 			self.books.append(book)
 			expectation.fulfill()
 		}
@@ -22,7 +22,7 @@ class RestTest : BaseTest {
 		let id = books.first!["id"] as String
 
 		pad.get(path, id: id) { book in
-			self.assertBook(self.title, book: book)
+			self.assertBook(self.booksToAdd.first!, result: book)
 			expectation.fulfill()
 		}
 
@@ -36,7 +36,7 @@ class RestTest : BaseTest {
 
 		pad.list(path) { books in
 			XCTAssertEqual(1, books.count)
-			self.assertBook(self.title, book: books.first!)
+			self.assertBook(self.booksToAdd.first!, result: books.first!)
 			expectation.fulfill()
 		}
 
@@ -69,7 +69,7 @@ class RestTest : BaseTest {
 		let id = book["id"] as String
 
 		pad.update(path, id: id, document: document) { updatedBook in
-			self.assertBook(document["title"]!, book: updatedBook)
+			self.assertBook(document, result: updatedBook)
 			expectation.fulfill()
 		}
 

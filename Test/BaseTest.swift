@@ -3,24 +3,30 @@ import XCTest
 class BaseTest : XCTestCase {
 
 	var books = [[String: AnyObject]]()
+
+	var booksToAdd = [
+		["title": "Cien años de soledad"]
+	]
+
 	var pad: Launchpad!
 	let path = "/books"
 	let server = "http://localhost:8080"
 	var timeout = 1 as Double
-	let title = "Cien años de soledad"
 
 	override func setUp() {
 		pad = Launchpad(server: server)
-		let expectation = expectationWithDescription("setUp")
-		let document = ["title": title]
 
-		pad.add(path, document: document) { book in
-			self.books.append(book)
-			expectation.fulfill()
-		}
+		for bookToAdd in booksToAdd {
+			let expectation = expectationWithDescription("setUp")
 
-		waitForExpectationsWithTimeout(timeout) { error in
-			self.hasError(error)
+			pad.add(path, document: bookToAdd) { book in
+				self.books.append(book)
+				expectation.fulfill()
+			}
+
+			waitForExpectationsWithTimeout(timeout) { error in
+				self.hasError(error)
+			}
 		}
 	}
 
@@ -39,8 +45,12 @@ class BaseTest : XCTestCase {
 		}
 	}
 
-	func assertBook(title: String, book: [String: AnyObject]) {
-		XCTAssertEqual(title, book["document"]!["title"]!! as String)
+	func assertBook(
+		expected: [String: AnyObject], result: [String: AnyObject]) {
+
+		XCTAssertEqual(
+			expected["title"] as String,
+			result["document"]!["title"]!! as String)
 	}
 
 	func hasError(error: NSError?) {
