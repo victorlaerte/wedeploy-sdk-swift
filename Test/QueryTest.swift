@@ -18,7 +18,7 @@ class QueryTest : BaseTest {
 
 		pad.get(path, query: query) { books in
 			XCTAssertEqual(1, books.count)
-			self.assertBook(self.title, book: books[0])
+			self.assertBook(self.title, book: books.first!)
 			expectation.fulfill()
 		}
 

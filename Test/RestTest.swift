@@ -19,7 +19,7 @@ class RestTest : BaseTest {
 
 	func testGet() {
 		let expectation = expectationWithDescription("get")
-		let id = books[0]["id"] as String
+		let id = books.first!["id"] as String
 
 		pad.get(path, id: id) { book in
 			self.assertBook(self.title, book: book)
@@ -36,7 +36,7 @@ class RestTest : BaseTest {
 
 		pad.list(path) { books in
 			XCTAssertEqual(1, books.count)
-			self.assertBook(self.title, book: books[0])
+			self.assertBook(self.title, book: books.first!)
 			expectation.fulfill()
 		}
 
@@ -47,7 +47,7 @@ class RestTest : BaseTest {
 
 	func testRemove() {
 		let expectation = expectationWithDescription("remove")
-		let id = books[0]["id"] as String
+		let id = books.first!["id"] as String
 
 		pad.remove(path, id: id) { status in
 			XCTAssertEqual(204, status)
@@ -62,7 +62,7 @@ class RestTest : BaseTest {
 	func testUpdate() {
 		let expectation = expectationWithDescription("update")
 
-		let book = books[0]
+		let book = books.first!
 		var document = book["document"] as [String: String]
 		document["title"] = "La fiesta del chivo"
 
