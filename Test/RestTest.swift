@@ -35,7 +35,7 @@ class RestTest : BaseTest {
 		let expectation = expectationWithDescription("list")
 
 		pad.list(path) { books in
-			XCTAssertEqual(1, books.count)
+			XCTAssertEqual(self.booksToAdd.count, books.count)
 			self.assertBook(self.booksToAdd.first!, result: books.first!)
 			expectation.fulfill()
 		}

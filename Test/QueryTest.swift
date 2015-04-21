@@ -38,4 +38,20 @@ class QueryTest : BaseTest {
 			query.description)
 	}
 
+	func testSortRequest() {
+		let expectation = expectationWithDescription("sortRequest")
+		let query = Query().sort("title", order: Query.Order.DESC)
+		let sortedBooks = sorted(self.booksToAdd, {$0["title"] > $1["title"]})
+
+		pad.get(path, query: query) { books in
+			XCTAssertEqual(self.booksToAdd.count, books.count)
+			self.assertBooks(sortedBooks, result: books)
+			expectation.fulfill()
+		}
+
+		waitForExpectationsWithTimeout(timeout) { error in
+			self.hasError(error)
+		}
+	}
+
 }

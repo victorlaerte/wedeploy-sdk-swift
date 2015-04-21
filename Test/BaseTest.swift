@@ -5,7 +5,8 @@ class BaseTest : XCTestCase {
 	var books = [[String: AnyObject]]()
 
 	var booksToAdd = [
-		["title": "Cien años de soledad"]
+		["title": "Cien años de soledad"],
+		["title": "Historias de cronopios y de famas"]
 	]
 
 	var pad: Launchpad!
@@ -51,6 +52,14 @@ class BaseTest : XCTestCase {
 		XCTAssertEqual(
 			expected["title"] as String,
 			result["document"]!["title"]!! as String)
+	}
+
+	func assertBooks(
+		expected: [[String: String]], result: [[String: AnyObject]]) {
+
+		for (index, book) in enumerate(result) {
+			assertBook(expected[index], result: book)
+		}
 	}
 
 	func hasError(error: NSError?) {
