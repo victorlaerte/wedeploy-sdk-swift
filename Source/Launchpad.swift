@@ -25,7 +25,7 @@ public class Launchpad {
 		-> Self {
 
 		return request(
-			path, success: success, failure: failure, method: Verb.POST,
+			path, success: success, failure: failure, method: .POST,
 			body: document)
 	}
 
@@ -63,7 +63,7 @@ public class Launchpad {
 
 		return request(
 			"\(path)/\(id)", success: success, failure: failure,
-			method: Verb.DELETE)
+			method: .DELETE)
 	}
 
 	public func update(
@@ -73,13 +73,13 @@ public class Launchpad {
 		-> Self {
 
 		return request(
-			"\(path)/\(id)", success: success, failure: failure,
-			method: Verb.PUT, body: document)
+			"\(path)/\(id)", success: success, failure: failure, method: .PUT,
+			body: document)
 	}
 
 	func request<T>(
 			path: String, success: (T -> ())?, failure: FailureCallback?,
-			method: Verb = Verb.GET, query: [NSURLQueryItem]? = nil,
+			method: Verb = .GET, query: [NSURLQueryItem]? = nil,
 			body: AnyObject? = nil)
 		-> Self {
 

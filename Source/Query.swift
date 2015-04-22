@@ -25,7 +25,7 @@ public class Query : Printable {
 		return self
 	}
 
-	public func sort(name: String, order: Order = Order.ASC) -> Self {
+	public func sort(name: String, order: Order = .ASC) -> Self {
 		var sort = query["sort"] as? [[String: String]]
 
 		if (sort == nil) {
