@@ -12,7 +12,7 @@ public class Query : Printable {
 		let data = NSJSONSerialization.dataWithJSONObject(
 			query, options: NSJSONWritingOptions.allZeros, error: nil)!
 
-		return NSString(data: data,  encoding: NSUTF8StringEncoding)!
+		return NSString(data: data,  encoding: NSUTF8StringEncoding)! as String
 	}
 
 	public func offset(offset: Int) -> Self {
@@ -50,7 +50,7 @@ public class Query : Printable {
 
 				let json = NSString(data: data!, encoding: NSUTF8StringEncoding)
 
-				item = NSURLQueryItem(name: name, value: json!)
+				item = NSURLQueryItem(name: name, value: json! as String)
 			}
 			else {
 				item = NSURLQueryItem(name: name, value: value.description)

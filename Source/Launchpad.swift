@@ -110,11 +110,11 @@ public class Launchpad {
 					return
 				}
 
-				let httpResponse = response as NSHTTPURLResponse
+				let httpResponse = response as! NSHTTPURLResponse
 				let status = httpResponse.statusCode
 
 				if ((data.length == 0) || (status == 204)) {
-					success?(status as T)
+					success?(status as! T)
 					return
 				}
 
@@ -123,7 +123,7 @@ public class Launchpad {
 				let result = NSJSONSerialization.JSONObjectWithData(
 						data, options: NSJSONReadingOptions.AllowFragments,
 						error: &parseError)
-					as T
+					as! T
 
 				if let e = parseError {
 					failure?(e)

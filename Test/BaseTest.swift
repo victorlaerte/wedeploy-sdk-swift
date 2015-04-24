@@ -20,10 +20,10 @@ class BaseTest : XCTestCase {
 		for bookToAdd in booksToAdd {
 			let expectation = expectationWithDescription("setUp")
 
-			pad.add(path, document: bookToAdd) { book in
+			pad.add(path, document: bookToAdd, success: { book in
 				self.books.append(book)
 				expectation.fulfill()
-			}
+			})
 
 			waitForExpectationsWithTimeout(timeout) { error in
 				self.hasError(error)
@@ -34,11 +34,11 @@ class BaseTest : XCTestCase {
 	override func tearDown() {
 		for book in books {
 			let expectation = expectationWithDescription("tearDown")
-			let id = book["id"] as String
+			let id = book["id"] as! String
 
-			pad.remove(self.path, id: id) { status in
+			pad.remove(self.path, id: id, success: { status in
 				expectation.fulfill()
-			}
+			})
 
 			waitForExpectationsWithTimeout(timeout) { error in
 				self.hasError(error)
@@ -50,8 +50,8 @@ class BaseTest : XCTestCase {
 		expected: [String: AnyObject], result: [String: AnyObject]) {
 
 		XCTAssertEqual(
-			expected["title"] as String,
-			result["document"]!["title"]!! as String)
+			expected["title"] as! String,
+			result["document"]!["title"]!! as! String)
 	}
 
 	func assertBooks(

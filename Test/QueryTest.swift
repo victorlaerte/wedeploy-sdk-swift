@@ -16,11 +16,11 @@ class QueryTest : BaseTest {
 		let expectation = expectationWithDescription("limitRequest")
 		let query = Query().limit(1)
 
-		pad.get(path, query: query) { books in
+		pad.get(path, query: query, success: { books in
 			XCTAssertEqual(1, books.count)
 			self.assertBook(self.booksToAdd.first!, result: books.first!)
 			expectation.fulfill()
-		}
+		})
 
 		waitForExpectationsWithTimeout(timeout) { error in
 			self.hasError(error)
@@ -43,11 +43,11 @@ class QueryTest : BaseTest {
 		let query = Query().sort("title", order: Query.Order.DESC)
 		let sortedBooks = sorted(self.booksToAdd, {$0["title"] > $1["title"]})
 
-		pad.get(path, query: query) { books in
+		pad.get(path, query: query, success: { books in
 			XCTAssertEqual(self.booksToAdd.count, books.count)
 			self.assertBooks(sortedBooks, result: books)
 			expectation.fulfill()
-		}
+		})
 
 		waitForExpectationsWithTimeout(timeout) { error in
 			self.hasError(error)
