@@ -4,27 +4,55 @@ class CatchTest : XCTestCase {
 
 	func testAsyncCatch() {
 		let expectation = expectationWithDescription("testAsyncCatch")
-		var output: NSError?
+		var error: NSError?
 
-		let queue = dispatch_get_global_queue(
-			DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+		Promise<()>({ (resolve, reject) in
+			let queue = dispatch_get_global_queue(
+				DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
-		Promise<String>({ (resolve, reject) in
 			dispatch_async(queue, {
-				let error = NSError(domain: "domain", code: 1, userInfo: nil)
-				reject(error)
+				reject(NSError(domain: "domain", code: 1, userInfo: nil))
 			})
 		})
-		.catch({ error in
-			output = error
+		.catch({
+			error = $0
 			expectation.fulfill()
 		})
 		.done()
 
 		wait {
-			XCTAssertEqual("domain", output!.domain)
-			XCTAssertEqual(1, output!.code)
+			XCTAssertEqual("domain", error!.domain)
+			XCTAssertEqual(1, error!.code)
 		}
 	}
 
-} 
+	func testAsyncCatch_With_Then() {
+		let expectation = expectationWithDescription("testAsyncCatch_With_Then")
+		var error: NSError?
+
+		Promise<()>({ (resolve, reject) in
+			let queue = dispatch_get_global_queue(
+				DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+
+			dispatch_async(queue, {
+				sleep(1)
+				reject(NSError(domain: "domain", code: 1, userInfo: nil))
+			})
+		})
+		.then({
+			XCTFail(
+				"Then shouldn't be called, should be skipped directly to catch")
+		})
+		.catch({
+			error = $0
+			expectation.fulfill()
+		})
+		.done()
+
+		wait(1.1) {
+			XCTAssertEqual("domain", error!.domain)
+			XCTAssertEqual(1, error!.code)
+		}
+	}
+
+}
