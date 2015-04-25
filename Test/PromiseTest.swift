@@ -105,11 +105,12 @@ class PromiseTest : XCTestCase {
 			return "one"
 		})
 		.then(block: { input in
-			return ["two"]
+			return [input, "two"]
 		})
 		.then(block: { input in
-			XCTAssertEqual(1, input!.count)
-			XCTAssertEqual("two", input!.first!)
+			XCTAssertEqual(2, input!.count)
+			XCTAssertEqual("one", input!.first!!)
+			XCTAssertEqual("two", input!.last!!)
 			expectation.fulfill()
 			return nil
 		})
