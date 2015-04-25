@@ -8,14 +8,17 @@ class PromiseTest : XCTestCase {
 
 		Promise({
 			return "one"
-		}).then(block: { input in
+		})
+		.then(block: { input in
 			output.append(input!)
 			return "two"
-		}).then(block: { input in
+		})
+		.then(block: { input in
 			output.append(input!)
 			expectation.fulfill()
 			return "three"
-		}).done()
+		})
+		.done()
 
 		wait {
 			XCTAssertEqual(2, output.count)
@@ -30,12 +33,15 @@ class PromiseTest : XCTestCase {
 
 		Promise({
 			return "one"
-		}).then(block: { input in
+		})
+		.then(block: { input in
 			output.append(input!)
 			return "two"
-		}).then({
+		})
+		.then({
 			expectation.fulfill()
-		}).done()
+		})
+		.done()
 
 		wait {
 			XCTAssertEqual(1, output.count)
@@ -49,12 +55,15 @@ class PromiseTest : XCTestCase {
 
 		Promise({
 			return "one"
-		}).then({
+		})
+		.then({
 			output.append("two")
-		}).then(block: { input in
+		})
+		.then(block: { input in
 			expectation.fulfill()
 			return ""
-		}).done()
+		})
+		.done()
 
 		wait {
 			XCTAssertEqual(1, output.count)
@@ -68,12 +77,15 @@ class PromiseTest : XCTestCase {
 
 		Promise({
 			order.append("one")
-		}).then({
+		})
+		.then({
 			order.append("two")
-		}).then({
+		})
+		.then({
 			order.append("three")
 			expectation.fulfill()
-		}).done()
+		})
+		.done()
 
 		wait {
 			XCTAssertEqual(3, order.count)
@@ -91,14 +103,17 @@ class PromiseTest : XCTestCase {
 
 		Promise({
 			return "one"
-		}).then(block: { input in
+		})
+		.then(block: { input in
 			return ["two"]
-		}).then(block: { input in
+		})
+		.then(block: { input in
 			XCTAssertEqual(1, input!.count)
 			XCTAssertEqual("two", input!.first!)
 			expectation.fulfill()
 			return nil
-		}).done()
+		})
+		.done()
 
 		wait()
 	}
