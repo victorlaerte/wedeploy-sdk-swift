@@ -6,16 +6,13 @@ class PromiseTest : XCTestCase {
 		let expectation = expectationWithDescription("testThen")
 		var order = [String]()
 
-		Promise({ input in
+		Promise({
 			order.append("one")
-			return ""
-		}).then({ input in
+		}).then({
 			order.append("two")
-			return ""
-		}).then({ input in
+		}).then({
 			order.append("three")
 			expectation.fulfill()
-			return ""
 		}).done()
 
 		wait {
@@ -30,12 +27,12 @@ class PromiseTest : XCTestCase {
 		let expectation = expectationWithDescription("testThen")
 		var output = [String]()
 
-		Promise({ input in
+		Promise({
 			return "one"
-		}).then({ input in
+		}).then(both: { input in
 			output.append(input as! String)
 			return "two"
-		}).then({ input in
+		}).then(both: { input in
 			output.append(input as! String)
 			expectation.fulfill()
 			return "three"
