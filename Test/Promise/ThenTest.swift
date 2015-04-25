@@ -1,6 +1,6 @@
 import XCTest
 
-class PromiseTest : XCTestCase {
+class ThenTest : XCTestCase {
 
 	func test_Both_Then_Both() {
 		let expectation = expectationWithDescription("test_Both_Then_Both")
