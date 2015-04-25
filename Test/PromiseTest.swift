@@ -2,21 +2,49 @@ import XCTest
 
 class PromiseTest : XCTestCase {
 
-	func testThen() {
+	func testThenOrder() {
 		let expectation = expectationWithDescription("testThen")
-		var results = [String]()
+		var order = [String]()
 
-		Promise().then({
-			results.append("one")
-		}).then({
-			results.append("two")
+		Promise({ input in
+			order.append("one")
+			return ""
+		}).then({ input in
+			order.append("two")
+			return ""
+		}).then({ input in
+			order.append("three")
 			expectation.fulfill()
+			return ""
 		}).done()
 
 		wait {
-			XCTAssertEqual(2, results.count)
-			XCTAssertEqual("one", results.first!)
-			XCTAssertEqual("two", results.last!)
+			XCTAssertEqual(3, order.count)
+			XCTAssertEqual("one", order.first!)
+			XCTAssertEqual("two", order[1])
+			XCTAssertEqual("three", order.last!)
+		}
+	}
+
+	func testThenWithOutput() {
+		let expectation = expectationWithDescription("testThen")
+		var output = [String]()
+
+		Promise({ input in
+			return "one"
+		}).then({ input in
+			output.append(input as! String)
+			return "two"
+		}).then({ input in
+			output.append(input as! String)
+			expectation.fulfill()
+			return "three"
+		}).done()
+
+		wait {
+			XCTAssertEqual(2, output.count)
+			XCTAssertEqual("one", output.first!)
+			XCTAssertEqual("two", output.last!)
 		}
 	}
 

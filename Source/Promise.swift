@@ -4,13 +4,15 @@ public class Promise {
 
 	var operations = [NSOperation]()
 
-	public func then(block: () -> ()) -> Self {
-		let operation = NSBlockOperation(block: block)
+	init(_ block: (Any?) -> (Any?)) {
+		operations.append(PromiseOperation(block: block))
+	}
 
-		if let last = operations.last {
-			operation.addDependency(last)
-		}
+	public func then(block: (Any?) -> (Any?)) -> Self {
+		let last = operations.last! as! PromiseOperation
+		let operation = PromiseOperation(block: block)
 
+		operation.addDependency(last)
 		operations.append(operation)
 
 		return self
