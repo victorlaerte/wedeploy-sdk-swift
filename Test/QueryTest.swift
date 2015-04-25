@@ -22,9 +22,7 @@ class QueryTest : BaseTest {
 			expectation.fulfill()
 		})
 
-		waitForExpectationsWithTimeout(timeout) { error in
-			self.hasError(error)
-		}
+		wait()
 	}
 
 	func testSort() {
@@ -49,9 +47,7 @@ class QueryTest : BaseTest {
 			expectation.fulfill()
 		})
 
-		waitForExpectationsWithTimeout(timeout) { error in
-			self.hasError(error)
-		}
+		wait()
 	}
 
 }

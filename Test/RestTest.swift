@@ -12,9 +12,7 @@ class RestTest : BaseTest {
 			expectation.fulfill()
 		})
 
-		waitForExpectationsWithTimeout(timeout) { error in
-			self.hasError(error)
-		}
+		wait()
 	}
 
 	func testGet() {
@@ -26,9 +24,7 @@ class RestTest : BaseTest {
 			expectation.fulfill()
 		})
 
-		waitForExpectationsWithTimeout(timeout) { error in
-			self.hasError(error)
-		}
+		wait()
 	}
 
 	func testList() {
@@ -40,9 +36,7 @@ class RestTest : BaseTest {
 			expectation.fulfill()
 		})
 
-		waitForExpectationsWithTimeout(timeout) { error in
-			self.hasError(error)
-		}
+		wait()
 	}
 
 	func testRemove() {
@@ -54,9 +48,7 @@ class RestTest : BaseTest {
 			expectation.fulfill()
 		})
 
-		waitForExpectationsWithTimeout(timeout) { error in
-			self.hasError(error)
-		}
+		wait()
 	}
 
 	func testUpdate() {
@@ -73,9 +65,7 @@ class RestTest : BaseTest {
 			expectation.fulfill()
 		})
 
-		waitForExpectationsWithTimeout(timeout) { error in
-			self.hasError(error)
-		}
+		wait()
 	}
 
 }

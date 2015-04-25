@@ -12,7 +12,6 @@ class BaseTest : XCTestCase {
 	var pad: Launchpad!
 	let path = "/books"
 	let server = "http://localhost:8080"
-	var timeout = 1 as Double
 
 	override func setUp() {
 		pad = Launchpad(server: server)
@@ -25,9 +24,7 @@ class BaseTest : XCTestCase {
 				expectation.fulfill()
 			})
 
-			waitForExpectationsWithTimeout(timeout) { error in
-				self.hasError(error)
-			}
+			wait()
 		}
 	}
 
@@ -40,9 +37,7 @@ class BaseTest : XCTestCase {
 				expectation.fulfill()
 			})
 
-			waitForExpectationsWithTimeout(timeout) { error in
-				self.hasError(error)
-			}
+			wait()
 		}
 	}
 
@@ -60,14 +55,6 @@ class BaseTest : XCTestCase {
 		for (index, book) in enumerate(result) {
 			assertBook(expected[index], result: book)
 		}
-	}
-
-	func hasError(error: NSError?) {
-		if (error == nil) {
-			return
-		}
-
-		XCTFail(error!.localizedDescription)
 	}
 
 }
