@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC06315F1AEAFDA60097D129 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC06315E1AEAFDA60097D129 /* Promise.swift */; };
+		CC0631611AEB0C770097D129 /* PromiseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0631601AEB0C770097D129 /* PromiseTest.swift */; };
 		CC7CE7551ADEC66B001165D1 /* Launchpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7CE7541ADEC66B001165D1 /* Launchpad.swift */; };
 		CCA17BA21ADEC3D7000BF430 /* RestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA17BA01ADEC3D7000BF430 /* RestTest.swift */; };
 		CCE540901AE146B4004C7041 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE5408F1AE146B4004C7041 /* Query.swift */; };
@@ -15,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CC06315E1AEAFDA60097D129 /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
+		CC0631601AEB0C770097D129 /* PromiseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseTest.swift; sourceTree = "<group>"; };
 		CC6004F81ADEC22200B8F2E5 /* Launchpad.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Launchpad.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC7CE7541ADEC66B001165D1 /* Launchpad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Launchpad.swift; sourceTree = "<group>"; };
 		CCA17B9F1ADEC3D7000BF430 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				CC7CE7541ADEC66B001165D1 /* Launchpad.swift */,
+				CC06315E1AEAFDA60097D129 /* Promise.swift */,
 				CCE5408F1AE146B4004C7041 /* Query.swift */,
 			);
 			path = Source;
@@ -66,6 +71,7 @@
 			children = (
 				CCA17B9F1ADEC3D7000BF430 /* Info.plist */,
 				CCE540931AE15E1D004C7041 /* BaseTest.swift */,
+				CC0631601AEB0C770097D129 /* PromiseTest.swift */,
 				CCE540911AE14E2A004C7041 /* QueryTest.swift */,
 				CCA17BA01ADEC3D7000BF430 /* RestTest.swift */,
 			);
@@ -139,10 +145,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCE540941AE15E1D004C7041 /* BaseTest.swift in Sources */,
+				CC0631611AEB0C770097D129 /* PromiseTest.swift in Sources */,
 				CCE540921AE14E2A004C7041 /* QueryTest.swift in Sources */,
 				CC7CE7551ADEC66B001165D1 /* Launchpad.swift in Sources */,
 				CCE540901AE146B4004C7041 /* Query.swift in Sources */,
 				CCA17BA21ADEC3D7000BF430 /* RestTest.swift in Sources */,
+				CC06315F1AEAFDA60097D129 /* Promise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
