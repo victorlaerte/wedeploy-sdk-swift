@@ -2,29 +2,8 @@ import XCTest
 
 class PromiseTest : XCTestCase {
 
-	func testThenOrder() {
-		let expectation = expectationWithDescription("testThen")
-		var order = [String]()
-
-		Promise({
-			order.append("one")
-		}).then({
-			order.append("two")
-		}).then({
-			order.append("three")
-			expectation.fulfill()
-		}).done()
-
-		wait {
-			XCTAssertEqual(3, order.count)
-			XCTAssertEqual("one", order.first!)
-			XCTAssertEqual("two", order[1])
-			XCTAssertEqual("three", order.last!)
-		}
-	}
-
-	func testThenWithOutput() {
-		let expectation = expectationWithDescription("testThen")
+	func test_Both_Then_Both() {
+		let expectation = expectationWithDescription("test_Both_Then_Both")
 		var output = [String]()
 
 		Promise({
@@ -42,6 +21,64 @@ class PromiseTest : XCTestCase {
 			XCTAssertEqual(2, output.count)
 			XCTAssertEqual("one", output.first!)
 			XCTAssertEqual("two", output.last!)
+		}
+	}
+
+	func test_Both_Then_Empty() {
+		let expectation = expectationWithDescription("test_Both_Then_Empty")
+		var output = [String]()
+
+		Promise({
+			return "one"
+		}).then(both: { input in
+			output.append(input as! String)
+			return "two"
+		}).then({
+			expectation.fulfill()
+		}).done()
+
+		wait {
+			XCTAssertEqual(1, output.count)
+			XCTAssertEqual("one", output.first!)
+		}
+	}
+
+	func test_Empty_Then_Both() {
+		let expectation = expectationWithDescription("test_Empty_Then_Both")
+		var output = [String]()
+
+		Promise({
+			return "one"
+		}).then({
+			output.append("two")
+		}).then(both: { input in
+			expectation.fulfill()
+		}).done()
+
+		wait {
+			XCTAssertEqual(1, output.count)
+			XCTAssertEqual("two", output.first!)
+		}
+	}
+
+	func test_Empty_Then_Empty() {
+		let expectation = expectationWithDescription("test_Empty_Then_Empty")
+		var order = [String]()
+
+		Promise({
+			order.append("one")
+		}).then({
+			order.append("two")
+		}).then({
+			order.append("three")
+			expectation.fulfill()
+		}).done()
+
+		wait {
+			XCTAssertEqual(3, order.count)
+			XCTAssertEqual("one", order.first!)
+			XCTAssertEqual("two", order[1])
+			XCTAssertEqual("three", order.last!)
 		}
 	}
 
