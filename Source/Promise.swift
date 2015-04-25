@@ -10,8 +10,12 @@ public class Promise<T: Any> {
 		}))
 	}
 
+	private init(_ operations: [NSOperation]) {
+		self.operations = operations
+	}
+
 	public func then(empty: () -> ()) -> Self {
-		then(both: { input in
+		_then({ input in
 			empty()
 			return nil
 		})
@@ -19,23 +23,33 @@ public class Promise<T: Any> {
 		return self
 	}
 
-	public func then(#both: (T?) -> (T?)) -> Self {
-		let b: (Any?) -> (Any?) = { input in
-			return both(input as! T?) as T?
-		}
-
-		let operation = PromiseOperation(block: b)
-		let last = operations.last! as! PromiseOperation
-
-		operation.addDependency(last)
-		operations.append(operation)
+	public func then(#block: (T?) -> (T?)) -> Self {
+		_then({ input in
+			return block(input as! T?) as T?
+		})
 
 		return self
+	}
+
+	public func then<U>(#block: (T?) -> (U?)) -> Promise<U> {
+		_then({ input in
+			return block(input as! T?) as U?
+		})
+
+		return Promise<U>(self.operations)
 	}
 
 	public func done() {
 		let queue = NSOperationQueue()
 		queue.addOperations(operations, waitUntilFinished: false)
+	}
+
+	private func _then(block: (Any?) -> (Any?)) {
+		let operation = PromiseOperation(block: block)
+		let last = operations.last! as! PromiseOperation
+
+		operation.addDependency(last)
+		operations.append(operation)
 	}
 
 }

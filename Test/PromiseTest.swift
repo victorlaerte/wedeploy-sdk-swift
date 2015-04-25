@@ -8,10 +8,10 @@ class PromiseTest : XCTestCase {
 
 		Promise({
 			return "one"
-		}).then(both: { input in
+		}).then(block: { input in
 			output.append(input!)
 			return "two"
-		}).then(both: { input in
+		}).then(block: { input in
 			output.append(input!)
 			expectation.fulfill()
 			return "three"
@@ -30,7 +30,7 @@ class PromiseTest : XCTestCase {
 
 		Promise({
 			return "one"
-		}).then(both: { input in
+		}).then(block: { input in
 			output.append(input!)
 			return "two"
 		}).then({
@@ -51,7 +51,7 @@ class PromiseTest : XCTestCase {
 			return "one"
 		}).then({
 			output.append("two")
-		}).then(both: { input in
+		}).then(block: { input in
 			expectation.fulfill()
 			return ""
 		}).done()
@@ -81,6 +81,26 @@ class PromiseTest : XCTestCase {
 			XCTAssertEqual("two", order[1])
 			XCTAssertEqual("three", order.last!)
 		}
+	}
+
+	func test_Different_Return_Types() {
+		let expectation = expectationWithDescription(
+			"test_Different_Return_Types")
+
+		var output = [String]()
+
+		Promise({
+			return "one"
+		}).then(block: { input in
+			return ["two"]
+		}).then(block: { input in
+			XCTAssertEqual(1, input!.count)
+			XCTAssertEqual("two", input!.first!)
+			expectation.fulfill()
+			return nil
+		}).done()
+
+		wait()
 	}
 
 }
