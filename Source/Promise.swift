@@ -1,25 +1,34 @@
 import Foundation
 
-public class Promise {
+public class Promise<T: Any> {
 
 	var operations = [NSOperation]()
 
-	init(_ block: () -> (Any?)) {
+	init(_ block: () -> (T?)) {
 		operations.append(PromiseOperation(block: { input in
-			block()
+			return block()
 		}))
 	}
 
 	public func then(empty: () -> ()) -> Self {
-		_then({ input in
+		then(both: { input in
 			empty()
+			return nil
 		})
 
 		return self
 	}
 
-	public func then(#both: (Any?) -> (Any?)) -> Self {
-		_then(both)
+	public func then(#both: (T?) -> (T?)) -> Self {
+		let b: (Any?) -> (Any?) = { input in
+			return both(input as! T?) as T?
+		}
+
+		let operation = PromiseOperation(block: b)
+		let last = operations.last! as! PromiseOperation
+
+		operation.addDependency(last)
+		operations.append(operation)
 
 		return self
 	}
@@ -27,14 +36,6 @@ public class Promise {
 	public func done() {
 		let queue = NSOperationQueue()
 		queue.addOperations(operations, waitUntilFinished: false)
-	}
-
-	private func _then(block: (Any?) -> (Any?)) {
-		let operation = PromiseOperation(block: block)
-		let last = operations.last! as! PromiseOperation
-
-		operation.addDependency(last)
-		operations.append(operation)
 	}
 
 }

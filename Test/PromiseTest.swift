@@ -9,10 +9,10 @@ class PromiseTest : XCTestCase {
 		Promise({
 			return "one"
 		}).then(both: { input in
-			output.append(input as! String)
+			output.append(input!)
 			return "two"
 		}).then(both: { input in
-			output.append(input as! String)
+			output.append(input!)
 			expectation.fulfill()
 			return "three"
 		}).done()
@@ -31,7 +31,7 @@ class PromiseTest : XCTestCase {
 		Promise({
 			return "one"
 		}).then(both: { input in
-			output.append(input as! String)
+			output.append(input!)
 			return "two"
 		}).then({
 			expectation.fulfill()
@@ -53,6 +53,7 @@ class PromiseTest : XCTestCase {
 			output.append("two")
 		}).then(both: { input in
 			expectation.fulfill()
+			return ""
 		}).done()
 
 		wait {
