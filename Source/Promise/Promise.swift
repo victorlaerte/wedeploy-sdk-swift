@@ -2,16 +2,47 @@ import Foundation
 
 public class Promise<T: Any> {
 
+	var catch: ((NSError) -> ())!
+	var onCatch: ((NSError) -> ())?
 	var operations = [NSOperation]()
+	var queue: NSOperationQueue?
 
-	init(_ block: () -> (T?)) {
+	init() {
+		self.catch = { error in
+			self.queue!.cancelAllOperations()
+			self.onCatch?(error)
+		}
+	}
+
+	convenience init(_ block: () -> (T?)) {
+		self.init()
+
 		_then({ input in
 			return block()
 		})
 	}
 
+	convenience init(_ promise: ((T) -> (), (NSError) -> ()) -> ()) {
+		self.init()
+
+		_then({ input in
+			promise({ input in }, self.catch)
+		})
+	}
+
 	private init(_ operations: [NSOperation]) {
 		self.operations = operations
+	}
+
+	public func catch(catch: (NSError) -> ()) -> Self {
+		self.onCatch = catch
+
+		return self
+	}
+
+	public func done() {
+		queue = NSOperationQueue()
+		queue!.addOperations(operations, waitUntilFinished: false)
 	}
 
 	public func then(empty: () -> ()) -> Self {
@@ -37,11 +68,6 @@ public class Promise<T: Any> {
 		})
 
 		return Promise<U>(self.operations)
-	}
-
-	public func done() {
-		let queue = NSOperationQueue()
-		queue.addOperations(operations, waitUntilFinished: false)
 	}
 
 	private func _then(block: (Any?) -> (Any?)) {
