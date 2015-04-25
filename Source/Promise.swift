@@ -5,9 +5,9 @@ public class Promise<T: Any> {
 	var operations = [NSOperation]()
 
 	init(_ block: () -> (T?)) {
-		operations.append(PromiseOperation(block: { input in
+		_then({ input in
 			return block()
-		}))
+		})
 	}
 
 	private init(_ operations: [NSOperation]) {
@@ -46,9 +46,11 @@ public class Promise<T: Any> {
 
 	private func _then(block: (Any?) -> (Any?)) {
 		let operation = PromiseOperation(block: block)
-		let last = operations.last! as! PromiseOperation
 
-		operation.addDependency(last)
+		if let last = operations.last as? PromiseOperation {
+			operation.addDependency(last)
+		}
+
 		operations.append(operation)
 	}
 
