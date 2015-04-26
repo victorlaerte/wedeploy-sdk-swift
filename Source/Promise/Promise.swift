@@ -12,13 +12,17 @@ public class Promise<T: Any> {
 		})
 	}
 
-	init(_ promise: ((Any?) -> (), (NSError) -> ()) -> ()) {
+	init(_ promise: ((T?) -> (), (NSError) -> ()) -> ()) {
 		let catch: ((NSError) -> ()) = { error in
 			self.queue!.cancelAllOperations()
 			self.catch?(error)
 		}
 
-		_then(WaitOperation(promise, catch))
+		let p: ((Any?) -> (), (NSError) -> ()) -> () = { (fulfill, reject) in
+			promise({ fulfill($0) }, reject)
+		}
+
+		_then(WaitOperation(p, catch))
 	}
 
 	private init(_ operations: [Operation]) {
