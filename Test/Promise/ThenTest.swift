@@ -61,8 +61,7 @@ class ThenTest : XCTestCase {
 		})
 		.then({
 			expectation.fulfill()
-			return ""
-		} as () -> String)
+		})
 		.done()
 
 		wait {

@@ -12,7 +12,7 @@ public class Promise<T: Any> {
 		})
 	}
 
-	init(_ promise: ((T?) -> (), (NSError) -> ()) -> ()) {
+	init(promise: ((T?) -> (), (NSError) -> ()) -> ()) {
 		let catch: ((NSError) -> ()) = { error in
 			self.queue!.cancelAllOperations()
 			self.catch?(error)
@@ -40,7 +40,7 @@ public class Promise<T: Any> {
 		queue!.addOperations(operations, waitUntilFinished: false)
 	}
 
-	public func then<U>(block: (T) -> (U)) -> Promise<U> {
+	public func then<U: Any>(block: (T) -> (U)) -> Promise<U> {
 		_then(BlockOperation { input in
 			return block(input as! T) as U
 		})
