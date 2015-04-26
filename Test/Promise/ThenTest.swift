@@ -6,18 +6,18 @@ class ThenTest : XCTestCase {
 		let expectation = expect("test_Returns_Array_Then_Empty")
 		var output = [String]()
 
-		let p = Promise({
+		let p = Promise {
 			return "one"
-		})
-		.then({
+		}
+		.then {
 			return [$0, "two"]
-		})
-		.then({
-			XCTAssertEqual(2, $0.count)
-			XCTAssertEqual("one", $0.first!)
-			XCTAssertEqual("two", $0.last!)
+		}
+		.then { (value) -> () in
+			XCTAssertEqual(2, value.count)
+			XCTAssertEqual("one", value.first!)
+			XCTAssertEqual("two", value.last!)
 			expectation.fulfill()
-		} as [String] -> ())
+		}
 
 		p.done()
 		
@@ -28,16 +28,16 @@ class ThenTest : XCTestCase {
 		let expectation = expect("test_Returns_Empty_Then_Empty")
 		var order = [String]()
 
-		let p = Promise({
+		let p = Promise {
 			order.append("one")
-		})
-		.then({
+		}
+		.then {
 			order.append("two")
-		})
-		.then({
+		}
+		.then { () -> () in
 			order.append("three")
 			expectation.fulfill()
-		} as () -> ())
+		}
 
 		p.done()
 
@@ -53,16 +53,16 @@ class ThenTest : XCTestCase {
 		let expectation = expect("test_Returns_Empty_Then_String")
 		var output = [String]()
 
-		let p = Promise({
+		let p = Promise {
 			return "one"
-		})
-		.then({
+		}
+		.then {
 			output.append("two")
-		})
-		.then({
+		}
+		.then { () -> String in
 			expectation.fulfill()
 			return "three"
-		} as () -> String)
+		}
 
 		p.done()
 
@@ -76,17 +76,17 @@ class ThenTest : XCTestCase {
 		let expectation = expect("test_Returns_String_Then_Empty")
 		var output = [String]()
 
-		let p = Promise({
+		let p = Promise {
 			return "one"
-		})
-		.then({
-			output.append($0)
+		}
+		.then { (value) -> String in
+			output.append(value)
 			return "two"
-		})
-		.then({
-			output.append($0)
+		}
+		.then { (value) -> () in
+			output.append(value)
 			expectation.fulfill()
-		} as String -> ())
+		}
 
 		p.done()
 
@@ -101,18 +101,18 @@ class ThenTest : XCTestCase {
 		let expectation = expect("test_Returns_String_Then_String")
 		var output = [String]()
 
-		let p = Promise({
+		let p = Promise {
 			return "one"
-		})
-		.then({
-			output.append($0)
+		}
+		.then { (value) -> String in
+			output.append(value)
 			return "two"
-		})
-		.then({
-			output.append($0)
+		}
+		.then { (value) -> String in
+			output.append(value)
 			expectation.fulfill()
 			return "three"
-		} as String -> String)
+		}
 
 		p.done()
 

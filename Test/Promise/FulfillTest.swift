@@ -14,15 +14,15 @@ class Fulfill : XCTestCase {
 				fulfill("one")
 			})
 		})
-		.then({
-			output.append($0)
+		.then { (value) -> String in
+			output.append(value)
 			return "two"
-		})
-		.then({
-			output.append($0)
+		}
+		.then { (value) -> String in
+			output.append(value)
 			expectation.fulfill()
 			return "three"
-		} as String -> String)
+		}
 		.done()
 
 		wait {

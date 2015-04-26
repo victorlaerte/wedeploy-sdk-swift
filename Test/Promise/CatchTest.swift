@@ -14,10 +14,10 @@ class CatchTest : XCTestCase {
 				reject(NSError(domain: "domain", code: 1, userInfo: nil))
 			})
 		})
-		.catch({
+		.catch {
 			error = $0
 			expectation.fulfill()
-		})
+		}
 		.done()
 
 		wait {
@@ -39,14 +39,14 @@ class CatchTest : XCTestCase {
 				reject(NSError(domain: "domain", code: 1, userInfo: nil))
 			})
 		})
-		.then({
+		.then {
 			XCTFail(
 				"Then shouldn't be called, should be skipped directly to catch")
-		})
-		.catch({
+		}
+		.catch {
 			error = $0
 			expectation.fulfill()
-		})
+		}
 		.done()
 
 		wait(1.5) {
