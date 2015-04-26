@@ -64,9 +64,9 @@ public class Promise<T: Any> {
 	}
 
 	private func _then(block: (Any?) -> (Any?)) {
-		let operation = PromiseOperation(block: block)
+		let operation = BlockOperation(block)
 
-		if let last = operations.last as? PromiseOperation {
+		if let last = operations.last as? Operation {
 			operation.addDependency(last)
 		}
 

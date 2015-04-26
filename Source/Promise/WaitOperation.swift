@@ -1,9 +1,8 @@
 import Foundation
 
-class WaitOperation : NSOperation {
+class WaitOperation : Operation {
 
 	var catch: ((NSError) -> ())?
-	var output: Any?
 	let promise: ((Any?) -> (), (NSError) -> ()) -> ()
 
 	init(
