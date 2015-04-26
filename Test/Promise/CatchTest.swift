@@ -6,7 +6,7 @@ class CatchTest : XCTestCase {
 		let expectation = expectationWithDescription("testCatch")
 		var error: NSError?
 
-		Promise<()>({ (fulfill, reject) in
+		Promise<()>(promise: { (fulfill, reject) in
 			let queue = dispatch_get_global_queue(
 				DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
@@ -30,7 +30,7 @@ class CatchTest : XCTestCase {
 		let expectation = expectationWithDescription("testCatch_With_Then")
 		var error: NSError?
 
-		Promise<()>({ (fulfill, reject) in
+		Promise<()>(promise: { (fulfill, reject) in
 			let queue = dispatch_get_global_queue(
 				DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 

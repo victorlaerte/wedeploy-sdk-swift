@@ -6,21 +6,23 @@ class Fulfill : XCTestCase {
 		let expectation = expectationWithDescription("testFulfill")
 		var output = [String]()
 
-		Promise<String>({ (fulfill, reject) in
+		Promise<String>(promise: { (fulfill, reject) in
 			let queue = dispatch_get_global_queue(
 				DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
 			dispatch_async(queue, {
 				fulfill("one")
 			})
-		}).then(block: {input in
-			output.append(input!)
+		})
+		.then({
+			output.append($0)
 			return "two"
-		}).then(block: {input in
-			output.append(input!)
+		})
+		.then({
+			output.append($0)
 			expectation.fulfill()
 			return "three"
-		})
+		} as String -> String)
 		.done()
 
 		wait {

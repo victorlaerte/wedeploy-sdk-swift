@@ -9,9 +9,11 @@ class WaitOperationTest : XCTestCase {
 		let operation = WaitOperation({ (fulfill, reject) in
 			fulfill("one")
 			expectation.fulfill()
-		}, { error in
-			XCTFail("Reject shouldn't be called")
 		})
+
+		operation.catch = { error in
+			XCTFail("Reject shouldn't be called")
+		}
 
 		queue.addOperation(operation)
 
@@ -27,10 +29,12 @@ class WaitOperationTest : XCTestCase {
 
 		let operation = WaitOperation({ (fulfill, reject) in
 			reject(NSError(domain: "domain", code: 1, userInfo: nil))
-		}, {
+		})
+
+		operation.catch = {
 			error = $0
 			expectation.fulfill()
-		})
+		}
 
 		queue.addOperation(operation)
 

@@ -2,15 +2,10 @@ import Foundation
 
 class WaitOperation : Operation {
 
-	var catch: ((NSError) -> ())
 	let promise: ((Any?) -> (), (NSError) -> ()) -> ()
 
-	init(
-		_ promise: (((Any?) -> (), (NSError) -> ()) -> ()),
-		_ catch: ((NSError) -> ())) {
-
+	init(_ promise: (((Any?) -> (), (NSError) -> ()) -> ())) {
 		self.promise = promise
-		self.catch = catch
 	}
 
 	override func main() {
@@ -21,7 +16,7 @@ class WaitOperation : Operation {
 			self.output = $0
 			dispatch_group_leave(group)
 		}, {
-			self.catch($0)
+			self.catch?($0)
 			dispatch_group_leave(group)
 		})
 
