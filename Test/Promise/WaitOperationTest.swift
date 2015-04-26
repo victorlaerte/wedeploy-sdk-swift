@@ -9,6 +9,8 @@ class WaitOperationTest : XCTestCase {
 		let operation = WaitOperation({ (fulfill, reject) in
 			fulfill("one")
 			expectation.fulfill()
+		}, { error in
+			XCTFail("Reject shouldn't be called")
 		})
 
 		queue.addOperation(operation)

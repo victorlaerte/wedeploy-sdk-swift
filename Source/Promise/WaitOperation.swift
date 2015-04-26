@@ -2,12 +2,12 @@ import Foundation
 
 class WaitOperation : Operation {
 
-	var catch: ((NSError) -> ())?
+	var catch: ((NSError) -> ())
 	let promise: ((Any?) -> (), (NSError) -> ()) -> ()
 
 	init(
 		_ promise: (((Any?) -> (), (NSError) -> ()) -> ()),
-		_ catch: ((NSError) -> ())? = nil) {
+		_ catch: ((NSError) -> ())) {
 
 		self.promise = promise
 		self.catch = catch
@@ -21,7 +21,7 @@ class WaitOperation : Operation {
 			self.output = $0
 			dispatch_group_leave(group)
 		}, {
-			self.catch?($0)
+			self.catch($0)
 			dispatch_group_leave(group)
 		})
 
