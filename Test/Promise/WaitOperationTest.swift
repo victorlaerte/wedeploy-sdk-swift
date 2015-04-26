@@ -25,7 +25,7 @@ class WaitOperationTest : XCTestCase {
 
 		let operation = WaitOperation({ (fulfill, reject) in
 			reject(NSError(domain: "domain", code: 1, userInfo: nil))
-		}, catch: {
+		}, {
 			error = $0
 			expectation.fulfill()
 		})

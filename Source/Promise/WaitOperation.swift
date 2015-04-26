@@ -7,7 +7,7 @@ class WaitOperation : Operation {
 
 	init(
 		_ promise: (((Any?) -> (), (NSError) -> ()) -> ()),
-		catch: ((NSError) -> ())? = nil) {
+		_ catch: ((NSError) -> ())? = nil) {
 
 		self.promise = promise
 		self.catch = catch

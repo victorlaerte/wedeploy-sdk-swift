@@ -18,7 +18,7 @@ public class Promise<T: Any> {
 			self.catch?(error)
 		}
 
-		_then(WaitOperation(promise, catch: catch))
+		_then(WaitOperation(promise, catch))
 	}
 
 	private init(_ operations: [Operation]) {
