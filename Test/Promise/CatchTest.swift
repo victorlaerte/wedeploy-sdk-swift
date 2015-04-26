@@ -2,8 +2,8 @@ import XCTest
 
 class CatchTest : XCTestCase {
 
-	func testAsyncCatch() {
-		let expectation = expectationWithDescription("testAsyncCatch")
+	func testCatch() {
+		let expectation = expectationWithDescription("testCatch")
 		var error: NSError?
 
 		Promise<()>({ (fulfill, reject) in
@@ -26,8 +26,8 @@ class CatchTest : XCTestCase {
 		}
 	}
 
-	func testAsyncCatch_With_Then() {
-		let expectation = expectationWithDescription("testAsyncCatch_With_Then")
+	func testCatch_With_Then() {
+		let expectation = expectationWithDescription("testCatch_With_Then")
 		var error: NSError?
 
 		Promise<()>({ (fulfill, reject) in

@@ -11,6 +11,7 @@
 		CC48428D1AEC59CB00BD0CE6 /* WaitOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC48428C1AEC59CB00BD0CE6 /* WaitOperation.swift */; };
 		CC48428F1AEC667400BD0CE6 /* WaitOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC48428E1AEC667400BD0CE6 /* WaitOperationTest.swift */; };
 		CC4842911AEC70B100BD0CE6 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4842901AEC70B100BD0CE6 /* Operation.swift */; };
+		CC4842951AEC8C9200BD0CE6 /* FulfillTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4842941AEC8C9200BD0CE6 /* FulfillTest.swift */; };
 		CC7CE7551ADEC66B001165D1 /* Launchpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7CE7541ADEC66B001165D1 /* Launchpad.swift */; };
 		CCA17BA21ADEC3D7000BF430 /* RestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA17BA01ADEC3D7000BF430 /* RestTest.swift */; };
 		CCD512E51AEBE53600C97F42 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD512E31AEBE53600C97F42 /* Promise.swift */; };
@@ -27,6 +28,7 @@
 		CC48428C1AEC59CB00BD0CE6 /* WaitOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitOperation.swift; sourceTree = "<group>"; };
 		CC48428E1AEC667400BD0CE6 /* WaitOperationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitOperationTest.swift; sourceTree = "<group>"; };
 		CC4842901AEC70B100BD0CE6 /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
+		CC4842941AEC8C9200BD0CE6 /* FulfillTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FulfillTest.swift; sourceTree = "<group>"; };
 		CC6004F81ADEC22200B8F2E5 /* Launchpad.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Launchpad.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC7CE7541ADEC66B001165D1 /* Launchpad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Launchpad.swift; sourceTree = "<group>"; };
 		CCA17B9F1ADEC3D7000BF430 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				CCD512EA1AEBE62F00C97F42 /* CatchTest.swift */,
+				CC4842941AEC8C9200BD0CE6 /* FulfillTest.swift */,
 				CCD512E81AEBE53F00C97F42 /* ThenTest.swift */,
 				CC48428E1AEC667400BD0CE6 /* WaitOperationTest.swift */,
 			);
@@ -178,6 +181,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC4842951AEC8C9200BD0CE6 /* FulfillTest.swift in Sources */,
 				CC48428F1AEC667400BD0CE6 /* WaitOperationTest.swift in Sources */,
 				CCE540941AE15E1D004C7041 /* BaseTest.swift in Sources */,
 				CC4842911AEC70B100BD0CE6 /* Operation.swift in Sources */,
