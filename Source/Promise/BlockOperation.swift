@@ -9,8 +9,8 @@ class BlockOperation : Operation {
 	}
 
 	override func main() {
-		let input = self.dependencies.last as? Operation
-		self.output = block(input?.output)
+		let operation = self.dependencies.last as? Operation
+		self.output = block(operation?.output)
 	}
 
 }
