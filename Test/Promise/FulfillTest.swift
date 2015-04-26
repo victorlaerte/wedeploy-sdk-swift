@@ -18,7 +18,8 @@ class Fulfill : XCTestCase {
 			return "two"
 		}).then(block: {input in
 			output.append(input!)
-			return "two"
+			expectation.fulfill()
+			return "three"
 		})
 		.done()
 
