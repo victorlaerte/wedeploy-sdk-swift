@@ -9,12 +9,12 @@ class ThenTest : XCTestCase {
 		Promise({
 			return "one"
 		})
-		.then({ input in
-			output.append(input)
+		.then({
+			output.append($0)
 			return "two"
 		})
-		.then({ input in
-			output.append(input)
+		.then({
+			output.append($0)
 			expectation.fulfill()
 			return "three"
 		} as String -> String)
@@ -34,18 +34,20 @@ class ThenTest : XCTestCase {
 		Promise({
 			return "one"
 		})
-		.then({ input in
-			output.append(input)
+		.then({
+			output.append($0)
 			return "two"
 		})
-		.then({ input in
+		.then({
+			output.append($0)
 			expectation.fulfill()
 		} as String -> ())
 		.done()
 
 		wait {
-			XCTAssertEqual(1, output.count)
+			XCTAssertEqual(2, output.count)
 			XCTAssertEqual("one", output.first!)
+			XCTAssertEqual("two", output.last!)
 		}
 	}
 
@@ -61,7 +63,8 @@ class ThenTest : XCTestCase {
 		})
 		.then({
 			expectation.fulfill()
-		})
+			return "three"
+		} as () -> String)
 		.done()
 
 		wait {
@@ -103,13 +106,13 @@ class ThenTest : XCTestCase {
 		Promise({
 			return "one"
 		})
-		.then({ input in
-			return [input, "two"]
+		.then({
+			return [$0, "two"]
 		})
-		.then({ input in
-			XCTAssertEqual(2, input.count)
-			XCTAssertEqual("one", input.first!)
-			XCTAssertEqual("two", input.last!)
+		.then({
+			XCTAssertEqual(2, $0.count)
+			XCTAssertEqual("one", $0.first!)
+			XCTAssertEqual("two", $0.last!)
 			expectation.fulfill()
 		} as [String] -> ())
 		.done()
