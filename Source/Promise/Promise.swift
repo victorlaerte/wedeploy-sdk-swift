@@ -6,7 +6,7 @@ public class Promise<T: Any> {
 	var operations = [Operation]()
 	var queue: NSOperationQueue?
 
-	init(_ block: () -> (T?)) {
+	init(_ block: () -> (T)) {
 		_then(BlockOperation { input in
 			return block()
 		})
@@ -40,26 +40,9 @@ public class Promise<T: Any> {
 		queue!.addOperations(operations, waitUntilFinished: false)
 	}
 
-	public func then(empty: () -> ()) -> Self {
+	public func then<U>(block: (T) -> (U)) -> Promise<U> {
 		_then(BlockOperation { input in
-			empty()
-			return nil
-		})
-
-		return self
-	}
-
-	public func then(#block: (T?) -> (T?)) -> Self {
-		_then(BlockOperation { input in
-			return block(input as! T?) as T?
-		})
-
-		return self
-	}
-
-	public func then<U>(#block: (T?) -> (U?)) -> Promise<U> {
-		_then(BlockOperation { input in
-			return block(input as! T?) as U?
+			return block(input as! T) as U
 		})
 
 		return Promise<U>(self.operations)
