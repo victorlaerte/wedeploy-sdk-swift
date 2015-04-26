@@ -3,27 +3,25 @@ import Foundation
 public class Promise<T: Any> {
 
 	var catch: ((NSError) -> ())?
-	var operations = [NSOperation]()
+	var operations = [Operation]()
 	var queue: NSOperationQueue?
 
 	init(_ block: () -> (T?)) {
-		_then({ input in
+		_then(BlockOperation { input in
 			return block()
 		})
 	}
 
-	init(_ promise: ((T) -> (), (NSError) -> ()) -> ()) {
+	init(_ promise: ((Any?) -> (), (NSError) -> ()) -> ()) {
 		let catch: ((NSError) -> ()) = { error in
 			self.queue!.cancelAllOperations()
 			self.catch?(error)
 		}
 
-		_then({ input in
-			promise({ input in }, catch)
-		})
+		_then(WaitOperation(promise, catch: catch))
 	}
 
-	private init(_ operations: [NSOperation]) {
+	private init(_ operations: [Operation]) {
 		self.operations = operations
 	}
 
@@ -39,7 +37,7 @@ public class Promise<T: Any> {
 	}
 
 	public func then(empty: () -> ()) -> Self {
-		_then({ input in
+		_then(BlockOperation { input in
 			empty()
 			return nil
 		})
@@ -48,7 +46,7 @@ public class Promise<T: Any> {
 	}
 
 	public func then(#block: (T?) -> (T?)) -> Self {
-		_then({ input in
+		_then(BlockOperation { input in
 			return block(input as! T?) as T?
 		})
 
@@ -56,17 +54,15 @@ public class Promise<T: Any> {
 	}
 
 	public func then<U>(#block: (T?) -> (U?)) -> Promise<U> {
-		_then({ input in
+		_then(BlockOperation { input in
 			return block(input as! T?) as U?
 		})
 
 		return Promise<U>(self.operations)
 	}
 
-	private func _then(block: (Any?) -> (Any?)) {
-		let operation = BlockOperation(block)
-
-		if let last = operations.last as? Operation {
+	private func _then(operation: Operation) {
+		if let last = operations.last {
 			operation.addDependency(last)
 		}
 

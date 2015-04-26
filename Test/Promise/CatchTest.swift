@@ -6,7 +6,7 @@ class CatchTest : XCTestCase {
 		let expectation = expectationWithDescription("testAsyncCatch")
 		var error: NSError?
 
-		Promise<()>({ (resolve, reject) in
+		Promise<()>({ (fulfill, reject) in
 			let queue = dispatch_get_global_queue(
 				DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
@@ -30,7 +30,7 @@ class CatchTest : XCTestCase {
 		let expectation = expectationWithDescription("testAsyncCatch_With_Then")
 		var error: NSError?
 
-		Promise<()>({ (resolve, reject) in
+		Promise<()>({ (fulfill, reject) in
 			let queue = dispatch_get_global_queue(
 				DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
@@ -49,7 +49,7 @@ class CatchTest : XCTestCase {
 		})
 		.done()
 
-		wait(1.1) {
+		wait(1.5) {
 			XCTAssertEqual("domain", error!.domain)
 			XCTAssertEqual(1, error!.code)
 		}
