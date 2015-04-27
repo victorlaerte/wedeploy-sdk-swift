@@ -6,25 +6,29 @@ class RestPromiseTest : BaseTest {
 		let expectation = expectationWithDescription("add")
 		var bookToAdd = booksToAdd.first!
 
-		pad.add(path, document: bookToAdd)
-		.then { (book) -> (Promise<[String: AnyObject]>) in
-			self.assertBook(bookToAdd, result: book)
-			self.books.append(book)
-			bookToAdd["title"] = "La fiesta del chivo"
+		pad
+			.add(path, document: bookToAdd)
 
-			return self.pad.update(
-				self.path, id: book["id"]! as! String, document: bookToAdd)
-		}
-		.then { (updatedBook) -> (Promise<Int>) in
-			self.assertBook(bookToAdd, result: updatedBook)
-			let id = updatedBook["id"]! as! String
+			.then { (book) -> (Promise<[String: AnyObject]>) in
+				self.assertBook(bookToAdd, result: book)
+				self.books.append(book)
+				bookToAdd["title"] = "La fiesta del chivo"
 
-			return self.pad.remove(self.path, id: id)
-		}
-		.then { (status) -> () in
-			XCTAssertEqual(204, status)
-			expectation.fulfill()
-		}
+				return self.pad.update(
+					self.path, id: book["id"]! as! String, document: bookToAdd)
+			}
+
+			.then { (updatedBook) -> (Promise<Int>) in
+				self.assertBook(bookToAdd, result: updatedBook)
+				let id = updatedBook["id"]! as! String
+
+				return self.pad.remove(self.path, id: id)
+			}
+
+			.then { (status) -> () in
+				XCTAssertEqual(204, status)
+				expectation.fulfill()
+			}
 		.done()
 
 		wait()
