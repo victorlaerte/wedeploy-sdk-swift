@@ -22,6 +22,7 @@
 		CCE540921AE14E2A004C7041 /* QueryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE540911AE14E2A004C7041 /* QueryTest.swift */; };
 		CCE540941AE15E1D004C7041 /* BaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE540931AE15E1D004C7041 /* BaseTest.swift */; };
 		CCFAE2C91AEEC34200C1E357 /* LaunchpadPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFAE2C81AEEC34200C1E357 /* LaunchpadPromise.swift */; };
+		CCFAE2CB1AEEC9CB00C1E357 /* RestPromiseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFAE2CA1AEEC9CB00C1E357 /* RestPromiseTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		CCE540911AE14E2A004C7041 /* QueryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryTest.swift; sourceTree = "<group>"; };
 		CCE540931AE15E1D004C7041 /* BaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTest.swift; sourceTree = "<group>"; };
 		CCFAE2C81AEEC34200C1E357 /* LaunchpadPromise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchpadPromise.swift; sourceTree = "<group>"; };
+		CCFAE2CA1AEEC9CB00C1E357 /* RestPromiseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestPromiseTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				CCE540931AE15E1D004C7041 /* BaseTest.swift */,
 				CCE540911AE14E2A004C7041 /* QueryTest.swift */,
 				CCA17BA01ADEC3D7000BF430 /* RestTest.swift */,
+				CCFAE2CA1AEEC9CB00C1E357 /* RestPromiseTest.swift */,
 				CC0631621AEB17530097D129 /* TestUtil.swift */,
 			);
 			path = Test;
@@ -197,6 +200,7 @@
 				CC7CE7551ADEC66B001165D1 /* Launchpad.swift in Sources */,
 				CCE540901AE146B4004C7041 /* Query.swift in Sources */,
 				CCA17BA21ADEC3D7000BF430 /* RestTest.swift in Sources */,
+				CCFAE2CB1AEEC9CB00C1E357 /* RestPromiseTest.swift in Sources */,
 				CC0631631AEB17530097D129 /* TestUtil.swift in Sources */,
 				CCD512EB1AEBE62F00C97F42 /* CatchTest.swift in Sources */,
 			);

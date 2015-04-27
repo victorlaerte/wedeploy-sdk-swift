@@ -19,7 +19,7 @@ extension Launchpad {
 		-> Promise<[[String: AnyObject]]> {
 
 		return Promise<[[String: AnyObject]]>(promise: { (fulfill, reject) in
-			self.get(path, query: query)
+			self.get(path, query: query, success: fulfill, failure: reject)
 		})
 	}
 
@@ -35,12 +35,13 @@ extension Launchpad {
 		})
 	}
 
-	public func update(
-			path: String, id: String, document: AnyObject)
+	public func update(path: String, id: String, document: AnyObject)
 		-> Promise<[String: AnyObject]> {
 
 		return Promise<[String: AnyObject]>(promise: { (fulfill, reject) in
-			self.get(path, id: id, success: fulfill, failure: reject)
+			self.update(
+				path, id: id, document: document, success: fulfill,
+				failure: reject)
 		})
 	}
 

@@ -19,8 +19,7 @@ public class Launchpad {
 	}
 
 	public func add(
-		path: String, document: AnyObject,
-		success: SuccessDictionaryCallback? = nil,
+		path: String, document: AnyObject, success: SuccessDictionaryCallback,
 		failure: FailureCallback? = nil) {
 
 		request(
@@ -52,7 +51,7 @@ public class Launchpad {
 	}
 
 	public func remove(
-		path: String, id: String, success: SuccessStatusCodeCallback? = nil,
+		path: String, id: String, success: SuccessStatusCodeCallback,
 		failure: FailureCallback? = nil) {
 
 		request(
@@ -62,8 +61,7 @@ public class Launchpad {
 
 	public func update(
 		path: String, id: String, document: AnyObject,
-		success: SuccessDictionaryCallback? = nil,
-		failure: FailureCallback? = nil) {
+		success: SuccessDictionaryCallback, failure: FailureCallback? = nil) {
 
 		request(
 			"\(path)/\(id)", success: success, failure: failure, method: .PUT,
