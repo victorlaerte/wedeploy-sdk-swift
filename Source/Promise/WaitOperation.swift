@@ -2,20 +2,23 @@ import Foundation
 
 class WaitOperation : Operation {
 
+	var block: ((Any?) -> (((Any?) -> (), (NSError) -> ()) -> ()))?
 	var promise: (((Any?) -> (), (NSError) -> ()) -> ())?
 
-	init(_ promise: (((Any?) -> (), (NSError) -> ()) -> ())? = nil) {
+	init(promise: (((Any?) -> (), (NSError) -> ()) -> ())) {
 		self.promise = promise
+	}
+
+	init(block: (Any?) -> (((Any?) -> (), (NSError) -> ()) -> ())) {
+		self.block = block
 	}
 
 	override func main() {
 		let group = dispatch_group_create()
 		dispatch_group_enter(group)
 
-		if (self.promise == nil) {
-			let operation = self.dependencies.last as? Operation
-			self.promise =
-				operation?.output as! (((Any?) -> (), (NSError) -> ()) -> ())!
+		if let b = block, op = self.dependencies.last as? Operation {
+			self.promise = b(op.output)
 		}
 
 		promise!({
