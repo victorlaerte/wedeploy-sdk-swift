@@ -19,69 +19,61 @@ public class Launchpad {
 	}
 
 	public func add(
-			path: String, document: AnyObject,
-			success: SuccessDictionaryCallback? = nil,
-			failure: FailureCallback? = nil)
-		-> Self {
+		path: String, document: AnyObject,
+		success: SuccessDictionaryCallback? = nil,
+		failure: FailureCallback? = nil) {
 
-		return request(
+		request(
 			path, success: success, failure: failure, method: .POST,
 			body: document)
 	}
 
 	public func get(
-			path: String, id: String, success: SuccessDictionaryCallback,
-			failure: FailureCallback? = nil)
-		-> Self {
+		path: String, id: String, success: SuccessDictionaryCallback,
+		failure: FailureCallback? = nil) {
 
-		return request("\(path)/\(id)", success: success, failure: failure)
+		request("\(path)/\(id)", success: success, failure: failure)
 	}
 
 	public func get(
-			path: String, query: Query?, success: SuccessArrayCallback,
-			failure: FailureCallback? = nil)
-		-> Self {
+		path: String, query: Query?, success: SuccessArrayCallback,
+		failure: FailureCallback? = nil) {
 
-		return request(
+		request(
 			path, success: success, failure: failure,
 			query: query?.queryItems())
 	}
 
-
 	public func list(
-			path: String, success: SuccessArrayCallback,
-			failure: FailureCallback? = nil)
-		-> Self {
+		path: String, success: SuccessArrayCallback,
+		failure: FailureCallback? = nil) {
 
-		return request(path, success: success, failure: failure)
+		request(path, success: success, failure: failure)
 	}
 
 	public func remove(
-			path: String, id: String, success: SuccessStatusCodeCallback? = nil,
-			failure: FailureCallback? = nil)
-		-> Self {
+		path: String, id: String, success: SuccessStatusCodeCallback? = nil,
+		failure: FailureCallback? = nil) {
 
-		return request(
+		request(
 			"\(path)/\(id)", success: success, failure: failure,
 			method: .DELETE)
 	}
 
 	public func update(
-			path: String, id: String, document: AnyObject,
-			success: SuccessDictionaryCallback? = nil,
-			failure: FailureCallback? = nil)
-		-> Self {
+		path: String, id: String, document: AnyObject,
+		success: SuccessDictionaryCallback? = nil,
+		failure: FailureCallback? = nil) {
 
-		return request(
+		request(
 			"\(path)/\(id)", success: success, failure: failure, method: .PUT,
 			body: document)
 	}
 
 	func request<T>(
-			path: String, success: (T -> ())?, failure: FailureCallback?,
-			method: Verb = .GET, query: [NSURLQueryItem]? = nil,
-			body: AnyObject? = nil)
-		-> Self {
+		path: String, success: (T -> ())?, failure: FailureCallback?,
+		method: Verb = .GET, query: [NSURLQueryItem]? = nil,
+		body: AnyObject? = nil) {
 
 		let URL = NSURLComponents(string: server + path)!
 		URL.queryItems = query
@@ -97,7 +89,7 @@ public class Launchpad {
 
 		if let e = error {
 			failure?(e)
-			return self
+			return
 		}
 
 		let session = NSURLSession.sharedSession()
@@ -134,7 +126,7 @@ public class Launchpad {
 			}
 		).resume()
 
-		return self
+		return
 	}
 
 	func setRequestBody(

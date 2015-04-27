@@ -21,6 +21,7 @@
 		CCE540901AE146B4004C7041 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE5408F1AE146B4004C7041 /* Query.swift */; };
 		CCE540921AE14E2A004C7041 /* QueryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE540911AE14E2A004C7041 /* QueryTest.swift */; };
 		CCE540941AE15E1D004C7041 /* BaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE540931AE15E1D004C7041 /* BaseTest.swift */; };
+		CCFAE2C91AEEC34200C1E357 /* LaunchpadPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFAE2C81AEEC34200C1E357 /* LaunchpadPromise.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		CCE5408F1AE146B4004C7041 /* Query.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
 		CCE540911AE14E2A004C7041 /* QueryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryTest.swift; sourceTree = "<group>"; };
 		CCE540931AE15E1D004C7041 /* BaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTest.swift; sourceTree = "<group>"; };
+		CCFAE2C81AEEC34200C1E357 /* LaunchpadPromise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchpadPromise.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 			children = (
 				CCD512E21AEBE53600C97F42 /* Promise */,
 				CC7CE7541ADEC66B001165D1 /* Launchpad.swift */,
+				CCFAE2C81AEEC34200C1E357 /* LaunchpadPromise.swift */,
 				CCE5408F1AE146B4004C7041 /* Query.swift */,
 			);
 			path = Source;
@@ -183,6 +186,7 @@
 			files = (
 				CC4842951AEC8C9200BD0CE6 /* FulfillTest.swift in Sources */,
 				CC48428F1AEC667400BD0CE6 /* WaitOperationTest.swift in Sources */,
+				CCFAE2C91AEEC34200C1E357 /* LaunchpadPromise.swift in Sources */,
 				CCE540941AE15E1D004C7041 /* BaseTest.swift in Sources */,
 				CC4842911AEC70B100BD0CE6 /* Operation.swift in Sources */,
 				CC48428D1AEC59CB00BD0CE6 /* WaitOperation.swift in Sources */,
