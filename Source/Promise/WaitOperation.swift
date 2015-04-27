@@ -2,9 +2,9 @@ import Foundation
 
 class WaitOperation : Operation {
 
-	let promise: ((Any?) -> (), (NSError) -> ()) -> ()
+	var promise: (((Any?) -> (), (NSError) -> ()) -> ())?
 
-	init(_ promise: (((Any?) -> (), (NSError) -> ()) -> ())) {
+	init(_ promise: (((Any?) -> (), (NSError) -> ()) -> ())? = nil) {
 		self.promise = promise
 	}
 
@@ -12,7 +12,13 @@ class WaitOperation : Operation {
 		let group = dispatch_group_create()
 		dispatch_group_enter(group)
 
-		promise({
+		if (self.promise == nil) {
+			let operation = self.dependencies.last as? Operation
+			self.promise =
+				operation?.output as! (((Any?) -> (), (NSError) -> ()) -> ())!
+		}
+
+		promise!({
 			self.output = $0
 			dispatch_group_leave(group)
 		}, {

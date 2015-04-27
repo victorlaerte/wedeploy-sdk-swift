@@ -4,6 +4,7 @@ public class Promise<T: Any> {
 
 	var catch: ((NSError) -> ())?
 	var operations = [Operation]()
+	var promise: (((Any?) -> (), (NSError) -> ()) -> ())?
 
 	init(_ block: () -> (T)) {
 		_then(BlockOperation { input in
@@ -12,11 +13,11 @@ public class Promise<T: Any> {
 	}
 
 	init(promise: ((T) -> (), (NSError) -> ()) -> ()) {
-		let p: ((Any?) -> (), (NSError) -> ()) -> () = { (fulfill, reject) in
+		self.promise = { (fulfill, reject) in
 			promise({ fulfill($0) }, reject)
 		}
 
-		_then(WaitOperation(p))
+		_then(WaitOperation(self.promise!))
 	}
 
 	private init(_ operations: [Operation]) {
@@ -46,6 +47,16 @@ public class Promise<T: Any> {
 		_then(BlockOperation { input in
 			return block(input as! T) as U
 		})
+
+		return Promise<U>(self.operations)
+	}
+
+	public func then<U: Any>(block: (T) -> (Promise<U>)) -> Promise<U> {
+		_then(BlockOperation { input in
+			return block(input as! T).promise
+		})
+
+		_then(WaitOperation())
 
 		return Promise<U>(self.operations)
 	}

@@ -96,9 +96,9 @@
 		CCD512E21AEBE53600C97F42 /* Promise */ = {
 			isa = PBXGroup;
 			children = (
-				CCD512E31AEBE53600C97F42 /* Promise.swift */,
 				CCD512E41AEBE53600C97F42 /* BlockOperation.swift */,
 				CC4842901AEC70B100BD0CE6 /* Operation.swift */,
+				CCD512E31AEBE53600C97F42 /* Promise.swift */,
 				CC48428C1AEC59CB00BD0CE6 /* WaitOperation.swift */,
 			);
 			path = Promise;

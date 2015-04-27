@@ -72,6 +72,39 @@ class ThenTest : XCTestCase {
 		}
 	}
 
+	func test_Returns_Promise_Then_String() {
+		let expectation = expect("test_Returns_Promise_Then_String")
+		var output = [String]()
+
+		let p = Promise {
+			return "one"
+		}
+		.then { (value) -> Promise<String> in
+			output.append(value)
+
+			return Promise<String>(promise: { (fulfill, reject) in
+				let queue = dispatch_get_global_queue(
+					DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+
+				dispatch_async(queue, {
+					fulfill("two")
+				})
+			})
+		}
+		.then { (value) -> () in
+			output.append(value)
+			expectation.fulfill()
+		}
+
+		p.done()
+
+		wait {
+			XCTAssertEqual(2, output.count)
+			XCTAssertEqual("one", output.first!)
+			XCTAssertEqual("two", output.last!)
+		}
+	}
+
 	func test_Returns_String_Then_Empty() {
 		let expectation = expect("test_Returns_String_Then_Empty")
 		var output = [String]()
