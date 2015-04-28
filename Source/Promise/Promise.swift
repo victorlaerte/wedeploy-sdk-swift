@@ -30,7 +30,7 @@ public class Promise<T: Any> {
 		return self
 	}
 
-	public func done() {
+	public func done(block: ((T) -> ())? = nil) {
 		let queue = NSOperationQueue()
 
 		for operation in operations {
@@ -38,6 +38,14 @@ public class Promise<T: Any> {
 				queue.cancelAllOperations()
 				self.catch?(error)
 			}
+		}
+
+		if let done = block {
+			_then(BlockOperation({ input in
+				dispatch_async(dispatch_get_main_queue(), {
+					done(input as! T)
+				})
+			}))
 		}
 
 		queue.addOperations(operations, waitUntilFinished: false)

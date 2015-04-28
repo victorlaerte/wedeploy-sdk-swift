@@ -57,22 +57,26 @@ class ThenTest : XCTestCase {
 			return "one"
 		}
 		.then {
-			output.append("two")
+			output.append($0)
 		}
 		.then { () -> String in
-			expectation.fulfill()
-			return "three"
+			return "two"
 		}
 
-		p.done()
+		p.done {
+			output.append($0)
+			XCTAssertTrue(NSThread.isMainThread())
+			expectation.fulfill()
+		}
 
 		wait {
-			XCTAssertEqual(1, output.count)
-			XCTAssertEqual("two", output.first!)
+			XCTAssertEqual(2, output.count)
+			XCTAssertEqual("one", output.first!)
+			XCTAssertEqual("two", output.last!)
 		}
 	}
 
-	func test_Returns_Promise_Then_String() {
+	func test_Returns_Promise() {
 		let expectation = expect("test_Returns_Promise_Then_String")
 		var output = [String]()
 
@@ -143,16 +147,20 @@ class ThenTest : XCTestCase {
 		}
 		.then { (value) -> String in
 			output.append(value)
-			expectation.fulfill()
 			return "three"
 		}
 
-		p.done()
+		p.done {
+			output.append($0)
+			XCTAssertTrue(NSThread.isMainThread())
+			expectation.fulfill()
+		}
 
 		wait {
-			XCTAssertEqual(2, output.count)
+			XCTAssertEqual(3, output.count)
 			XCTAssertEqual("one", output.first!)
-			XCTAssertEqual("two", output.last!)
+			XCTAssertEqual("two", output[1])
+			XCTAssertEqual("three", output.last!)
 		}
 	}
 
