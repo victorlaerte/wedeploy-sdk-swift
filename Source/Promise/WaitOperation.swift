@@ -17,8 +17,8 @@ class WaitOperation : Operation {
 		let group = dispatch_group_create()
 		dispatch_group_enter(group)
 
-		if let b = block, op = self.dependencies.last as? Operation {
-			self.promise = b(op.output)
+		if let b = block, op = dependencies.last as? Operation {
+			promise = b(op.output)
 		}
 
 		promise!({
