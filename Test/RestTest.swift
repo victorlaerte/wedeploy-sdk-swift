@@ -39,6 +39,18 @@ class RestTest : BaseTest {
 		wait()
 	}
 
+	func testMainThread() {
+		let expectation = expect("testMainThread")
+		let id = books.first!["id"] as! String
+
+		pad.get(path, id: id, success: { book in
+			XCTAssertTrue(NSThread.isMainThread())
+			expectation.fulfill()
+		})
+
+		wait()
+	}
+
 	func testRemove() {
 		let expectation = expect("remove")
 		let id = books.first!["id"] as! String

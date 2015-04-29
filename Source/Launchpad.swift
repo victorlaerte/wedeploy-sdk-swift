@@ -68,10 +68,23 @@ public class Launchpad {
 			body: document)
 	}
 
+	func dispatchMainThread<T>(block: (T -> ())?) -> (Any? -> ()) {
+		return { value in
+			if let b = block {
+				dispatch_async(dispatch_get_main_queue(), {
+					b(value as! T)
+				})
+			}
+		}
+	}
+
 	func request<T>(
 		path: String, success: (T -> ())?, failure: FailureCallback?,
 		method: Verb = .GET, query: [NSURLQueryItem]? = nil,
 		body: AnyObject? = nil) {
+
+		let success = dispatchMainThread(success)
+		let failure = dispatchMainThread(failure)
 
 		let URL = NSURLComponents(string: server + path)!
 		URL.queryItems = query
@@ -86,7 +99,7 @@ public class Launchpad {
 		}
 
 		if let e = error {
-			failure?(e)
+			failure(e)
 			return
 		}
 
@@ -96,7 +109,7 @@ public class Launchpad {
 			request,
 			completionHandler: { (data, response, error) in
 				if let e = error {
-					failure?(e)
+					failure(e)
 					return
 				}
 
@@ -104,7 +117,7 @@ public class Launchpad {
 				let status = httpResponse.statusCode
 
 				if ((data.length == 0) || (status == 204)) {
-					success?(status as! T)
+					success(status as! T)
 					return
 				}
 
@@ -116,11 +129,11 @@ public class Launchpad {
 					as! T
 
 				if let e = parseError {
-					failure?(e)
+					failure(e)
 					return
 				}
 
-				success?(result)
+				success(result)
 			}
 		).resume()
 
