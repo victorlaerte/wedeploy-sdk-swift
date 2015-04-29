@@ -63,8 +63,8 @@ class ThenTest : XCTestCase {
 			return "two"
 		}
 
-		p.done {
-			output.append($0)
+		p.done { (value, error) in
+			output.append(value!)
 			XCTAssertTrue(NSThread.isMainThread())
 			expectation.fulfill()
 		}
@@ -150,8 +150,8 @@ class ThenTest : XCTestCase {
 			return "three"
 		}
 
-		p.done {
-			output.append($0)
+		p.done { (value, error) in
+			output.append(value!)
 			XCTAssertTrue(NSThread.isMainThread())
 			expectation.fulfill()
 		}

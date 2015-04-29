@@ -2,9 +2,33 @@ import XCTest
 
 class CatchTest : XCTestCase {
 
-	func testCatch() {
+	func testBlock_Returns_Error() {
 		let expectation = expectationWithDescription("testCatch")
-		var error: NSError?
+		var e: NSError?
+
+		var p = Promise {
+			return "one"
+		}
+
+		p.then(error: { (value) -> (String?, NSError?) in
+			return (value, NSError(domain: "domain", code: 1, userInfo: nil))
+		})
+
+		p.done(block: { (value, error) in
+			e = error
+			XCTAssertNil(value)
+			expectation.fulfill()
+		})
+
+		wait {
+			XCTAssertEqual("domain", e!.domain)
+			XCTAssertEqual(1, e!.code)
+		}
+	}
+
+	func testPromise_Returns_Error() {
+		let expectation = expectationWithDescription("testCatch")
+		var e: NSError?
 
 		Promise<()>(promise: { (fulfill, reject) in
 			let queue = dispatch_get_global_queue(
@@ -14,21 +38,20 @@ class CatchTest : XCTestCase {
 				reject(NSError(domain: "domain", code: 1, userInfo: nil))
 			})
 		})
-		.catch {
-			error = $0
+		.done { (value, error) in
+			e = error
 			expectation.fulfill()
 		}
-		.done()
 
 		wait {
-			XCTAssertEqual("domain", error!.domain)
-			XCTAssertEqual(1, error!.code)
+			XCTAssertEqual("domain", e!.domain)
+			XCTAssertEqual(1, e!.code)
 		}
 	}
 
-	func testCatch_With_Then() {
+	func testError_Fall_Through() {
 		let expectation = expectationWithDescription("testCatch_With_Then")
-		var error: NSError?
+		var e: NSError?
 
 		Promise<()>(promise: { (fulfill, reject) in
 			let queue = dispatch_get_global_queue(
@@ -43,15 +66,14 @@ class CatchTest : XCTestCase {
 			XCTFail(
 				"Then shouldn't be called, should be skipped directly to catch")
 		}
-		.catch {
-			error = $0
+		.done { (value, error) in
+			e = error
 			expectation.fulfill()
 		}
-		.done()
 
 		wait(1.5) {
-			XCTAssertEqual("domain", error!.domain)
-			XCTAssertEqual(1, error!.code)
+			XCTAssertEqual("domain", e!.domain)
+			XCTAssertEqual(1, e!.code)
 		}
 	}
 
