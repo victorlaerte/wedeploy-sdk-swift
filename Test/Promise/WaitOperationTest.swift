@@ -3,7 +3,7 @@ import XCTest
 class WaitOperationTest : XCTestCase {
 
 	func testFulfill() {
-		let expectation = expectationWithDescription("testFulfill")
+		let expectation = expect("testFulfill")
 		let queue = NSOperationQueue()
 
 		let operation = WaitOperation { (fulfill, reject) in
@@ -23,7 +23,7 @@ class WaitOperationTest : XCTestCase {
 	}
 
 	func testReject() {
-		let expectation = expectationWithDescription("testReject")
+		let expectation = expect("testReject")
 		let queue = NSOperationQueue()
 		var error: NSError?
 

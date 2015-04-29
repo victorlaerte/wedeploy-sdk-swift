@@ -23,7 +23,7 @@ public class Promise<T: Any> {
 		self.operations = operations
 	}
 
-	public func done(block: ((T?, NSError?) -> ())? = nil) {
+	public func done(_ block: ((T?, NSError?) -> ())? = nil) {
 		let queue = NSOperationQueue()
 
 		for operation in operations {

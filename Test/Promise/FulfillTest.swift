@@ -3,7 +3,7 @@ import XCTest
 class Fulfill : XCTestCase {
 
 	func testFulfill() {
-		let expectation = expectationWithDescription("testFulfill")
+		let expectation = expect("testFulfill")
 		var output = [String]()
 
 		Promise<String>(promise: { (fulfill, reject) in

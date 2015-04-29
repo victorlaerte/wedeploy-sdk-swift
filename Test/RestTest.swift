@@ -3,7 +3,7 @@ import XCTest
 class RestTest : BaseTest {
 
 	func testAdd() {
-		let expectation = expectationWithDescription("add")
+		let expectation = expect("add")
 		let bookToAdd = booksToAdd.first!
 
 		pad.add(path, document: bookToAdd, success: { book in
@@ -16,7 +16,7 @@ class RestTest : BaseTest {
 	}
 
 	func testGet() {
-		let expectation = expectationWithDescription("get")
+		let expectation = expect("get")
 		let id = books.first!["id"] as! String
 
 		pad.get(path, id: id, success: { book in
@@ -28,7 +28,7 @@ class RestTest : BaseTest {
 	}
 
 	func testList() {
-		let expectation = expectationWithDescription("list")
+		let expectation = expect("list")
 
 		pad.list(path, success: { books in
 			XCTAssertEqual(self.booksToAdd.count, books.count)
@@ -40,7 +40,7 @@ class RestTest : BaseTest {
 	}
 
 	func testRemove() {
-		let expectation = expectationWithDescription("remove")
+		let expectation = expect("remove")
 		let id = books.first!["id"] as! String
 
 		pad.remove(path, id: id, success: { status in
@@ -52,7 +52,7 @@ class RestTest : BaseTest {
 	}
 
 	func testUpdate() {
-		let expectation = expectationWithDescription("update")
+		let expectation = expect("update")
 
 		let book = books.first!
 		var document = book["document"] as! [String: String]

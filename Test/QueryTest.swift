@@ -13,7 +13,7 @@ class QueryTest : BaseTest {
 	}
 
 	func testLimitRequest() {
-		let expectation = expectationWithDescription("limitRequest")
+		let expectation = expect("limitRequest")
 		let query = Query().limit(1)
 
 		pad.get(path, query: query, success: { books in
@@ -37,7 +37,7 @@ class QueryTest : BaseTest {
 	}
 
 	func testSortRequest() {
-		let expectation = expectationWithDescription("sortRequest")
+		let expectation = expect("sortRequest")
 		let query = Query().sort("title", order: Query.Order.DESC)
 		let sortedBooks = sorted(self.booksToAdd, {$0["title"] > $1["title"]})
 

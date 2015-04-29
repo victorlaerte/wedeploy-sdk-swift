@@ -17,7 +17,7 @@ class BaseTest : XCTestCase {
 		pad = Launchpad(server: server)
 
 		for bookToAdd in booksToAdd {
-			let expectation = expectationWithDescription("setUp")
+			let expectation = expect("setUp")
 
 			pad.add(path, document: bookToAdd, success: { book in
 				self.books.append(book)
@@ -30,7 +30,7 @@ class BaseTest : XCTestCase {
 
 	override func tearDown() {
 		for book in books {
-			let expectation = expectationWithDescription("tearDown")
+			let expectation = expect("tearDown")
 			let id = book["id"] as! String
 
 			pad.remove(self.path, id: id, success: { status in

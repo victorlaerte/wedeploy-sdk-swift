@@ -3,7 +3,7 @@ import XCTest
 class RestPromiseTest : BaseTest {
 
 	func testAdd_Then_Update_Then_Remove() {
-		let expectation = expectationWithDescription("add")
+		let expectation = expect("add")
 		var bookToAdd = booksToAdd.first!
 
 		pad
@@ -35,7 +35,7 @@ class RestPromiseTest : BaseTest {
 	}
 
 	func testAdd() {
-		let expectation = expectationWithDescription("add")
+		let expectation = expect("add")
 		let bookToAdd = booksToAdd.first!
 
 		pad.add(path, document: bookToAdd).then { (book) -> () in
@@ -49,7 +49,7 @@ class RestPromiseTest : BaseTest {
 	}
 
 	func testGet() {
-		let expectation = expectationWithDescription("get")
+		let expectation = expect("get")
 		let id = books.first!["id"] as! String
 
 		pad.get(path, id: id).then { (book) -> () in
@@ -62,7 +62,7 @@ class RestPromiseTest : BaseTest {
 	}
 
 	func testList() {
-		let expectation = expectationWithDescription("list")
+		let expectation = expect("list")
 
 		pad.list(path).then { (books) -> () in
 			XCTAssertEqual(self.booksToAdd.count, books.count)
@@ -75,7 +75,7 @@ class RestPromiseTest : BaseTest {
 	}
 
 	func testRemove() {
-		let expectation = expectationWithDescription("remove")
+		let expectation = expect("remove")
 		let id = books.first!["id"] as! String
 
 		pad.remove(path, id: id).then { (status) -> () in
@@ -88,7 +88,7 @@ class RestPromiseTest : BaseTest {
 	}
 
 	func testUpdate() {
-		let expectation = expectationWithDescription("update")
+		let expectation = expect("update")
 
 		let book = books.first!
 		var document = book["document"] as! [String: String]
