@@ -9,7 +9,7 @@ class CatchTest : XCTestCase {
 		let p = Promise {
 			return "one"
 		}
-		.then(error: { (value) -> (String, NSError?) in
+		.then({ (value) -> (String, NSError?) in
 			return (value, self._error())
 		})
 

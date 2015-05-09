@@ -23,7 +23,7 @@ public class Promise<T: Any> {
 		self.operations = operations
 	}
 
-	public func done(_ block: ((T?, NSError?) -> ())? = nil) {
+	public func done(block: ((T?, NSError?) -> ())? = nil) {
 		let queue = NSOperationQueue()
 
 		for operation in operations {
@@ -57,7 +57,7 @@ public class Promise<T: Any> {
 		return Promise<U>(self.operations)
 	}
 
-	public func then<U: Any>(error block: (T) -> (U, NSError?)) -> Promise<U> {
+	public func then<U: Any>(block: (T) -> (U, NSError?)) -> Promise<U> {
 		_then(BlockTupleOperation { input in
 			let output = block(input as! T)
 			return (output.0, output.1)
