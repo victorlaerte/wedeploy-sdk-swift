@@ -164,4 +164,60 @@ class ThenTest : XCTestCase {
 		}
 	}
 
+	func test_Returns_Tuple_Then_Empty() {
+		let expectation = expect("test_Returns_Tuple_Then_Empty")
+		var output = [String]()
+
+		let p = Promise {
+			return "one"
+		}
+		.then { (value) -> (String, NSError?) in
+			output.append(value)
+			return ("two", nil)
+		}
+		.then { (value) -> () in
+			output.append(value)
+		}
+
+		p.done { (value, error) in
+			XCTAssertNil(error)
+			expectation.fulfill()
+		}
+
+		wait {
+			XCTAssertEqual(2, output.count)
+			XCTAssertEqual("one", output.first!)
+			XCTAssertEqual("two", output.last!)
+		}
+	}
+
+	func test_Returns_TupleOfStrings_Then_Empty() {
+		let expectation = expect("test_Returns_TupleOfStrings_Then_Empty")
+		var output = [String]()
+
+		let p = Promise {
+			return "one"
+		}
+		.then { (value) -> (String, String) in
+			output.append(value)
+			return ("two", "three")
+		}
+		.then { (value) -> () in
+			output.append(value.0)
+			output.append(value.1)
+		}
+
+		p.done { (value, error) in
+			XCTAssertNil(error)
+			expectation.fulfill()
+		}
+
+		wait {
+			XCTAssertEqual(3, output.count)
+			XCTAssertEqual("one", output.first!)
+			XCTAssertEqual("two", output[1])
+			XCTAssertEqual("three", output.last!)
+		}
+	}
+
 }
