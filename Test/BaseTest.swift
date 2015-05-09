@@ -46,7 +46,7 @@ class BaseTest : XCTestCase {
 
 		XCTAssertEqual(
 			expected["title"] as! String,
-			result["document"]!["title"]!! as! String)
+			result["title"] as! String)
 	}
 
 	func assertBooks(

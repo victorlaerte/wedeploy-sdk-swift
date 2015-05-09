@@ -90,14 +90,13 @@ class RestPromiseTest : BaseTest {
 	func testUpdate() {
 		let expectation = expect("update")
 
-		let book = books.first!
-		var document = book["document"] as! [String: String]
-		document["title"] = "La fiesta del chivo"
+		var book = books.first!
+		book["title"] = "La fiesta del chivo"
 
 		let id = book["id"] as! String
 
-		pad.update(path, id: id, document: document).then { updatedBook -> () in
-			self.assertBook(document, result: updatedBook)
+		pad.update(path, id: id, document: book).then { updatedBook -> () in
+			self.assertBook(book, result: updatedBook)
 			expectation.fulfill()
 		}
 		.done()
