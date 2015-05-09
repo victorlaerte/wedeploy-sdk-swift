@@ -1,12 +1,12 @@
 import XCTest
 
-class WaitOperationTest : XCTestCase {
+class PromiseOperationTest : XCTestCase {
 
 	func testFulfill() {
 		let expectation = expect("testFulfill")
 		let queue = NSOperationQueue()
 
-		let operation = WaitOperation { (fulfill, reject) in
+		let operation = PromiseOperation { (fulfill, reject) in
 			fulfill("one")
 			expectation.fulfill()
 		}
@@ -27,7 +27,7 @@ class WaitOperationTest : XCTestCase {
 		let queue = NSOperationQueue()
 		var error: NSError?
 
-		let operation = WaitOperation { (fulfill, reject) in
+		let operation = PromiseOperation { (fulfill, reject) in
 			reject(NSError(domain: "domain", code: 1, userInfo: nil))
 		}
 

@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		CC0631631AEB17530097D129 /* TestUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0631621AEB17530097D129 /* TestUtil.swift */; };
-		CC48428D1AEC59CB00BD0CE6 /* WaitOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC48428C1AEC59CB00BD0CE6 /* WaitOperation.swift */; };
-		CC48428F1AEC667400BD0CE6 /* WaitOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC48428E1AEC667400BD0CE6 /* WaitOperationTest.swift */; };
+		CC48428D1AEC59CB00BD0CE6 /* PromiseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC48428C1AEC59CB00BD0CE6 /* PromiseOperation.swift */; };
+		CC48428F1AEC667400BD0CE6 /* PromiseOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC48428E1AEC667400BD0CE6 /* PromiseOperationTest.swift */; };
 		CC4842911AEC70B100BD0CE6 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4842901AEC70B100BD0CE6 /* Operation.swift */; };
 		CC4842951AEC8C9200BD0CE6 /* FulfillTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4842941AEC8C9200BD0CE6 /* FulfillTest.swift */; };
 		CC7CE7551ADEC66B001165D1 /* Launchpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7CE7541ADEC66B001165D1 /* Launchpad.swift */; };
@@ -28,8 +28,8 @@
 
 /* Begin PBXFileReference section */
 		CC0631621AEB17530097D129 /* TestUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestUtil.swift; sourceTree = "<group>"; };
-		CC48428C1AEC59CB00BD0CE6 /* WaitOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitOperation.swift; sourceTree = "<group>"; };
-		CC48428E1AEC667400BD0CE6 /* WaitOperationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitOperationTest.swift; sourceTree = "<group>"; };
+		CC48428C1AEC59CB00BD0CE6 /* PromiseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseOperation.swift; sourceTree = "<group>"; };
+		CC48428E1AEC667400BD0CE6 /* PromiseOperationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseOperationTest.swift; sourceTree = "<group>"; };
 		CC4842901AEC70B100BD0CE6 /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
 		CC4842941AEC8C9200BD0CE6 /* FulfillTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FulfillTest.swift; sourceTree = "<group>"; };
 		CC6004F81ADEC22200B8F2E5 /* Launchpad.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Launchpad.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,7 +108,7 @@
 				CCD512E41AEBE53600C97F42 /* BlockTupleOperation.swift */,
 				CC4842901AEC70B100BD0CE6 /* Operation.swift */,
 				CCD512E31AEBE53600C97F42 /* Promise.swift */,
-				CC48428C1AEC59CB00BD0CE6 /* WaitOperation.swift */,
+				CC48428C1AEC59CB00BD0CE6 /* PromiseOperation.swift */,
 			);
 			path = Promise;
 			sourceTree = "<group>";
@@ -118,8 +118,8 @@
 			children = (
 				CCD512EA1AEBE62F00C97F42 /* CatchTest.swift */,
 				CC4842941AEC8C9200BD0CE6 /* FulfillTest.swift */,
+				CC48428E1AEC667400BD0CE6 /* PromiseOperationTest.swift */,
 				CCD512E81AEBE53F00C97F42 /* ThenTest.swift */,
-				CC48428E1AEC667400BD0CE6 /* WaitOperationTest.swift */,
 			);
 			path = Promise;
 			sourceTree = "<group>";
@@ -191,11 +191,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC4842951AEC8C9200BD0CE6 /* FulfillTest.swift in Sources */,
-				CC48428F1AEC667400BD0CE6 /* WaitOperationTest.swift in Sources */,
+				CC48428F1AEC667400BD0CE6 /* PromiseOperationTest.swift in Sources */,
 				CCFAE2C91AEEC34200C1E357 /* LaunchpadPromise.swift in Sources */,
 				CCE540941AE15E1D004C7041 /* BaseTest.swift in Sources */,
 				CC4842911AEC70B100BD0CE6 /* Operation.swift in Sources */,
-				CC48428D1AEC59CB00BD0CE6 /* WaitOperation.swift in Sources */,
+				CC48428D1AEC59CB00BD0CE6 /* PromiseOperation.swift in Sources */,
 				CCD512E91AEBE53F00C97F42 /* ThenTest.swift in Sources */,
 				CCD512E61AEBE53600C97F42 /* BlockTupleOperation.swift in Sources */,
 				CCE540921AE14E2A004C7041 /* QueryTest.swift in Sources */,

@@ -16,7 +16,7 @@ public class Promise<T: Any> {
 			promise({ fulfill($0) }, reject)
 		}
 
-		_then(WaitOperation(promise: self.promise!))
+		_then(PromiseOperation(promise: self.promise!))
 	}
 
 	private init(_ operations: [Operation]) {
@@ -67,7 +67,7 @@ public class Promise<T: Any> {
 	}
 
 	public func then<U: Any>(block: (T) -> (Promise<U>)) -> Promise<U> {
-		_then(WaitOperation(block: { input in
+		_then(PromiseOperation(block: { input in
 			return block(input as! T).promise!
 		}))
 

@@ -1,6 +1,6 @@
 import Foundation
 
-class WaitOperation : Operation {
+class PromiseOperation : Operation {
 
 	var block: ((Any?) -> (((Any?) -> (), (NSError) -> ()) -> ()))?
 	var promise: (((Any?) -> (), (NSError) -> ()) -> ())?
