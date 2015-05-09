@@ -1,6 +1,6 @@
 import Foundation
 
-class BlockErrorOperation : Operation {
+class BlockTupleOperation : Operation {
 
 	var block: (Any?) -> (Any?, NSError?)
 

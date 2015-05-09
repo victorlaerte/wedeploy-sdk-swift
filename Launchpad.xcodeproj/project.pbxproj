@@ -15,7 +15,7 @@
 		CC7CE7551ADEC66B001165D1 /* Launchpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7CE7541ADEC66B001165D1 /* Launchpad.swift */; };
 		CCA17BA21ADEC3D7000BF430 /* RestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA17BA01ADEC3D7000BF430 /* RestTest.swift */; };
 		CCD512E51AEBE53600C97F42 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD512E31AEBE53600C97F42 /* Promise.swift */; };
-		CCD512E61AEBE53600C97F42 /* BlockErrorOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD512E41AEBE53600C97F42 /* BlockErrorOperation.swift */; };
+		CCD512E61AEBE53600C97F42 /* BlockTupleOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD512E41AEBE53600C97F42 /* BlockTupleOperation.swift */; };
 		CCD512E91AEBE53F00C97F42 /* ThenTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD512E81AEBE53F00C97F42 /* ThenTest.swift */; };
 		CCD512EB1AEBE62F00C97F42 /* CatchTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD512EA1AEBE62F00C97F42 /* CatchTest.swift */; };
 		CCDF71421AF0286B00FD31EA /* BlockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDF71411AF0286B00FD31EA /* BlockOperation.swift */; };
@@ -37,7 +37,7 @@
 		CCA17B9F1ADEC3D7000BF430 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCA17BA01ADEC3D7000BF430 /* RestTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestTest.swift; sourceTree = "<group>"; };
 		CCD512E31AEBE53600C97F42 /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
-		CCD512E41AEBE53600C97F42 /* BlockErrorOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockErrorOperation.swift; sourceTree = "<group>"; };
+		CCD512E41AEBE53600C97F42 /* BlockTupleOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTupleOperation.swift; sourceTree = "<group>"; };
 		CCD512E81AEBE53F00C97F42 /* ThenTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThenTest.swift; sourceTree = "<group>"; };
 		CCD512EA1AEBE62F00C97F42 /* CatchTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatchTest.swift; sourceTree = "<group>"; };
 		CCDF71411AF0286B00FD31EA /* BlockOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockOperation.swift; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				CCDF71411AF0286B00FD31EA /* BlockOperation.swift */,
-				CCD512E41AEBE53600C97F42 /* BlockErrorOperation.swift */,
+				CCD512E41AEBE53600C97F42 /* BlockTupleOperation.swift */,
 				CC4842901AEC70B100BD0CE6 /* Operation.swift */,
 				CCD512E31AEBE53600C97F42 /* Promise.swift */,
 				CC48428C1AEC59CB00BD0CE6 /* WaitOperation.swift */,
@@ -197,7 +197,7 @@
 				CC4842911AEC70B100BD0CE6 /* Operation.swift in Sources */,
 				CC48428D1AEC59CB00BD0CE6 /* WaitOperation.swift in Sources */,
 				CCD512E91AEBE53F00C97F42 /* ThenTest.swift in Sources */,
-				CCD512E61AEBE53600C97F42 /* BlockErrorOperation.swift in Sources */,
+				CCD512E61AEBE53600C97F42 /* BlockTupleOperation.swift in Sources */,
 				CCE540921AE14E2A004C7041 /* QueryTest.swift in Sources */,
 				CCD512E51AEBE53600C97F42 /* Promise.swift in Sources */,
 				CC7CE7551ADEC66B001165D1 /* Launchpad.swift in Sources */,

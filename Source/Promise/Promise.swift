@@ -58,7 +58,7 @@ public class Promise<T: Any> {
 	}
 
 	public func then<U: Any>(error block: (T) -> (U, NSError?)) -> Promise<U> {
-		_then(BlockErrorOperation { input in
+		_then(BlockTupleOperation { input in
 			let output = block(input as! T)
 			return (output.0, output.1)
 		})
