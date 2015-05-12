@@ -6,7 +6,7 @@ public class Promise<T: Any> {
 	var promise: (((Any?) -> (), (NSError) -> ()) -> ())?
 
 	init(_ block: () -> (T)) {
-		_then(BlockOperation { input in
+		addDependency(BlockOperation { input in
 			return block()
 		})
 	}
@@ -16,10 +16,10 @@ public class Promise<T: Any> {
 			promise({ fulfill($0) }, reject)
 		}
 
-		_then(PromiseOperation(promise: self.promise!))
+		addDependency(PromiseOperation(promise: self.promise!))
 	}
 
-	private init(_ operations: [Operation]) {
+	init(_ operations: [Operation]) {
 		self.operations = operations
 	}
 
@@ -39,7 +39,7 @@ public class Promise<T: Any> {
 		}
 
 		if let done = block {
-			_then(BlockOperation({ input in
+			addDependency(BlockOperation({ input in
 				dispatch_async(dispatch_get_main_queue(), {
 					done(input as! T?, nil)
 				})
@@ -50,7 +50,7 @@ public class Promise<T: Any> {
 	}
 
 	public func then<U: Any>(block: (T) -> (U)) -> Promise<U> {
-		_then(BlockOperation { input in
+		addDependency(BlockOperation { input in
 			return block(input as! T) as U
 		})
 
@@ -58,7 +58,7 @@ public class Promise<T: Any> {
 	}
 
 	public func then<U: Any>(block: (T) -> (U, NSError?)) -> Promise<U> {
-		_then(BlockTupleOperation { input in
+		addDependency(BlockTupleOperation { input in
 			let output = block(input as! T)
 			return (output.0, output.1)
 		})
@@ -67,14 +67,14 @@ public class Promise<T: Any> {
 	}
 
 	public func then<U: Any>(block: (T) -> (Promise<U>)) -> Promise<U> {
-		_then(PromiseOperation(block: { input in
+		addDependency(PromiseOperation(block: { input in
 			return block(input as! T).promise!
 		}))
 
 		return Promise<U>(self.operations)
 	}
 
-	private func _then(operation: Operation) {
+	func addDependency(operation: Operation) {
 		if let last = operations.last {
 			operation.addDependency(last)
 		}

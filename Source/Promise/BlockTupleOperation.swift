@@ -9,7 +9,7 @@ class BlockTupleOperation : Operation {
 	}
 
 	override func main() {
-		let operation = self.dependencies.last as? Operation
+		let operation = dependencies.last as? Operation
 		let output = block(operation?.output)
 
 		if let error = output.1 {
