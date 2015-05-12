@@ -38,11 +38,13 @@ class RestPromiseTest : BaseTest {
 		let expectation = expect("add")
 		let bookToAdd = booksToAdd.first!
 
-		pad.add(path, document: bookToAdd).then { (book) -> () in
-			self.assertBook(bookToAdd, result: book)
-			self.books.append(book)
-			expectation.fulfill()
-		}
+		pad
+			.add(path, document: bookToAdd)
+			.then { (book) -> () in
+				self.assertBook(bookToAdd, result: book)
+				self.books.append(book)
+				expectation.fulfill()
+			}
 		.done()
 
 		wait()
@@ -52,10 +54,12 @@ class RestPromiseTest : BaseTest {
 		let expectation = expect("get")
 		let id = books.first!["id"] as! String
 
-		pad.get(path, id: id).then { (book) -> () in
-			self.assertBook(self.booksToAdd.first!, result: book)
-			expectation.fulfill()
-		}
+		pad
+			.get(path, id: id)
+			.then { (book) -> () in
+				self.assertBook(self.booksToAdd.first!, result: book)
+				expectation.fulfill()
+			}
 		.done()
 
 		wait()
@@ -64,11 +68,13 @@ class RestPromiseTest : BaseTest {
 	func testList() {
 		let expectation = expect("list")
 
-		pad.list(path).then { (books) -> () in
-			XCTAssertEqual(self.booksToAdd.count, books.count)
-			self.assertBook(self.booksToAdd.first!, result: books.first!)
-			expectation.fulfill()
-		}
+		pad
+			.list(path)
+			.then { (books) -> () in
+				XCTAssertEqual(self.booksToAdd.count, books.count)
+				self.assertBook(self.booksToAdd.first!, result: books.first!)
+				expectation.fulfill()
+			}
 		.done()
 
 		wait()
@@ -78,10 +84,12 @@ class RestPromiseTest : BaseTest {
 		let expectation = expect("remove")
 		let id = books.first!["id"] as! String
 
-		pad.remove(path, id: id).then { (status) -> () in
-			XCTAssertEqual(204, status)
-			expectation.fulfill()
-		}
+		pad
+			.remove(path, id: id)
+			.then { (status) -> () in
+				XCTAssertEqual(204, status)
+				expectation.fulfill()
+			}
 		.done()
 
 		wait()
@@ -95,10 +103,12 @@ class RestPromiseTest : BaseTest {
 
 		let id = book["id"] as! String
 
-		pad.update(path, id: id, document: book).then { updatedBook -> () in
-			self.assertBook(book, result: updatedBook)
-			expectation.fulfill()
-		}
+		pad
+			.update(path, id: id, document: book)
+			.then { updatedBook -> () in
+				self.assertBook(book, result: updatedBook)
+				expectation.fulfill()
+			}
 		.done()
 
 		wait()
