@@ -2,8 +2,8 @@ import XCTest
 
 class ThenTest : XCTestCase {
 
-	func test_Returns_Array_Then_Empty() {
-		let expectation = expect("test_Returns_Array_Then_Empty")
+	func testReturns_Array_Then_Empty() {
+		let expectation = expect("testReturns_Array_Then_Empty")
 		var output = [String]()
 
 		let p = Promise {
@@ -24,8 +24,8 @@ class ThenTest : XCTestCase {
 		wait()
 	}
 
-	func test_Returns_Empty_Then_Empty() {
-		let expectation = expect("test_Returns_Empty_Then_Empty")
+	func testReturns_Empty_Then_Empty() {
+		let expectation = expect("testReturns_Empty_Then_Empty")
 		var order = [String]()
 
 		let p = Promise {
@@ -49,8 +49,8 @@ class ThenTest : XCTestCase {
 		}
 	}
 
-	func test_Returns_Empty_Then_String() {
-		let expectation = expect("test_Returns_Empty_Then_String")
+	func testReturns_Empty_Then_String() {
+		let expectation = expect("testReturns_Empty_Then_String")
 		var output = [String]()
 
 		let p = Promise {
@@ -76,8 +76,8 @@ class ThenTest : XCTestCase {
 		}
 	}
 
-	func test_Returns_Promise() {
-		let expectation = expect("test_Returns_Promise_Then_String")
+	func testReturns_Promise() {
+		let expectation = expect("testReturns_Promise")
 		var output = [String]()
 
 		let p = Promise {
@@ -109,8 +109,8 @@ class ThenTest : XCTestCase {
 		}
 	}
 
-	func test_Returns_String_Then_Empty() {
-		let expectation = expect("test_Returns_String_Then_Empty")
+	func testReturns_String_Then_Empty() {
+		let expectation = expect("testReturns_String_Then_Empty")
 		var output = [String]()
 
 		let p = Promise {
@@ -134,8 +134,8 @@ class ThenTest : XCTestCase {
 		}
 	}
 
-	func test_Returns_String_Then_String() {
-		let expectation = expect("test_Returns_String_Then_String")
+	func testReturns_String_Then_String() {
+		let expectation = expect("testReturns_String_Then_String")
 		var output = [String]()
 
 		let p = Promise {
@@ -164,8 +164,8 @@ class ThenTest : XCTestCase {
 		}
 	}
 
-	func test_Returns_Tuple_Then_Empty() {
-		let expectation = expect("test_Returns_Tuple_Then_Empty")
+	func testReturns_Tuple_Then_Empty() {
+		let expectation = expect("testReturns_Tuple_Then_Empty")
 		var output = [String]()
 
 		let p = Promise {
@@ -191,8 +191,8 @@ class ThenTest : XCTestCase {
 		}
 	}
 
-	func test_Returns_TupleOfStrings_Then_Empty() {
-		let expectation = expect("test_Returns_TupleOfStrings_Then_Empty")
+	func testReturns_Tuple_Of_Strings_Then_Empty() {
+		let expectation = expect("testReturns_Tuple_Of_Strings_Then_Empty")
 		var output = [String]()
 
 		let p = Promise {

@@ -10,7 +10,7 @@ class CatchTest : XCTestCase {
 			return "one"
 		}
 		.then({ (value) -> (String, NSError?) in
-			return (value, self._error())
+			return (value, self._createError())
 		})
 
 		p.done { (value, error) in
@@ -34,7 +34,7 @@ class CatchTest : XCTestCase {
 				DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
 			dispatch_async(queue, {
-				reject(self._error())
+				reject(self._createError())
 			})
 		})
 
@@ -59,7 +59,7 @@ class CatchTest : XCTestCase {
 
 			dispatch_async(queue, {
 				sleep(1)
-				reject(self._error())
+				reject(self._createError())
 			})
 		})
 		.then {
@@ -78,7 +78,7 @@ class CatchTest : XCTestCase {
 		}
 	}
 
-	private func _error() -> NSError {
+	private func _createError() -> NSError {
 		return NSError(domain: "domain", code: 1, userInfo: nil)
 	}
 

@@ -1,7 +1,7 @@
-import Foundation
 import XCTest
 
 extension XCTestCase {
+
 	func expect(description: String!) -> XCTestExpectation {
 		return expectationWithDescription(description)
 	}

@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CC0631631AEB17530097D129 /* TestUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0631621AEB17530097D129 /* TestUtil.swift */; };
+		CC0631631AEB17530097D129 /* XCTestCaseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0631621AEB17530097D129 /* XCTestCaseExtension.swift */; };
 		CC324FFC1B022C6D00883F53 /* AllTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC324FFB1B022C6D00883F53 /* AllTest.swift */; };
 		CC324FFE1B022EA000883F53 /* PromiseAllExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC324FFD1B022EA000883F53 /* PromiseAllExtension.swift */; };
+		CC3250001B023E0500883F53 /* BaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC324FFF1B023E0500883F53 /* BaseTest.swift */; };
 		CC48428D1AEC59CB00BD0CE6 /* PromiseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC48428C1AEC59CB00BD0CE6 /* PromiseOperation.swift */; };
 		CC48428F1AEC667400BD0CE6 /* PromiseOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC48428E1AEC667400BD0CE6 /* PromiseOperationTest.swift */; };
 		CC4842911AEC70B100BD0CE6 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4842901AEC70B100BD0CE6 /* Operation.swift */; };
@@ -25,15 +26,15 @@
 		CCDF71421AF0286B00FD31EA /* BlockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDF71411AF0286B00FD31EA /* BlockOperation.swift */; };
 		CCE540901AE146B4004C7041 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE5408F1AE146B4004C7041 /* Query.swift */; };
 		CCE540921AE14E2A004C7041 /* QueryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE540911AE14E2A004C7041 /* QueryTest.swift */; };
-		CCE540941AE15E1D004C7041 /* BaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE540931AE15E1D004C7041 /* BaseTest.swift */; };
 		CCFAE2C91AEEC34200C1E357 /* LaunchpadPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFAE2C81AEEC34200C1E357 /* LaunchpadPromise.swift */; };
 		CCFAE2CB1AEEC9CB00C1E357 /* RestPromiseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFAE2CA1AEEC9CB00C1E357 /* RestPromiseTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CC0631621AEB17530097D129 /* TestUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestUtil.swift; sourceTree = "<group>"; };
+		CC0631621AEB17530097D129 /* XCTestCaseExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestCaseExtension.swift; sourceTree = "<group>"; };
 		CC324FFB1B022C6D00883F53 /* AllTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTest.swift; sourceTree = "<group>"; };
 		CC324FFD1B022EA000883F53 /* PromiseAllExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseAllExtension.swift; sourceTree = "<group>"; };
+		CC324FFF1B023E0500883F53 /* BaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTest.swift; sourceTree = "<group>"; };
 		CC48428C1AEC59CB00BD0CE6 /* PromiseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseOperation.swift; sourceTree = "<group>"; };
 		CC48428E1AEC667400BD0CE6 /* PromiseOperationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseOperationTest.swift; sourceTree = "<group>"; };
 		CC4842901AEC70B100BD0CE6 /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
@@ -51,7 +52,6 @@
 		CCDF71411AF0286B00FD31EA /* BlockOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockOperation.swift; sourceTree = "<group>"; };
 		CCE5408F1AE146B4004C7041 /* Query.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
 		CCE540911AE14E2A004C7041 /* QueryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryTest.swift; sourceTree = "<group>"; };
-		CCE540931AE15E1D004C7041 /* BaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTest.swift; sourceTree = "<group>"; };
 		CCFAE2C81AEEC34200C1E357 /* LaunchpadPromise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchpadPromise.swift; sourceTree = "<group>"; };
 		CCFAE2CA1AEEC9CB00C1E357 /* RestPromiseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestPromiseTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,11 +100,11 @@
 			children = (
 				CCD512E71AEBE53F00C97F42 /* Promise */,
 				CCA17B9F1ADEC3D7000BF430 /* Info.plist */,
-				CCE540931AE15E1D004C7041 /* BaseTest.swift */,
+				CC324FFF1B023E0500883F53 /* BaseTest.swift */,
 				CCE540911AE14E2A004C7041 /* QueryTest.swift */,
-				CCA17BA01ADEC3D7000BF430 /* RestTest.swift */,
 				CCFAE2CA1AEEC9CB00C1E357 /* RestPromiseTest.swift */,
-				CC0631621AEB17530097D129 /* TestUtil.swift */,
+				CCA17BA01ADEC3D7000BF430 /* RestTest.swift */,
+				CC0631621AEB17530097D129 /* XCTestCaseExtension.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -205,7 +205,6 @@
 				CC4842951AEC8C9200BD0CE6 /* FulfillTest.swift in Sources */,
 				CC48428F1AEC667400BD0CE6 /* PromiseOperationTest.swift in Sources */,
 				CCFAE2C91AEEC34200C1E357 /* LaunchpadPromise.swift in Sources */,
-				CCE540941AE15E1D004C7041 /* BaseTest.swift in Sources */,
 				CC4842911AEC70B100BD0CE6 /* Operation.swift in Sources */,
 				CC48428D1AEC59CB00BD0CE6 /* PromiseOperation.swift in Sources */,
 				CCD512E91AEBE53F00C97F42 /* ThenTest.swift in Sources */,
@@ -217,11 +216,12 @@
 				CCE540901AE146B4004C7041 /* Query.swift in Sources */,
 				CCA17BA21ADEC3D7000BF430 /* RestTest.swift in Sources */,
 				CCFAE2CB1AEEC9CB00C1E357 /* RestPromiseTest.swift in Sources */,
-				CC0631631AEB17530097D129 /* TestUtil.swift in Sources */,
+				CC0631631AEB17530097D129 /* XCTestCaseExtension.swift in Sources */,
 				CCD0F4041AFEBAE900006B3B /* AllOperation.swift in Sources */,
 				CCDF71421AF0286B00FD31EA /* BlockOperation.swift in Sources */,
 				CC324FFC1B022C6D00883F53 /* AllTest.swift in Sources */,
 				CCD0F4061AFECD4000006B3B /* AllOperationTest.swift in Sources */,
+				CC3250001B023E0500883F53 /* BaseTest.swift in Sources */,
 				CCD512EB1AEBE62F00C97F42 /* CatchTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
