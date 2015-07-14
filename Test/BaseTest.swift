@@ -10,7 +10,7 @@ class BaseTest : XCTestCase {
 	]
 
 	var pad: Launchpad!
-	let path = "/books"
+	let path = "/datastore-mongo/books"
 	let server = "http://localhost:8080"
 
 	override func setUp() {
@@ -33,7 +33,7 @@ class BaseTest : XCTestCase {
 			let expectation = expect("tearDown")
 			let id = book["id"] as! String
 
-			pad.remove(self.path, id: id, success: { status in
+			pad.remove(path, id: id, success: { status in
 				expectation.fulfill()
 			})
 

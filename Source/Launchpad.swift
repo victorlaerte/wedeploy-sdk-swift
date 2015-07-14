@@ -151,6 +151,9 @@ public class Launchpad {
 				NSUTF8StringEncoding, allowLossyConversion: false)
 		}
 		else {
+			request.setValue(
+				"application/json", forHTTPHeaderField: "Content-Type")
+
 			request.HTTPBody = NSJSONSerialization.dataWithJSONObject(
 				body, options: NSJSONWritingOptions.allZeros, error: error)
 		}
