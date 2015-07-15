@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CC0631631AEB17530097D129 /* XCTestCaseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0631621AEB17530097D129 /* XCTestCaseExtension.swift */; };
+		CC2A92591B55A8EB00388B82 /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC2A92581B55A8EB00388B82 /* settings.plist */; };
 		CC324FFC1B022C6D00883F53 /* AllTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC324FFB1B022C6D00883F53 /* AllTest.swift */; };
 		CC324FFE1B022EA000883F53 /* PromiseAllExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC324FFD1B022EA000883F53 /* PromiseAllExtension.swift */; };
 		CC3250001B023E0500883F53 /* BaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC324FFF1B023E0500883F53 /* BaseTest.swift */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		CC0631621AEB17530097D129 /* XCTestCaseExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestCaseExtension.swift; sourceTree = "<group>"; };
+		CC2A92581B55A8EB00388B82 /* settings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = settings.plist; sourceTree = "<group>"; };
 		CC324FFB1B022C6D00883F53 /* AllTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTest.swift; sourceTree = "<group>"; };
 		CC324FFD1B022EA000883F53 /* PromiseAllExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseAllExtension.swift; sourceTree = "<group>"; };
 		CC324FFF1B023E0500883F53 /* BaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTest.swift; sourceTree = "<group>"; };
@@ -99,11 +101,12 @@
 			isa = PBXGroup;
 			children = (
 				CCD512E71AEBE53F00C97F42 /* Promise */,
-				CCA17B9F1ADEC3D7000BF430 /* Info.plist */,
 				CC324FFF1B023E0500883F53 /* BaseTest.swift */,
+				CCA17B9F1ADEC3D7000BF430 /* Info.plist */,
 				CCE540911AE14E2A004C7041 /* QueryTest.swift */,
 				CCFAE2CA1AEEC9CB00C1E357 /* RestPromiseTest.swift */,
 				CCA17BA01ADEC3D7000BF430 /* RestTest.swift */,
+				CC2A92581B55A8EB00388B82 /* settings.plist */,
 				CC0631621AEB17530097D129 /* XCTestCaseExtension.swift */,
 			);
 			path = Test;
@@ -192,6 +195,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC2A92591B55A8EB00388B82 /* settings.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

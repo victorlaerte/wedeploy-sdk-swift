@@ -10,10 +10,12 @@ class BaseTest : XCTestCase {
 	]
 
 	var pad: Launchpad!
-	let path = "/datastore-mongo/books"
-	let server = "http://localhost:8080"
+	var path: String!
+	var server: String!
 
 	override func setUp() {
+		_loadSettings()
+
 		pad = Launchpad(server: server)
 
 		for bookToAdd in booksToAdd {
@@ -45,8 +47,7 @@ class BaseTest : XCTestCase {
 		expected: [String: AnyObject], result: [String: AnyObject]) {
 
 		XCTAssertEqual(
-			expected["title"] as! String,
-			result["title"] as! String)
+			expected["title"] as! String, result["title"] as! String)
 	}
 
 	func assertBooks(
@@ -55,6 +56,15 @@ class BaseTest : XCTestCase {
 		for (index, book) in enumerate(result) {
 			assertBook(expected[index], result: book)
 		}
+	}
+
+	private func _loadSettings() {
+		let bundle = NSBundle(identifier: "com.liferay.launchpad.Launchpad")
+		let file = bundle!.pathForResource("settings", ofType: "plist")
+		let settings = NSDictionary(contentsOfFile: file!) as! [String: String]
+
+		path = settings["path"]
+		server = settings["server"]
 	}
 
 }
