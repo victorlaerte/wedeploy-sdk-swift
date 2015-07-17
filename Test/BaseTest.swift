@@ -9,19 +9,19 @@ class BaseTest : XCTestCase {
 		["title": "Historias de cronopios y de famas"]
 	]
 
-	var pad: Datastore!
+	var datastore: Datastore!
 	var path: String!
 	var server: String!
 
 	override func setUp() {
 		_loadSettings()
 
-		pad = Datastore(server: server)
+		datastore = Datastore(server: server)
 
 		for bookToAdd in booksToAdd {
 			let expectation = expect("setUp")
 
-			pad.add(path, document: bookToAdd, success: { book in
+			datastore.add(path, document: bookToAdd, success: { book in
 				self.books.append(book)
 				expectation.fulfill()
 			})
@@ -35,7 +35,7 @@ class BaseTest : XCTestCase {
 			let expectation = expect("tearDown")
 			let id = book["id"] as! String
 
-			pad.remove(path, id: id, success: { status in
+			datastore.remove(path, id: id, success: { status in
 				expectation.fulfill()
 			})
 

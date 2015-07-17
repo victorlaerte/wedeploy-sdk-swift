@@ -6,7 +6,7 @@ class DatastoreTest : BaseTest {
 		let expectation = expect("add")
 		let bookToAdd = booksToAdd.first!
 
-		pad.add(path, document: bookToAdd, success: { book in
+		datastore.add(path, document: bookToAdd, success: { book in
 			self.assertBook(bookToAdd, result: book)
 			self.books.append(book)
 			expectation.fulfill()
@@ -19,7 +19,7 @@ class DatastoreTest : BaseTest {
 		let expectation = expect("get")
 		let id = books.first!["id"] as! String
 
-		pad.get(path, id: id, success: { book in
+		datastore.get(path, id: id, success: { book in
 			self.assertBook(self.booksToAdd.first!, result: book)
 			expectation.fulfill()
 		})
@@ -30,7 +30,7 @@ class DatastoreTest : BaseTest {
 	func testList() {
 		let expectation = expect("list")
 
-		pad.list(path, success: { books in
+		datastore.list(path, success: { books in
 			XCTAssertEqual(self.booksToAdd.count, books.count)
 			self.assertBook(self.booksToAdd.first!, result: books.first!)
 			expectation.fulfill()
@@ -43,7 +43,7 @@ class DatastoreTest : BaseTest {
 		let expectation = expect("testMainThread")
 		let id = books.first!["id"] as! String
 
-		pad.get(path, id: id, success: { book in
+		datastore.get(path, id: id, success: { book in
 			XCTAssertTrue(NSThread.isMainThread())
 			expectation.fulfill()
 		})
@@ -55,7 +55,7 @@ class DatastoreTest : BaseTest {
 		let expectation = expect("remove")
 		let id = books.first!["id"] as! String
 
-		pad.remove(path, id: id, success: { status in
+		datastore.remove(path, id: id, success: { status in
 			XCTAssertEqual(204, status)
 			expectation.fulfill()
 		})
@@ -71,7 +71,7 @@ class DatastoreTest : BaseTest {
 
 		let id = book["id"] as! String
 
-		pad.update(path, id: id, document: book, success: { updatedBook in
+		datastore.update(path, id: id, document: book, success: { updatedBook in
 			self.assertBook(book, result: updatedBook)
 			expectation.fulfill()
 		})

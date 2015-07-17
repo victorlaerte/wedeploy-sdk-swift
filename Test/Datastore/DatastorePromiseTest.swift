@@ -6,7 +6,7 @@ class DatastorePromiseTest : BaseTest {
 		let expectation = expect("add")
 		var bookToAdd = booksToAdd.first!
 
-		pad
+		datastore
 			.add(path, document: bookToAdd)
 
 			.then { (book) -> (Promise<[String: AnyObject]>) in
@@ -14,7 +14,7 @@ class DatastorePromiseTest : BaseTest {
 				self.books.append(book)
 				bookToAdd["title"] = "La fiesta del chivo"
 
-				return self.pad.update(
+				return self.datastore.update(
 					self.path, id: book["id"]! as! String, document: bookToAdd)
 			}
 
@@ -22,7 +22,7 @@ class DatastorePromiseTest : BaseTest {
 				self.assertBook(bookToAdd, result: updatedBook)
 				let id = updatedBook["id"]! as! String
 
-				return self.pad.remove(self.path, id: id)
+				return self.datastore.remove(self.path, id: id)
 			}
 
 			.then { (status) -> () in
@@ -38,7 +38,7 @@ class DatastorePromiseTest : BaseTest {
 		let expectation = expect("add")
 		let bookToAdd = booksToAdd.first!
 
-		pad
+		datastore
 			.add(path, document: bookToAdd)
 			.then { (book) -> () in
 				self.assertBook(bookToAdd, result: book)
@@ -54,7 +54,7 @@ class DatastorePromiseTest : BaseTest {
 		let expectation = expect("get")
 		let id = books.first!["id"] as! String
 
-		pad
+		datastore
 			.get(path, id: id)
 			.then { (book) -> () in
 				self.assertBook(self.booksToAdd.first!, result: book)
@@ -68,7 +68,7 @@ class DatastorePromiseTest : BaseTest {
 	func testList() {
 		let expectation = expect("list")
 
-		pad
+		datastore
 			.list(path)
 			.then { (books) -> () in
 				XCTAssertEqual(self.booksToAdd.count, books.count)
@@ -84,7 +84,7 @@ class DatastorePromiseTest : BaseTest {
 		let expectation = expect("remove")
 		let id = books.first!["id"] as! String
 
-		pad
+		datastore
 			.remove(path, id: id)
 			.then { (status) -> () in
 				XCTAssertEqual(204, status)
@@ -103,7 +103,7 @@ class DatastorePromiseTest : BaseTest {
 
 		let id = book["id"] as! String
 
-		pad
+		datastore
 			.update(path, id: id, document: book)
 			.then { updatedBook -> () in
 				self.assertBook(book, result: updatedBook)
