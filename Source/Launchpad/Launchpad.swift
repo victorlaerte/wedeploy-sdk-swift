@@ -9,7 +9,7 @@ public class Launchpad {
 	var url: String
 
 	init(_ url: String) {
-		self.transport = Transport()
+		self.transport = NSURLSessionTransport()
 		self.url = url
 		self.path = ""
 		self.headers = [:]
@@ -23,14 +23,14 @@ public class Launchpad {
 
 	public func delete<T>(success: (T -> ())?, failure: (NSError -> ())?) {
 		transport.send(
-			method: .DELETE, url: url, path: path, params: params,
-			headers: headers, success: success, failure: failure)
+			.DELETE, url: url, path: path, params: params, headers: headers,
+			body: nil, success: success, failure: failure)
 	}
 
 	public func get<T>(success: (T -> ())?, failure: (NSError -> ())?) {
 		transport.send(
-			method: .GET, url: url, path: path, params: params,
-			headers: headers, success: success, failure: failure)
+			.GET, url: url, path: path, params: params, headers: headers,
+			body: nil, success: success, failure: failure)
 	}
 
 	public func header(name: String, value: String) -> Self {
@@ -57,8 +57,8 @@ public class Launchpad {
 		body: AnyObject, success: (T -> ())?, failure: (NSError -> ())?) {
 
 		transport.send(
-			method: .PATCH, url: url, path: path, params: params,
-			headers: headers, body: body, success: success, failure: failure)
+			.PATCH, url: url, path: path, params: params, headers: headers,
+			body: body, success: success, failure: failure)
 	}
 
 	public func path(path: String) -> Self {
@@ -71,16 +71,16 @@ public class Launchpad {
 		body: AnyObject, success: (T -> ())?, failure: (NSError -> ())?) {
 
 		transport.send(
-			method: .POST, url: url, path: path, params: params,
-			headers: headers, body: body, success: success, failure: failure)
+			.POST, url: url, path: path, params: params, headers: headers,
+			body: body, success: success, failure: failure)
 	}
 
 	public func put<T>(
 		body: AnyObject, success: (T -> ())?, failure: (NSError -> ())?) {
 
 		transport.send(
-			method: .PUT, url: url, path: path, params: params,
-			headers: headers, body: body, success: success, failure: failure)
+			.PUT, url: url, path: path, params: params, headers: headers,
+			body: body, success: success, failure: failure)
 	}
 
 	public func use(transport: Transport) -> Self {

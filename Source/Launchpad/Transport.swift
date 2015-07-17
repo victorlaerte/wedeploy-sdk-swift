@@ -1,9 +1,18 @@
 import Foundation
 
-public class Transport {
+public protocol Transport {
+
+	func send<T>(
+		method: Launchpad.Verb, url: String, path: String,
+		params: [NSURLQueryItem]?, headers: [String: String]?, body: AnyObject?,
+		success: (T -> ())?, failure: (NSError -> ())?)
+
+}
+
+public class NSURLSessionTransport: Transport {
 
 	public func send<T>(
-		method: Launchpad.Verb = .GET, url: String, path: String,
+		_ method: Launchpad.Verb = .GET, url: String, path: String,
 		params: [NSURLQueryItem]? = nil, headers: [String: String]? = nil,
 		body: AnyObject? = nil, success: (T -> ())?,
 		failure: (NSError -> ())?) {
