@@ -16,7 +16,7 @@ class BaseTest : XCTestCase {
 	override func setUp() {
 		_loadSettings()
 
-		datastore = Datastore(server: server)
+		datastore = Datastore(server)
 
 		for bookToAdd in booksToAdd {
 			let expectation = expect("setUp")

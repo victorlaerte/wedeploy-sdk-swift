@@ -2,6 +2,30 @@ import Foundation
 
 public class Query : Printable {
 
+	var params: [NSURLQueryItem] {
+		var items = [NSURLQueryItem]()
+
+		for (name, value) in query {
+			var item: NSURLQueryItem
+
+			if ((value is [AnyObject]) || (value is [String: AnyObject])) {
+				let data = NSJSONSerialization.dataWithJSONObject(
+					value, options: NSJSONWritingOptions.allZeros, error: nil)
+
+				let json = NSString(data: data!, encoding: NSUTF8StringEncoding)
+
+				item = NSURLQueryItem(name: name, value: json! as String)
+			}
+			else {
+				item = NSURLQueryItem(name: name, value: value.description)
+			}
+
+			items.append(item)
+		}
+
+		return items
+	}
+
 	var query = [String: AnyObject]()
 
 	public enum Order: String {
@@ -36,30 +60,6 @@ public class Query : Printable {
 		query["sort"] = sort
 
 		return self
-	}
-
-	func queryItems() -> [NSURLQueryItem] {
-		var items = [NSURLQueryItem]()
-
-		for (name, value) in query {
-			var item: NSURLQueryItem
-
-			if ((value is [AnyObject]) || (value is [String: AnyObject])) {
-				let data = NSJSONSerialization.dataWithJSONObject(
-					value, options: NSJSONWritingOptions.allZeros, error: nil)
-
-				let json = NSString(data: data!, encoding: NSUTF8StringEncoding)
-
-				item = NSURLQueryItem(name: name, value: json! as String)
-			}
-			else {
-				item = NSURLQueryItem(name: name, value: value.description)
-			}
-
-			items.append(item)
-		}
-
-		return items
 	}
 
 }

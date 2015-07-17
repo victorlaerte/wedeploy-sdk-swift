@@ -15,17 +15,11 @@ extension Datastore {
 		})
 	}
 
-	public func get(path: String, query: Query?)
+	public func get(path: String, query: Query? = nil)
 		-> Promise<[[String: AnyObject]]> {
 
 		return Promise<[[String: AnyObject]]>(promise: { (fulfill, reject) in
 			self.get(path, query: query, success: fulfill, failure: reject)
-		})
-	}
-
-	public func list(path: String) -> Promise<[[String: AnyObject]]> {
-		return Promise<[[String: AnyObject]]>(promise: { (fulfill, reject) in
-			self.list(path, success: fulfill, failure: reject)
 		})
 	}
 

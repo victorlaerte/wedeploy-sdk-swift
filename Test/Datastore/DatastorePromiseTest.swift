@@ -69,7 +69,7 @@ class DatastorePromiseTest : BaseTest {
 		let expectation = expect("list")
 
 		datastore
-			.list(path)
+			.get(path)
 			.then { (books) -> () in
 				XCTAssertEqual(self.booksToAdd.count, books.count)
 				self.assertBook(self.booksToAdd.first!, result: books.first!)

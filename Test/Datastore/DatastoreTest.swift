@@ -30,7 +30,7 @@ class DatastoreTest : BaseTest {
 	func testList() {
 		let expectation = expect("list")
 
-		datastore.list(path, success: { books in
+		datastore.get(path, success: { books in
 			XCTAssertEqual(self.booksToAdd.count, books.count)
 			self.assertBook(self.booksToAdd.first!, result: books.first!)
 			expectation.fulfill()
