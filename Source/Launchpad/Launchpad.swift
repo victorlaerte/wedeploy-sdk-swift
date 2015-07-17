@@ -33,13 +33,13 @@ public class Launchpad {
 			body: nil, success: success, failure: failure)
 	}
 
-	public func header(name: String, value: String) -> Self {
+	public func header(name: String, _ value: String) -> Self {
 		headers[name] = value
 
 		return self
 	}
 
-	public func param(name: String, value: String) -> Self {
+	public func param(name: String, _ value: String) -> Self {
 		params.append(NSURLQueryItem(name: name, value: value))
 
 		return self
