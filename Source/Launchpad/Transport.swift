@@ -4,7 +4,7 @@ public class Transport {
 
 	public func send<T>(
 		method: Launchpad.Verb = .GET, url: String, path: String,
-		params: [NSURLQueryItem]? = nil, headers: [String: String]? = [:],
+		params: [NSURLQueryItem]? = nil, headers: [String: String]? = nil,
 		body: AnyObject? = nil, success: (T -> ())?,
 		failure: (NSError -> ())?) {
 
@@ -21,6 +21,12 @@ public class Transport {
 
 		if (body != nil) {
 			setRequestBody(request, body: body!, error: &error)
+		}
+
+		if let h = headers {
+			for (name, value) in h {
+				request.addValue(value, forHTTPHeaderField: name)
+			}
 		}
 
 		if let e = error {
