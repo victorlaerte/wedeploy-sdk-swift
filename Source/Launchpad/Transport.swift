@@ -13,9 +13,8 @@ public class NSURLSessionTransport: Transport {
 
 	public func send<T>(
 		_ method: Launchpad.Verb = .GET, url: String, path: String,
-		params: [NSURLQueryItem]? = nil, headers: [String: String]? = nil,
-		body: AnyObject? = nil, success: (T -> ())?,
-		failure: (NSError -> ())?) {
+		params: [NSURLQueryItem]?, headers: [String: String]?, body: AnyObject?,
+		success: (T -> ())?, failure: (NSError -> ())?) {
 
 		let success = dispatchMainThread(success)
 		let failure = dispatchMainThread(failure)
