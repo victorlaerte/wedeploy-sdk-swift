@@ -1,4 +1,4 @@
-extension Launchpad {
+extension Datastore {
 
 	public func add(path: String, document: AnyObject)
 		-> Promise<[String: AnyObject]> {

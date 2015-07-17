@@ -9,14 +9,14 @@ class BaseTest : XCTestCase {
 		["title": "Historias de cronopios y de famas"]
 	]
 
-	var pad: Launchpad!
+	var pad: Datastore!
 	var path: String!
 	var server: String!
 
 	override func setUp() {
 		_loadSettings()
 
-		pad = Launchpad(server: server)
+		pad = Datastore(server: server)
 
 		for bookToAdd in booksToAdd {
 			let expectation = expect("setUp")

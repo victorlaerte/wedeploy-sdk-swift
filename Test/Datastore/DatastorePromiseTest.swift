@@ -1,6 +1,6 @@
 import XCTest
 
-class RestPromiseTest : BaseTest {
+class DatastorePromiseTest : BaseTest {
 
 	func testAdd_Then_Update_Then_Remove() {
 		let expectation = expect("add")

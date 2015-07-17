@@ -1,6 +1,6 @@
 import XCTest
 
-class RestTest : BaseTest {
+class DatastoreTest : BaseTest {
 
 	func testAdd() {
 		let expectation = expect("add")

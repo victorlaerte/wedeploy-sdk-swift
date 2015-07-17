@@ -1,6 +1,6 @@
 import Foundation
 
-public class Launchpad {
+public class Datastore {
 
 	public typealias FailureCallback = NSError -> ()
 	public typealias SuccessArrayCallback = [[String: AnyObject]] -> ()
