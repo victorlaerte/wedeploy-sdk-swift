@@ -9,7 +9,7 @@ public protocol Transport {
 
 }
 
-public class NSURLSessionTransport: Transport {
+public class NSURLSessionTransport : Transport {
 
 	public func send<T>(
 		_ method: Launchpad.Verb = .GET, url: String, path: String,

@@ -13,42 +13,45 @@ public class Datastore {
 		self.url = url
 	}
 
-	public func add(
-		path: String, document: AnyObject, success: SuccessDictionaryCallback,
-		failure: FailureCallback? = nil) {
+	public func add(path: String, document: AnyObject)
+		-> Promise<[String: AnyObject]> {
 
-		Launchpad(url).path(path).post(
-			document, success: success, failure: failure)
+		return Promise<[String: AnyObject]>(promise: { (fulfill, reject) in
+			Launchpad(self.url).path(path).post(
+				document, success: fulfill, failure: reject)
+		})
 	}
 
-	public func get(
-		path: String, id: String, success: SuccessDictionaryCallback,
-		failure: FailureCallback? = nil) {
-
-		Launchpad(url).path("\(path)/\(id)").get(success, failure: failure)
+	public func get(path: String, id: String) -> Promise<[String: AnyObject]> {
+		return Promise<[String: AnyObject]>(promise: { (fulfill, reject) in
+			Launchpad(self.url).path("\(path)/\(id)").get(
+				fulfill, failure: reject)
+		})
 	}
 
-	public func get(
-		path: String, query: Query? = nil, success: SuccessArrayCallback,
-		failure: FailureCallback? = nil) {
+	public func get(path: String, query: Query? = nil)
+		-> Promise<[[String: AnyObject]]> {
 
-		Launchpad(url).path(path).params(query?.params).get(
-			success, failure: failure)
+		return Promise<[[String: AnyObject]]>(promise: { (fulfill, reject) in
+			Launchpad(self.url).path(path).params(query?.params).get(
+				fulfill, failure: reject)
+		})
 	}
 
-	public func remove(
-		path: String, id: String, success: SuccessStatusCodeCallback,
-		failure: FailureCallback? = nil) {
-
-		Launchpad(url).path("\(path)/\(id)").delete(success, failure: failure)
+	public func remove(path: String, id: String) -> Promise<Int> {
+		return Promise<Int>(promise: { (fulfill, reject) in
+			Launchpad(self.url).path("\(path)/\(id)").delete(
+				fulfill, failure: reject)
+		})
 	}
 
-	public func update(
-		path: String, id: String, document: AnyObject,
-		success: SuccessDictionaryCallback, failure: FailureCallback? = nil) {
+	public func update(path: String, id: String, document: AnyObject)
+		-> Promise<[String: AnyObject]> {
 
-		Launchpad(url).path("\(path)/\(id)").put(
-			document, success: success, failure: failure)
+		return Promise<[String: AnyObject]>(promise: { (fulfill, reject) in
+			Launchpad(self.url).path("\(path)/\(id)").put(
+				document, success: fulfill, failure: reject)
+		})
 	}
 
 }

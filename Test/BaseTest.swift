@@ -21,10 +21,13 @@ class BaseTest : XCTestCase {
 		for bookToAdd in booksToAdd {
 			let expectation = expect("setUp")
 
-			datastore.add(path, document: bookToAdd, success: { book in
-				self.books.append(book)
-				expectation.fulfill()
-			})
+			datastore
+				.add(path, document: bookToAdd)
+				.then{ (book) -> () in
+					self.books.append(book)
+					expectation.fulfill()
+				}
+			.done()
 
 			wait()
 		}
@@ -35,9 +38,12 @@ class BaseTest : XCTestCase {
 			let expectation = expect("tearDown")
 			let id = book["id"] as! String
 
-			datastore.remove(path, id: id, success: { status in
-				expectation.fulfill()
-			})
+			datastore
+				.remove(path, id: id)
+				.then { (status) -> () in
+					expectation.fulfill()
+				}
+			.done()
 
 			wait()
 		}

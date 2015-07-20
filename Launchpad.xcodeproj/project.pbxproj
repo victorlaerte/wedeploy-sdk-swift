@@ -17,13 +17,11 @@
 		CC4842911AEC70B100BD0CE6 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4842901AEC70B100BD0CE6 /* Operation.swift */; };
 		CC4842951AEC8C9200BD0CE6 /* FulfillTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4842941AEC8C9200BD0CE6 /* FulfillTest.swift */; };
 		CC4FA8DB1B5949840046BE23 /* Datastore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4FA8D81B5949840046BE23 /* Datastore.swift */; };
-		CC4FA8DC1B5949840046BE23 /* DatastorePromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4FA8D91B5949840046BE23 /* DatastorePromise.swift */; };
 		CC4FA8DD1B5949840046BE23 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4FA8DA1B5949840046BE23 /* Query.swift */; };
 		CC4FA8E21B594A710046BE23 /* QueryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4FA8DF1B594A710046BE23 /* QueryTest.swift */; };
-		CC4FA8E31B594A710046BE23 /* DatastorePromiseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4FA8E01B594A710046BE23 /* DatastorePromiseTest.swift */; };
-		CC4FA8E41B594A710046BE23 /* DatastoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4FA8E11B594A710046BE23 /* DatastoreTest.swift */; };
 		CC4FA8FF1B594F5F0046BE23 /* Launchpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4FA8FE1B594F5F0046BE23 /* Launchpad.swift */; };
 		CC4FA9011B5975C90046BE23 /* Transport.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4FA9001B5975C90046BE23 /* Transport.swift */; };
+		CC6725311B5D426C0001DB84 /* DatastoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6725301B5D426C0001DB84 /* DatastoreTest.swift */; };
 		CCD0F4041AFEBAE900006B3B /* AllOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD0F4031AFEBAE900006B3B /* AllOperation.swift */; };
 		CCD0F4061AFECD4000006B3B /* AllOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD0F4051AFECD4000006B3B /* AllOperationTest.swift */; };
 		CCD512E51AEBE53600C97F42 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD512E31AEBE53600C97F42 /* Promise.swift */; };
@@ -44,14 +42,12 @@
 		CC4842901AEC70B100BD0CE6 /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
 		CC4842941AEC8C9200BD0CE6 /* FulfillTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FulfillTest.swift; sourceTree = "<group>"; };
 		CC4FA8D81B5949840046BE23 /* Datastore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Datastore.swift; sourceTree = "<group>"; };
-		CC4FA8D91B5949840046BE23 /* DatastorePromise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatastorePromise.swift; sourceTree = "<group>"; };
 		CC4FA8DA1B5949840046BE23 /* Query.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
 		CC4FA8DF1B594A710046BE23 /* QueryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryTest.swift; sourceTree = "<group>"; };
-		CC4FA8E01B594A710046BE23 /* DatastorePromiseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatastorePromiseTest.swift; sourceTree = "<group>"; };
-		CC4FA8E11B594A710046BE23 /* DatastoreTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatastoreTest.swift; sourceTree = "<group>"; };
 		CC4FA8FE1B594F5F0046BE23 /* Launchpad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Launchpad.swift; sourceTree = "<group>"; };
 		CC4FA9001B5975C90046BE23 /* Transport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transport.swift; sourceTree = "<group>"; };
 		CC6004F81ADEC22200B8F2E5 /* Launchpad.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Launchpad.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC6725301B5D426C0001DB84 /* DatastoreTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatastoreTest.swift; sourceTree = "<group>"; };
 		CCA17B9F1ADEC3D7000BF430 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCD0F4031AFEBAE900006B3B /* AllOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllOperation.swift; sourceTree = "<group>"; };
 		CCD0F4051AFECD4000006B3B /* AllOperationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllOperationTest.swift; sourceTree = "<group>"; };
@@ -77,7 +73,6 @@
 			isa = PBXGroup;
 			children = (
 				CC4FA8D81B5949840046BE23 /* Datastore.swift */,
-				CC4FA8D91B5949840046BE23 /* DatastorePromise.swift */,
 				CC4FA8DA1B5949840046BE23 /* Query.swift */,
 			);
 			path = Datastore;
@@ -86,8 +81,7 @@
 		CC4FA8DE1B594A710046BE23 /* Datastore */ = {
 			isa = PBXGroup;
 			children = (
-				CC4FA8E01B594A710046BE23 /* DatastorePromiseTest.swift */,
-				CC4FA8E11B594A710046BE23 /* DatastoreTest.swift */,
+				CC6725301B5D426C0001DB84 /* DatastoreTest.swift */,
 				CC4FA8DF1B594A710046BE23 /* QueryTest.swift */,
 			);
 			path = Datastore;
@@ -237,6 +231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC4842951AEC8C9200BD0CE6 /* FulfillTest.swift in Sources */,
+				CC6725311B5D426C0001DB84 /* DatastoreTest.swift in Sources */,
 				CC4FA8DD1B5949840046BE23 /* Query.swift in Sources */,
 				CC4FA8FF1B594F5F0046BE23 /* Launchpad.swift in Sources */,
 				CC48428F1AEC667400BD0CE6 /* PromiseOperationTest.swift in Sources */,
@@ -248,14 +243,11 @@
 				CCD512E51AEBE53600C97F42 /* Promise.swift in Sources */,
 				CC324FFE1B022EA000883F53 /* PromiseAllExtension.swift in Sources */,
 				CC4FA8DB1B5949840046BE23 /* Datastore.swift in Sources */,
-				CC4FA8DC1B5949840046BE23 /* DatastorePromise.swift in Sources */,
 				CC0631631AEB17530097D129 /* XCTestCaseExtension.swift in Sources */,
 				CCD0F4041AFEBAE900006B3B /* AllOperation.swift in Sources */,
-				CC4FA8E31B594A710046BE23 /* DatastorePromiseTest.swift in Sources */,
 				CC4FA8E21B594A710046BE23 /* QueryTest.swift in Sources */,
 				CCDF71421AF0286B00FD31EA /* BlockOperation.swift in Sources */,
 				CC324FFC1B022C6D00883F53 /* AllTest.swift in Sources */,
-				CC4FA8E41B594A710046BE23 /* DatastoreTest.swift in Sources */,
 				CCD0F4061AFECD4000006B3B /* AllOperationTest.swift in Sources */,
 				CC3250001B023E0500883F53 /* BaseTest.swift in Sources */,
 				CCD512EB1AEBE62F00C97F42 /* CatchTest.swift in Sources */,

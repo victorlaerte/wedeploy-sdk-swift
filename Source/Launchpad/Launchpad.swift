@@ -3,8 +3,8 @@ import Foundation
 public class Launchpad {
 
 	var headers: [String: String]
-	var path: String
 	var params: [NSURLQueryItem]
+	var path: String
 	var transport: Transport
 	var url: String
 
