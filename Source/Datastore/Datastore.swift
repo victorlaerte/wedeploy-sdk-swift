@@ -44,8 +44,8 @@ public class Datastore {
 		})
 	}
 
-	public func remove(path: String, id: String) -> Promise<Int> {
-		return Promise<Int>(promise: { (fulfill, reject) in
+	public func remove(path: String, id: String) -> Promise<Response> {
+		return Promise<Response>(promise: { (fulfill, reject) in
 			let success = self.parse(fulfill, reject)
 
 			Launchpad(self.url).path("\(path)/\(id)").delete(
@@ -71,7 +71,7 @@ public class Datastore {
 			var error: NSError?
 
 			if (response.contentType != "application/json; charset=UTF-8") {
-				fulfill(response.statusCode as! T)
+				fulfill(response as! T)
 				return
 			}
 

@@ -34,15 +34,16 @@ class DatastoreTest : BaseTest {
 					self.path, id: book["id"]! as! String, document: bookToAdd)
 			}
 
-			.then { (updatedBook) -> (Promise<Int>) in
+			.then { (updatedBook) -> (Promise<Response>) in
 				self.assertBook(bookToAdd, result: updatedBook)
 				let id = updatedBook["id"]! as! String
 
 				return self.datastore.remove(self.path, id: id)
 			}
 
-			.then { (status) -> () in
-				XCTAssertEqual(204, status)
+			.then { (response) -> () in
+				XCTAssertTrue(response.succeeded)
+				XCTAssertEqual(204, response.statusCode)
 				expectation.fulfill()
 			}
 		.done()
@@ -100,8 +101,9 @@ class DatastoreTest : BaseTest {
 
 		datastore
 			.remove(path, id: id)
-			.then { (status) -> () in
-				XCTAssertEqual(204, status)
+			.then { (response) -> () in
+				XCTAssertTrue(response.succeeded)
+				XCTAssertEqual(204, response.statusCode)
 				expectation.fulfill()
 			}
 		.done()
