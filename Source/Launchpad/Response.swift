@@ -21,15 +21,4 @@ public class Response {
 		self.body = body
 	}
 
-	public func parse<T>(error: NSErrorPointer) -> T {
-		if (contentType != "application/json; charset=UTF-8") {
-			return self.statusCode as! T
-		}
-
-		return NSJSONSerialization.JSONObjectWithData(
-				self.body, options: NSJSONReadingOptions.AllowFragments,
-				error: error)
-			as! T
-	}
-
 }

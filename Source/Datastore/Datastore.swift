@@ -69,7 +69,16 @@ public class Datastore {
 
 		return { response in
 			var error: NSError?
-			let result = response.parse(&error) as T
+
+			if (response.contentType != "application/json; charset=UTF-8") {
+				fulfill(response.statusCode as! T)
+				return
+			}
+
+			let result = NSJSONSerialization.JSONObjectWithData(
+					response.body, options: NSJSONReadingOptions.AllowFragments,
+					error: &error)
+				as! T
 
 			if let e = error {
 				reject(e)
