@@ -46,10 +46,8 @@ public class Datastore {
 
 	public func remove(path: String, id: String) -> Promise<Response> {
 		return Promise<Response>(promise: { (fulfill, reject) in
-			let success = self.parse(fulfill, reject)
-
 			Launchpad(self.url).path("\(path)/\(id)").delete(
-				success, failure: reject)
+				fulfill, failure: reject)
 		})
 	}
 
@@ -68,24 +66,8 @@ public class Datastore {
 		-> (Response) -> () {
 
 		return { response in
-			var error: NSError?
-
-			if (response.contentType != "application/json; charset=UTF-8") {
-				fulfill(response as! T)
-				return
-			}
-
-			let result = NSJSONSerialization.JSONObjectWithData(
-					response.body, options: NSJSONReadingOptions.AllowFragments,
-					error: &error)
-				as! T
-
-			if let e = error {
-				reject(e)
-				return
-			}
-			else {
-				fulfill(result)
+			if let body: AnyObject = response.body {
+				fulfill(body as! T)
 			}
 		}
 	}
