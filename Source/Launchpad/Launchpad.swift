@@ -21,13 +21,13 @@ public class Launchpad {
 		PUT = "PUT"
 	}
 
-	public func delete<T>(success: (T -> ())?, failure: (NSError -> ())?) {
+	public func delete(success: (Response -> ())?, failure: (NSError -> ())?) {
 		transport.send(
 			.DELETE, url: url, path: path, params: params, headers: headers,
 			body: nil, success: success, failure: failure)
 	}
 
-	public func get<T>(success: (T -> ())?, failure: (NSError -> ())?) {
+	public func get(success: (Response -> ())?, failure: (NSError -> ())?) {
 		transport.send(
 			.GET, url: url, path: path, params: params, headers: headers,
 			body: nil, success: success, failure: failure)
@@ -53,8 +53,9 @@ public class Launchpad {
 		return self
 	}
 
-	public func patch<T>(
-		body: AnyObject, success: (T -> ())?, failure: (NSError -> ())?) {
+	public func patch(
+		body: AnyObject, success: (Response -> ())?,
+		failure: (NSError -> ())?) {
 
 		transport.send(
 			.PATCH, url: url, path: path, params: params, headers: headers,
@@ -67,16 +68,18 @@ public class Launchpad {
 		return self
 	}
 
-	public func post<T>(
-		body: AnyObject, success: (T -> ())?, failure: (NSError -> ())?) {
+	public func post(
+		body: AnyObject, success: (Response -> ())?,
+		failure: (NSError -> ())?) {
 
 		transport.send(
 			.POST, url: url, path: path, params: params, headers: headers,
 			body: body, success: success, failure: failure)
 	}
 
-	public func put<T>(
-		body: AnyObject, success: (T -> ())?, failure: (NSError -> ())?) {
+	public func put(
+		body: AnyObject, success: (Response -> ())?,
+		failure: (NSError -> ())?) {
 
 		transport.send(
 			.PUT, url: url, path: path, params: params, headers: headers,

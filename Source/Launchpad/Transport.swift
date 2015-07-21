@@ -2,19 +2,19 @@ import Foundation
 
 public protocol Transport {
 
-	func send<T>(
+	func send(
 		method: Launchpad.Verb, url: String, path: String,
 		params: [NSURLQueryItem]?, headers: [String: String]?, body: AnyObject?,
-		success: (T -> ())?, failure: (NSError -> ())?)
+		success: (Response -> ())?, failure: (NSError -> ())?)
 
 }
 
 public class NSURLSessionTransport : Transport {
 
-	public func send<T>(
+	public func send(
 		_ method: Launchpad.Verb = .GET, url: String, path: String,
 		params: [NSURLQueryItem]?, headers: [String: String]?, body: AnyObject?,
-		success: (T -> ())?, failure: (NSError -> ())?) {
+		success: (Response -> ())?, failure: (NSError -> ())?) {
 
 		let success = dispatchMainThread(success)
 		let failure = dispatchMainThread(failure)
@@ -31,48 +31,40 @@ public class NSURLSessionTransport : Transport {
 			setRequestBody(request, body: body!, error: &error)
 		}
 
+		if let e = error {
+			failure(e)
+			return
+		}
+
 		if let h = headers {
 			for (name, value) in h {
 				request.addValue(value, forHTTPHeaderField: name)
 			}
 		}
 
-		if let e = error {
-			failure(e)
-			return
-		}
-
 		let session = NSURLSession.sharedSession()
 
 		session.dataTaskWithRequest(
 			request,
-			completionHandler: { (data, response, error) in
+			completionHandler: { (data, r, error) in
 				if let e = error {
 					failure(e)
 					return
 				}
 
-				let httpResponse = response as! NSHTTPURLResponse
-				let status = httpResponse.statusCode
+				let httpURLResponse = r as! NSHTTPURLResponse
+				let headerFields = httpURLResponse.allHeaderFields
+				var headers = [String: String]()
 
-				if ((data.length == 0) || (status == 204)) {
-					success(status as! T)
-					return
+				for (key, value) in headerFields {
+					headers[key.description] = value as? String
 				}
 
-				var parseError: NSError?
+				let response = Response(
+					statusCode: httpURLResponse.statusCode, headers: headers,
+					body: data)
 
-				let result = NSJSONSerialization.JSONObjectWithData(
-						data, options: NSJSONReadingOptions.AllowFragments,
-						error: &parseError)
-					as! T
-
-				if let e = parseError {
-					failure(e)
-					return
-				}
-
-				success(result)
+				success(response)
 			}
 		).resume()
 

@@ -29,6 +29,7 @@
 		CCD512E91AEBE53F00C97F42 /* ThenTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD512E81AEBE53F00C97F42 /* ThenTest.swift */; };
 		CCD512EB1AEBE62F00C97F42 /* CatchTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD512EA1AEBE62F00C97F42 /* CatchTest.swift */; };
 		CCDF71421AF0286B00FD31EA /* BlockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDF71411AF0286B00FD31EA /* BlockOperation.swift */; };
+		CCF0BBAE1B5E7E6C00AECB04 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF0BBAD1B5E7E6C00AECB04 /* Response.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		CCD512E81AEBE53F00C97F42 /* ThenTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThenTest.swift; sourceTree = "<group>"; };
 		CCD512EA1AEBE62F00C97F42 /* CatchTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatchTest.swift; sourceTree = "<group>"; };
 		CCDF71411AF0286B00FD31EA /* BlockOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockOperation.swift; sourceTree = "<group>"; };
+		CCF0BBAD1B5E7E6C00AECB04 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				CC4FA8FE1B594F5F0046BE23 /* Launchpad.swift */,
+				CCF0BBAD1B5E7E6C00AECB04 /* Response.swift */,
 				CC4FA9001B5975C90046BE23 /* Transport.swift */,
 			);
 			path = Launchpad;
@@ -248,6 +251,7 @@
 				CC4FA8E21B594A710046BE23 /* QueryTest.swift in Sources */,
 				CCDF71421AF0286B00FD31EA /* BlockOperation.swift in Sources */,
 				CC324FFC1B022C6D00883F53 /* AllTest.swift in Sources */,
+				CCF0BBAE1B5E7E6C00AECB04 /* Response.swift in Sources */,
 				CCD0F4061AFECD4000006B3B /* AllOperationTest.swift in Sources */,
 				CC3250001B023E0500883F53 /* BaseTest.swift in Sources */,
 				CCD512EB1AEBE62F00C97F42 /* CatchTest.swift in Sources */,

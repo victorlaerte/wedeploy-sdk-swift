@@ -17,15 +17,19 @@ public class Datastore {
 		-> Promise<[String: AnyObject]> {
 
 		return Promise<[String: AnyObject]>(promise: { (fulfill, reject) in
+			let success = self.parse(fulfill, reject)
+
 			Launchpad(self.url).path(path).post(
-				document, success: fulfill, failure: reject)
+				document, success: success, failure: reject)
 		})
 	}
 
 	public func get(path: String, id: String) -> Promise<[String: AnyObject]> {
 		return Promise<[String: AnyObject]>(promise: { (fulfill, reject) in
+			let success = self.parse(fulfill, reject)
+
 			Launchpad(self.url).path("\(path)/\(id)").get(
-				fulfill, failure: reject)
+				success, failure: reject)
 		})
 	}
 
@@ -33,15 +37,19 @@ public class Datastore {
 		-> Promise<[[String: AnyObject]]> {
 
 		return Promise<[[String: AnyObject]]>(promise: { (fulfill, reject) in
+			let success = self.parse(fulfill, reject)
+
 			Launchpad(self.url).path(path).params(query?.params).get(
-				fulfill, failure: reject)
+				success, failure: reject)
 		})
 	}
 
 	public func remove(path: String, id: String) -> Promise<Int> {
 		return Promise<Int>(promise: { (fulfill, reject) in
+			let success = self.parse(fulfill, reject)
+
 			Launchpad(self.url).path("\(path)/\(id)").delete(
-				fulfill, failure: reject)
+				success, failure: reject)
 		})
 	}
 
@@ -49,9 +57,28 @@ public class Datastore {
 		-> Promise<[String: AnyObject]> {
 
 		return Promise<[String: AnyObject]>(promise: { (fulfill, reject) in
+			let success = self.parse(fulfill, reject)
+
 			Launchpad(self.url).path("\(path)/\(id)").put(
-				document, success: fulfill, failure: reject)
+				document, success: success, failure: reject)
 		})
+	}
+
+	func parse<T>(fulfill: (T) -> (), _ reject: (NSError) -> ())
+		-> (Response) -> () {
+
+		return { response in
+			var error: NSError?
+			let result = response.parse(&error) as T
+
+			if let e = error {
+				reject(e)
+				return
+			}
+			else {
+				fulfill(result)
+			}
+		}
 	}
 
 }
