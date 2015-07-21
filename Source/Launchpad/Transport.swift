@@ -88,8 +88,7 @@ public class NSURLSessionTransport : Transport {
 			request.HTTPBodyStream = stream
 		}
 		else if let string = body as? String {
-			request.HTTPBody = string.dataUsingEncoding(
-				NSUTF8StringEncoding, allowLossyConversion: false)
+			request.HTTPBody = string.dataUsingEncoding(NSUTF8StringEncoding)
 		}
 		else {
 			request.setValue(

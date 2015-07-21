@@ -30,6 +30,7 @@
 		CCD512EB1AEBE62F00C97F42 /* CatchTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD512EA1AEBE62F00C97F42 /* CatchTest.swift */; };
 		CCDF71421AF0286B00FD31EA /* BlockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDF71411AF0286B00FD31EA /* BlockOperation.swift */; };
 		CCF0BBAE1B5E7E6C00AECB04 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF0BBAD1B5E7E6C00AECB04 /* Response.swift */; };
+		CCF252361B5ED15F00A9E6AC /* ResponseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF252351B5ED15F00A9E6AC /* ResponseTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		CCD512EA1AEBE62F00C97F42 /* CatchTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatchTest.swift; sourceTree = "<group>"; };
 		CCDF71411AF0286B00FD31EA /* BlockOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockOperation.swift; sourceTree = "<group>"; };
 		CCF0BBAD1B5E7E6C00AECB04 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		CCF252351B5ED15F00A9E6AC /* ResponseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				CC4FA8DE1B594A710046BE23 /* Datastore */,
+				CCF252341B5ED15F00A9E6AC /* Launchpad */,
 				CCD512E71AEBE53F00C97F42 /* Promise */,
 				CC324FFF1B023E0500883F53 /* BaseTest.swift */,
 				CCA17B9F1ADEC3D7000BF430 /* Info.plist */,
@@ -164,6 +167,14 @@
 				CCD512E81AEBE53F00C97F42 /* ThenTest.swift */,
 			);
 			path = Promise;
+			sourceTree = "<group>";
+		};
+		CCF252341B5ED15F00A9E6AC /* Launchpad */ = {
+			isa = PBXGroup;
+			children = (
+				CCF252351B5ED15F00A9E6AC /* ResponseTest.swift */,
+			);
+			path = Launchpad;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,6 +257,7 @@
 				CCD512E51AEBE53600C97F42 /* Promise.swift in Sources */,
 				CC324FFE1B022EA000883F53 /* PromiseAllExtension.swift in Sources */,
 				CC4FA8DB1B5949840046BE23 /* Datastore.swift in Sources */,
+				CCF252361B5ED15F00A9E6AC /* ResponseTest.swift in Sources */,
 				CC0631631AEB17530097D129 /* XCTestCaseExtension.swift in Sources */,
 				CCD0F4041AFEBAE900006B3B /* AllOperation.swift in Sources */,
 				CC4FA8E21B594A710046BE23 /* QueryTest.swift in Sources */,
