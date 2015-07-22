@@ -20,7 +20,7 @@ class AllTest : XCTestCase {
 			}
 		)
 
-		p.done { (value, error) in
+		p.done { value, error in
 			output = value!
 			XCTAssertNil(error)
 			expectation.fulfill()

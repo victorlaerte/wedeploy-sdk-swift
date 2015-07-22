@@ -12,7 +12,7 @@ public class Promise<T: Any> {
 	}
 
 	init(promise: ((T) -> (), (NSError) -> ()) -> ()) {
-		self.promise = { (fulfill, reject) in
+		self.promise = { fulfill, reject in
 			promise({ fulfill($0) }, reject)
 		}
 

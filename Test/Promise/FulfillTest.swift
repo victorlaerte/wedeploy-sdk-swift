@@ -6,7 +6,7 @@ class Fulfill : XCTestCase {
 		let expectation = expect("testFulfill")
 		var output = [String]()
 
-		Promise<String>(promise: { (fulfill, reject) in
+		Promise<String>(promise: { fulfill, reject in
 			let queue = dispatch_get_global_queue(
 				DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
@@ -14,11 +14,11 @@ class Fulfill : XCTestCase {
 				fulfill("one")
 			})
 		})
-		.then { (value) -> String in
+		.then { value -> String in
 			output.append(value)
 			return "two"
 		}
-		.then { (value) -> String in
+		.then { value -> String in
 			output.append(value)
 			expectation.fulfill()
 			return "three"

@@ -9,11 +9,11 @@ class CatchTest : XCTestCase {
 		let p = Promise {
 			return "one"
 		}
-		.then({ (value) -> (String, NSError?) in
+		.then({ value -> (String, NSError?) in
 			return (value, self._createError())
 		})
 
-		p.done { (value, error) in
+		p.done { value, error in
 			e = error
 			XCTAssertNil(value)
 			expectation.fulfill()
@@ -29,7 +29,7 @@ class CatchTest : XCTestCase {
 		let expectation = expect("testPromise_Returns_Error")
 		var e: NSError?
 
-		let p = Promise<()>(promise: { (fulfill, reject) in
+		let p = Promise<()>(promise: { fulfill, reject in
 			let queue = dispatch_get_global_queue(
 				DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
@@ -38,7 +38,7 @@ class CatchTest : XCTestCase {
 			})
 		})
 
-		p.done { (value, error) in
+		p.done { value, error in
 			e = error
 			expectation.fulfill()
 		}
@@ -53,7 +53,7 @@ class CatchTest : XCTestCase {
 		let expectation = expect("testError_Fall_Through")
 		var e: NSError?
 
-		let p = Promise<()>(promise: { (fulfill, reject) in
+		let p = Promise<()>(promise: { fulfill, reject in
 			let queue = dispatch_get_global_queue(
 				DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
@@ -67,7 +67,7 @@ class CatchTest : XCTestCase {
 				"Then shouldn't be called, should be skipped directly to catch")
 		}
 
-		p.done { (value, error) in
+		p.done { value, error in
 			e = error
 			expectation.fulfill()
 		}

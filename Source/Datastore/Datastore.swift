@@ -16,7 +16,7 @@ public class Datastore {
 	public func add(path: String, document: AnyObject)
 		-> Promise<[String: AnyObject]> {
 
-		return Promise<[String: AnyObject]>(promise: { (fulfill, reject) in
+		return Promise<[String: AnyObject]>(promise: { fulfill, reject in
 			let success = self.parse(fulfill, reject)
 
 			Launchpad(self.url).path(path).post(
@@ -25,7 +25,7 @@ public class Datastore {
 	}
 
 	public func get(path: String, id: String) -> Promise<[String: AnyObject]> {
-		return Promise<[String: AnyObject]>(promise: { (fulfill, reject) in
+		return Promise<[String: AnyObject]>(promise: { fulfill, reject in
 			let success = self.parse(fulfill, reject)
 
 			Launchpad(self.url).path("\(path)/\(id)").get(
@@ -36,7 +36,7 @@ public class Datastore {
 	public func get(path: String, query: Query? = nil)
 		-> Promise<[[String: AnyObject]]> {
 
-		return Promise<[[String: AnyObject]]>(promise: { (fulfill, reject) in
+		return Promise<[[String: AnyObject]]>(promise: { fulfill, reject in
 			let success = self.parse(fulfill, reject)
 
 			Launchpad(self.url).path(path).params(query?.params).get(
@@ -45,7 +45,7 @@ public class Datastore {
 	}
 
 	public func remove(path: String, id: String) -> Promise<Response> {
-		return Promise<Response>(promise: { (fulfill, reject) in
+		return Promise<Response>(promise: { fulfill, reject in
 			Launchpad(self.url).path("\(path)/\(id)").delete(
 				fulfill, failure: reject)
 		})
@@ -54,7 +54,7 @@ public class Datastore {
 	public func update(path: String, id: String, document: AnyObject)
 		-> Promise<[String: AnyObject]> {
 
-		return Promise<[String: AnyObject]>(promise: { (fulfill, reject) in
+		return Promise<[String: AnyObject]>(promise: { fulfill, reject in
 			let success = self.parse(fulfill, reject)
 
 			Launchpad(self.url).path("\(path)/\(id)").put(

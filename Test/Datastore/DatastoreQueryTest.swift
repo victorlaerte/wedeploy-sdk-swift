@@ -8,7 +8,7 @@ class DatastoreQueryTest : BaseTest {
 
 		datastore
 			.get(path, query: query)
-			.then { (books) -> () in
+			.then { books -> () in
 				XCTAssertEqual(1, books.count)
 				self.assertBook(self.booksToAdd.first!, result: books.first!)
 				expectation.fulfill()
@@ -25,7 +25,7 @@ class DatastoreQueryTest : BaseTest {
 
 		datastore
 			.get(path, query: query)
-			.then { (books) -> () in
+			.then { books -> () in
 				XCTAssertEqual(self.booksToAdd.count, books.count)
 				self.assertBooks(sortedBooks, result: books)
 				expectation.fulfill()

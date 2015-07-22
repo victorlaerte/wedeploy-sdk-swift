@@ -12,7 +12,7 @@ class ThenTest : XCTestCase {
 		.then {
 			return [$0, "two"]
 		}
-		.then { (value) -> () in
+		.then { value -> () in
 			XCTAssertEqual(2, value.count)
 			XCTAssertEqual("one", value.first!)
 			XCTAssertEqual("two", value.last!)
@@ -63,7 +63,7 @@ class ThenTest : XCTestCase {
 			return "two"
 		}
 
-		p.done { (value, error) in
+		p.done { value, error in
 			output.append(value!)
 			XCTAssertTrue(NSThread.isMainThread())
 			expectation.fulfill()
@@ -83,10 +83,10 @@ class ThenTest : XCTestCase {
 		let p = Promise {
 			return "one"
 		}
-		.then { (value) -> Promise<String> in
+		.then { value -> Promise<String> in
 			output.append(value)
 
-			return Promise<String>(promise: { (fulfill, reject) in
+			return Promise<String>(promise: { fulfill, reject in
 				let queue = dispatch_get_global_queue(
 					DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
@@ -95,7 +95,7 @@ class ThenTest : XCTestCase {
 				})
 			})
 		}
-		.then { (value) -> () in
+		.then { value -> () in
 			output.append(value)
 			expectation.fulfill()
 		}
@@ -116,11 +116,11 @@ class ThenTest : XCTestCase {
 		let p = Promise {
 			return "one"
 		}
-		.then { (value) -> String in
+		.then { value -> String in
 			output.append(value)
 			return "two"
 		}
-		.then { (value) -> () in
+		.then { value -> () in
 			output.append(value)
 			expectation.fulfill()
 		}
@@ -141,16 +141,16 @@ class ThenTest : XCTestCase {
 		let p = Promise {
 			return "one"
 		}
-		.then { (value) -> String in
+		.then { value -> String in
 			output.append(value)
 			return "two"
 		}
-		.then { (value) -> String in
+		.then { value -> String in
 			output.append(value)
 			return "three"
 		}
 
-		p.done { (value, error) in
+		p.done { value, error in
 			output.append(value!)
 			XCTAssertTrue(NSThread.isMainThread())
 			expectation.fulfill()
@@ -171,15 +171,15 @@ class ThenTest : XCTestCase {
 		let p = Promise {
 			return "one"
 		}
-		.then { (value) -> (String, NSError?) in
+		.then { value -> (String, NSError?) in
 			output.append(value)
 			return ("two", nil)
 		}
-		.then { (value) -> () in
+		.then { value -> () in
 			output.append(value)
 		}
 
-		p.done { (value, error) in
+		p.done { value, error in
 			XCTAssertNil(error)
 			expectation.fulfill()
 		}
@@ -198,16 +198,16 @@ class ThenTest : XCTestCase {
 		let p = Promise {
 			return "one"
 		}
-		.then { (value) -> (String, String) in
+		.then { value -> (String, String) in
 			output.append(value)
 			return ("two", "three")
 		}
-		.then { (value) -> () in
+		.then { value -> () in
 			output.append(value.0)
 			output.append(value.1)
 		}
 
-		p.done { (value, error) in
+		p.done { value, error in
 			XCTAssertNil(error)
 			expectation.fulfill()
 		}

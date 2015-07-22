@@ -25,7 +25,7 @@ class BaseTest : XCTestCase {
 
 			datastore
 				.add(path, document: bookToAdd)
-				.then{ (book) -> () in
+				.then{ book -> () in
 					self.books.append(book)
 					expectation.fulfill()
 				}
@@ -42,7 +42,7 @@ class BaseTest : XCTestCase {
 
 			datastore
 				.remove(path, id: id)
-				.then { (status) -> () in
+				.then { status -> () in
 					expectation.fulfill()
 				}
 			.done()
