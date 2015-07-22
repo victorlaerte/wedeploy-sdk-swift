@@ -5,8 +5,14 @@ class BaseTest : XCTestCase {
 	var books = [[String: AnyObject]]()
 
 	var booksToAdd = [
-		["title": "Cien años de soledad"],
-		["title": "Historias de cronopios y de famas"]
+		[
+			"title": "Cien años de soledad",
+			"year": 1967
+		],
+		[
+			"title": "Historias de cronopios y de famas",
+			"year": 1962
+		]
 	]
 
 	var datastore: Datastore!
@@ -59,7 +65,7 @@ class BaseTest : XCTestCase {
 	}
 
 	func assertBooks(
-		expected: [[String: String]], result: [[String: AnyObject]]) {
+		expected: [[String: NSObject]], result: [[String: AnyObject]]) {
 
 		for (index, book) in enumerate(result) {
 			assertBook(expected[index], result: book)
