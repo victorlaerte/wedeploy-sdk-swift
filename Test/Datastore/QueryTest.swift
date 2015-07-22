@@ -4,6 +4,7 @@ class QueryTest : BaseTest {
 
 	func testComplex_Query() {
 		let query = Query()
+			.filter(Filter.gt("age", 12))
 			.sort("age", order: Query.Order.DESC)
 			.sort("name")
 			.from(5)
@@ -14,8 +15,46 @@ class QueryTest : BaseTest {
 			"\"limit\":10," +
 			"\"sort\":[{\"age\":\"desc\"},{\"name\":\"asc\"}]," +
 			"\"offset\":5," +
+			"\"filter\":[{\"age\":{\"operator\":\">\",\"value\":12}}]," +
 			"\"type\":\"fetch\"" +
 			"}",
+			query.description)
+	}
+
+	func testFilter_With_Instance() {
+		let query = Query().filter(Filter.gt("age", 12))
+
+		XCTAssertEqual(
+			"{\"filter\":[{\"age\":{\"operator\":\">\",\"value\":12}}]}",
+			query.description)
+	}
+
+	func testFilter_With_Multiple_Filters() {
+		let query = Query()
+			.filter(Filter.gt("age", 12))
+			.filter("age", "<", 15)
+			.filter("name", "Foo")
+
+		XCTAssertEqual(
+			"{\"filter\":[{\"age\":{\"operator\":\">\",\"value\":12}}," +
+			"{\"age\":{\"operator\":\"<\",\"value\":15}}," +
+			"{\"name\":{\"operator\":\"=\",\"value\":\"Foo\"}}]}",
+			query.description)
+	}
+
+	func testFilter_With_Operator() {
+		let query = Query().filter("age", ">", 12)
+
+		XCTAssertEqual(
+			"{\"filter\":[{\"age\":{\"operator\":\">\",\"value\":12}}]}",
+			query.description)
+	}
+
+	func testFilter_With_Optional_Operator() {
+		let query = Query().filter("age", 12)
+
+		XCTAssertEqual(
+			"{\"filter\":[{\"age\":{\"operator\":\"=\",\"value\":12}}]}",
 			query.description)
 	}
 

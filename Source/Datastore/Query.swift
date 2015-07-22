@@ -47,6 +47,32 @@ public class Query : Printable {
 		return type("fetch")
 	}
 
+	public func filter(field: String, _ value: AnyObject)
+		-> Self {
+
+		return self.filter(Filter(field: field, value: value))
+	}
+
+	public func filter(field: String, _ op: String, _ value: AnyObject)
+		-> Self {
+
+		return self.filter(Filter(field: field, op: op, value: value))
+	}
+
+	public func filter(filter: Filter) -> Self {
+		var filters = query["filter"] as? [[String: [String: AnyObject]]]
+
+		if (filters == nil) {
+			filters = [[String: [String: AnyObject]]]()
+		}
+
+		filters!.append(filter.filter)
+
+		query["filter"] = filters
+
+		return self
+	}
+
 	public func from(offset: Int) -> Self {
 		query["offset"] = offset
 		return self
