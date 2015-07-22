@@ -3,7 +3,7 @@ import XCTest
 class DatastoreQueryTest : BaseTest {
 
 	func testLimit() {
-		let expectation = expect("limitRequest")
+		let expectation = expect("limit")
 		let query = Query().limit(1)
 
 		datastore
@@ -13,13 +13,13 @@ class DatastoreQueryTest : BaseTest {
 				self.assertBook(self.booksToAdd.first!, result: books.first!)
 				expectation.fulfill()
 			}
-			.done()
+		.done()
 
 		wait()
 	}
 
 	func testSort() {
-		let expectation = expect("sortRequest")
+		let expectation = expect("sort")
 		let query = Query().sort("title", order: Query.Order.DESC)
 		let sortedBooks = sorted(self.booksToAdd, {$0["title"] > $1["title"]})
 
@@ -30,7 +30,7 @@ class DatastoreQueryTest : BaseTest {
 				self.assertBooks(sortedBooks, result: books)
 				expectation.fulfill()
 			}
-			.done()
+		.done()
 
 		wait()
 	}

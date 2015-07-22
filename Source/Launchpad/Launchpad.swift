@@ -21,13 +21,17 @@ public class Launchpad {
 		PUT = "PUT"
 	}
 
-	public func delete(success: (Response -> ())?, failure: (NSError -> ())?) {
+	public func delete(
+		success: (Response -> ()), failure: (NSError -> ())? = nil) {
+
 		transport.send(
 			.DELETE, url: url, path: path, params: params, headers: headers,
 			body: nil, success: success, failure: failure)
 	}
 
-	public func get(success: (Response -> ())?, failure: (NSError -> ())?) {
+	public func get(
+		success: (Response -> ()), failure: (NSError -> ())? = nil) {
+
 		transport.send(
 			.GET, url: url, path: path, params: params, headers: headers,
 			body: nil, success: success, failure: failure)
@@ -54,8 +58,8 @@ public class Launchpad {
 	}
 
 	public func patch(
-		body: AnyObject, success: (Response -> ())?,
-		failure: (NSError -> ())?) {
+		body: AnyObject, success: (Response -> ()),
+		failure: (NSError -> ())? = nil) {
 
 		transport.send(
 			.PATCH, url: url, path: path, params: params, headers: headers,
@@ -69,8 +73,8 @@ public class Launchpad {
 	}
 
 	public func post(
-		body: AnyObject, success: (Response -> ())?,
-		failure: (NSError -> ())?) {
+		body: AnyObject, success: (Response -> ()),
+		failure: (NSError -> ())? = nil) {
 
 		transport.send(
 			.POST, url: url, path: path, params: params, headers: headers,
@@ -78,8 +82,8 @@ public class Launchpad {
 	}
 
 	public func put(
-		body: AnyObject, success: (Response -> ())?,
-		failure: (NSError -> ())?) {
+		body: AnyObject, success: (Response -> ()),
+		failure: (NSError -> ())? = nil) {
 
 		transport.send(
 			.PUT, url: url, path: path, params: params, headers: headers,

@@ -87,10 +87,10 @@ class DatastoreTest : BaseTest {
 
 		datastore
 			.get(path, id: id)
-			.done { (value, error) in
-				XCTAssertTrue(NSThread.isMainThread())
-				expectation.fulfill()
-			}
+		.done { (value, error) in
+			XCTAssertTrue(NSThread.isMainThread())
+			expectation.fulfill()
+		}
 
 		wait()
 	}

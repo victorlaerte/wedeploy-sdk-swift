@@ -23,4 +23,24 @@ class QueryTest : BaseTest {
 			query.description)
 	}
 
+	func testType_Count() {
+		let query = Query().count()
+		XCTAssertEqual("{\"type\":\"count\"}", query.description)
+	}
+
+	func testType_Custom() {
+		let query = Query().type("customType")
+		XCTAssertEqual("{\"type\":\"customType\"}", query.description)
+	}
+
+	func testType_Fetch() {
+		let query = Query().fetch()
+		XCTAssertEqual("{\"type\":\"fetch\"}", query.description)
+	}
+
+	func testType_Scan() {
+		let query = Query().scan()
+		XCTAssertEqual("{\"type\":\"scan\"}", query.description)
+	}
+
 }

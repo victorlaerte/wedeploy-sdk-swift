@@ -10,12 +10,14 @@ class BaseTest : XCTestCase {
 	]
 
 	var datastore: Datastore!
+	var launchpad: Launchpad!
 	var path: String!
 	var server: String!
 
 	override func setUp() {
 		_loadSettings()
 
+		launchpad = Launchpad(server)
 		datastore = Datastore(server)
 
 		for bookToAdd in booksToAdd {
