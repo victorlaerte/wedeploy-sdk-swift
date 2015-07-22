@@ -2,6 +2,23 @@ import XCTest
 
 class QueryTest : BaseTest {
 
+	func testComplex_Query() {
+		let query = Query()
+			.sort("age", order: Query.Order.DESC)
+			.sort("name")
+			.from(5)
+			.limit(10)
+			.fetch()
+
+		XCTAssertEqual("{" +
+			"\"limit\":10," +
+			"\"sort\":[{\"age\":\"desc\"},{\"name\":\"asc\"}]," +
+			"\"offset\":5," +
+			"\"type\":\"fetch\"" +
+			"}",
+			query.description)
+	}
+
 	func testOffset() {
 		let query = Query().from(5)
 		XCTAssertEqual("{\"offset\":5}", query.description)
