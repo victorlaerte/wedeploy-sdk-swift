@@ -21,8 +21,6 @@ public class Response {
 	}
 
 	func parse(body: NSData) -> AnyObject? {
-		var parsed: AnyObject?
-
 		if (contentType?.rangeOfString("application/json") != nil) {
 			var error: NSError?
 

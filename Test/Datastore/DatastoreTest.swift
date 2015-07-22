@@ -82,7 +82,7 @@ class DatastoreTest : BaseTest {
 	}
 
 	func testMainThread() {
-		let expectation = expect("testMainThread")
+		let expectation = expect("mainThread")
 		let id = books.first!["id"] as! String
 
 		datastore

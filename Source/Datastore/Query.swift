@@ -2,6 +2,8 @@ import Foundation
 
 public class Query : Printable {
 
+	var query = [String: AnyObject]()
+
 	var params: [NSURLQueryItem] {
 		var items = [NSURLQueryItem]()
 
@@ -26,8 +28,6 @@ public class Query : Printable {
 		return items
 	}
 
-	var query = [String: AnyObject]()
-
 	public enum Order: String {
 		case ASC = "asc", DESC = "desc"
 	}
@@ -39,7 +39,15 @@ public class Query : Printable {
 		return NSString(data: data,  encoding: NSUTF8StringEncoding)! as String
 	}
 
-	public func offset(offset: Int) -> Self {
+	public func count() -> Self {
+		return type("count")
+	}
+
+	public func fetch() -> Self {
+		return type("fetch")
+	}
+
+	public func from(offset: Int) -> Self {
 		query["offset"] = offset
 		return self
 	}
@@ -47,6 +55,10 @@ public class Query : Printable {
 	public func limit(limit: Int) -> Self {
 		query["limit"] = limit
 		return self
+	}
+
+	public func scan() -> Self {
+		return type("scan")
 	}
 
 	public func sort(name: String, order: Order = .ASC) -> Self {
@@ -58,6 +70,12 @@ public class Query : Printable {
 
 		sort!.append([name: order.rawValue])
 		query["sort"] = sort
+
+		return self
+	}
+
+	public func type(type: String) -> Self {
+		query["type"] = type
 
 		return self
 	}

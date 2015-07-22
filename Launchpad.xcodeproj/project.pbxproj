@@ -22,6 +22,7 @@
 		CC4FA8FF1B594F5F0046BE23 /* Launchpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4FA8FE1B594F5F0046BE23 /* Launchpad.swift */; };
 		CC4FA9011B5975C90046BE23 /* Transport.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4FA9001B5975C90046BE23 /* Transport.swift */; };
 		CC6725311B5D426C0001DB84 /* DatastoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6725301B5D426C0001DB84 /* DatastoreTest.swift */; };
+		CC68C5D31B5FD45B006A0569 /* DatastoreQueryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68C5D21B5FD45B006A0569 /* DatastoreQueryTest.swift */; };
 		CCD0F4041AFEBAE900006B3B /* AllOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD0F4031AFEBAE900006B3B /* AllOperation.swift */; };
 		CCD0F4061AFECD4000006B3B /* AllOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD0F4051AFECD4000006B3B /* AllOperationTest.swift */; };
 		CCD512E51AEBE53600C97F42 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD512E31AEBE53600C97F42 /* Promise.swift */; };
@@ -50,6 +51,7 @@
 		CC4FA9001B5975C90046BE23 /* Transport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transport.swift; sourceTree = "<group>"; };
 		CC6004F81ADEC22200B8F2E5 /* Launchpad.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Launchpad.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC6725301B5D426C0001DB84 /* DatastoreTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatastoreTest.swift; sourceTree = "<group>"; };
+		CC68C5D21B5FD45B006A0569 /* DatastoreQueryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatastoreQueryTest.swift; sourceTree = "<group>"; };
 		CCA17B9F1ADEC3D7000BF430 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCD0F4031AFEBAE900006B3B /* AllOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllOperation.swift; sourceTree = "<group>"; };
 		CCD0F4051AFECD4000006B3B /* AllOperationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllOperationTest.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 		CC4FA8DE1B594A710046BE23 /* Datastore */ = {
 			isa = PBXGroup;
 			children = (
+				CC68C5D21B5FD45B006A0569 /* DatastoreQueryTest.swift */,
 				CC6725301B5D426C0001DB84 /* DatastoreTest.swift */,
 				CC4FA8DF1B594A710046BE23 /* QueryTest.swift */,
 			);
@@ -252,6 +255,7 @@
 				CC4842911AEC70B100BD0CE6 /* Operation.swift in Sources */,
 				CC48428D1AEC59CB00BD0CE6 /* PromiseOperation.swift in Sources */,
 				CCD512E91AEBE53F00C97F42 /* ThenTest.swift in Sources */,
+				CC68C5D31B5FD45B006A0569 /* DatastoreQueryTest.swift in Sources */,
 				CCD512E61AEBE53600C97F42 /* BlockTupleOperation.swift in Sources */,
 				CC4FA9011B5975C90046BE23 /* Transport.swift in Sources */,
 				CCD512E51AEBE53600C97F42 /* Promise.swift in Sources */,
