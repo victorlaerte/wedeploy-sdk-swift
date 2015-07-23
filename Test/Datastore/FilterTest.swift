@@ -134,4 +134,33 @@ class FilterTest : BaseTest {
 			"{\"age\":{\"operator\":\"~\",\"value\":12}}", filter.description)
 	}
 
+	func testStringConvertible() {
+		let filter: Filter = "age > 12"
+
+		XCTAssertEqual(
+			"{\"age\":{\"operator\":\">\",\"value\":12}}",
+			filter.description)
+	}
+
+	func testStringConvertible_With_And_Operator() {
+		let filter1: Filter = "age > 12"
+		let filter2: Filter = "age < 15"
+		let filter = filter1 && filter2
+
+		XCTAssertEqual(
+			"{\"and\":[" +
+				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
+				"{\"age\":{\"operator\":\"<\",\"value\":15}}" +
+			"]}",
+			filter.description)
+	}
+
+	func testStringConvertible_With_String() {
+		let filter: Filter = "name = foo"
+
+		XCTAssertEqual(
+			"{\"name\":{\"operator\":\"=\",\"value\":\"foo\"}}",
+			filter.description)
+	}
+
 }

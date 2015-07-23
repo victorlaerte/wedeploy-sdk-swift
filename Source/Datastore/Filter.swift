@@ -1,6 +1,9 @@
 import Foundation
 
-public class Filter : Printable {
+public typealias ExtendedGraphemeClusterLiteralType = String
+public typealias UnicodeScalarLiteralType = String
+
+public class Filter : Printable, StringLiteralConvertible {
 
 	public var filter = [String: AnyObject]()
 
@@ -11,15 +14,41 @@ public class Filter : Printable {
 		return NSString(data: data, encoding: NSUTF8StringEncoding)! as String
 	}
 
-	convenience init(_ field: String, _ value: AnyObject) {
+	public convenience init(_ expression: String) {
+		var parts = split(expression, maxSplit: 3, allowEmptySlices: false) {
+			$0 == " "
+		}
+
+		var value: AnyObject = parts[2]
+
+		if let i = parts[2].toInt() {
+			value = i
+		}
+
+		self.init(parts[0], parts[1], value)
+	}
+
+	public convenience init(_ field: String, _ value: AnyObject) {
 		self.init(field, "=", value)
 	}
 
-	init(_ field: String, _ op: String, _ value: AnyObject) {
+	public init(_ field: String, _ op: String, _ value: AnyObject) {
 		filter[field] = [
 			"operator": op,
 			"value": value
 		]
+	}
+
+	public required convenience init(extendedGraphemeClusterLiteral: String) {
+		self.init(extendedGraphemeClusterLiteral)
+	}
+
+	public required convenience init(stringLiteral: StringLiteralType) {
+		self.init(stringLiteral)
+	}
+
+	public required convenience init(unicodeScalarLiteral: String) {
+		self.init(unicodeScalarLiteral)
 	}
 
 	public func and(filters: Filter ...) -> Self {
