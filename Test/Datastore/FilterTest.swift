@@ -143,9 +143,7 @@ class FilterTest : BaseTest {
 	}
 
 	func testStringConvertible_With_And_Operator() {
-		let filter1: Filter = "age > 12"
-		let filter2: Filter = "age < 15"
-		let filter = filter1 && filter2
+		let filter = ("age > 12" as Filter) && ("age < 15" as Filter)
 
 		XCTAssertEqual(
 			"{\"and\":[" +
