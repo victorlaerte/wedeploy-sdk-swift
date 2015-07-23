@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CC0631631AEB17530097D129 /* XCTestCaseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0631621AEB17530097D129 /* XCTestCaseExtension.swift */; };
+		CC1E58481B612A220085AB5E /* FilterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1E58471B612A220085AB5E /* FilterTest.swift */; };
 		CC2A92591B55A8EB00388B82 /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC2A92581B55A8EB00388B82 /* settings.plist */; };
 		CC324FFC1B022C6D00883F53 /* AllTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC324FFB1B022C6D00883F53 /* AllTest.swift */; };
 		CC324FFE1B022EA000883F53 /* PromiseAllExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC324FFD1B022EA000883F53 /* PromiseAllExtension.swift */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		CC0631621AEB17530097D129 /* XCTestCaseExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestCaseExtension.swift; sourceTree = "<group>"; };
+		CC1E58471B612A220085AB5E /* FilterTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTest.swift; sourceTree = "<group>"; };
 		CC2A92581B55A8EB00388B82 /* settings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = settings.plist; sourceTree = "<group>"; };
 		CC324FFB1B022C6D00883F53 /* AllTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTest.swift; sourceTree = "<group>"; };
 		CC324FFD1B022EA000883F53 /* PromiseAllExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseAllExtension.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 			children = (
 				CC68C5D21B5FD45B006A0569 /* DatastoreQueryTest.swift */,
 				CC6725301B5D426C0001DB84 /* DatastoreTest.swift */,
+				CC1E58471B612A220085AB5E /* FilterTest.swift */,
 				CC4FA8DF1B594A710046BE23 /* QueryTest.swift */,
 			);
 			path = Datastore;
@@ -258,6 +261,7 @@
 				CC4FA8DD1B5949840046BE23 /* Query.swift in Sources */,
 				CC4FA8FF1B594F5F0046BE23 /* Launchpad.swift in Sources */,
 				CC48428F1AEC667400BD0CE6 /* PromiseOperationTest.swift in Sources */,
+				CC1E58481B612A220085AB5E /* FilterTest.swift in Sources */,
 				CC4842911AEC70B100BD0CE6 /* Operation.swift in Sources */,
 				CC48428D1AEC59CB00BD0CE6 /* PromiseOperation.swift in Sources */,
 				CC68C5D51B5FDACC006A0569 /* LaunchpadQueryTest.swift in Sources */,
