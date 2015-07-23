@@ -79,3 +79,7 @@ public class Filter : Printable {
 	}
 
 }
+
+func &&(left: Filter, right: Filter) -> Filter {
+	return left.and(right)
+}

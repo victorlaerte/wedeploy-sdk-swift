@@ -13,6 +13,19 @@ class FilterTest : BaseTest {
 			filter.description)
 	}
 
+	func testAnd_Overloaded_Operator() {
+		let filter = Filter.gt("age", 12) && Filter.lt("age", 15) &&
+			Filter.equal("name", "foo")
+
+		XCTAssertEqual(
+			"{\"and\":[" +
+				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
+				"{\"age\":{\"operator\":\"<\",\"value\":15}}," +
+				"{\"name\":{\"operator\":\"=\",\"value\":\"foo\"}}" +
+			"]}",
+			filter.description)
+	}
+
 	func testAnd_With_Three_Filters() {
 		let filter = Filter
 			.gt("age", 12)
