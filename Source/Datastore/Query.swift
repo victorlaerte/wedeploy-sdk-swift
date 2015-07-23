@@ -60,13 +60,10 @@ public class Query : Printable {
 	}
 
 	public func filter(filter: Filter) -> Self {
-		var filters = query["filter"] as? [[String: [String: AnyObject]]]
+		var filters = query["filter"] as? [FilterDictionary] ??
+			[FilterDictionary]()
 
-		if (filters == nil) {
-			filters = [[String: [String: AnyObject]]]()
-		}
-
-		filters!.append(filter.filter)
+		filters.append(filter.filter)
 
 		query["filter"] = filters
 
@@ -88,13 +85,9 @@ public class Query : Printable {
 	}
 
 	public func sort(name: String, order: Order = .ASC) -> Self {
-		var sort = query["sort"] as? [[String: String]]
+		var sort = query["sort"] as? [[String: String]] ?? [[String: String]]()
+		sort.append([name: order.rawValue])
 
-		if (sort == nil) {
-			sort = [[String: String]]()
-		}
-
-		sort!.append([name: order.rawValue])
 		query["sort"] = sort
 
 		return self

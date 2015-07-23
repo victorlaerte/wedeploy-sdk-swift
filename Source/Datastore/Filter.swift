@@ -1,8 +1,10 @@
 import Foundation
 
+public typealias FilterDictionary = [String: [String: AnyObject]]
+
 public class Filter : Printable {
 
-	public var filter = [String: [String: AnyObject]]()
+	public var filter = FilterDictionary()
 
 	public var description: String {
 		let data = NSJSONSerialization.dataWithJSONObject(
