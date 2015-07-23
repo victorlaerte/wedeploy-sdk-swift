@@ -2,6 +2,46 @@ import XCTest
 
 class FilterTest : BaseTest {
 
+	func testAnd() {
+		let filter = Filter.gt("age", 12).and(Filter.lt("age", 15))
+
+		XCTAssertEqual(
+			"{\"and\":[" +
+				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
+				"{\"age\":{\"operator\":\"<\",\"value\":15}}" +
+			"]}",
+			filter.description)
+	}
+
+	func testAnd_With_Three_Filters() {
+		let filter = Filter
+			.gt("age", 12)
+			.and(Filter.lt("age", 15))
+			.and(Filter.equal("name", "foo"))
+
+		XCTAssertEqual(
+			"{\"and\":[" +
+				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
+				"{\"age\":{\"operator\":\"<\",\"value\":15}}," +
+				"{\"name\":{\"operator\":\"=\",\"value\":\"foo\"}}" +
+			"]}",
+			filter.description)
+	}
+
+	func testAnd_With_Tuples() {
+		let filter = Filter
+			.gt("age", 12)
+			.and(("age", "<", 15), ("name", "=", "foo"))
+
+		XCTAssertEqual(
+			"{\"and\":[" +
+				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
+				"{\"age\":{\"operator\":\"<\",\"value\":15}}," +
+				"{\"name\":{\"operator\":\"=\",\"value\":\"foo\"}}" +
+			"]}",
+			filter.description)
+	}
+
 	func testAny() {
 		let filter = Filter.any("age", [12, 21, 25])
 

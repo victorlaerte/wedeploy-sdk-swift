@@ -1,10 +1,8 @@
 import Foundation
 
-public typealias FilterDictionary = [String: [String: AnyObject]]
-
 public class Filter : Printable {
 
-	public var filter = FilterDictionary()
+	public var filter = [String: AnyObject]()
 
 	public var description: String {
 		let data = NSJSONSerialization.dataWithJSONObject(
@@ -22,6 +20,26 @@ public class Filter : Printable {
 			"operator": op,
 			"value": value
 		]
+	}
+
+	public func and(filters: Filter ...) -> Self {
+		var and = filter["and"] as? [[String: AnyObject]] ?? [self.filter]
+
+		filter = [
+			"and": and + filters.map({ $0.filter })
+		]
+
+		return self
+	}
+
+	public func and(tuples: (String, String, AnyObject) ...) -> Self {
+		var and = filter["and"] as? [[String: AnyObject]] ?? [self.filter]
+
+		filter = [
+			"and": and + tuples.map({ Filter($0.0, $0.1, $0.2).filter })
+		]
+
+		return self
 	}
 
 	public static func any(field: String, _ value: [AnyObject]) -> Filter {

@@ -60,8 +60,8 @@ public class Query : Printable {
 	}
 
 	public func filter(filter: Filter) -> Self {
-		var filters = query["filter"] as? [FilterDictionary] ??
-			[FilterDictionary]()
+		var filters = query["filter"] as? [[String: AnyObject]] ??
+			[[String: AnyObject]]()
 
 		filters.append(filter.filter)
 
