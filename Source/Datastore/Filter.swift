@@ -51,24 +51,12 @@ public class Filter : Printable, StringLiteralConvertible {
 		self.init(unicodeScalarLiteral)
 	}
 
-	public func and(filters: Filter ...) -> Self {
-		var and = filter["and"] as? [[String: AnyObject]] ?? [self.filter]
-
-		filter = [
-			"and": and + filters.map({ $0.filter })
-		]
-
-		return self
+	func and(filters: Filter...) -> Self {
+		return self.and(filters)
 	}
 
 	public func and(tuples: (String, String, AnyObject) ...) -> Self {
-		var and = filter["and"] as? [[String: AnyObject]] ?? [self.filter]
-
-		filter = [
-			"and": and + tuples.map({ Filter($0.0, $0.1, $0.2).filter })
-		]
-
-		return self
+		return self.and(tuples.map({ Filter($0.0, $0.1, $0.2) }))
 	}
 
 	public static func any(field: String, _ value: [AnyObject]) -> Filter {
@@ -105,6 +93,16 @@ public class Filter : Printable, StringLiteralConvertible {
 
 	public static func regex(field: String, _ value: AnyObject) -> Filter {
 		return Filter(field, "~", value)
+	}
+
+	public func and(filters: [Filter]) -> Self {
+		var and = filter["and"] as? [[String: AnyObject]] ?? [self.filter]
+
+		filter = [
+			"and": and + filters.map({ $0.filter })
+		]
+
+		return self
 	}
 
 }
