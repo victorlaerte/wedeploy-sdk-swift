@@ -10,7 +10,7 @@ public class Filter : Printable {
 		let data = NSJSONSerialization.dataWithJSONObject(
 			filter, options: NSJSONWritingOptions.allZeros, error: nil)!
 
-		return NSString(data: data,  encoding: NSUTF8StringEncoding)! as String
+		return NSString(data: data, encoding: NSUTF8StringEncoding)! as String
 	}
 
 	convenience init(_ field: String, _ value: AnyObject) {
@@ -22,6 +22,10 @@ public class Filter : Printable {
 			"operator": op,
 			"value": value
 		]
+	}
+
+	public static func any(field: String, _ value: [AnyObject]) -> Filter {
+		return Filter(field, "in", value)
 	}
 
 	public static func equal(field: String, _ value: AnyObject) -> Filter {
@@ -36,10 +40,6 @@ public class Filter : Printable {
 		return Filter(field, ">=", value)
 	}
 
-	public static func regex(field: String, _ value: AnyObject) -> Filter {
-		return Filter(field, "~", value)
-	}
-
 	public static func lt(field: String, _ value: AnyObject) -> Filter {
 		return Filter(field, "<", value)
 	}
@@ -48,8 +48,16 @@ public class Filter : Printable {
 		return Filter(field, "<=", value)
 	}
 
+	public static func none(field: String, _ value: [AnyObject]) -> Filter {
+		return Filter(field, "nin", value)
+	}
+
 	public static func notEqual(field: String, _ value: AnyObject) -> Filter {
 		return Filter(field, "!=", value)
+	}
+
+	public static func regex(field: String, _ value: AnyObject) -> Filter {
+		return Filter(field, "~", value)
 	}
 
 }

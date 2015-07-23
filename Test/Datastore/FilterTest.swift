@@ -2,6 +2,14 @@ import XCTest
 
 class FilterTest : BaseTest {
 
+	func testAny() {
+		let filter = Filter.any("age", [12, 21, 25])
+
+		XCTAssertEqual(
+			"{\"age\":{\"operator\":\"in\",\"value\":[12,21,25]}}",
+			filter.description)
+	}
+
 	func testCustom() {
 		let filter = Filter("age", ">", 12)
 
@@ -49,6 +57,14 @@ class FilterTest : BaseTest {
 
 		XCTAssertEqual(
 			"{\"age\":{\"operator\":\"<=\",\"value\":12}}", filter.description)
+	}
+
+	func testNone() {
+		let filter = Filter.none("age", [12, 21, 25])
+
+		XCTAssertEqual(
+			"{\"age\":{\"operator\":\"nin\",\"value\":[12,21,25]}}",
+			filter.description)
 	}
 
 	func testNotEqual() {

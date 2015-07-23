@@ -36,7 +36,7 @@ public class Query : Printable {
 		let data = NSJSONSerialization.dataWithJSONObject(
 			query, options: NSJSONWritingOptions.allZeros, error: nil)!
 
-		return NSString(data: data,  encoding: NSUTF8StringEncoding)! as String
+		return NSString(data: data, encoding: NSUTF8StringEncoding)! as String
 	}
 
 	public func count() -> Self {
