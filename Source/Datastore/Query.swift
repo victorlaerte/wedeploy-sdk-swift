@@ -50,13 +50,13 @@ public class Query : Printable {
 	public func filter(field: String, _ value: AnyObject)
 		-> Self {
 
-		return self.filter(Filter(field: field, value: value))
+		return self.filter(Filter(field, value))
 	}
 
 	public func filter(field: String, _ op: String, _ value: AnyObject)
 		-> Self {
 
-		return self.filter(Filter(field: field, op: op, value: value))
+		return self.filter(Filter(field, op, value))
 	}
 
 	public func filter(filter: Filter) -> Self {

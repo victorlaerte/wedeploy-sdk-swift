@@ -3,14 +3,14 @@ import XCTest
 class FilterTest : BaseTest {
 
 	func testCustom() {
-		let filter = Filter(field:"age", op: ">", value: 12)
+		let filter = Filter("age", ">", 12)
 
 		XCTAssertEqual(
 			"{\"age\":{\"operator\":\">\",\"value\":12}}", filter.description)
 	}
 
 	func testDefaultOperator() {
-		let filter = Filter(field:"age", value: 12)
+		let filter = Filter("age", 12)
 
 		XCTAssertEqual(
 			"{\"age\":{\"operator\":\"=\",\"value\":12}}", filter.description)
