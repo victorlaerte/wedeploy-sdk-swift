@@ -51,12 +51,12 @@ public class Filter : Printable, StringLiteralConvertible {
 		self.init(unicodeScalarLiteral)
 	}
 
-	func and(filters: Filter...) -> Self {
+	public func and(filters: Filter...) -> Self {
 		return self.and(filters)
 	}
 
-	public func and(tuples: (String, String, AnyObject) ...) -> Self {
-		return self.and(tuples.map({ Filter($0.0, $0.1, $0.2) }))
+	public func and(filters: (String, String, AnyObject)...) -> Self {
+		return self.and(filters.map({ Filter($0.0, $0.1, $0.2) }))
 	}
 
 	public static func any(field: String, _ value: [AnyObject]) -> Filter {
@@ -91,11 +91,19 @@ public class Filter : Printable, StringLiteralConvertible {
 		return Filter(field, "!=", value)
 	}
 
+	public func or(filters: Filter...) -> Self {
+		return self.or(filters)
+	}
+
+	public func or(filters: (String, String, AnyObject)...) -> Self {
+		return self.or(filters.map({ Filter($0.0, $0.1, $0.2) }))
+	}
+
 	public static func regex(field: String, _ value: AnyObject) -> Filter {
 		return Filter(field, "~", value)
 	}
 
-	public func and(filters: [Filter]) -> Self {
+	func and(filters: [Filter]) -> Self {
 		var and = filter["and"] as? [[String: AnyObject]] ?? [self.filter]
 
 		filter = [
@@ -105,8 +113,22 @@ public class Filter : Printable, StringLiteralConvertible {
 		return self
 	}
 
+	func or(filters: [Filter]) -> Self {
+		var or = filter["or"] as? [[String: AnyObject]] ?? [self.filter]
+
+		filter = [
+			"or": or + filters.map({ $0.filter })
+		]
+
+		return self
+	}
+
 }
 
 func &&(left: Filter, right: Filter) -> Filter {
 	return left.and(right)
+}
+
+func ||(left: Filter, right: Filter) -> Filter {
+	return left.or(right)
 }

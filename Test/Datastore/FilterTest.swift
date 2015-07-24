@@ -127,6 +127,59 @@ class FilterTest : BaseTest {
 			"{\"age\":{\"operator\":\"!=\",\"value\":12}}", filter.description)
 	}
 
+	func testOr() {
+		let filter = Filter.gt("age", 12).or(Filter.lt("age", 15))
+
+		XCTAssertEqual(
+			"{\"or\":[" +
+				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
+				"{\"age\":{\"operator\":\"<\",\"value\":15}}" +
+			"]}",
+			filter.description)
+	}
+
+	func testOr_Overloaded_Operator() {
+		let filter = Filter.gt("age", 12) || Filter.lt("age", 15) ||
+			Filter.equal("name", "foo")
+
+		XCTAssertEqual(
+			"{\"or\":[" +
+				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
+				"{\"age\":{\"operator\":\"<\",\"value\":15}}," +
+				"{\"name\":{\"operator\":\"=\",\"value\":\"foo\"}}" +
+			"]}",
+			filter.description)
+	}
+
+	func testOr_With_Three_Filters() {
+		let filter = Filter
+			.gt("age", 12)
+			.or(Filter.lt("age", 15))
+			.or(Filter.equal("name", "foo"))
+
+		XCTAssertEqual(
+			"{\"or\":[" +
+				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
+				"{\"age\":{\"operator\":\"<\",\"value\":15}}," +
+				"{\"name\":{\"operator\":\"=\",\"value\":\"foo\"}}" +
+			"]}",
+			filter.description)
+	}
+
+	func testOr_With_Tuples() {
+		let filter = Filter
+			.gt("age", 12)
+			.or(("age", "<", 15), ("name", "=", "foo"))
+
+		XCTAssertEqual(
+			"{\"or\":[" +
+				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
+				"{\"age\":{\"operator\":\"<\",\"value\":15}}," +
+				"{\"name\":{\"operator\":\"=\",\"value\":\"foo\"}}" +
+			"]}",
+			filter.description)
+	}
+
 	func testRegex() {
 		let filter = Filter.regex("age", 12)
 
@@ -143,7 +196,7 @@ class FilterTest : BaseTest {
 	}
 
 	func testStringConvertible_With_And_Operator() {
-		let filter = ("age > 12" as Filter) && ("age < 15" as Filter)
+		let filter = Filter.gt("age", 12) && "age < 15"
 
 		XCTAssertEqual(
 			"{\"and\":[" +
