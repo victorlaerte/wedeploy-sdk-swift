@@ -49,7 +49,7 @@ class FilterTest : BaseTest {
 		let filter = Filter.any("age", [12, 21, 25])
 
 		XCTAssertEqual(
-			"{\"age\":{\"operator\":\"in\",\"value\":[12,21,25]}}",
+			"{\"age\":{\"operator\":\"any\",\"value\":[12,21,25]}}",
 			filter.description)
 	}
 
@@ -123,7 +123,7 @@ class FilterTest : BaseTest {
 		let filter = Filter.none("age", [12, 21, 25])
 
 		XCTAssertEqual(
-			"{\"age\":{\"operator\":\"nin\",\"value\":[12,21,25]}}",
+			"{\"age\":{\"operator\":\"none\",\"value\":[12,21,25]}}",
 			filter.description)
 	}
 
@@ -204,7 +204,7 @@ class FilterTest : BaseTest {
 			filter.description)
 	}
 
-	func testStringConvertible_With_String() {
+	func testStringConvertible_With_String_Value() {
 		let filter: Filter = "name = foo"
 
 		XCTAssertEqual(

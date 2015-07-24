@@ -56,7 +56,7 @@ public class Filter : Printable, StringLiteralConvertible {
 	}
 
 	public static func any(field: String, _ value: [AnyObject]) -> Filter {
-		return Filter(field, "in", value)
+		return Filter(field, "any", value)
 	}
 
 	public static func equal(field: String, _ value: AnyObject) -> Filter {
@@ -80,7 +80,7 @@ public class Filter : Printable, StringLiteralConvertible {
 	}
 
 	public static func none(field: String, _ value: [AnyObject]) -> Filter {
-		return Filter(field, "nin", value)
+		return Filter(field, "none", value)
 	}
 
 	public static func notEqual(field: String, _ value: AnyObject) -> Filter {
