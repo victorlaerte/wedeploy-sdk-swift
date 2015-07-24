@@ -17,9 +17,9 @@ class FilterTest : BaseTest {
 
 	func testAnd_Overloaded_Operator() {
 		let filter = Filter
-			.gt("age", 12)
-			&& Filter.lt("age", 15)
-			&& "name = foo"
+			.gt("age", 12) &&
+			Filter.lt("age", 15) &&
+			"name = foo"
 
 		XCTAssertEqual(
 			"{\"and\":[" +
@@ -164,9 +164,10 @@ class FilterTest : BaseTest {
 	}
 
 	func testOr_Overloaded_Operator() {
-		let filter = Filter.gt("age", 12)
-			|| Filter.lt("age", 15)
-			|| "name = foo"
+		let filter = Filter
+			.gt("age", 12) ||
+			Filter.lt("age", 15) ||
+			"name = foo"
 
 		XCTAssertEqual(
 			"{\"or\":[" +
@@ -209,8 +210,8 @@ class FilterTest : BaseTest {
 
 	func testStringConvertible_With_And_Operator() {
 		let filter = Filter
-			.gt("age", 12)
-			&& "age < 15"
+			.gt("age", 12) &&
+			"age < 15"
 
 		XCTAssertEqual(
 			"{\"and\":[" +
