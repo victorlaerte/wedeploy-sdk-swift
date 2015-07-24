@@ -3,7 +3,9 @@ import XCTest
 class FilterTest : BaseTest {
 
 	func testAnd() {
-		let filter = Filter.gt("age", 12).and(Filter.lt("age", 15))
+		let filter = Filter
+			.gt("age", 12)
+			.and(Filter.lt("age", 15))
 
 		XCTAssertEqual(
 			"{\"and\":[" +
@@ -14,8 +16,10 @@ class FilterTest : BaseTest {
 	}
 
 	func testAnd_Overloaded_Operator() {
-		let filter = Filter.gt("age", 12) && Filter.lt("age", 15) &&
-			Filter.equal("name", "foo")
+		let filter = Filter
+			.gt("age", 12)
+			&& Filter.lt("age", 15)
+			&& "name = foo"
 
 		XCTAssertEqual(
 			"{\"and\":[" +
@@ -41,25 +45,28 @@ class FilterTest : BaseTest {
 			filter.description)
 	}
 
-	func testAnd_With_Tuples() {
-		let filter = Filter
-			.gt("age", 12)
-			.and(("age", "<", 15), ("name", "=", "foo"))
-
-		XCTAssertEqual(
-			"{\"and\":[" +
-				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
-				"{\"age\":{\"operator\":\"<\",\"value\":15}}," +
-				"{\"name\":{\"operator\":\"=\",\"value\":\"foo\"}}" +
-			"]}",
-			filter.description)
-	}
-
 	func testAny() {
 		let filter = Filter.any("age", [12, 21, 25])
 
 		XCTAssertEqual(
 			"{\"age\":{\"operator\":\"in\",\"value\":[12,21,25]}}",
+			filter.description)
+	}
+
+	func testComposition() {
+		let filter = Filter
+			.gt("age", 12)
+			.or("age < 15" as Filter)
+			.and(Filter("name = foo"))
+
+		XCTAssertEqual(
+			"{\"and\":[" +
+				"{\"or\":[" +
+					"{\"age\":{\"operator\":\">\",\"value\":12}}," +
+					"{\"age\":{\"operator\":\"<\",\"value\":15}}" +
+				"]}," +
+				"{\"name\":{\"operator\":\"=\",\"value\":\"foo\"}}" +
+			"]}",
 			filter.description)
 	}
 
@@ -128,7 +135,9 @@ class FilterTest : BaseTest {
 	}
 
 	func testOr() {
-		let filter = Filter.gt("age", 12).or(Filter.lt("age", 15))
+		let filter = Filter
+			.gt("age", 12)
+			.or(Filter.lt("age", 15))
 
 		XCTAssertEqual(
 			"{\"or\":[" +
@@ -139,8 +148,9 @@ class FilterTest : BaseTest {
 	}
 
 	func testOr_Overloaded_Operator() {
-		let filter = Filter.gt("age", 12) || Filter.lt("age", 15) ||
-			Filter.equal("name", "foo")
+		let filter = Filter.gt("age", 12)
+			|| Filter.lt("age", 15)
+			|| "name = foo"
 
 		XCTAssertEqual(
 			"{\"or\":[" +
@@ -156,20 +166,6 @@ class FilterTest : BaseTest {
 			.gt("age", 12)
 			.or(Filter.lt("age", 15))
 			.or(Filter.equal("name", "foo"))
-
-		XCTAssertEqual(
-			"{\"or\":[" +
-				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
-				"{\"age\":{\"operator\":\"<\",\"value\":15}}," +
-				"{\"name\":{\"operator\":\"=\",\"value\":\"foo\"}}" +
-			"]}",
-			filter.description)
-	}
-
-	func testOr_With_Tuples() {
-		let filter = Filter
-			.gt("age", 12)
-			.or(("age", "<", 15), ("name", "=", "foo"))
 
 		XCTAssertEqual(
 			"{\"or\":[" +
@@ -196,7 +192,9 @@ class FilterTest : BaseTest {
 	}
 
 	func testStringConvertible_With_And_Operator() {
-		let filter = Filter.gt("age", 12) && "age < 15"
+		let filter = Filter
+			.gt("age", 12)
+			&& "age < 15"
 
 		XCTAssertEqual(
 			"{\"and\":[" +

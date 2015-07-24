@@ -55,10 +55,6 @@ public class Filter : Printable, StringLiteralConvertible {
 		return self.and(filters)
 	}
 
-	public func and(filters: (String, String, AnyObject)...) -> Self {
-		return self.and(filters.map({ Filter($0.0, $0.1, $0.2) }))
-	}
-
 	public static func any(field: String, _ value: [AnyObject]) -> Filter {
 		return Filter(field, "in", value)
 	}
@@ -93,10 +89,6 @@ public class Filter : Printable, StringLiteralConvertible {
 
 	public func or(filters: Filter...) -> Self {
 		return self.or(filters)
-	}
-
-	public func or(filters: (String, String, AnyObject)...) -> Self {
-		return self.or(filters.map({ Filter($0.0, $0.1, $0.2) }))
 	}
 
 	public static func regex(field: String, _ value: AnyObject) -> Filter {
