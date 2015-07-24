@@ -83,6 +83,14 @@ public class Filter : Printable, StringLiteralConvertible {
 		return Filter(field, "none", value)
 	}
 
+	public func not() -> Filter {
+		filter = [
+			"not": filter
+		]
+
+		return self
+	}
+
 	public static func notEqual(field: String, _ value: AnyObject) -> Filter {
 		return Filter(field, "!=", value)
 	}
@@ -123,4 +131,8 @@ func &&(left: Filter, right: Filter) -> Filter {
 
 func ||(left: Filter, right: Filter) -> Filter {
 	return left.or(right)
+}
+
+prefix func !(filter: Filter) -> Filter {
+	return filter.not()
 }

@@ -127,6 +127,22 @@ class FilterTest : BaseTest {
 			filter.description)
 	}
 
+	func testNot() {
+		let filter = Filter("age", 12).not()
+
+		XCTAssertEqual(
+			"{\"not\":{\"age\":{\"operator\":\"=\",\"value\":12}}}",
+			filter.description)
+	}
+
+	func testNot_With_Operation() {
+		let filter = !Filter("age", 12)
+
+		XCTAssertEqual(
+			"{\"not\":{\"age\":{\"operator\":\"=\",\"value\":12}}}",
+			filter.description)
+	}
+
 	func testNotEqual() {
 		let filter = Filter.notEqual("age", 12)
 
