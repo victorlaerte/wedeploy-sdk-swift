@@ -53,7 +53,12 @@ class DatastoreTest : BaseTest {
 
 	func testGet() {
 		let expectation = expect("get")
-		let id = books.first!["id"] as! String
+
+		guard let book = books.first else {
+			return
+		}
+
+		let id = book["id"] as! String
 
 		datastore
 			.get(path, id: id)
@@ -83,7 +88,12 @@ class DatastoreTest : BaseTest {
 
 	func testMainThread() {
 		let expectation = expect("mainThread")
-		let id = books.first!["id"] as! String
+
+		guard let book = books.first else {
+			return
+		}
+
+		let id = book["id"] as! String
 
 		datastore
 			.get(path, id: id)
@@ -97,7 +107,12 @@ class DatastoreTest : BaseTest {
 
 	func testRemove() {
 		let expectation = expect("remove")
-		let id = books.first!["id"] as! String
+
+		guard let book = books.first else {
+			return
+		}
+
+		let id = book["id"] as! String
 
 		datastore
 			.remove(path, id: id)
@@ -114,7 +129,10 @@ class DatastoreTest : BaseTest {
 	func testUpdate() {
 		let expectation = expect("update")
 
-		var book = books.first!
+		guard var book = books.first else {
+			return
+		}
+
 		book["title"] = "La fiesta del chivo"
 
 		let id = book["id"] as! String

@@ -31,7 +31,7 @@ class BaseTest : XCTestCase {
 
 			datastore
 				.add(path, document: bookToAdd)
-				.then{ book -> () in
+				.then { book -> () in
 					self.books.append(book)
 					expectation.fulfill()
 				}
