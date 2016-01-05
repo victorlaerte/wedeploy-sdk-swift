@@ -11,14 +11,14 @@ class PromiseOperationTest : XCTestCase {
 			expectation.fulfill()
 		}
 
-		operation.catch = { error in
+		operation.`catch` = { error in
 			XCTFail("Reject shouldn't be called")
 		}
 
 		queue.addOperation(operation)
 
 		wait {
-			XCTAssertEqual("one", operation.output as! String)
+			XCTAssertEqual("one", operation.output as? String)
 		}
 	}
 
@@ -31,7 +31,7 @@ class PromiseOperationTest : XCTestCase {
 			reject(NSError(domain: "domain", code: 1, userInfo: nil))
 		}
 
-		operation.catch = {
+		operation.`catch` = {
 			error = $0
 			expectation.fulfill()
 		}

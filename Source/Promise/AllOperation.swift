@@ -16,7 +16,7 @@ class AllOperation : Operation {
 		let queue = dispatch_get_global_queue(
 			DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 
-		for (i, block) in enumerate(blocks) {
+		for (i, block) in blocks.enumerate() {
 			dispatch_group_async(group, queue, { () -> () in
 				results[i] = block(operation?.output)
 			})

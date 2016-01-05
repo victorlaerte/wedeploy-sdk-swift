@@ -1,6 +1,6 @@
 import XCTest
 
-class FilterTest : BaseTest {
+class FilterTest : XCTestCase {
 
 	func testAnd() {
 		let filter = Filter

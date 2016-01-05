@@ -11,7 +11,7 @@ class LaunchpadQueryTest : BaseTest {
 			.params(query.params)
 			.get({ response in
 				XCTAssertTrue(response.succeeded)
-				XCTAssertEqual(2, response.body as! Int)
+				XCTAssertEqual(2, response.body as? Int)
 				expectation.fulfill()
 			})
 

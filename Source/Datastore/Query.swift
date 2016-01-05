@@ -1,6 +1,6 @@
 import Foundation
 
-public class Query : Printable {
+public class Query : CustomStringConvertible {
 
 	var query = [String: AnyObject]()
 
@@ -11,10 +11,10 @@ public class Query : Printable {
 			var item: NSURLQueryItem
 
 			if ((value is [AnyObject]) || (value is [String: AnyObject])) {
-				let data = NSJSONSerialization.dataWithJSONObject(
-					value, options: NSJSONWritingOptions.allZeros, error: nil)
+				let data = try! NSJSONSerialization.dataWithJSONObject(
+					value, options: NSJSONWritingOptions())
 
-				let json = NSString(data: data!, encoding: NSUTF8StringEncoding)
+				let json = NSString(data: data, encoding: NSUTF8StringEncoding)
 
 				item = NSURLQueryItem(name: name, value: json! as String)
 			}
@@ -33,8 +33,8 @@ public class Query : Printable {
 	}
 
 	public var description: String {
-		let data = NSJSONSerialization.dataWithJSONObject(
-			query, options: NSJSONWritingOptions.allZeros, error: nil)!
+		let data = try! NSJSONSerialization.dataWithJSONObject(
+			query, options: NSJSONWritingOptions())
 
 		return NSString(data: data, encoding: NSUTF8StringEncoding)! as String
 	}

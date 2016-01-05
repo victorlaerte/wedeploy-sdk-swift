@@ -12,7 +12,7 @@ public protocol Transport {
 public class NSURLSessionTransport : Transport {
 
 	public func send(
-		_ method: Launchpad.Verb = .GET, url: String, path: String,
+		method: Launchpad.Verb = .GET, url: String, path: String,
 		params: [NSURLQueryItem]?, headers: [String: String]?, body: AnyObject?,
 		success: (Response -> ())?, failure: (NSError -> ())?) {
 
@@ -25,15 +25,14 @@ public class NSURLSessionTransport : Transport {
 		let request = NSMutableURLRequest(URL: URL.URL!)
 		request.HTTPMethod = method.rawValue
 
-		var error: NSError?
-
-		if (body != nil) {
-			setRequestBody(request, body: body!, error: &error)
-		}
-
-		if let e = error {
-			failure(e)
-			return
+		if let b = body {
+			do {
+				try setRequestBody(request, body: b)
+			}
+			catch let e as NSError {
+				failure(e)
+				return
+			}
 		}
 
 		if let h = headers {
@@ -62,7 +61,7 @@ public class NSURLSessionTransport : Transport {
 
 				let response = Response(
 					statusCode: httpURLResponse.statusCode, headers: headers,
-					body: data)
+					body: data!)
 
 				success(response)
 			}
@@ -81,9 +80,7 @@ public class NSURLSessionTransport : Transport {
 		}
 	}
 
-	func setRequestBody(
-		request: NSMutableURLRequest, body: AnyObject, error: NSErrorPointer) {
-
+	func setRequestBody(request: NSMutableURLRequest, body: AnyObject) throws {
 		if let stream = body as? NSInputStream {
 			request.HTTPBodyStream = stream
 		}
@@ -94,8 +91,8 @@ public class NSURLSessionTransport : Transport {
 			request.setValue(
 				"application/json", forHTTPHeaderField: "Content-Type")
 
-			request.HTTPBody = NSJSONSerialization.dataWithJSONObject(
-				body, options: NSJSONWritingOptions.allZeros, error: error)
+			request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(
+				body, options: NSJSONWritingOptions())
 		}
 	}
 

@@ -22,17 +22,14 @@ public class Response {
 
 	func parse(body: NSData) -> AnyObject? {
 		if (contentType?.rangeOfString("application/json") != nil) {
-			var error: NSError?
+			do {
+				let parsed = try NSJSONSerialization.JSONObjectWithData(
+					body, options: .AllowFragments)
 
-			let parsed: AnyObject? = NSJSONSerialization.JSONObjectWithData(
-				body, options: NSJSONReadingOptions.AllowFragments,
-				error: &error)
-
-			if let e = error {
-				return parseString(body)
-			}
-			else {
 				return parsed
+			}
+			catch {
+				return parseString(body)
 			}
 		}
 		else {

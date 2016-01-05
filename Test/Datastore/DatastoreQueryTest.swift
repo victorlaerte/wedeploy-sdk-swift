@@ -54,7 +54,7 @@ class DatastoreQueryTest : BaseTest {
 	func testSort() {
 		let expectation = expect("sort")
 		let query = Query().sort("title", order: Query.Order.DESC)
-		let sortedBooks = sorted(self.booksToAdd, {
+		let sortedBooks = booksToAdd.sort({
 			$0["title"] as! String > $1["title"] as! String
 		})
 

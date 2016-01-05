@@ -61,13 +61,13 @@ class BaseTest : XCTestCase {
 		expected: [String: AnyObject], result: [String: AnyObject]) {
 
 		XCTAssertEqual(
-			expected["title"] as! String, result["title"] as! String)
+			expected["title"] as? String, result["title"] as? String)
 	}
 
 	func assertBooks(
 		expected: [[String: NSObject]], result: [[String: AnyObject]]) {
 
-		for (index, book) in enumerate(result) {
+		for (index, book) in result.enumerate() {
 			assertBook(expected[index], result: book)
 		}
 	}

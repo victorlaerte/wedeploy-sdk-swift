@@ -28,8 +28,8 @@ class AllTest : XCTestCase {
 
 		wait {
 			XCTAssertEqual(2, output.count)
-			XCTAssertEqual("two", output.first! as! String)
-			XCTAssertEqual("three", output.last! as! String)
+			XCTAssertEqual("two", output.first! as? String)
+			XCTAssertEqual("three", output.last! as? String)
 		}
 	}
 

@@ -4,7 +4,6 @@ class ThenTest : XCTestCase {
 
 	func testReturns_Array_Then_Empty() {
 		let expectation = expect("testReturns_Array_Then_Empty")
-		var output = [String]()
 
 		let p = Promise {
 			return "one"

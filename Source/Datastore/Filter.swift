@@ -3,25 +3,25 @@ import Foundation
 public typealias ExtendedGraphemeClusterLiteralType = String
 public typealias UnicodeScalarLiteralType = String
 
-public class Filter : Printable, StringLiteralConvertible {
+public class Filter : CustomStringConvertible, StringLiteralConvertible {
 
 	public var filter = [String: AnyObject]()
 
 	public var description: String {
-		let data = NSJSONSerialization.dataWithJSONObject(
-			filter, options: NSJSONWritingOptions.allZeros, error: nil)!
+		let data = try! NSJSONSerialization.dataWithJSONObject(
+			filter, options: NSJSONWritingOptions())
 
 		return NSString(data: data, encoding: NSUTF8StringEncoding)! as String
 	}
 
 	public convenience init(_ expression: String) {
-		var parts = split(expression, maxSplit: 3, allowEmptySlices: false) {
+		var parts = expression.characters.split {
 			$0 == " "
-		}
+		}.map(String.init)
 
 		var value: AnyObject = parts[2]
 
-		if let i = parts[2].toInt() {
+		if let i = Int(parts[2]) {
 			value = i
 		}
 
@@ -104,7 +104,7 @@ public class Filter : Printable, StringLiteralConvertible {
 	}
 
 	func and(filters: [Filter]) -> Self {
-		var and = filter["and"] as? [[String: AnyObject]] ?? [self.filter]
+		let and = filter["and"] as? [[String: AnyObject]] ?? [self.filter]
 
 		filter = [
 			"and": and + filters.map({ $0.filter })
@@ -114,7 +114,7 @@ public class Filter : Printable, StringLiteralConvertible {
 	}
 
 	func or(filters: [Filter]) -> Self {
-		var or = filter["or"] as? [[String: AnyObject]] ?? [self.filter]
+		let or = filter["or"] as? [[String: AnyObject]] ?? [self.filter]
 
 		filter = [
 			"or": or + filters.map({ $0.filter })

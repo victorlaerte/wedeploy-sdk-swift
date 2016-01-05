@@ -22,8 +22,8 @@ class AllOperationTest : XCTestCase {
 		wait(2) {
 			let output = operation.output as! [Any?]
 			XCTAssertEqual(2, output.count)
-			XCTAssertEqual("one", output.first! as! String)
-			XCTAssertEqual("two", output.last! as! String)
+			XCTAssertEqual("one", output.first! as? String)
+			XCTAssertEqual("two", output.last! as? String)
 		}
 	}
 
@@ -47,8 +47,8 @@ class AllOperationTest : XCTestCase {
 		wait(2) {
 			let output = operation.output as! [Any?]
 			XCTAssertEqual(2, output.count)
-			XCTAssertEqual("one", output.first! as! String)
-			XCTAssertEqual("two", output.last! as! String)
+			XCTAssertEqual("one", output.first! as? String)
+			XCTAssertEqual("two", output.last! as? String)
 		}
 	}
 

@@ -27,7 +27,7 @@ public class Promise<T: Any> {
 		let queue = NSOperationQueue()
 
 		for operation in operations {
-			operation.catch = { error in
+			operation.`catch` = { error in
 				queue.cancelAllOperations()
 
 				if let done = block {
