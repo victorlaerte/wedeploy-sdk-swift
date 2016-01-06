@@ -2,39 +2,36 @@ import Foundation
 
 public class Launchpad {
 
-	var headers: [String: String]
-	var params: [NSURLQueryItem]
-	var path: String
-	var transport: Transport
-	var url: String
+	var headers: [String: String] = [:]
+	var params: [NSURLQueryItem] = [NSURLQueryItem]()
+	var path: String = ""
+	var transport: Transport = NSURLSessionTransport()
+	var _url: String
 
-	public init(_ url: String) {
-		self.transport = NSURLSessionTransport()
-		self.url = url
-		self.path = ""
-		self.headers = [:]
-		self.params = [NSURLQueryItem]()
+	var url: String {
+		return _url + path
 	}
 
-	public enum Verb: String {
-		case DELETE = "DELETE", GET = "GET", PATCH = "PATCH", POST = "POST",
-		PUT = "PUT"
+	public init(_ url: String) {
+		self._url = url
 	}
 
 	public func delete(
 		success: (Response -> ()), failure: (NSError -> ())? = nil) {
 
-		transport.send(
-			.DELETE, url: url, path: path, params: params, headers: headers,
-			body: nil, success: success, failure: failure)
+		let request = Request(
+			method: Request.Verb.DELETE, headers: headers, url: url,
+			params: params)
+
+		transport.send(request, success: success, failure: failure)
 	}
 
 	public func get(
 		success: (Response -> ()), failure: (NSError -> ())? = nil) {
 
-		transport.send(
-			.GET, url: url, path: path, params: params, headers: headers,
-			body: nil, success: success, failure: failure)
+		let request = Request(headers: headers, url: url, params: params)
+
+		transport.send(request, success: success, failure: failure)
 	}
 
 	public func header(name: String, _ value: String) -> Self {
@@ -61,13 +58,15 @@ public class Launchpad {
 		body: AnyObject, success: (Response -> ()),
 		failure: (NSError -> ())? = nil) {
 
-		transport.send(
-			.PATCH, url: url, path: path, params: params, headers: headers,
-			body: body, success: success, failure: failure)
+		let request = Request(
+			method: Request.Verb.PATCH, headers: headers, url: url,
+			params: params, body: body)
+
+		transport.send(request, success: success, failure: failure)
 	}
 
 	public func path(path: String) -> Self {
-		self.path = path
+		self.path += path
 
 		return self
 	}
@@ -76,18 +75,22 @@ public class Launchpad {
 		body: AnyObject, success: (Response -> ()),
 		failure: (NSError -> ())? = nil) {
 
-		transport.send(
-			.POST, url: url, path: path, params: params, headers: headers,
-			body: body, success: success, failure: failure)
+		let request = Request(
+			method: Request.Verb.POST, headers: headers, url: url,
+			params: params, body: body)
+
+		transport.send(request, success: success, failure: failure)
 	}
 
 	public func put(
 		body: AnyObject, success: (Response -> ()),
 		failure: (NSError -> ())? = nil) {
 
-		transport.send(
-			.PUT, url: url, path: path, params: params, headers: headers,
-			body: body, success: success, failure: failure)
+		let request = Request(
+			method: Request.Verb.PUT, headers: headers, url: url,
+			params: params, body: body)
+
+		transport.send(request, success: success, failure: failure)
 	}
 
 	public func use(transport: Transport) -> Self {

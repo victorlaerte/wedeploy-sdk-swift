@@ -24,6 +24,7 @@
 		CC0C23A11C3DA3AC00408177 /* BaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC324FFF1B023E0500883F53 /* BaseTest.swift */; settings = {ASSET_TAGS = (); }; };
 		CC0C23A31C3DA3AC00408177 /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC2A92581B55A8EB00388B82 /* settings.plist */; settings = {ASSET_TAGS = (); }; };
 		CC0C23A41C3DA3AC00408177 /* XCTestCaseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0631621AEB17530097D129 /* XCTestCaseExtension.swift */; settings = {ASSET_TAGS = (); }; };
+		CC0C23A81C3DB15300408177 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23A71C3DB15300408177 /* Request.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		CC0C237E1C3DA36400408177 /* Launchpad.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Launchpad.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC0C23871C3DA36400408177 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC0C23A51C3DA45100408177 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CC0C23A71C3DB15300408177 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		CC1E58471B612A220085AB5E /* FilterTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTest.swift; sourceTree = "<group>"; };
 		CC2A92581B55A8EB00388B82 /* settings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = settings.plist; sourceTree = "<group>"; };
 		CC324FFF1B023E0500883F53 /* BaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTest.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				CC4FA8FE1B594F5F0046BE23 /* Launchpad.swift */,
 				CCF0BBAD1B5E7E6C00AECB04 /* Response.swift */,
 				CC4FA9001B5975C90046BE23 /* Transport.swift */,
+				CC0C23A71C3DB15300408177 /* Request.swift */,
 			);
 			path = Launchpad;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				CC0C239A1C3DA39000408177 /* Transport.swift in Sources */,
 				CC0C23971C3DA38B00408177 /* Query.swift in Sources */,
 				CC0C23981C3DA39000408177 /* Launchpad.swift in Sources */,
+				CC0C23A81C3DB15300408177 /* Request.swift in Sources */,
 				CC0C23961C3DA38B00408177 /* Filter.swift in Sources */,
 				CC0C23991C3DA39000408177 /* Response.swift in Sources */,
 			);
