@@ -8,7 +8,7 @@ public class Launchpad {
 	var transport: Transport
 	var url: String
 
-	init(_ url: String) {
+	public init(_ url: String) {
 		self.transport = NSURLSessionTransport()
 		self.url = url
 		self.path = ""

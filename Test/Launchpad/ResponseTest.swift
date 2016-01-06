@@ -1,3 +1,4 @@
+@testable import Launchpad
 import XCTest
 
 class ResponseTest : XCTestCase {

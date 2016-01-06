@@ -1,3 +1,4 @@
+import Launchpad
 import XCTest
 
 class BaseTest : XCTestCase {
@@ -73,7 +74,7 @@ class BaseTest : XCTestCase {
 	}
 
 	private func _loadSettings() {
-		let bundle = NSBundle(identifier: "com.liferay.launchpad.Launchpad")
+		let bundle = NSBundle(identifier: "com.liferay.Launchpad.Tests")
 		let file = bundle!.pathForResource("settings", ofType: "plist")
 		let settings = NSDictionary(contentsOfFile: file!) as! [String: String]
 

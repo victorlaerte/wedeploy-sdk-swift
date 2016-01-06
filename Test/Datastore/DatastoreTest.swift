@@ -1,5 +1,6 @@
-import XCTest
 import later
+import Launchpad
+import XCTest
 
 class DatastoreTest : BaseTest {
 

@@ -10,7 +10,7 @@ public class Datastore {
 
 	let url: String
 
-	init(_ url: String) {
+	public init(_ url: String) {
 		self.url = url
 	}
 

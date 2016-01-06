@@ -4,7 +4,7 @@ public class Query : CustomStringConvertible {
 
 	var query = [String: AnyObject]()
 
-	var params: [NSURLQueryItem] {
+	public var params: [NSURLQueryItem] {
 		var items = [NSURLQueryItem]()
 
 		for (name, value) in query {
@@ -38,6 +38,8 @@ public class Query : CustomStringConvertible {
 
 		return NSString(data: data, encoding: NSUTF8StringEncoding)! as String
 	}
+
+	public init() {}
 
 	public func count() -> Self {
 		return type("count")

@@ -125,14 +125,14 @@ public class Filter : CustomStringConvertible, StringLiteralConvertible {
 
 }
 
-func &&(left: Filter, right: Filter) -> Filter {
+public func &&(left: Filter, right: Filter) -> Filter {
 	return left.and(right)
 }
 
-func ||(left: Filter, right: Filter) -> Filter {
+public func ||(left: Filter, right: Filter) -> Filter {
 	return left.or(right)
 }
 
-prefix func !(filter: Filter) -> Filter {
+public prefix func !(filter: Filter) -> Filter {
 	return filter.not()
 }

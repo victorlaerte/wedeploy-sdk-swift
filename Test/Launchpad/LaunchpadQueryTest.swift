@@ -1,3 +1,4 @@
+import Launchpad
 import XCTest
 
 class LaunchpadQueryTest : BaseTest {

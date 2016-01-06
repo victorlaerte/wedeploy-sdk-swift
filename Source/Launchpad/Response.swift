@@ -2,15 +2,15 @@ import Foundation
 
 public class Response {
 
-	var body: AnyObject?
-	let headers: [String: String]
-	let statusCode: Int
+	public private(set) var body: AnyObject?
+	public let headers: [String: String]
+	public let statusCode: Int
 
-	var contentType: String? {
+	public var contentType: String? {
 		return headers["Content-Type"]
 	}
 
-	var succeeded: Bool {
+	public var succeeded: Bool {
 		return (statusCode >= 200) && (statusCode <= 399)
 	}
 
