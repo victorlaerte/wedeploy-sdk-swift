@@ -66,8 +66,6 @@ public class NSURLSessionTransport : Transport {
 				success(response)
 			}
 		).resume()
-
-		return
 	}
 
 	func dispatchMainThread<T>(block: (T -> ())?) -> (Any? -> ()) {

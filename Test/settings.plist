@@ -3,8 +3,8 @@
 <plist version="1.0">
 <dict>
 	<key>server</key>
-	<string>http://localhost:8080</string>
+	<string>http://liferay.io</string>
 	<key>path</key>
-	<string>/datastore-mongo/books</string>
+	<string>/loop/books</string>
 </dict>
 </plist>
