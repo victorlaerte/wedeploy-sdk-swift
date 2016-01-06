@@ -68,6 +68,11 @@ class BaseTest : XCTestCase {
 	func assertBooks(
 		expected: [[String: NSObject]], result: [[String: AnyObject]]) {
 
+		if (expected.count != result.count) {
+			XCTFail("Number of books on the server is different than expected")
+			return
+		}
+
 		for (index, book) in result.enumerate() {
 			assertBook(expected[index], result: book)
 		}
