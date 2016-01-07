@@ -25,26 +25,6 @@ public class Datastore {
 		})
 	}
 
-	public func get(path: String, id: String) -> Promise<[String: AnyObject]> {
-		return Promise<[String: AnyObject]>(promise: { fulfill, reject in
-			let success = self.parse(fulfill, reject)
-
-			Launchpad(self.url).path("\(path)/\(id)").get(
-				success, failure: reject)
-		})
-	}
-
-	public func get(path: String, query: Query? = nil)
-		-> Promise<[[String: AnyObject]]> {
-
-		return Promise<[[String: AnyObject]]>(promise: { fulfill, reject in
-			let success = self.parse(fulfill, reject)
-
-			Launchpad(self.url).path(path).params(query?.params).get(
-				success, failure: reject)
-		})
-	}
-
 	public func remove(path: String, id: String) -> Promise<Response> {
 		return Promise<Response>(promise: { fulfill, reject in
 			Launchpad(self.url).path("\(path)/\(id)").delete(

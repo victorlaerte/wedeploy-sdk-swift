@@ -1,4 +1,5 @@
 import Foundation
+import later
 
 public class Launchpad {
 
@@ -26,12 +27,15 @@ public class Launchpad {
 		transport.send(request, success: success, failure: failure)
 	}
 
-	public func get(
-		success: (Response -> ()), failure: (NSError -> ())? = nil) {
+	public func get() -> Promise<Response> {
+		let promise = Promise<Response>(promise: { fulfill, reject in
+			let request = Request(
+				headers: self.headers, url: self.url, params: self.params)
 
-		let request = Request(headers: headers, url: url, params: params)
+			self.transport.send(request, success: fulfill, failure: reject)
+		})
 
-		transport.send(request, success: success, failure: failure)
+		return promise
 	}
 
 	public func header(name: String, _ value: String) -> Self {

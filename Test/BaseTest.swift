@@ -22,7 +22,7 @@ class BaseTest : XCTestCase {
 	var server: String!
 
 	override func setUp() {
-		_loadSettings()
+		loadSettings()
 
 		launchpad = Launchpad(server)
 		datastore = Datastore(server)
@@ -58,27 +58,47 @@ class BaseTest : XCTestCase {
 		}
 	}
 
-	func assertBook(
-		expected: [String: AnyObject], result: [String: AnyObject]) {
-
+	func assertBook(expected: [String: AnyObject], book: [String: AnyObject]) {
 		XCTAssertEqual(
-			expected["title"] as? String, result["title"] as? String)
+			expected["title"] as? String, book["title"] as? String)
+	}
+
+	func assertBook(expected: [String: AnyObject], response: Response) {
+		XCTAssertTrue(response.succeeded)
+
+		guard let book = response.body as? [String: AnyObject] else {
+			XCTFail("Response body could not be converted to a book")
+			return
+		}
+
+		assertBook(expected, book: book)
 	}
 
 	func assertBooks(
-		expected: [[String: NSObject]], result: [[String: AnyObject]]) {
+		expected: [[String: NSObject]], books: [[String: AnyObject]]) {
 
-		if (expected.count != result.count) {
+		if (expected.count != books.count) {
 			XCTFail("Number of books on the server is different than expected")
 			return
 		}
 
-		for (index, book) in result.enumerate() {
-			assertBook(expected[index], result: book)
+		for (index, book) in books.enumerate() {
+			assertBook(expected[index], book: book)
 		}
 	}
 
-	private func _loadSettings() {
+	func assertBooks(expected: [[String: NSObject]], response: Response) {
+		XCTAssertTrue(response.succeeded)
+
+		guard let books = response.body as? [[String: AnyObject]] else {
+			XCTFail("Response body could not be converted to array of books")
+			return
+		}
+
+		assertBooks(expected, books: books)
+	}
+
+	private func loadSettings() {
 		let bundle = NSBundle(identifier: "com.liferay.Launchpad.Tests")
 		let file = bundle!.pathForResource("settings", ofType: "plist")
 		let settings = NSDictionary(contentsOfFile: file!) as! [String: String]

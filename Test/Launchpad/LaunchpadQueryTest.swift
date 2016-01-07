@@ -10,11 +10,13 @@ class LaunchpadQueryTest : BaseTest {
 		launchpad
 			.path(path)
 			.params(query.params)
-			.get({ response in
+			.get()
+			.then { response in
 				XCTAssertTrue(response.succeeded)
 				XCTAssertEqual(2, response.body as? Int)
 				expectation.fulfill()
-			})
+			}
+			.done();
 
 		wait()
 	}

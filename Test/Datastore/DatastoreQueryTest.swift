@@ -7,11 +7,12 @@ class DatastoreQueryTest : BaseTest {
 		let expectation = expect("filter")
 		let query = Query().filter("year", self.booksToAdd.first!["year"]!)
 
-		datastore
-			.get(path, query: query)
-			.then { books -> () in
-				XCTAssertEqual(1, books.count)
-				self.assertBook(self.booksToAdd.first!, result: books.first!)
+		launchpad
+			.path(path)
+			.params(query.params)
+			.get()
+			.then { response in
+				self.assertBooks([self.booksToAdd.first!], response: response)
 				expectation.fulfill()
 			}
 		.done()
@@ -24,11 +25,12 @@ class DatastoreQueryTest : BaseTest {
 		let query = Query().filter(
 			Filter.gt("year", self.booksToAdd.last!["year"]!))
 
-		datastore
-			.get(path, query: query)
-			.then { books -> () in
-				XCTAssertEqual(1, books.count)
-				self.assertBook(self.booksToAdd.first!, result: books.first!)
+		launchpad
+			.path(path)
+			.params(query.params)
+			.get()
+			.then { response in
+				self.assertBooks([self.booksToAdd.first!], response: response)
 				expectation.fulfill()
 			}
 		.done()
@@ -40,11 +42,12 @@ class DatastoreQueryTest : BaseTest {
 		let expectation = expect("limit")
 		let query = Query().limit(1)
 
-		datastore
-			.get(path, query: query)
-			.then { books -> () in
-				XCTAssertEqual(1, books.count)
-				self.assertBook(self.booksToAdd.first!, result: books.first!)
+		launchpad
+			.path(path)
+			.params(query.params)
+			.get()
+			.then { response in
+				self.assertBooks([self.booksToAdd.first!], response: response)
 				expectation.fulfill()
 			}
 		.done()
@@ -59,11 +62,12 @@ class DatastoreQueryTest : BaseTest {
 			$0["title"] as! String > $1["title"] as! String
 		})
 
-		datastore
-			.get(path, query: query)
-			.then { books -> () in
-				XCTAssertEqual(self.booksToAdd.count, books.count)
-				self.assertBooks(sortedBooks, result: books)
+		launchpad
+			.path(path)
+			.params(query.params)
+			.get()
+			.then { response in
+				self.assertBooks(sortedBooks, response: response)
 				expectation.fulfill()
 			}
 		.done()

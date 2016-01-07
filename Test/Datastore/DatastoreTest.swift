@@ -11,7 +11,7 @@ class DatastoreTest : BaseTest {
 		datastore
 			.add(path, document: bookToAdd)
 			.then { book -> () in
-				self.assertBook(bookToAdd, result: book)
+				self.assertBook(bookToAdd, book: book)
 				self.books.append(book)
 				expectation.fulfill()
 			}
@@ -28,7 +28,7 @@ class DatastoreTest : BaseTest {
 			.add(path, document: bookToAdd)
 
 			.then { book -> Promise<[String: AnyObject]> in
-				self.assertBook(bookToAdd, result: book)
+				self.assertBook(bookToAdd, book: book)
 				self.books.append(book)
 				bookToAdd["title"] = "La fiesta del chivo"
 
@@ -37,7 +37,7 @@ class DatastoreTest : BaseTest {
 			}
 
 			.then { updatedBook -> Promise<Response> in
-				self.assertBook(bookToAdd, result: updatedBook)
+				self.assertBook(bookToAdd, book: updatedBook)
 				let id = updatedBook["id"]! as! String
 
 				return self.datastore.remove(self.path, id: id)
@@ -62,10 +62,12 @@ class DatastoreTest : BaseTest {
 
 		let id = book["id"] as! String
 
-		datastore
-			.get(path, id: id)
-			.then { book -> () in
-				self.assertBook(self.booksToAdd.first!, result: book)
+		launchpad
+			.path(path)
+			.path("/\(id)")
+			.get()
+			.then { response in
+				self.assertBook(self.booksToAdd.first!, response: response)
 				expectation.fulfill()
 			}
 		.done()
@@ -76,11 +78,11 @@ class DatastoreTest : BaseTest {
 	func testList() {
 		let expectation = expect("list")
 
-		datastore
-			.get(path)
-			.then { books -> () in
-				XCTAssertEqual(self.booksToAdd.count, books.count)
-				self.assertBook(self.booksToAdd.first!, result: books.first!)
+		launchpad
+			.path(path)
+			.get()
+			.then { response in
+				self.assertBooks(self.booksToAdd, response: response)
 				expectation.fulfill()
 			}
 		.done()
@@ -97,8 +99,10 @@ class DatastoreTest : BaseTest {
 
 		let id = book["id"] as! String
 
-		datastore
-			.get(path, id: id)
+		launchpad
+			.path(path)
+			.path("/\(id)")
+			.get()
 		.done { value, error in
 			XCTAssertTrue(NSThread.isMainThread())
 			expectation.fulfill()
@@ -142,7 +146,7 @@ class DatastoreTest : BaseTest {
 		datastore
 			.update(path, id: id, document: book)
 			.then { updatedBook -> () in
-				self.assertBook(book, result: updatedBook)
+				self.assertBook(book, book: updatedBook)
 				expectation.fulfill()
 			}
 		.done()
