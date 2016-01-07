@@ -9,7 +9,6 @@ class DatastoreTest : BaseTest {
 		let bookToAdd = booksToAdd.first!
 
 		launchpad
-			.path(path)
 			.post(bookToAdd)
 			.then { response in
 				self.assertBook(bookToAdd, response: response)
@@ -25,7 +24,6 @@ class DatastoreTest : BaseTest {
 		var bookToAdd = booksToAdd.first!
 
 		launchpad
-			.path(path)
 			.post(bookToAdd)
 
 			.then { response -> Promise<Response> in
@@ -33,8 +31,7 @@ class DatastoreTest : BaseTest {
 				bookToAdd["title"] = "La fiesta del chivo"
 				let id = book!["id"] as! String
 
-				return Launchpad(self.server)
-					.path(self.path)
+				return self.launchpad
 					.path("/\(id)")
 					.put(bookToAdd)
 			}
@@ -43,8 +40,7 @@ class DatastoreTest : BaseTest {
 				let updatedBook = self.assertBook(bookToAdd, response: response)
 				let id = updatedBook!["id"]! as! String
 
-				return Launchpad(self.server)
-					.path(self.path)
+				return self.launchpad
 					.path("/\(id)")
 					.delete()
 			}
@@ -69,7 +65,6 @@ class DatastoreTest : BaseTest {
 		let id = book["id"] as! String
 
 		launchpad
-			.path(path)
 			.path("/\(id)")
 			.get()
 			.then { response in
@@ -85,7 +80,6 @@ class DatastoreTest : BaseTest {
 		let expectation = expect("list")
 
 		launchpad
-			.path(path)
 			.get()
 			.then { response in
 				self.assertBooks(self.booksToAdd, response: response)
@@ -106,7 +100,6 @@ class DatastoreTest : BaseTest {
 		let id = book["id"] as! String
 
 		launchpad
-			.path(path)
 			.path("/\(id)")
 			.get()
 		.done { value, error in
@@ -127,7 +120,6 @@ class DatastoreTest : BaseTest {
 		let id = book["id"] as! String
 
 		launchpad
-			.path(path)
 			.path("/\(id)")
 			.delete()
 			.then { response in
@@ -152,7 +144,6 @@ class DatastoreTest : BaseTest {
 		let id = book["id"] as! String
 
 		launchpad
-			.path(path)
 			.path("/\(id)")
 			.put(book)
 			.then { response in

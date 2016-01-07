@@ -8,7 +8,6 @@ class LaunchpadQueryTest : BaseTest {
 		let query = Query().count()
 
 		launchpad
-			.path(path)
 			.params(query.params)
 			.get()
 			.then { response in

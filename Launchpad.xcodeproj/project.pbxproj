@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		A125ADF14A627DF6AD99699B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0CDEE64BB19267687ADF48 /* Pods.framework */; };
 		CC0C23881C3DA36400408177 /* Launchpad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC0C237E1C3DA36400408177 /* Launchpad.framework */; settings = {ASSET_TAGS = (); }; };
-		CC0C23951C3DA38700408177 /* Datastore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4FA8D81B5949840046BE23 /* Datastore.swift */; settings = {ASSET_TAGS = (); }; };
 		CC0C23961C3DA38B00408177 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68C5D61B5FE9C9006A0569 /* Filter.swift */; settings = {ASSET_TAGS = (); }; };
 		CC0C23971C3DA38B00408177 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4FA8DA1B5949840046BE23 /* Query.swift */; settings = {ASSET_TAGS = (); }; };
 		CC0C23981C3DA39000408177 /* Launchpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4FA8FE1B594F5F0046BE23 /* Launchpad.swift */; settings = {ASSET_TAGS = (); }; };
@@ -49,7 +48,6 @@
 		CC1E58471B612A220085AB5E /* FilterTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTest.swift; sourceTree = "<group>"; };
 		CC2A92581B55A8EB00388B82 /* settings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = settings.plist; sourceTree = "<group>"; };
 		CC324FFF1B023E0500883F53 /* BaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTest.swift; sourceTree = "<group>"; };
-		CC4FA8D81B5949840046BE23 /* Datastore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Datastore.swift; sourceTree = "<group>"; };
 		CC4FA8DA1B5949840046BE23 /* Query.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
 		CC4FA8DF1B594A710046BE23 /* QueryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryTest.swift; sourceTree = "<group>"; };
 		CC4FA8FE1B594F5F0046BE23 /* Launchpad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Launchpad.swift; sourceTree = "<group>"; };
@@ -96,7 +94,6 @@
 		CC4FA8D71B5949840046BE23 /* Datastore */ = {
 			isa = PBXGroup;
 			children = (
-				CC4FA8D81B5949840046BE23 /* Datastore.swift */,
 				CC68C5D61B5FE9C9006A0569 /* Filter.swift */,
 				CC4FA8DA1B5949840046BE23 /* Query.swift */,
 			);
@@ -330,7 +327,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC0C23951C3DA38700408177 /* Datastore.swift in Sources */,
 				CC0C239A1C3DA39000408177 /* Transport.swift in Sources */,
 				CC0C23971C3DA38B00408177 /* Query.swift in Sources */,
 				CC0C23981C3DA39000408177 /* Launchpad.swift in Sources */,

@@ -8,7 +8,6 @@ class DatastoreQueryTest : BaseTest {
 		let query = Query().filter("year", self.booksToAdd.first!["year"]!)
 
 		launchpad
-			.path(path)
 			.params(query.params)
 			.get()
 			.then { response in
@@ -26,7 +25,6 @@ class DatastoreQueryTest : BaseTest {
 			Filter.gt("year", self.booksToAdd.last!["year"]!))
 
 		launchpad
-			.path(path)
 			.params(query.params)
 			.get()
 			.then { response in
@@ -43,7 +41,6 @@ class DatastoreQueryTest : BaseTest {
 		let query = Query().limit(1)
 
 		launchpad
-			.path(path)
 			.params(query.params)
 			.get()
 			.then { response in
@@ -63,7 +60,6 @@ class DatastoreQueryTest : BaseTest {
 		})
 
 		launchpad
-			.path(path)
 			.params(query.params)
 			.get()
 			.then { response in

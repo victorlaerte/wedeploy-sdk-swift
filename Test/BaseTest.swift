@@ -16,24 +16,21 @@ class BaseTest : XCTestCase {
 		]
 	]
 
-	var datastore: Datastore!
-	var launchpad: Launchpad!
+	var launchpad: Launchpad {
+		return Launchpad(server).path(path)
+	}
+
 	var path: String!
 	var server: String!
 
 	override func setUp() {
 		loadSettings()
-
-		launchpad = Launchpad(server)
-		datastore = Datastore(server)
-
 		deleteAllBooks()
 
 		for bookToAdd in booksToAdd {
 			let expectation = expect("setUp")
 
-			Launchpad(server)
-				.path(path)
+			launchpad
 				.post(bookToAdd)
 				.then { response in
 					self.books.append(response.body as! [String: AnyObject])
@@ -47,11 +44,6 @@ class BaseTest : XCTestCase {
 
 	override func tearDown() {
 		deleteAllBooks()
-	}
-
-	func assertBook(expected: [String: AnyObject], book: [String: AnyObject]) {
-		XCTAssertEqual(
-			expected["title"] as? String, book["title"] as? String)
 	}
 
 	func assertBook(expected: [String: AnyObject], response: Response)
@@ -69,35 +61,38 @@ class BaseTest : XCTestCase {
 		return book
 	}
 
-	func assertBooks(
-		expected: [[String: NSObject]], books: [[String: AnyObject]]) {
+	func assertBooks(expected: [[String: NSObject]], response: Response)
+		-> [[String: AnyObject]]? {
+
+		XCTAssertTrue(response.succeeded)
+
+		guard let books = response.body as? [[String: AnyObject]] else {
+			XCTFail("Response body could not be converted to array of books")
+			return nil
+		}
 
 		if (expected.count != books.count) {
 			XCTFail("Number of books on the server is different than expected")
-			return
+			return nil
 		}
 
 		for (index, book) in books.enumerate() {
 			assertBook(expected[index], book: book)
 		}
+
+		return books
 	}
 
-	func assertBooks(expected: [[String: NSObject]], response: Response) {
-		XCTAssertTrue(response.succeeded)
+	private func assertBook(
+		expected: [String: AnyObject], book: [String: AnyObject]) {
 
-		guard let books = response.body as? [[String: AnyObject]] else {
-			XCTFail("Response body could not be converted to array of books")
-			return
-		}
-
-		assertBooks(expected, books: books)
+		XCTAssertEqual(expected["title"] as? String, book["title"] as? String)
 	}
 
 	private func deleteAllBooks() {
 		let expectation = expect("tearDown")
 
-		Launchpad(server)
-			.path(path)
+		launchpad
 			.delete()
 			.then { status -> () in
 				expectation.fulfill()
