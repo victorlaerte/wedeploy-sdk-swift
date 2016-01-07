@@ -27,6 +27,8 @@ class BaseTest : XCTestCase {
 		launchpad = Launchpad(server)
 		datastore = Datastore(server)
 
+		deleteAllBooks()
+
 		for bookToAdd in booksToAdd {
 			let expectation = expect("setUp")
 
@@ -43,21 +45,7 @@ class BaseTest : XCTestCase {
 	}
 
 	override func tearDown() {
-		for book in books {
-			let expectation = expect("tearDown")
-			let id = book["id"] as! String
-
-			Launchpad(server)
-				.path(path)
-				.path("/\(id)")
-				.delete()
-				.then { status -> () in
-					expectation.fulfill()
-				}
-			.done()
-
-			wait()
-		}
+		deleteAllBooks()
 	}
 
 	func assertBook(expected: [String: AnyObject], book: [String: AnyObject]) {
@@ -98,6 +86,20 @@ class BaseTest : XCTestCase {
 		}
 
 		assertBooks(expected, books: books)
+	}
+
+	private func deleteAllBooks() {
+		let expectation = expect("tearDown")
+
+		Launchpad(server)
+			.path(path)
+			.delete()
+			.then { status -> () in
+				expectation.fulfill()
+			}
+		.done()
+
+		wait()
 	}
 
 	private func loadSettings() {
