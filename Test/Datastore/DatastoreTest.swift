@@ -10,7 +10,7 @@ class DatastoreTest : BaseTest {
 
 		datastore
 			.add(path, document: bookToAdd)
-			.then { book -> () in
+			.then { book in
 				self.assertBook(bookToAdd, book: book)
 				self.books.append(book)
 				expectation.fulfill()
@@ -40,10 +40,13 @@ class DatastoreTest : BaseTest {
 				self.assertBook(bookToAdd, book: updatedBook)
 				let id = updatedBook["id"]! as! String
 
-				return self.datastore.remove(self.path, id: id)
+				return Launchpad(self.server)
+					.path(self.path)
+					.path("/\(id)")
+					.delete()
 			}
 
-			.then { response -> () in
+			.then { response in
 				XCTAssertTrue(response.succeeded)
 				XCTAssertEqual(204, response.statusCode)
 				expectation.fulfill()
@@ -111,8 +114,8 @@ class DatastoreTest : BaseTest {
 		wait()
 	}
 
-	func testRemove() {
-		let expectation = expect("remove")
+	func testDelete() {
+		let expectation = expect("delete")
 
 		guard let book = books.first else {
 			return
@@ -120,9 +123,11 @@ class DatastoreTest : BaseTest {
 
 		let id = book["id"] as! String
 
-		datastore
-			.remove(path, id: id)
-			.then { response -> () in
+		launchpad
+			.path(path)
+			.path("/\(id)")
+			.delete()
+			.then { response in
 				XCTAssertTrue(response.succeeded)
 				XCTAssertEqual(204, response.statusCode)
 				expectation.fulfill()
@@ -145,7 +150,7 @@ class DatastoreTest : BaseTest {
 
 		datastore
 			.update(path, id: id, document: book)
-			.then { updatedBook -> () in
+			.then { updatedBook in
 				self.assertBook(book, book: updatedBook)
 				expectation.fulfill()
 			}

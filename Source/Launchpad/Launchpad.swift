@@ -17,14 +17,16 @@ public class Launchpad {
 		self._url = url
 	}
 
-	public func delete(
-		success: (Response -> ()), failure: (NSError -> ())? = nil) {
+	public func delete() -> Promise<Response> {
+		let promise = Promise<Response>(promise: { fulfill, reject in
+			let request = Request(
+				method: Request.Verb.DELETE, headers: self.headers,
+				url: self.url, params: self.params)
 
-		let request = Request(
-			method: Request.Verb.DELETE, headers: headers, url: url,
-			params: params)
+			self.transport.send(request, success: fulfill, failure: reject)
+		})
 
-		transport.send(request, success: success, failure: failure)
+		return promise
 	}
 
 	public func get() -> Promise<Response> {

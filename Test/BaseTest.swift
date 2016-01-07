@@ -47,8 +47,10 @@ class BaseTest : XCTestCase {
 			let expectation = expect("tearDown")
 			let id = book["id"] as! String
 
-			datastore
-				.remove(path, id: id)
+			Launchpad(server)
+				.path(path)
+				.path("/\(id)")
+				.delete()
 				.then { status -> () in
 					expectation.fulfill()
 				}

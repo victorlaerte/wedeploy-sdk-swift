@@ -25,13 +25,6 @@ public class Datastore {
 		})
 	}
 
-	public func remove(path: String, id: String) -> Promise<Response> {
-		return Promise<Response>(promise: { fulfill, reject in
-			Launchpad(self.url).path("\(path)/\(id)").delete(
-				fulfill, failure: reject)
-		})
-	}
-
 	public func update(path: String, id: String, document: AnyObject)
 		-> Promise<[String: AnyObject]> {
 
