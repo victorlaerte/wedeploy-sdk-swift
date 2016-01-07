@@ -60,15 +60,16 @@ public class Launchpad {
 		return self
 	}
 
-	public func patch(
-		body: AnyObject, success: (Response -> ()),
-		failure: (NSError -> ())? = nil) {
+	public func patch(body: AnyObject?) -> Promise<Response> {
+		let promise = Promise<Response>(promise: { fulfill, reject in
+			let request = Request(
+				method: Request.Verb.PATCH, headers: self.headers,
+				url: self.url, params: self.params, body: body)
 
-		let request = Request(
-			method: Request.Verb.PATCH, headers: headers, url: url,
-			params: params, body: body)
+			self.transport.send(request, success: fulfill, failure: reject)
+		})
 
-		transport.send(request, success: success, failure: failure)
+		return promise
 	}
 
 	public func path(path: String) -> Self {
@@ -77,26 +78,28 @@ public class Launchpad {
 		return self
 	}
 
-	public func post(
-		body: AnyObject, success: (Response -> ()),
-		failure: (NSError -> ())? = nil) {
+	public func post(body: AnyObject?) -> Promise<Response> {
+		let promise = Promise<Response>(promise: { fulfill, reject in
+			let request = Request(
+				method: Request.Verb.POST, headers: self.headers, url: self.url,
+				params: self.params, body: body)
 
-		let request = Request(
-			method: Request.Verb.POST, headers: headers, url: url,
-			params: params, body: body)
+			self.transport.send(request, success: fulfill, failure: reject)
+		})
 
-		transport.send(request, success: success, failure: failure)
+		return promise
 	}
 
-	public func put(
-		body: AnyObject, success: (Response -> ()),
-		failure: (NSError -> ())? = nil) {
+	public func put(body: AnyObject?) -> Promise<Response> {
+		let promise = Promise<Response>(promise: { fulfill, reject in
+			let request = Request(
+				method: Request.Verb.PUT, headers: self.headers, url: self.url,
+				params: self.params, body: body)
 
-		let request = Request(
-			method: Request.Verb.PUT, headers: headers, url: url,
-			params: params, body: body)
+			self.transport.send(request, success: fulfill, failure: reject)
+		})
 
-		transport.send(request, success: success, failure: failure)
+		return promise
 	}
 
 	public func use(transport: Transport) -> Self {

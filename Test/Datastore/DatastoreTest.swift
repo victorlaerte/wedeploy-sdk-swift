@@ -8,11 +8,11 @@ class DatastoreTest : BaseTest {
 		let expectation = expect("add")
 		let bookToAdd = booksToAdd.first!
 
-		datastore
-			.add(path, document: bookToAdd)
-			.then { book in
-				self.assertBook(bookToAdd, book: book)
-				self.books.append(book)
+		launchpad
+			.path(path)
+			.post(bookToAdd)
+			.then { response in
+				self.assertBook(bookToAdd, response: response)
 				expectation.fulfill()
 			}
 		.done()
@@ -24,21 +24,24 @@ class DatastoreTest : BaseTest {
 		let expectation = expect("add")
 		var bookToAdd = booksToAdd.first!
 
-		datastore
-			.add(path, document: bookToAdd)
+		launchpad
+			.path(path)
+			.post(bookToAdd)
 
-			.then { book -> Promise<[String: AnyObject]> in
-				self.assertBook(bookToAdd, book: book)
-				self.books.append(book)
+			.then { response -> Promise<Response> in
+				let book = self.assertBook(bookToAdd, response: response)
 				bookToAdd["title"] = "La fiesta del chivo"
+				let id = book!["id"] as! String
 
-				return self.datastore.update(
-					self.path, id: book["id"]! as! String, document: bookToAdd)
+				return Launchpad(self.server)
+					.path(self.path)
+					.path("/\(id)")
+					.put(bookToAdd)
 			}
 
-			.then { updatedBook -> Promise<Response> in
-				self.assertBook(bookToAdd, book: updatedBook)
-				let id = updatedBook["id"]! as! String
+			.then { response -> Promise<Response> in
+				let updatedBook = self.assertBook(bookToAdd, response: response)
+				let id = updatedBook!["id"]! as! String
 
 				return Launchpad(self.server)
 					.path(self.path)
@@ -148,10 +151,12 @@ class DatastoreTest : BaseTest {
 
 		let id = book["id"] as! String
 
-		datastore
-			.update(path, id: id, document: book)
-			.then { updatedBook in
-				self.assertBook(book, book: updatedBook)
+		launchpad
+			.path(path)
+			.path("/\(id)")
+			.put(book)
+			.then { response in
+				self.assertBook(book, response: response)
 				expectation.fulfill()
 			}
 		.done()

@@ -14,28 +14,6 @@ public class Datastore {
 		self.url = url
 	}
 
-	public func add(path: String, document: AnyObject)
-		-> Promise<[String: AnyObject]> {
-
-		return Promise<[String: AnyObject]>(promise: { fulfill, reject in
-			let success = self.parse(fulfill, reject)
-
-			Launchpad(self.url).path(path).post(
-				document, success: success, failure: reject)
-		})
-	}
-
-	public func update(path: String, id: String, document: AnyObject)
-		-> Promise<[String: AnyObject]> {
-
-		return Promise<[String: AnyObject]>(promise: { fulfill, reject in
-			let success = self.parse(fulfill, reject)
-
-			Launchpad(self.url).path("\(path)/\(id)").put(
-				document, success: success, failure: reject)
-		})
-	}
-
 	func parse<T>(fulfill: (T) -> (), _ reject: (NSError) -> ())
 		-> (Response) -> () {
 

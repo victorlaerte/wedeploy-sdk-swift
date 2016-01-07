@@ -32,10 +32,11 @@ class BaseTest : XCTestCase {
 		for bookToAdd in booksToAdd {
 			let expectation = expect("setUp")
 
-			datastore
-				.add(path, document: bookToAdd)
-				.then { book -> () in
-					self.books.append(book)
+			Launchpad(server)
+				.path(path)
+				.post(bookToAdd)
+				.then { response in
+					self.books.append(response.body as! [String: AnyObject])
 					expectation.fulfill()
 				}
 			.done()
@@ -53,15 +54,19 @@ class BaseTest : XCTestCase {
 			expected["title"] as? String, book["title"] as? String)
 	}
 
-	func assertBook(expected: [String: AnyObject], response: Response) {
+	func assertBook(expected: [String: AnyObject], response: Response)
+		-> [String: AnyObject]? {
+
 		XCTAssertTrue(response.succeeded)
 
 		guard let book = response.body as? [String: AnyObject] else {
 			XCTFail("Response body could not be converted to a book")
-			return
+			return nil
 		}
 
 		assertBook(expected, book: book)
+
+		return book
 	}
 
 	func assertBooks(
