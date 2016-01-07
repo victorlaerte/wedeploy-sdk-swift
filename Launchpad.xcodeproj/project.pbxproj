@@ -9,21 +9,20 @@
 /* Begin PBXBuildFile section */
 		A125ADF14A627DF6AD99699B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0CDEE64BB19267687ADF48 /* Pods.framework */; };
 		CC0C23881C3DA36400408177 /* Launchpad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC0C237E1C3DA36400408177 /* Launchpad.framework */; settings = {ASSET_TAGS = (); }; };
-		CC0C23961C3DA38B00408177 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68C5D61B5FE9C9006A0569 /* Filter.swift */; settings = {ASSET_TAGS = (); }; };
-		CC0C23971C3DA38B00408177 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4FA8DA1B5949840046BE23 /* Query.swift */; settings = {ASSET_TAGS = (); }; };
-		CC0C23981C3DA39000408177 /* Launchpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4FA8FE1B594F5F0046BE23 /* Launchpad.swift */; settings = {ASSET_TAGS = (); }; };
-		CC0C23991C3DA39000408177 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF0BBAD1B5E7E6C00AECB04 /* Response.swift */; settings = {ASSET_TAGS = (); }; };
-		CC0C239A1C3DA39000408177 /* Transport.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4FA9001B5975C90046BE23 /* Transport.swift */; settings = {ASSET_TAGS = (); }; };
-		CC0C239B1C3DA3A200408177 /* DatastoreQueryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68C5D21B5FD45B006A0569 /* DatastoreQueryTest.swift */; settings = {ASSET_TAGS = (); }; };
-		CC0C239C1C3DA3A200408177 /* DatastoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6725301B5D426C0001DB84 /* DatastoreTest.swift */; settings = {ASSET_TAGS = (); }; };
-		CC0C239D1C3DA3A200408177 /* FilterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1E58471B612A220085AB5E /* FilterTest.swift */; settings = {ASSET_TAGS = (); }; };
-		CC0C239E1C3DA3A200408177 /* QueryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4FA8DF1B594A710046BE23 /* QueryTest.swift */; settings = {ASSET_TAGS = (); }; };
-		CC0C239F1C3DA3A800408177 /* LaunchpadQueryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC68C5D41B5FDACC006A0569 /* LaunchpadQueryTest.swift */; settings = {ASSET_TAGS = (); }; };
-		CC0C23A01C3DA3A800408177 /* ResponseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF252351B5ED15F00A9E6AC /* ResponseTest.swift */; settings = {ASSET_TAGS = (); }; };
-		CC0C23A11C3DA3AC00408177 /* BaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC324FFF1B023E0500883F53 /* BaseTest.swift */; settings = {ASSET_TAGS = (); }; };
-		CC0C23A31C3DA3AC00408177 /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC2A92581B55A8EB00388B82 /* settings.plist */; settings = {ASSET_TAGS = (); }; };
 		CC0C23A41C3DA3AC00408177 /* XCTestCaseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0631621AEB17530097D129 /* XCTestCaseExtension.swift */; settings = {ASSET_TAGS = (); }; };
-		CC0C23A81C3DB15300408177 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23A71C3DB15300408177 /* Request.swift */; settings = {ASSET_TAGS = (); }; };
+		CC0C23AC1C3F0B8600408177 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23AA1C3F0B8600408177 /* Filter.swift */; settings = {ASSET_TAGS = (); }; };
+		CC0C23AD1C3F0B8600408177 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23AB1C3F0B8600408177 /* Query.swift */; settings = {ASSET_TAGS = (); }; };
+		CC0C23B31C3F0C1B00408177 /* Launchpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23AE1C3F0C1B00408177 /* Launchpad.swift */; settings = {ASSET_TAGS = (); }; };
+		CC0C23B41C3F0C1B00408177 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23B01C3F0C1B00408177 /* Request.swift */; settings = {ASSET_TAGS = (); }; };
+		CC0C23B51C3F0C1B00408177 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23B11C3F0C1B00408177 /* Response.swift */; settings = {ASSET_TAGS = (); }; };
+		CC0C23B61C3F0C1B00408177 /* Transport.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23B21C3F0C1B00408177 /* Transport.swift */; settings = {ASSET_TAGS = (); }; };
+		CC0C23C41C3F0D4500408177 /* FilterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23BC1C3F0D3300408177 /* FilterTest.swift */; settings = {ASSET_TAGS = (); }; };
+		CC0C23C51C3F0D4900408177 /* QueryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23BD1C3F0D3300408177 /* QueryTest.swift */; settings = {ASSET_TAGS = (); }; };
+		CC0C23CE1C3F0EC700408177 /* BaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23C71C3F0EC700408177 /* BaseTest.swift */; settings = {ASSET_TAGS = (); }; };
+		CC0C23CF1C3F0EC700408177 /* LaunchpadQueryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23C81C3F0EC700408177 /* LaunchpadQueryTest.swift */; settings = {ASSET_TAGS = (); }; };
+		CC0C23D11C3F0EC700408177 /* LaunchpadTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23CA1C3F0EC700408177 /* LaunchpadTest.swift */; settings = {ASSET_TAGS = (); }; };
+		CC0C23D21C3F0EC700408177 /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC0C23CB1C3F0EC700408177 /* settings.plist */; settings = {ASSET_TAGS = (); }; };
+		CC0C23D31C3F0EC700408177 /* ResponseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23CD1C3F0EC700408177 /* ResponseTest.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,22 +42,21 @@
 		CC0C23771C3DA0C700408177 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		CC0C237E1C3DA36400408177 /* Launchpad.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Launchpad.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC0C23871C3DA36400408177 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CC0C23A51C3DA45100408177 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CC0C23A71C3DB15300408177 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
-		CC1E58471B612A220085AB5E /* FilterTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTest.swift; sourceTree = "<group>"; };
-		CC2A92581B55A8EB00388B82 /* settings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = settings.plist; sourceTree = "<group>"; };
-		CC324FFF1B023E0500883F53 /* BaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTest.swift; sourceTree = "<group>"; };
-		CC4FA8DA1B5949840046BE23 /* Query.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
-		CC4FA8DF1B594A710046BE23 /* QueryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryTest.swift; sourceTree = "<group>"; };
-		CC4FA8FE1B594F5F0046BE23 /* Launchpad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Launchpad.swift; sourceTree = "<group>"; };
-		CC4FA9001B5975C90046BE23 /* Transport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transport.swift; sourceTree = "<group>"; };
-		CC6725301B5D426C0001DB84 /* DatastoreTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatastoreTest.swift; sourceTree = "<group>"; };
-		CC68C5D21B5FD45B006A0569 /* DatastoreQueryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatastoreQueryTest.swift; sourceTree = "<group>"; };
-		CC68C5D41B5FDACC006A0569 /* LaunchpadQueryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchpadQueryTest.swift; sourceTree = "<group>"; };
-		CC68C5D61B5FE9C9006A0569 /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		CC0C23AA1C3F0B8600408177 /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		CC0C23AB1C3F0B8600408177 /* Query.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
+		CC0C23AE1C3F0C1B00408177 /* Launchpad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Launchpad.swift; sourceTree = "<group>"; };
+		CC0C23B01C3F0C1B00408177 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		CC0C23B11C3F0C1B00408177 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		CC0C23B21C3F0C1B00408177 /* Transport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transport.swift; sourceTree = "<group>"; };
+		CC0C23B71C3F0C5800408177 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CC0C23BC1C3F0D3300408177 /* FilterTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTest.swift; sourceTree = "<group>"; };
+		CC0C23BD1C3F0D3300408177 /* QueryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryTest.swift; sourceTree = "<group>"; };
+		CC0C23C71C3F0EC700408177 /* BaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTest.swift; sourceTree = "<group>"; };
+		CC0C23C81C3F0EC700408177 /* LaunchpadQueryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchpadQueryTest.swift; sourceTree = "<group>"; };
+		CC0C23CA1C3F0EC700408177 /* LaunchpadTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchpadTest.swift; sourceTree = "<group>"; };
+		CC0C23CB1C3F0EC700408177 /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = settings.plist; sourceTree = "<group>"; };
+		CC0C23CD1C3F0EC700408177 /* ResponseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseTest.swift; sourceTree = "<group>"; };
 		CCA17B9F1ADEC3D7000BF430 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CCF0BBAD1B5E7E6C00AECB04 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
-		CCF252351B5ED15F00A9E6AC /* ResponseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseTest.swift; sourceTree = "<group>"; };
 		CD79956EE6E5186CF6082E3D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,35 +89,51 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		CC4FA8D71B5949840046BE23 /* Datastore */ = {
+		CC0C23A91C3F0B8600408177 /* Query */ = {
 			isa = PBXGroup;
 			children = (
-				CC68C5D61B5FE9C9006A0569 /* Filter.swift */,
-				CC4FA8DA1B5949840046BE23 /* Query.swift */,
+				CC0C23AA1C3F0B8600408177 /* Filter.swift */,
+				CC0C23AB1C3F0B8600408177 /* Query.swift */,
 			);
-			path = Datastore;
+			path = Query;
 			sourceTree = "<group>";
 		};
-		CC4FA8DE1B594A710046BE23 /* Datastore */ = {
+		CC0C23AF1C3F0C1B00408177 /* Transport */ = {
 			isa = PBXGroup;
 			children = (
-				CC68C5D21B5FD45B006A0569 /* DatastoreQueryTest.swift */,
-				CC6725301B5D426C0001DB84 /* DatastoreTest.swift */,
-				CC1E58471B612A220085AB5E /* FilterTest.swift */,
-				CC4FA8DF1B594A710046BE23 /* QueryTest.swift */,
+				CC0C23B01C3F0C1B00408177 /* Request.swift */,
+				CC0C23B11C3F0C1B00408177 /* Response.swift */,
+				CC0C23B21C3F0C1B00408177 /* Transport.swift */,
 			);
-			path = Datastore;
+			path = Transport;
 			sourceTree = "<group>";
 		};
-		CC4FA8FD1B594EF40046BE23 /* Launchpad */ = {
+		CC0C23B91C3F0D3300408177 /* Query */ = {
 			isa = PBXGroup;
 			children = (
-				CC4FA8FE1B594F5F0046BE23 /* Launchpad.swift */,
-				CCF0BBAD1B5E7E6C00AECB04 /* Response.swift */,
-				CC4FA9001B5975C90046BE23 /* Transport.swift */,
-				CC0C23A71C3DB15300408177 /* Request.swift */,
+				CC0C23BC1C3F0D3300408177 /* FilterTest.swift */,
+				CC0C23BD1C3F0D3300408177 /* QueryTest.swift */,
 			);
-			path = Launchpad;
+			path = Query;
+			sourceTree = "<group>";
+		};
+		CC0C23C61C3F0EC700408177 /* Integration */ = {
+			isa = PBXGroup;
+			children = (
+				CC0C23C71C3F0EC700408177 /* BaseTest.swift */,
+				CC0C23C81C3F0EC700408177 /* LaunchpadQueryTest.swift */,
+				CC0C23CA1C3F0EC700408177 /* LaunchpadTest.swift */,
+				CC0C23CB1C3F0EC700408177 /* settings.plist */,
+			);
+			path = Integration;
+			sourceTree = "<group>";
+		};
+		CC0C23CC1C3F0EC700408177 /* Transport */ = {
+			isa = PBXGroup;
+			children = (
+				CC0C23CD1C3F0EC700408177 /* ResponseTest.swift */,
+			);
+			path = Transport;
 			sourceTree = "<group>";
 		};
 		CC6004E31ADEC22200B8F2E5 = {
@@ -130,6 +144,7 @@
 				CC6004EE1ADEC22200B8F2E5 /* Products */,
 				764BA809B880989888C759B0 /* Pods */,
 				D96E3C835BA597F43766E24B /* Frameworks */,
+				CC0C23B71C3F0C5800408177 /* Info.plist */,
 				CC0C23771C3DA0C700408177 /* Podfile */,
 			);
 			sourceTree = "<group>";
@@ -146,9 +161,9 @@
 		CCA17B991ADEC3CB000BF430 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				CC4FA8D71B5949840046BE23 /* Datastore */,
-				CC4FA8FD1B594EF40046BE23 /* Launchpad */,
-				CC0C23A51C3DA45100408177 /* Info.plist */,
+				CC0C23A91C3F0B8600408177 /* Query */,
+				CC0C23AF1C3F0C1B00408177 /* Transport */,
+				CC0C23AE1C3F0C1B00408177 /* Launchpad.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -156,23 +171,13 @@
 		CCA17B9E1ADEC3D7000BF430 /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				CC4FA8DE1B594A710046BE23 /* Datastore */,
-				CCF252341B5ED15F00A9E6AC /* Launchpad */,
-				CC324FFF1B023E0500883F53 /* BaseTest.swift */,
+				CC0C23C61C3F0EC700408177 /* Integration */,
+				CC0C23B91C3F0D3300408177 /* Query */,
+				CC0C23CC1C3F0EC700408177 /* Transport */,
 				CCA17B9F1ADEC3D7000BF430 /* Info.plist */,
-				CC2A92581B55A8EB00388B82 /* settings.plist */,
 				CC0631621AEB17530097D129 /* XCTestCaseExtension.swift */,
 			);
 			path = Test;
-			sourceTree = "<group>";
-		};
-		CCF252341B5ED15F00A9E6AC /* Launchpad */ = {
-			isa = PBXGroup;
-			children = (
-				CC68C5D41B5FDACC006A0569 /* LaunchpadQueryTest.swift */,
-				CCF252351B5ED15F00A9E6AC /* ResponseTest.swift */,
-			);
-			path = Launchpad;
 			sourceTree = "<group>";
 		};
 		D96E3C835BA597F43766E24B /* Frameworks */ = {
@@ -283,7 +288,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC0C23A31C3DA3AC00408177 /* settings.plist in Resources */,
+				CC0C23D21C3F0EC700408177 /* settings.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,12 +332,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC0C239A1C3DA39000408177 /* Transport.swift in Sources */,
-				CC0C23971C3DA38B00408177 /* Query.swift in Sources */,
-				CC0C23981C3DA39000408177 /* Launchpad.swift in Sources */,
-				CC0C23A81C3DB15300408177 /* Request.swift in Sources */,
-				CC0C23961C3DA38B00408177 /* Filter.swift in Sources */,
-				CC0C23991C3DA39000408177 /* Response.swift in Sources */,
+				CC0C23B31C3F0C1B00408177 /* Launchpad.swift in Sources */,
+				CC0C23B61C3F0C1B00408177 /* Transport.swift in Sources */,
+				CC0C23B41C3F0C1B00408177 /* Request.swift in Sources */,
+				CC0C23AC1C3F0B8600408177 /* Filter.swift in Sources */,
+				CC0C23AD1C3F0B8600408177 /* Query.swift in Sources */,
+				CC0C23B51C3F0C1B00408177 /* Response.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,14 +345,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC0C239B1C3DA3A200408177 /* DatastoreQueryTest.swift in Sources */,
-				CC0C239F1C3DA3A800408177 /* LaunchpadQueryTest.swift in Sources */,
-				CC0C23A01C3DA3A800408177 /* ResponseTest.swift in Sources */,
-				CC0C239E1C3DA3A200408177 /* QueryTest.swift in Sources */,
+				CC0C23D11C3F0EC700408177 /* LaunchpadTest.swift in Sources */,
+				CC0C23CE1C3F0EC700408177 /* BaseTest.swift in Sources */,
+				CC0C23CF1C3F0EC700408177 /* LaunchpadQueryTest.swift in Sources */,
+				CC0C23D31C3F0EC700408177 /* ResponseTest.swift in Sources */,
+				CC0C23C51C3F0D4900408177 /* QueryTest.swift in Sources */,
+				CC0C23C41C3F0D4500408177 /* FilterTest.swift in Sources */,
 				CC0C23A41C3DA3AC00408177 /* XCTestCaseExtension.swift in Sources */,
-				CC0C23A11C3DA3AC00408177 /* BaseTest.swift in Sources */,
-				CC0C239D1C3DA3A200408177 /* FilterTest.swift in Sources */,
-				CC0C239C1C3DA3A200408177 /* DatastoreTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,7 +376,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = Source/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -392,7 +396,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = Source/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

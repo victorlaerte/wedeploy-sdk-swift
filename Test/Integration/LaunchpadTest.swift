@@ -1,8 +1,8 @@
-import later
 import Launchpad
+import later
 import XCTest
 
-class DatastoreTest : BaseTest {
+class LaunchpadTest : BaseTest {
 
 	func testAdd() {
 		let expectation = expect("add")

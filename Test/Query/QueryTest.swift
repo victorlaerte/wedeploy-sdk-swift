@@ -1,7 +1,7 @@
 import Launchpad
 import XCTest
 
-class QueryTest : BaseTest {
+class QueryTest : XCTestCase {
 
 	func testComplex_Query() {
 		let query = Query()
