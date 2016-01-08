@@ -8,7 +8,7 @@ class QueryTest : XCTestCase {
 			.filter(Filter.gt("age", 12))
 			.sort("age", order: Query.Order.DESC)
 			.sort("name")
-			.from(5)
+			.offset(5)
 			.limit(10)
 			.fetch()
 
@@ -60,7 +60,7 @@ class QueryTest : XCTestCase {
 	}
 
 	func testOffset() {
-		let query = Query().from(5)
+		let query = Query().offset(5)
 		XCTAssertEqual("{\"offset\":5}", query.description)
 	}
 
@@ -85,19 +85,9 @@ class QueryTest : XCTestCase {
 		XCTAssertEqual("{\"type\":\"count\"}", query.description)
 	}
 
-	func testType_Custom() {
-		let query = Query().type("customType")
-		XCTAssertEqual("{\"type\":\"customType\"}", query.description)
-	}
-
 	func testType_Fetch() {
 		let query = Query().fetch()
 		XCTAssertEqual("{\"type\":\"fetch\"}", query.description)
-	}
-
-	func testType_Scan() {
-		let query = Query().scan()
-		XCTAssertEqual("{\"type\":\"scan\"}", query.description)
 	}
 
 }

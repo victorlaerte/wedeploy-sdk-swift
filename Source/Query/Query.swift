@@ -28,6 +28,10 @@ public class Query : CustomStringConvertible {
 		return items
 	}
 
+	public enum QueryType: String {
+		case COUNT = "count", FETCH = "fetch"
+	}
+
 	public enum Order: String {
 		case ASC = "asc", DESC = "desc"
 	}
@@ -42,11 +46,11 @@ public class Query : CustomStringConvertible {
 	public init() {}
 
 	public func count() -> Self {
-		return type("count")
+		return type(.COUNT)
 	}
 
 	public func fetch() -> Self {
-		return type("fetch")
+		return type(.FETCH)
 	}
 
 	public func filter(field: String, _ value: AnyObject) -> Self {
@@ -69,18 +73,14 @@ public class Query : CustomStringConvertible {
 		return self
 	}
 
-	public func from(offset: Int) -> Self {
-		query["offset"] = offset
-		return self
-	}
-
 	public func limit(limit: Int) -> Self {
 		query["limit"] = limit
 		return self
 	}
 
-	public func scan() -> Self {
-		return type("scan")
+	public func offset(offset: Int) -> Self {
+		query["offset"] = offset
+		return self
 	}
 
 	public func sort(name: String, order: Order = .ASC) -> Self {
@@ -91,8 +91,8 @@ public class Query : CustomStringConvertible {
 		return self
 	}
 
-	public func type(type: String) -> Self {
-		query["type"] = type
+	public func type(type: QueryType) -> Self {
+		query["type"] = type.rawValue
 		return self
 	}
 
