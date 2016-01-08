@@ -4,17 +4,12 @@ public class Request {
 
 	var body: AnyObject?
 	var headers: [String: String]
-	var method: Request.Verb
+	var method: RequestMethod
 	var params: [NSURLQueryItem]
 	var url: String
 
-	public enum Verb: String {
-		case DELETE = "DELETE", GET = "GET", PATCH = "PATCH", POST = "POST",
-			PUT = "PUT"
-	}
-
 	init(
-		method: Request.Verb = .GET, headers: [String: String]?, url: String,
+		method: RequestMethod = .GET, headers: [String: String]?, url: String,
 		params: [NSURLQueryItem]?, body: AnyObject? = nil) {
 
 		self.method = method

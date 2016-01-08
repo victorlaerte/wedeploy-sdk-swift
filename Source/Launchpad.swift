@@ -20,8 +20,8 @@ public class Launchpad {
 	public func delete() -> Promise<Response> {
 		let promise = Promise<Response>(promise: { fulfill, reject in
 			let request = Request(
-				method: Request.Verb.DELETE, headers: self.headers,
-				url: self.url, params: self.params)
+				method: .DELETE, headers: self.headers, url: self.url,
+				params: self.params)
 
 			self.transport.send(request, success: fulfill, failure: reject)
 		})
@@ -63,8 +63,8 @@ public class Launchpad {
 	public func patch(body: AnyObject?) -> Promise<Response> {
 		let promise = Promise<Response>(promise: { fulfill, reject in
 			let request = Request(
-				method: Request.Verb.PATCH, headers: self.headers,
-				url: self.url, params: self.params, body: body)
+				method: .PATCH, headers: self.headers, url: self.url,
+				params: self.params, body: body)
 
 			self.transport.send(request, success: fulfill, failure: reject)
 		})
@@ -81,7 +81,7 @@ public class Launchpad {
 	public func post(body: AnyObject?) -> Promise<Response> {
 		let promise = Promise<Response>(promise: { fulfill, reject in
 			let request = Request(
-				method: Request.Verb.POST, headers: self.headers, url: self.url,
+				method: .POST, headers: self.headers, url: self.url,
 				params: self.params, body: body)
 
 			self.transport.send(request, success: fulfill, failure: reject)
@@ -93,7 +93,7 @@ public class Launchpad {
 	public func put(body: AnyObject?) -> Promise<Response> {
 		let promise = Promise<Response>(promise: { fulfill, reject in
 			let request = Request(
-				method: Request.Verb.PUT, headers: self.headers, url: self.url,
+				method: .PUT, headers: self.headers, url: self.url,
 				params: self.params, body: body)
 
 			self.transport.send(request, success: fulfill, failure: reject)

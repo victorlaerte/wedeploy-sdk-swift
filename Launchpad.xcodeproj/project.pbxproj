@@ -23,6 +23,7 @@
 		CC0C23D11C3F0EC700408177 /* LaunchpadTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23CA1C3F0EC700408177 /* LaunchpadTest.swift */; settings = {ASSET_TAGS = (); }; };
 		CC0C23D21C3F0EC700408177 /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC0C23CB1C3F0EC700408177 /* settings.plist */; settings = {ASSET_TAGS = (); }; };
 		CC0C23D31C3F0EC700408177 /* ResponseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23CD1C3F0EC700408177 /* ResponseTest.swift */; settings = {ASSET_TAGS = (); }; };
+		CC2F36201C3FE50500902BD4 /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2F361F1C3FE50500902BD4 /* RequestMethod.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		CC0C23CA1C3F0EC700408177 /* LaunchpadTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchpadTest.swift; sourceTree = "<group>"; };
 		CC0C23CB1C3F0EC700408177 /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = settings.plist; sourceTree = "<group>"; };
 		CC0C23CD1C3F0EC700408177 /* ResponseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseTest.swift; sourceTree = "<group>"; };
+		CC2F361F1C3FE50500902BD4 /* RequestMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
 		CCA17B9F1ADEC3D7000BF430 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD79956EE6E5186CF6082E3D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +106,7 @@
 				CC0C23B01C3F0C1B00408177 /* Request.swift */,
 				CC0C23B11C3F0C1B00408177 /* Response.swift */,
 				CC0C23B21C3F0C1B00408177 /* Transport.swift */,
+				CC2F361F1C3FE50500902BD4 /* RequestMethod.swift */,
 			);
 			path = Transport;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				CC0C23B41C3F0C1B00408177 /* Request.swift in Sources */,
 				CC0C23AC1C3F0B8600408177 /* Filter.swift in Sources */,
 				CC0C23AD1C3F0B8600408177 /* Query.swift in Sources */,
+				CC2F36201C3FE50500902BD4 /* RequestMethod.swift in Sources */,
 				CC0C23B51C3F0C1B00408177 /* Response.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
