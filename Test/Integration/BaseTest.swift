@@ -17,7 +17,7 @@ class BaseTest : XCTestCase {
 	]
 
 	var launchpad: Launchpad {
-		return Launchpad(server).path(path)
+		return Launchpad.url(server).path(path)
 	}
 
 	var path: String!

@@ -17,6 +17,10 @@ public class Launchpad {
 		self._url = url
 	}
 
+	public class func url(url: String) -> Launchpad {
+		return Launchpad(url)
+	}
+
 	public func delete() -> Promise<Response> {
 		let promise = Promise<Response>(promise: { fulfill, reject in
 			let request = Request(
