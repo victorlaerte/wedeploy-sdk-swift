@@ -68,7 +68,6 @@ public class Query : CustomStringConvertible {
 		filters.append(filter.filter)
 
 		query["filter"] = filters
-
 		return self
 	}
 
@@ -91,13 +90,11 @@ public class Query : CustomStringConvertible {
 		sort.append([name: order.rawValue])
 
 		query["sort"] = sort
-
 		return self
 	}
 
 	public func type(type: String) -> Self {
 		query["type"] = type
-
 		return self
 	}
 

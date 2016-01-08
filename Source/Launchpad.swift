@@ -3,9 +3,9 @@ import later
 
 public class Launchpad {
 
-	var headers: [String: String] = [:]
-	var params: [NSURLQueryItem] = [NSURLQueryItem]()
-	var path: String = ""
+	var headers = [String: String]()
+	var params = [NSURLQueryItem]()
+	var path = ""
 	var transport: Transport = NSURLSessionTransport()
 	var _url: String
 
@@ -46,7 +46,6 @@ public class Launchpad {
 
 	public func header(name: String, _ value: String) -> Self {
 		headers[name] = value
-
 		return self
 	}
 
@@ -78,7 +77,6 @@ public class Launchpad {
 
 	public func path(path: String) -> Self {
 		self.path += path
-
 		return self
 	}
 
@@ -108,7 +106,6 @@ public class Launchpad {
 
 	public func use(transport: Transport) -> Self {
 		self.transport = transport
-
 		return self
 	}
 
