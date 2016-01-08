@@ -1,5 +1,6 @@
 import Foundation
 import later
+import Socket_IO_Client_Swift
 
 public class Launchpad {
 
@@ -141,6 +142,15 @@ public class Launchpad {
 	public func use(transport: Transport) -> Self {
 		self.transport = transport
 		return self
+	}
+
+	public func watch(var options: Set<SocketIOClientOption> = [])
+		-> SocketIOClient {
+
+		options.insert(.ForceNew(true))
+		options.insert(.Log(true))
+
+		return SocketIOClient(socketURL: "localhost:8900", options: options)
 	}
 
 }
