@@ -1,3 +1,3 @@
-pod 'later', '0.1.0'
+podspec
 
 use_frameworks!
