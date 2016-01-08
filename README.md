@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/launchpad-project/api.swift.svg?branch=master)](https://travis-ci.org/launchpad-project/api.swift)
+
 ## Connect to your API
 
 ```ruby
