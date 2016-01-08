@@ -2,7 +2,7 @@ import Foundation
 
 public class Query : CustomStringConvertible {
 
-	var query = [String: AnyObject]()
+	public private(set) var query = [String: AnyObject]()
 
 	public var params: [NSURLQueryItem] {
 		var items = [NSURLQueryItem]()

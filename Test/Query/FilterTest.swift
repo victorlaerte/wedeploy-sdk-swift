@@ -8,12 +8,12 @@ class FilterTest : XCTestCase {
 			.gt("age", 12)
 			.and(Filter.lt("age", 15))
 
-		XCTAssertEqual(toJSONString(
+		assertJSON(
 			"{\"and\":[" +
 				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
 				"{\"age\":{\"operator\":\"<\",\"value\":15}}" +
-			"]}"),
-			filter.description)
+			"]}",
+			filter.filter)
 	}
 
 	func testAnd_Overloaded_Operator() {
@@ -22,13 +22,13 @@ class FilterTest : XCTestCase {
 			Filter.lt("age", 15) &&
 			"name = foo"
 
-		XCTAssertEqual(toJSONString(
+		assertJSON(
 			"{\"and\":[" +
 				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
 				"{\"age\":{\"operator\":\"<\",\"value\":15}}," +
 				"{\"name\":{\"operator\":\"=\",\"value\":\"foo\"}}" +
-			"]}"),
-			filter.description)
+			"]}",
+			filter.filter)
 	}
 
 	func testAnd_With_Three_Filters() {
@@ -37,21 +37,21 @@ class FilterTest : XCTestCase {
 			.and(Filter.lt("age", 15))
 			.and(Filter.equal("name", "foo"))
 
-		XCTAssertEqual(toJSONString(
+		assertJSON(
 			"{\"and\":[" +
 				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
 				"{\"age\":{\"operator\":\"<\",\"value\":15}}," +
 				"{\"name\":{\"operator\":\"=\",\"value\":\"foo\"}}" +
-			"]}"),
-			filter.description)
+			"]}",
+			filter.filter)
 	}
 
 	func testAny() {
 		let filter = Filter.any("age", [12, 21, 25])
 
-		XCTAssertEqual(toJSONString(
-			"{\"age\":{\"operator\":\"any\",\"value\":[12,21,25]}}"),
-			filter.description)
+		assertJSON(
+			"{\"age\":{\"operator\":\"any\",\"value\":[12,21,25]}}",
+			filter.filter)
 	}
 
 	func testComposition() {
@@ -60,103 +60,85 @@ class FilterTest : XCTestCase {
 			.or("age < 15" as Filter)
 			.and(Filter("name = foo"))
 
-		XCTAssertEqual(toJSONString(
+		assertJSON(
 			"{\"and\":[" +
 				"{\"or\":[" +
 					"{\"age\":{\"operator\":\">\",\"value\":12}}," +
 					"{\"age\":{\"operator\":\"<\",\"value\":15}}" +
 				"]}," +
 				"{\"name\":{\"operator\":\"=\",\"value\":\"foo\"}}" +
-			"]}"),
-			filter.description)
+			"]}",
+			filter.filter)
 	}
 
 	func testCustom() {
 		let filter = Filter("age", ">", 12)
-
-		XCTAssertEqual(toJSONString(
-			"{\"age\":{\"operator\":\">\",\"value\":12}}"),
-			filter.description)
+		assertJSON("{\"age\":{\"operator\":\">\",\"value\":12}}", filter.filter)
 	}
 
 	func testDefaultOperator() {
 		let filter = Filter("age", 12)
-
-		XCTAssertEqual(toJSONString(
-			"{\"age\":{\"operator\":\"=\",\"value\":12}}"),
-			filter.description)
+		assertJSON("{\"age\":{\"operator\":\"=\",\"value\":12}}", filter.filter)
 	}
 
 	func testEqual() {
 		let filter = Filter.equal("age", 12)
-
-		XCTAssertEqual(toJSONString(
-			"{\"age\":{\"operator\":\"=\",\"value\":12}}"),
-			filter.description)
+		assertJSON("{\"age\":{\"operator\":\"=\",\"value\":12}}", filter.filter)
 	}
 
 	func testGt() {
 		let filter = Filter.gt("age", 12)
-
-		XCTAssertEqual(toJSONString(
-			"{\"age\":{\"operator\":\">\",\"value\":12}}"),
-			filter.description)
+		assertJSON("{\"age\":{\"operator\":\">\",\"value\":12}}", filter.filter)
 	}
 
 	func testGte() {
 		let filter = Filter.gte("age", 12)
-
-		XCTAssertEqual(toJSONString(
-			"{\"age\":{\"operator\":\">=\",\"value\":12}}"),
-			filter.description)
+		assertJSON(
+			"{\"age\":{\"operator\":\">=\",\"value\":12}}", filter.filter)
 	}
 
 	func testLt() {
 		let filter = Filter.lt("age", 12)
-
-		XCTAssertEqual(toJSONString(
-			"{\"age\":{\"operator\":\"<\",\"value\":12}}"),
-			filter.description)
+		assertJSON("{\"age\":{\"operator\":\"<\",\"value\":12}}", filter.filter)
 	}
 
 	func testLte() {
 		let filter = Filter.lte("age", 12)
 
-		XCTAssertEqual(toJSONString(
-			"{\"age\":{\"operator\":\"<=\",\"value\":12}}"),
-			filter.description)
+		assertJSON(
+			"{\"age\":{\"operator\":\"<=\",\"value\":12}}",
+			filter.filter)
 	}
 
 	func testNone() {
 		let filter = Filter.none("age", [12, 21, 25])
 
-		XCTAssertEqual(toJSONString(
-			"{\"age\":{\"operator\":\"none\",\"value\":[12,21,25]}}"),
-			filter.description)
+		assertJSON(
+			"{\"age\":{\"operator\":\"none\",\"value\":[12,21,25]}}",
+			filter.filter)
 	}
 
 	func testNot() {
 		let filter = Filter("age", 12).not()
 
-		XCTAssertEqual(toJSONString(
-			"{\"not\":{\"age\":{\"operator\":\"=\",\"value\":12}}}"),
-			filter.description)
+		assertJSON(
+			"{\"not\":{\"age\":{\"operator\":\"=\",\"value\":12}}}",
+			filter.filter)
 	}
 
 	func testNot_With_Operation() {
 		let filter = !Filter("age", 12)
 
-		XCTAssertEqual(toJSONString(
-			"{\"not\":{\"age\":{\"operator\":\"=\",\"value\":12}}}"),
-			filter.description)
+		assertJSON(
+			"{\"not\":{\"age\":{\"operator\":\"=\",\"value\":12}}}",
+			filter.filter)
 	}
 
 	func testNotEqual() {
 		let filter = Filter.notEqual("age", 12)
 
-		XCTAssertEqual(toJSONString(
-			"{\"age\":{\"operator\":\"!=\",\"value\":12}}"),
-			filter.description)
+		assertJSON(
+			"{\"age\":{\"operator\":\"!=\",\"value\":12}}", filter.filter)
 	}
 
 	func testOr() {
@@ -164,12 +146,12 @@ class FilterTest : XCTestCase {
 			.gt("age", 12)
 			.or(Filter.lt("age", 15))
 
-		XCTAssertEqual(toJSONString(
+		assertJSON(
 			"{\"or\":[" +
 				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
 				"{\"age\":{\"operator\":\"<\",\"value\":15}}" +
-			"]}"),
-			filter.description)
+			"]}",
+			filter.filter)
 	}
 
 	func testOr_Overloaded_Operator() {
@@ -178,13 +160,13 @@ class FilterTest : XCTestCase {
 			Filter.lt("age", 15) ||
 			"name = foo"
 
-		XCTAssertEqual(toJSONString(
+		assertJSON(
 			"{\"or\":[" +
 				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
 				"{\"age\":{\"operator\":\"<\",\"value\":15}}," +
 				"{\"name\":{\"operator\":\"=\",\"value\":\"foo\"}}" +
-			"]}"),
-			filter.description)
+			"]}",
+			filter.filter)
 	}
 
 	func testOr_With_Three_Filters() {
@@ -193,29 +175,23 @@ class FilterTest : XCTestCase {
 			.or(Filter.lt("age", 15))
 			.or(Filter.equal("name", "foo"))
 
-		XCTAssertEqual(toJSONString(
+		assertJSON(
 			"{\"or\":[" +
 				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
 				"{\"age\":{\"operator\":\"<\",\"value\":15}}," +
 				"{\"name\":{\"operator\":\"=\",\"value\":\"foo\"}}" +
-			"]}"),
-			filter.description)
+			"]}",
+			filter.filter)
 	}
 
 	func testRegex() {
 		let filter = Filter.regex("age", 12)
-
-		XCTAssertEqual(toJSONString(
-			"{\"age\":{\"operator\":\"~\",\"value\":12}}"),
-			filter.description)
+		assertJSON("{\"age\":{\"operator\":\"~\",\"value\":12}}", filter.filter)
 	}
 
 	func testStringConvertible() {
 		let filter: Filter = "age > 12"
-
-		XCTAssertEqual(toJSONString(
-			"{\"age\":{\"operator\":\">\",\"value\":12}}"),
-			filter.description)
+		assertJSON("{\"age\":{\"operator\":\">\",\"value\":12}}", filter.filter)
 	}
 
 	func testStringConvertible_With_And_Operator() {
@@ -223,20 +199,19 @@ class FilterTest : XCTestCase {
 			.gt("age", 12) &&
 			"age < 15"
 
-		XCTAssertEqual(toJSONString(
+		assertJSON(
 			"{\"and\":[" +
 				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
 				"{\"age\":{\"operator\":\"<\",\"value\":15}}" +
-			"]}"),
-			filter.description)
+			"]}",
+			filter.filter)
 	}
 
 	func testStringConvertible_With_String_Value() {
 		let filter: Filter = "name = foo"
 
-		XCTAssertEqual(toJSONString(
-			"{\"name\":{\"operator\":\"=\",\"value\":\"foo\"}}"),
-			filter.description)
+		assertJSON(
+			"{\"name\":{\"operator\":\"=\",\"value\":\"foo\"}}", filter.filter)
 	}
 
 }

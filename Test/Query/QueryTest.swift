@@ -12,22 +12,22 @@ class QueryTest : XCTestCase {
 			.limit(10)
 			.fetch()
 
-		XCTAssertEqual("{" +
+		assertJSON("{" +
 			"\"limit\":10," +
 			"\"sort\":[{\"age\":\"desc\"},{\"name\":\"asc\"}]," +
 			"\"offset\":5," +
 			"\"filter\":[{\"age\":{\"operator\":\">\",\"value\":12}}]," +
 			"\"type\":\"fetch\"" +
 			"}",
-			query.description)
+			query.query)
 	}
 
 	func testFilter_With_Instance() {
 		let query = Query().filter(Filter.gt("age", 12))
 
-		XCTAssertEqual(
+		assertJSON(
 			"{\"filter\":[{\"age\":{\"operator\":\">\",\"value\":12}}]}",
-			query.description)
+			query.query)
 	}
 
 	func testFilter_With_Multiple_Filters() {
@@ -36,37 +36,37 @@ class QueryTest : XCTestCase {
 			.filter("age", "<", 15)
 			.filter("name", "Foo")
 
-		XCTAssertEqual(
+		assertJSON(
 			"{\"filter\":[{\"age\":{\"operator\":\">\",\"value\":12}}," +
 			"{\"age\":{\"operator\":\"<\",\"value\":15}}," +
 			"{\"name\":{\"operator\":\"=\",\"value\":\"Foo\"}}]}",
-			query.description)
+			query.query)
 	}
 
 	func testFilter_With_Operator() {
 		let query = Query().filter("age", ">", 12)
 
-		XCTAssertEqual(
+		assertJSON(
 			"{\"filter\":[{\"age\":{\"operator\":\">\",\"value\":12}}]}",
-			query.description)
+			query.query)
 	}
 
 	func testFilter_With_Optional_Operator() {
 		let query = Query().filter("age", 12)
 
-		XCTAssertEqual(
+		assertJSON(
 			"{\"filter\":[{\"age\":{\"operator\":\"=\",\"value\":12}}]}",
-			query.description)
+			query.query)
 	}
 
 	func testOffset() {
 		let query = Query().offset(5)
-		XCTAssertEqual("{\"offset\":5}", query.description)
+		assertJSON("{\"offset\":5}", query.query)
 	}
 
 	func testLimit() {
 		let query = Query().limit(10)
-		XCTAssertEqual("{\"limit\":10}", query.description)
+		assertJSON("{\"limit\":10}", query.query)
 	}
 
 	func testSort() {
@@ -75,19 +75,19 @@ class QueryTest : XCTestCase {
 
 		query.sort("author", order: Query.Order.DESC)
 
-		XCTAssertEqual(
+		assertJSON(
 			"{\"sort\":[{\"title\":\"asc\"},{\"author\":\"desc\"}]}",
-			query.description)
+			query.query)
 	}
 
 	func testType_Count() {
 		let query = Query().count()
-		XCTAssertEqual("{\"type\":\"count\"}", query.description)
+		assertJSON("{\"type\":\"count\"}", query.query)
 	}
 
 	func testType_Fetch() {
 		let query = Query().fetch()
-		XCTAssertEqual("{\"type\":\"fetch\"}", query.description)
+		assertJSON("{\"type\":\"fetch\"}", query.query)
 	}
 
 }

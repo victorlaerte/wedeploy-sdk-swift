@@ -2,6 +2,13 @@ import XCTest
 
 extension XCTestCase {
 
+	func assertJSON(expected: String, _ result: [String: AnyObject]) {
+		let dic1 = toJSONObject(expected)
+		let dic2 = NSDictionary(dictionary: result) as [NSObject : AnyObject]
+
+		XCTAssertTrue(NSDictionary(dictionary: dic1).isEqualToDictionary(dic2))
+	}
+
 	func expect(description: String!) -> XCTestExpectation {
 		return expectationWithDescription(description)
 	}
@@ -14,15 +21,10 @@ extension XCTestCase {
 		XCTFail(error!.localizedDescription)
 	}
 
-	func toJSONString(json: String) -> String {
-		let obj = try! NSJSONSerialization.JSONObjectWithData(
+	func toJSONObject(json: String) -> [String: AnyObject] {
+		return try! NSJSONSerialization.JSONObjectWithData(
 			json.dataUsingEncoding(NSUTF8StringEncoding)!,
-			options: .AllowFragments)
-
-		let data = try! NSJSONSerialization.dataWithJSONObject(
-			obj, options: NSJSONWritingOptions())
-
-		return NSString(data: data, encoding: NSUTF8StringEncoding)! as String
+			options: .AllowFragments) as! [String: AnyObject]
 	}
 
 	func wait(timeout: Double? = 2, assert: (() -> ())? = nil) {
@@ -31,5 +33,4 @@ extension XCTestCase {
 			assert?()
 		}
 	}
-
 }

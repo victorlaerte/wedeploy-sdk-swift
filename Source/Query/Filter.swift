@@ -5,7 +5,7 @@ public typealias UnicodeScalarLiteralType = String
 
 public class Filter : CustomStringConvertible, StringLiteralConvertible {
 
-	public var filter = [String: AnyObject]()
+	public private(set) var filter = [String: AnyObject]()
 
 	public var description: String {
 		let data = try! NSJSONSerialization.dataWithJSONObject(
