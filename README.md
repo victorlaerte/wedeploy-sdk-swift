@@ -1,7 +1,7 @@
 ## Connect to your API
 
 ```ruby
-pod 'Liferay-iOS-SDK'
+pod 'Lanchpad'
 ```
 
 ```swift
