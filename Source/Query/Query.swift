@@ -49,9 +49,7 @@ public class Query : CustomStringConvertible {
 		return type("fetch")
 	}
 
-	public func filter(field: String, _ value: AnyObject)
-		-> Self {
-
+	public func filter(field: String, _ value: AnyObject) -> Self {
 		return self.filter(Filter(field, value))
 	}
 

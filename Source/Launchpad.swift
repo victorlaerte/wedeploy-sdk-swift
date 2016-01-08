@@ -4,21 +4,32 @@ import later
 public class Launchpad {
 
 	var headers = [String: String]()
-	var params = [NSURLQueryItem]()
 	var path = ""
+	var query = Query()
 	var transport: Transport = NSURLSessionTransport()
-	var _url: String
+
+	var params: [NSURLQueryItem] {
+		return _params + query.params
+	}
 
 	var url: String {
 		return _url + path
 	}
 
+	var _params = [NSURLQueryItem]()
+	var _url: String
+
 	public init(_ url: String) {
-		self._url = url
+		_url = url
 	}
 
 	public class func url(url: String) -> Launchpad {
 		return Launchpad(url)
+	}
+
+	public func count() -> Self {
+		query.count()
+		return self
 	}
 
 	public func delete() -> Promise<Response> {
@@ -31,6 +42,23 @@ public class Launchpad {
 		})
 
 		return promise
+	}
+
+	public func filter(field: String, _ value: AnyObject) -> Self {
+		query.filter(field, value)
+		return self
+	}
+
+	public func filter(field: String, _ op: String, _ value: AnyObject)
+		-> Self {
+
+		query.filter(field, op, value)
+		return self
+	}
+
+	public func filter(filter: Filter) -> Self {
+		query.filter(filter)
+		return self
 	}
 
 	public func get() -> Promise<Response> {
@@ -49,17 +77,18 @@ public class Launchpad {
 		return self
 	}
 
-	public func param(name: String, _ value: String) -> Self {
-		params.append(NSURLQueryItem(name: name, value: value))
-
+	public func limit(limit: Int) -> Self {
+		query.limit(limit)
 		return self
 	}
 
-	public func params(params: [NSURLQueryItem]?) -> Self {
-		if let p = params {
-			self.params = p
-		}
+	public func offset(offset: Int) -> Self {
+		query.offset(offset)
+		return self
+	}
 
+	public func param(name: String, _ value: String) -> Self {
+		_params.append(NSURLQueryItem(name: name, value: value))
 		return self
 	}
 
@@ -102,6 +131,11 @@ public class Launchpad {
 		})
 
 		return promise
+	}
+
+	public func sort(name: String, order: Query.Order = .ASC) -> Self {
+		query.sort(name, order: order)
+		return self
 	}
 
 	public func use(transport: Transport) -> Self {
