@@ -1,7 +1,7 @@
 ## Connect to your API
 
 ```ruby
-pod 'Lanchpad'
+pod 'Launchpad'
 ```
 
 ```swift
