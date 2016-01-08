@@ -146,8 +146,8 @@ class FilterTest : XCTestCase {
 	func testNot_With_Operation() {
 		let filter = !Filter("age", 12)
 
-		XCTAssertEqual(
-			"{\"not\":{\"age\":{\"operator\":\"=\",\"value\":12}}}",
+		XCTAssertEqual(toJSONString(
+			"{\"not\":{\"age\":{\"operator\":\"=\",\"value\":12}}}"),
 			filter.description)
 	}
 
