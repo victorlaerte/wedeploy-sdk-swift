@@ -150,7 +150,12 @@ public class Launchpad {
 		options.insert(.ForceNew(true))
 		options.insert(.Log(true))
 
-		return SocketIOClient(socketURL: "localhost:8900", options: options)
+		let socket = SocketIOClient(
+			socketURL: "localhost:8900", options: options)
+
+		socket.connect()
+
+		return socket
 	}
 
 }
