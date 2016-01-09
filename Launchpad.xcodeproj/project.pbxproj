@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A125ADF14A627DF6AD99699B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0CDEE64BB19267687ADF48 /* Pods.framework */; };
+		CC05BAB01C408AF0007D9BAB /* RealTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC05BAAF1C408AF0007D9BAB /* RealTime.swift */; };
 		CC0C23881C3DA36400408177 /* Launchpad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC0C237E1C3DA36400408177 /* Launchpad.framework */; };
 		CC0C23A41C3DA3AC00408177 /* XCTestCaseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0631621AEB17530097D129 /* XCTestCaseExtension.swift */; };
 		CC0C23AC1C3F0B8600408177 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23AA1C3F0B8600408177 /* Filter.swift */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		7B0CDEE64BB19267687ADF48 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		813DAB59344C62F88264EE5A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		CC05BAAF1C408AF0007D9BAB /* RealTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTime.swift; sourceTree = "<group>"; };
 		CC0631621AEB17530097D129 /* XCTestCaseExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestCaseExtension.swift; sourceTree = "<group>"; };
 		CC0C23771C3DA0C700408177 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		CC0C237E1C3DA36400408177 /* Launchpad.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Launchpad.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,10 +110,11 @@
 		CC0C23AF1C3F0C1B00408177 /* Transport */ = {
 			isa = PBXGroup;
 			children = (
+				CC05BAAF1C408AF0007D9BAB /* RealTime.swift */,
 				CC0C23B01C3F0C1B00408177 /* Request.swift */,
+				CC2F361F1C3FE50500902BD4 /* RequestMethod.swift */,
 				CC0C23B11C3F0C1B00408177 /* Response.swift */,
 				CC0C23B21C3F0C1B00408177 /* Transport.swift */,
-				CC2F361F1C3FE50500902BD4 /* RequestMethod.swift */,
 			);
 			path = Transport;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				CC0C23B61C3F0C1B00408177 /* Transport.swift in Sources */,
 				CC0C23B41C3F0C1B00408177 /* Request.swift in Sources */,
 				CC0C23AC1C3F0B8600408177 /* Filter.swift in Sources */,
+				CC05BAB01C408AF0007D9BAB /* RealTime.swift in Sources */,
 				CC0C23AD1C3F0B8600408177 /* Query.swift in Sources */,
 				CC2F36201C3FE50500902BD4 /* RequestMethod.swift in Sources */,
 				CC0C23B51C3F0C1B00408177 /* Response.swift in Sources */,

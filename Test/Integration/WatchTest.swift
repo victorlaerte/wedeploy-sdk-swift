@@ -1,5 +1,4 @@
 import Launchpad
-import Socket_IO_Client_Swift
 import XCTest
 
 class WatchTest : BaseTest {
@@ -8,9 +7,9 @@ class WatchTest : BaseTest {
 		let expectation = expect("watch")
 		let socket = launchpad.watch()
 
-		socket.on("connect", callback: { data, ack in
+		socket.on("connect") { data in
 			expectation.fulfill()
-		})
+		}
 
 		wait()
 	}
