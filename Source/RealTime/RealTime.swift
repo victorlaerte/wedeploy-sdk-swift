@@ -19,8 +19,6 @@ public class RealTime {
 			socketOptions.insert(.ForceNew(true))
 		}
 
-		socketOptions.insert(.Log(true))
-
 		socket = SocketIOClient(
 			socketURL: "localhost:8900", options: socketOptions)
 
@@ -42,14 +40,11 @@ public class RealTime {
 			case ("connectParams", let params as [String: AnyObject]):
 				return .ConnectParams(params)
 
-			case ("reconnects", let reconnects as Bool):
-				return .Reconnects(reconnects)
+			case ("cookies", let cookies as [NSHTTPCookie]):
+				return .Cookies(cookies)
 
-			case ("reconnectAttempts", let attempts as Int):
-				return .ReconnectAttempts(attempts)
-
-			case ("reconnectWait", let wait as Int):
-				return .ReconnectWait(wait)
+			case ("extraHeaders", let headers as [String: String]):
+				return .ExtraHeaders(headers)
 
 			case ("forceNew", let force as Bool):
 				return .ForceNew(force)
@@ -60,11 +55,8 @@ public class RealTime {
 			case ("forceWebsockets", let force as Bool):
 				return .ForceWebsockets(force)
 
-			case ("nsp", let nsp as String):
-				return .Nsp(nsp)
-
-			case ("cookies", let cookies as [NSHTTPCookie]):
-				return .Cookies(cookies)
+			case ("handleQueue", let queue as dispatch_queue_t):
+				return .HandleQueue(queue)
 
 			case ("log", let log as Bool):
 				return .Log(log)
@@ -72,26 +64,32 @@ public class RealTime {
 			case ("logger", let logger as SocketLogger):
 				return .Logger(logger)
 
-			case ("sessionDelegate", let delegate as NSURLSessionDelegate):
-				return .SessionDelegate(delegate)
+			case ("nsp", let nsp as String):
+				return .Nsp(nsp)
 
 			case ("path", let path as String):
 				return .Path(path)
 
-			case ("extraHeaders", let headers as [String: String]):
-				return .ExtraHeaders(headers)
+			case ("reconnectAttempts", let attempts as Int):
+				return .ReconnectAttempts(attempts)
 
-			case ("handleQueue", let queue as dispatch_queue_t):
-				return .HandleQueue(queue)
+			case ("reconnects", let reconnects as Bool):
+				return .Reconnects(reconnects)
 
-			case ("voipEnabled", let enable as Bool):
-				return .VoipEnabled(enable)
+			case ("reconnectWait", let wait as Int):
+				return .ReconnectWait(wait)
 
 			case ("secure", let secure as Bool):
 				return .Secure(secure)
 
 			case ("selfSigned", let selfSigned as Bool):
 				return .SelfSigned(selfSigned)
+
+			case ("sessionDelegate", let delegate as NSURLSessionDelegate):
+				return .SessionDelegate(delegate)
+
+			case ("voipEnabled", let enable as Bool):
+				return .VoipEnabled(enable)
 
 			default:
 				return nil

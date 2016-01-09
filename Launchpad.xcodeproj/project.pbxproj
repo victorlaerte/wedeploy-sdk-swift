@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A125ADF14A627DF6AD99699B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0CDEE64BB19267687ADF48 /* Pods.framework */; };
-		CC05BAB01C408AF0007D9BAB /* RealTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC05BAAF1C408AF0007D9BAB /* RealTime.swift */; };
+		CC05BAB31C40A862007D9BAB /* RealTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC05BAB21C40A862007D9BAB /* RealTime.swift */; };
+		CC05BAB71C40A89D007D9BAB /* WatchTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC05BAB51C40A880007D9BAB /* WatchTest.swift */; };
 		CC0C23881C3DA36400408177 /* Launchpad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC0C237E1C3DA36400408177 /* Launchpad.framework */; };
 		CC0C23A41C3DA3AC00408177 /* XCTestCaseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0631621AEB17530097D129 /* XCTestCaseExtension.swift */; };
 		CC0C23AC1C3F0B8600408177 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23AA1C3F0B8600408177 /* Filter.swift */; };
@@ -26,7 +27,6 @@
 		CC0C23D31C3F0EC700408177 /* ResponseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23CD1C3F0EC700408177 /* ResponseTest.swift */; };
 		CC2F36201C3FE50500902BD4 /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2F361F1C3FE50500902BD4 /* RequestMethod.swift */; };
 		CC9F47B21C4076DB005243FE /* Launchpad.podspec in Resources */ = {isa = PBXBuildFile; fileRef = CC9F47B11C4076DB005243FE /* Launchpad.podspec */; };
-		CC9F47B41C407B8D005243FE /* WatchTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9F47B31C407B8D005243FE /* WatchTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +42,8 @@
 /* Begin PBXFileReference section */
 		7B0CDEE64BB19267687ADF48 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		813DAB59344C62F88264EE5A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		CC05BAAF1C408AF0007D9BAB /* RealTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTime.swift; sourceTree = "<group>"; };
+		CC05BAB21C40A862007D9BAB /* RealTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTime.swift; sourceTree = "<group>"; };
+		CC05BAB51C40A880007D9BAB /* WatchTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchTest.swift; sourceTree = "<group>"; };
 		CC0631621AEB17530097D129 /* XCTestCaseExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestCaseExtension.swift; sourceTree = "<group>"; };
 		CC0C23771C3DA0C700408177 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		CC0C237E1C3DA36400408177 /* Launchpad.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Launchpad.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,7 +64,6 @@
 		CC0C23CD1C3F0EC700408177 /* ResponseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseTest.swift; sourceTree = "<group>"; };
 		CC2F361F1C3FE50500902BD4 /* RequestMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
 		CC9F47B11C4076DB005243FE /* Launchpad.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Launchpad.podspec; sourceTree = "<group>"; };
-		CC9F47B31C407B8D005243FE /* WatchTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchTest.swift; sourceTree = "<group>"; };
 		CC9F47B51C407E89005243FE /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
 		CCA17B9F1ADEC3D7000BF430 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD79956EE6E5186CF6082E3D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -98,6 +98,22 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CC05BAB11C40A862007D9BAB /* RealTime */ = {
+			isa = PBXGroup;
+			children = (
+				CC05BAB21C40A862007D9BAB /* RealTime.swift */,
+			);
+			path = RealTime;
+			sourceTree = "<group>";
+		};
+		CC05BAB41C40A880007D9BAB /* RealTime */ = {
+			isa = PBXGroup;
+			children = (
+				CC05BAB51C40A880007D9BAB /* WatchTest.swift */,
+			);
+			path = RealTime;
+			sourceTree = "<group>";
+		};
 		CC0C23A91C3F0B8600408177 /* Query */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,7 +126,6 @@
 		CC0C23AF1C3F0C1B00408177 /* Transport */ = {
 			isa = PBXGroup;
 			children = (
-				CC05BAAF1C408AF0007D9BAB /* RealTime.swift */,
 				CC0C23B01C3F0C1B00408177 /* Request.swift */,
 				CC2F361F1C3FE50500902BD4 /* RequestMethod.swift */,
 				CC0C23B11C3F0C1B00408177 /* Response.swift */,
@@ -135,7 +150,6 @@
 				CC0C23C81C3F0EC700408177 /* LaunchpadQueryTest.swift */,
 				CC0C23CA1C3F0EC700408177 /* LaunchpadTest.swift */,
 				CC0C23CB1C3F0EC700408177 /* settings.plist */,
-				CC9F47B31C407B8D005243FE /* WatchTest.swift */,
 			);
 			path = Integration;
 			sourceTree = "<group>";
@@ -175,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				CC0C23A91C3F0B8600408177 /* Query */,
+				CC05BAB11C40A862007D9BAB /* RealTime */,
 				CC0C23AF1C3F0C1B00408177 /* Transport */,
 				CC0C23AE1C3F0C1B00408177 /* Launchpad.swift */,
 			);
@@ -186,6 +201,7 @@
 			children = (
 				CC0C23C61C3F0EC700408177 /* Integration */,
 				CC0C23B91C3F0D3300408177 /* Query */,
+				CC05BAB41C40A880007D9BAB /* RealTime */,
 				CC0C23CC1C3F0EC700408177 /* Transport */,
 				CCA17B9F1ADEC3D7000BF430 /* Info.plist */,
 				CC0631621AEB17530097D129 /* XCTestCaseExtension.swift */,
@@ -351,7 +367,7 @@
 				CC0C23B61C3F0C1B00408177 /* Transport.swift in Sources */,
 				CC0C23B41C3F0C1B00408177 /* Request.swift in Sources */,
 				CC0C23AC1C3F0B8600408177 /* Filter.swift in Sources */,
-				CC05BAB01C408AF0007D9BAB /* RealTime.swift in Sources */,
+				CC05BAB31C40A862007D9BAB /* RealTime.swift in Sources */,
 				CC0C23AD1C3F0B8600408177 /* Query.swift in Sources */,
 				CC2F36201C3FE50500902BD4 /* RequestMethod.swift in Sources */,
 				CC0C23B51C3F0C1B00408177 /* Response.swift in Sources */,
@@ -363,7 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC0C23D11C3F0EC700408177 /* LaunchpadTest.swift in Sources */,
-				CC9F47B41C407B8D005243FE /* WatchTest.swift in Sources */,
+				CC05BAB71C40A89D007D9BAB /* WatchTest.swift in Sources */,
 				CC0C23CE1C3F0EC700408177 /* BaseTest.swift in Sources */,
 				CC0C23CF1C3F0EC700408177 /* LaunchpadQueryTest.swift in Sources */,
 				CC0C23D31C3F0EC700408177 /* ResponseTest.swift in Sources */,
