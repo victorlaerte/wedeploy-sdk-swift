@@ -146,7 +146,7 @@ public class Launchpad {
 	public func watch(options: [String: AnyObject]? = nil)
 		-> RealTime {
 
-		return RealTime(options: options)
+		return RealTime(self.url, options: options)
 	}
 
 }

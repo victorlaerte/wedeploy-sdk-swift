@@ -5,7 +5,7 @@ public class RealTime {
 
 	let socket: SocketIOClient
 
-	init(options: [String: AnyObject]?) {
+	init(_ url: String, options: [String: AnyObject]?) {
 		let userOptions = options ?? [:]
 		var socketOptions = Set<SocketIOClientOption>()
 
@@ -19,8 +19,8 @@ public class RealTime {
 			socketOptions.insert(.ForceNew(true))
 		}
 
-		socket = SocketIOClient(
-			socketURL: "localhost:8900", options: socketOptions)
+		let socketURL = RealTime.parseURL(url)
+		socket = SocketIOClient(socketURL: socketURL, options: socketOptions)
 
 		socket.connect()
 	}
@@ -31,6 +31,28 @@ public class RealTime {
 		})
 
 		return self
+	}
+
+	class func parseURL(url: String) -> String {
+		let URL = NSURLComponents(string: url)!
+		let host = URL.host ?? ""
+		var port = ""
+
+		if let p = URL.port where URL.port != 80 {
+			port = ":\(p)"
+		}
+
+		let path = URL.path!
+		var encoded = path
+
+		if (encoded.hasPrefix("/")) {
+			encoded.removeAtIndex(encoded.startIndex)
+		}
+
+		encoded = encoded.stringByAddingPercentEncodingWithAllowedCharacters(
+			NSCharacterSet(charactersInString:"=\"#%/<>?@\\^`{|}").invertedSet)!
+
+		return "\(host)\(port)\(path)/?url=\(encoded)"
 	}
 
 	class func toOption(key: String, value: AnyObject)
