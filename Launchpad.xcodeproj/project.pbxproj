@@ -27,6 +27,8 @@
 		CC0C23D31C3F0EC700408177 /* ResponseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23CD1C3F0EC700408177 /* ResponseTest.swift */; };
 		CC2F36201C3FE50500902BD4 /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2F361F1C3FE50500902BD4 /* RequestMethod.swift */; };
 		CC9F47B21C4076DB005243FE /* Launchpad.podspec in Resources */ = {isa = PBXBuildFile; fileRef = CC9F47B11C4076DB005243FE /* Launchpad.podspec */; };
+		CCF69EA21C46BA7100961988 /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF69EA11C46BA7100961988 /* DictionaryExtension.swift */; };
+		CCF69EA41C46C77900961988 /* DictionaryExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF69EA31C46C77900961988 /* DictionaryExtensionTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,8 @@
 		CC9F47B11C4076DB005243FE /* Launchpad.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Launchpad.podspec; sourceTree = "<group>"; };
 		CC9F47B51C407E89005243FE /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
 		CCA17B9F1ADEC3D7000BF430 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CCF69EA11C46BA7100961988 /* DictionaryExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
+		CCF69EA31C46C77900961988 /* DictionaryExtensionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensionTest.swift; sourceTree = "<group>"; };
 		CD79956EE6E5186CF6082E3D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +121,7 @@
 		CC0C23A91C3F0B8600408177 /* Query */ = {
 			isa = PBXGroup;
 			children = (
+				CCF69EA11C46BA7100961988 /* DictionaryExtension.swift */,
 				CC0C23AA1C3F0B8600408177 /* Filter.swift */,
 				CC0C23AB1C3F0B8600408177 /* Query.swift */,
 			);
@@ -137,6 +142,7 @@
 		CC0C23B91C3F0D3300408177 /* Query */ = {
 			isa = PBXGroup;
 			children = (
+				CCF69EA31C46C77900961988 /* DictionaryExtensionTest.swift */,
 				CC0C23BC1C3F0D3300408177 /* FilterTest.swift */,
 				CC0C23BD1C3F0D3300408177 /* QueryTest.swift */,
 			);
@@ -365,6 +371,7 @@
 			files = (
 				CC0C23B31C3F0C1B00408177 /* Launchpad.swift in Sources */,
 				CC0C23B61C3F0C1B00408177 /* Transport.swift in Sources */,
+				CCF69EA21C46BA7100961988 /* DictionaryExtension.swift in Sources */,
 				CC0C23B41C3F0C1B00408177 /* Request.swift in Sources */,
 				CC0C23AC1C3F0B8600408177 /* Filter.swift in Sources */,
 				CC05BAB31C40A862007D9BAB /* SocketIOClientFactory.swift in Sources */,
@@ -380,6 +387,7 @@
 			files = (
 				CC0C23D11C3F0EC700408177 /* LaunchpadTest.swift in Sources */,
 				CC05BAB71C40A89D007D9BAB /* WatchTest.swift in Sources */,
+				CCF69EA41C46C77900961988 /* DictionaryExtensionTest.swift in Sources */,
 				CC0C23CE1C3F0EC700408177 /* BaseTest.swift in Sources */,
 				CC0C23CF1C3F0EC700408177 /* LaunchpadQueryTest.swift in Sources */,
 				CC0C23D31C3F0EC700408177 /* ResponseTest.swift in Sources */,

@@ -10,7 +10,7 @@ public class Launchpad {
 	var transport: Transport = NSURLSessionTransport()
 
 	var params: [NSURLQueryItem] {
-		return _params + query.params
+		return _params + query.query.asQueryItems
 	}
 
 	var url: String {

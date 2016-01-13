@@ -4,30 +4,6 @@ public class Query : CustomStringConvertible {
 
 	public private(set) var query = [String: AnyObject]()
 
-	public var params: [NSURLQueryItem] {
-		var items = [NSURLQueryItem]()
-
-		for (name, value) in query {
-			var item: NSURLQueryItem
-
-			if ((value is [AnyObject]) || (value is [String: AnyObject])) {
-				let data = try! NSJSONSerialization.dataWithJSONObject(
-					value, options: NSJSONWritingOptions())
-
-				let json = NSString(data: data, encoding: NSUTF8StringEncoding)
-
-				item = NSURLQueryItem(name: name, value: json! as String)
-			}
-			else {
-				item = NSURLQueryItem(name: name, value: value.description)
-			}
-
-			items.append(item)
-		}
-
-		return items
-	}
-
 	public enum QueryType: String {
 		case COUNT = "count", FETCH = "fetch"
 	}
