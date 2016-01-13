@@ -147,7 +147,8 @@ public class Launchpad {
 	public func watch(options: Set<SocketIOClientOption> = [])
 		-> SocketIOClient {
 
-		return SocketIOClientFactory.create(self.url, options: options)
+		return SocketIOClientFactory.create(
+			self.url, params: self.params, options: options)
 	}
 
 }

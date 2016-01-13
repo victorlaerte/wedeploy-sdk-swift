@@ -46,6 +46,10 @@ class BaseTest : XCTestCase {
 		deleteAllBooks()
 	}
 
+	func assertBook(expected: [String: AnyObject], book: [String: AnyObject]) {
+		XCTAssertEqual(expected["title"] as? String, book["title"] as? String)
+	}
+
 	func assertBook(expected: [String: AnyObject], response: Response)
 		-> [String: AnyObject]? {
 
@@ -81,12 +85,6 @@ class BaseTest : XCTestCase {
 		}
 
 		return books
-	}
-
-	private func assertBook(
-		expected: [String: AnyObject], book: [String: AnyObject]) {
-
-		XCTAssertEqual(expected["title"] as? String, book["title"] as? String)
 	}
 
 	private func deleteAllBooks() {

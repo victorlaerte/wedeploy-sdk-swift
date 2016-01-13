@@ -3,16 +3,18 @@ import Socket_IO_Client_Swift
 
 public class SocketIOClientFactory {
 
-	class func create(url: String, var options: Set<SocketIOClientOption> = [])
+	class func create(
+			url: String, params: [NSURLQueryItem]? = [],
+			var options: Set<SocketIOClientOption> = [])
 		-> SocketIOClient {
 
 		if (!options.contains(.ForceNew(false))) {
 			options.insert(.ForceNew(true))
 		}
 
-		let url = parseURL(url)
+		let url = parseURL(url, params: params)
 
-		options.insert(.ConnectParams(["EIO": "3", "url": url.path]))
+		options.insert(.ConnectParams(["EIO": "3", "url": url.query]))
 		options.insert(.Path(url.path))
 
 		let socket = SocketIOClient(socketURL: url.host, options: options)
@@ -21,8 +23,12 @@ public class SocketIOClientFactory {
 		return socket
 	}
 
-	class func parseURL(url: String) -> (host: String, path: String) {
+	class func parseURL(url: String, params: [NSURLQueryItem]? = [])
+		-> (host: String, path: String, query: String) {
+
 		let URL = NSURLComponents(string: url)!
+		URL.queryItems = params
+
 		let host = URL.host ?? ""
 		var port = ""
 
@@ -31,8 +37,13 @@ public class SocketIOClientFactory {
 		}
 
 		let path = URL.path!
+		var query = path
 
-		return ("\(host)\(port)", path)
+		if let q = URL.query {
+			query = "\(path)?\(q)"
+		}
+
+		return ("\(host)\(port)", path, query)
 	}
 
 }
