@@ -8,10 +8,7 @@ public class Filter : CustomStringConvertible, StringLiteralConvertible {
 	public private(set) var filter = [String: AnyObject]()
 
 	public var description: String {
-		let data = try! NSJSONSerialization.dataWithJSONObject(
-			filter, options: NSJSONWritingOptions())
-
-		return NSString(data: data, encoding: NSUTF8StringEncoding)! as String
+		return filter.asJSON
 	}
 
 	public convenience init(_ expression: String) {

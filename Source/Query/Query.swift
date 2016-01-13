@@ -13,10 +13,7 @@ public class Query : CustomStringConvertible {
 	}
 
 	public var description: String {
-		let data = try! NSJSONSerialization.dataWithJSONObject(
-			query, options: NSJSONWritingOptions())
-
-		return NSString(data: data, encoding: NSUTF8StringEncoding)! as String
+		return query.asJSON
 	}
 
 	public init() {}

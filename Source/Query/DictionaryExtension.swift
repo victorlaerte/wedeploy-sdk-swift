@@ -2,6 +2,13 @@ import Foundation
 
 internal extension Dictionary {
 
+	var asJSON: String {
+		let data = try! NSJSONSerialization.dataWithJSONObject(
+			self as! AnyObject, options: NSJSONWritingOptions())
+
+		return NSString(data: data, encoding: NSUTF8StringEncoding)! as String
+	}
+
 	var asQueryItems: [NSURLQueryItem] {
 		var items = [NSURLQueryItem]()
 
