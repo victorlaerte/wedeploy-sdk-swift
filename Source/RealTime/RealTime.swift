@@ -25,13 +25,14 @@ public class RealTime {
 		socketOptions.insert(.Path(url.path))
 
 		socket = SocketIOClient(socketURL: url.host, options: socketOptions)
-
 		socket.connect()
 	}
 
-	public func on(event: String, _ callback: [AnyObject] -> ()) -> Self {
+	public func on(event: String, _ callback: ([AnyObject], RealTime) -> ())
+		-> Self {
+
 		socket.on(event, callback: { data, ack in
-			callback(data)
+			callback(data, self)
 		})
 
 		return self

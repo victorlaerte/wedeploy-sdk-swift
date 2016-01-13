@@ -11,24 +11,24 @@ class WatchTest : BaseTest {
 
 	func testWatch() {
 		let expectation = expect("watch")
-		let socket = launchpad.watch()
 
-		socket.on("connect") { data in
-			self.launchpad
-				.post(self.booksToAdd.first!)
-			.done()
-		}
+		launchpad
+			.watch()
+			.on("connect", { _ in
+				self.launchpad
+					.post(self.booksToAdd.first!)
+				.done()
+			})
+			.on("changes", { data, _ in
+				guard let books = data[0] as? [[String: AnyObject]] else {
+					XCTFail("Could not parse books")
+					expectation.fulfill()
+					return
+				}
 
-		socket.on("changes") { data in
-			guard let books = data[0] as? [[String: AnyObject]] else {
-				XCTFail("Could not parse books")
+				XCTAssertEqual(books.count, 3)
 				expectation.fulfill()
-				return
-			}
-
-			XCTAssertEqual(books.count, 3)
-			expectation.fulfill()
-		}
+			})
 
 		wait(2)
 	}
