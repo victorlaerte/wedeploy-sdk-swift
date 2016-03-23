@@ -24,7 +24,7 @@ extension XCTestCase {
 		XCTFail(error!.localizedDescription)
 	}
 
-	func wait(timeout: Double? = 2, assert: (() -> ())? = nil) {
+	func wait(timeout: Double? = 5, assert: (() -> ())? = nil) {
 		waitForExpectationsWithTimeout(timeout!) { error in
 			self.fail(error)
 			assert?()

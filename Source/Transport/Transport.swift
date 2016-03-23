@@ -15,8 +15,10 @@ public class NSURLSessionTransport : Transport {
 
 		let success = dispatchMainThread(success)
 		let failure = dispatchMainThread(failure)
+        
+        let configuration = NSURLSessionConfiguration.ephemeralSessionConfiguration()
 
-		let session = NSURLSession.sharedSession()
+		let session = NSURLSession(configuration: configuration)
 
 		do {
 			let request = try request.toURLRequest()

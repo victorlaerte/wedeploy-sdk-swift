@@ -8,7 +8,8 @@ public class Launchpad {
 	var path = ""
 	var query = Query()
 	var transport: Transport = NSURLSessionTransport()
-
+    var auth: Auth?
+    
 	var params: [NSURLQueryItem] {
 		return _params + query.query.asQueryItems
 	}
@@ -35,13 +36,16 @@ public class Launchpad {
 
 	public func delete() -> Promise<Response> {
 		let promise = Promise<Response>(promise: { fulfill, reject in
-			let request = Request(
+			var request = Request(
 				method: .DELETE, headers: self.headers, url: self.url,
 				params: self.params)
 
+            request = self.resolveAuthentication(request)
 			self.transport.send(request, success: fulfill, failure: reject)
 		})
 
+        
+        
 		return promise
 	}
 
@@ -64,12 +68,14 @@ public class Launchpad {
 
 	public func get() -> Promise<Response> {
 		let promise = Promise<Response>(promise: { fulfill, reject in
-			let request = Request(
+			var request = Request(
 				headers: self.headers, url: self.url, params: self.params)
-
-			self.transport.send(request, success: fulfill, failure: reject)
+            
+            request = self.resolveAuthentication(request)
+            self.transport.send(request, success: fulfill, failure: reject)
 		})
-
+        
+        
 		return promise
 	}
 
@@ -95,10 +101,11 @@ public class Launchpad {
 
 	public func patch(body: AnyObject?) -> Promise<Response> {
 		let promise = Promise<Response>(promise: { fulfill, reject in
-			let request = Request(
+			var request = Request(
 				method: .PATCH, headers: self.headers, url: self.url,
 				params: self.params, body: body)
 
+            request = self.resolveAuthentication(request)
 			self.transport.send(request, success: fulfill, failure: reject)
 		})
 
@@ -112,22 +119,24 @@ public class Launchpad {
 
 	public func post(body: AnyObject?) -> Promise<Response> {
 		let promise = Promise<Response>(promise: { fulfill, reject in
-			let request = Request(
+			var request = Request(
 				method: .POST, headers: self.headers, url: self.url,
 				params: self.params, body: body)
-
+           
+            request = self.resolveAuthentication(request)
 			self.transport.send(request, success: fulfill, failure: reject)
 		})
-
+        
 		return promise
 	}
 
 	public func put(body: AnyObject?) -> Promise<Response> {
 		let promise = Promise<Response>(promise: { fulfill, reject in
-			let request = Request(
+			var request = Request(
 				method: .PUT, headers: self.headers, url: self.url,
 				params: self.params, body: body)
 
+            request = self.resolveAuthentication(request)
 			self.transport.send(request, success: fulfill, failure: reject)
 		})
 
@@ -150,5 +159,35 @@ public class Launchpad {
 		return SocketIOClientFactory.create(
 			self.url, params: self.params, options: options)
 	}
+    
+    
+    // Authentication
+    public func auth(auth: Auth) -> Self {
+        self.auth = auth
+        return self
+    }
+    
+    public func auth(username: String, password: String ) -> Self {
+        auth = Auth(username, password)
+        return self
+    }
+    
+    func resolveAuthentication(request: Request) -> Request {
+        guard let auth = auth else {
+            return request
+        }
+        
+        if(auth.hasUsername() && auth.hasPassword()){
+            let credentials = auth.username() + ":" + auth.password()
+            let cred = credentials.dataUsingEncoding(NSUTF8StringEncoding)
+            let credentialsBase64 = cred!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+            
+            request.headers["Authorization"] = "Basic " + credentialsBase64
+        }
+        
+        return request
+    }
+    
+    
 
 }
