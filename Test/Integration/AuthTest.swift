@@ -1,7 +1,7 @@
 @testable import Launchpad
 import XCTest
 
-class AuthenticationTest: XCTestCase {
+class AuthTest : XCTestCase {
 
 	let username = "igor.matos@liferay.com"
 	let password = "weloveliferay"
