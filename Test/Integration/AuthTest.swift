@@ -3,16 +3,33 @@ import XCTest
 
 class AuthTest : XCTestCase {
 
-	let username = "igor.matos@liferay.com"
-	let password = "weloveliferay"
-	let url = "http://liferay.io/launchpad/swift/artists"
+	var password: String?
+	var path: String!
+	var server: String!
+	var username: String!
 
-	func testCorrectPassword(){
+	override func setUp() {
+		let bundle = NSBundle(identifier: "com.liferay.Launchpad.Tests")
+		let file = bundle!.pathForResource("settings", ofType: "plist")
+		let settings = NSDictionary(contentsOfFile: file!) as! [String: String]
+
+		password = settings["password"]
+		path = settings["protectedPath"]
+		server = settings["server"]
+		username = settings["username"]
+	}
+
+	func testCorrectPassword() {
+		guard let p = password else {
+			return
+		}
+
 		let expectation = expect("auth")
 
 		Launchpad
-			.url(url)
-			.auth(BasicAuth(username, password))
+			.url(server)
+			.path(path)
+			.auth(BasicAuth(username, p))
 			.get()
 			.then { response in
 				XCTAssertEqual(response.statusCode, 200)
@@ -27,7 +44,8 @@ class AuthTest : XCTestCase {
 		let expectation = expect("auth")
 
 		Launchpad
-			.url(url)
+			.url(server)
+			.path(path)
 			.auth(BasicAuth(username, "wrong"))
 			.get()
 			.then { response in
@@ -42,7 +60,9 @@ class AuthTest : XCTestCase {
 	func testMissingAuth() {
 		let expectation = expect("auth")
 
-		Launchpad.url(url)
+		Launchpad
+			.url(server)
+			.path(path)
 			.get()
 			.then { response in
 				XCTAssertEqual(response.statusCode, 404)
@@ -55,7 +75,7 @@ class AuthTest : XCTestCase {
 
 	func testBasicHeader() {
 		let request = Request(headers: [:], url: "", params: [])
-		let auth = BasicAuth("bruno.farache@liferay.com", "test")
+		let auth = BasicAuth(username, "test")
 		auth.authenticate(request)
 
 		XCTAssertEqual(

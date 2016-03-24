@@ -2,9 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>server</key>
-	<string>http://liferay.io</string>
 	<key>path</key>
 	<string>/loop/books</string>
+	<key>protectedPath</key>
+	<string>/loop/protected</string>
+	<key>server</key>
+	<string>http://liferay.io</string>
+	<key>username</key>
+	<string>bruno.farache@liferay.com</string>
 </dict>
 </plist>
