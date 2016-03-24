@@ -49,7 +49,7 @@ class WatchTest : BaseTest {
 			expectation.fulfill()
 		})
 
-		wait(2)
+		wait(5)
 	}
 
 	func testWatch_With_Query() {
@@ -86,7 +86,7 @@ class WatchTest : BaseTest {
 			expectation.fulfill()
 		})
 
-		wait(2)
+		wait(5)
 	}
 
 }
