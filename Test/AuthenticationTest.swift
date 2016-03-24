@@ -108,11 +108,8 @@ class AuthenticationTest: XCTestCase {
             .auth(username, password: "anypassword")
             .get()
             .then { response in
-                guard let queryResponse = response.body as? [[String: AnyObject]] else {
-                    return
-                }
                 
-                XCTAssertEqual(queryResponse.count, 2)
+                XCTAssertEqual(response.statusCode, 401)
                 expectation.fulfill()
                 
             }
@@ -127,13 +124,8 @@ class AuthenticationTest: XCTestCase {
         Launchpad.url(url)
             .get()
             .then { response in
-                guard let queryResponse = response.body as? [[String: AnyObject]] else {
-                    return
-                }
-                
-                XCTAssertNotEqual(queryResponse.count, 2)
+                XCTAssertEqual(response.statusCode, 404)
                 expectation.fulfill()
-                
             }
             .done()
         

@@ -14,6 +14,7 @@ public class Request {
 
 		self.method = method
 		self.headers = headers ?? [:]
+        self.headers["X-Requested-With"] = "swift"
 		self.url = url
 		self.params = params ?? []
 		self.body = body
@@ -23,7 +24,7 @@ public class Request {
 		guard let b = body else {
 			return
 		}
-
+        
 		if let stream = b as? NSInputStream {
 			request.HTTPBodyStream = stream
 		}
@@ -33,7 +34,7 @@ public class Request {
 		else {
 			request.setValue(
 				"application/json", forHTTPHeaderField: "Content-Type")
-
+            
 			request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(
 				b, options: NSJSONWritingOptions())
 		}
