@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1E43A2041C9886ED0087BFBF /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E43A2031C9886ED0087BFBF /* Auth.swift */; };
 		A125ADF14A627DF6AD99699B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0CDEE64BB19267687ADF48 /* Pods.framework */; };
 		CC05BAB31C40A862007D9BAB /* SocketIOClientFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC05BAB21C40A862007D9BAB /* SocketIOClientFactory.swift */; };
 		CC05BAB71C40A89D007D9BAB /* WatchTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC05BAB51C40A880007D9BAB /* WatchTest.swift */; };
@@ -28,6 +27,8 @@
 		CC0C23D31C3F0EC700408177 /* ResponseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23CD1C3F0EC700408177 /* ResponseTest.swift */; };
 		CC2F36201C3FE50500902BD4 /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2F361F1C3FE50500902BD4 /* RequestMethod.swift */; };
 		CC70B5651CA484BA0015F61F /* AuthTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC70B5631CA484A60015F61F /* AuthTest.swift */; };
+		CC70B5681CA485B70015F61F /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC70B5671CA485B70015F61F /* Auth.swift */; };
+		CC70B56A1CA485CB0015F61F /* BasicAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC70B5691CA485CB0015F61F /* BasicAuth.swift */; };
 		CC9F47B21C4076DB005243FE /* Launchpad.podspec in Resources */ = {isa = PBXBuildFile; fileRef = CC9F47B11C4076DB005243FE /* Launchpad.podspec */; };
 		CCF69EA21C46BA7100961988 /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF69EA11C46BA7100961988 /* DictionaryExtension.swift */; };
 		CCF69EA41C46C77900961988 /* DictionaryExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF69EA31C46C77900961988 /* DictionaryExtensionTest.swift */; };
@@ -44,7 +45,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1E43A2031C9886ED0087BFBF /* Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		7B0CDEE64BB19267687ADF48 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		813DAB59344C62F88264EE5A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		CC05BAB21C40A862007D9BAB /* SocketIOClientFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOClientFactory.swift; sourceTree = "<group>"; };
@@ -69,6 +69,8 @@
 		CC0C23CD1C3F0EC700408177 /* ResponseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseTest.swift; sourceTree = "<group>"; };
 		CC2F361F1C3FE50500902BD4 /* RequestMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
 		CC70B5631CA484A60015F61F /* AuthTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTest.swift; sourceTree = "<group>"; };
+		CC70B5671CA485B70015F61F /* Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
+		CC70B5691CA485CB0015F61F /* BasicAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicAuth.swift; sourceTree = "<group>"; };
 		CC9F47B11C4076DB005243FE /* Launchpad.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Launchpad.podspec; sourceTree = "<group>"; };
 		CC9F47B51C407E89005243FE /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
 		CCA17B9F1ADEC3D7000BF430 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -196,14 +198,23 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		CC70B5661CA485B70015F61F /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				CC70B5671CA485B70015F61F /* Auth.swift */,
+				CC70B5691CA485CB0015F61F /* BasicAuth.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		CCA17B991ADEC3CB000BF430 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				CC70B5661CA485B70015F61F /* Auth */,
 				CC0C23A91C3F0B8600408177 /* Query */,
 				CC05BAB11C40A862007D9BAB /* RealTime */,
 				CC0C23AF1C3F0C1B00408177 /* Transport */,
 				CC0C23AE1C3F0C1B00408177 /* Launchpad.swift */,
-				1E43A2031C9886ED0087BFBF /* Auth.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -379,8 +390,9 @@
 				CC0C23B61C3F0C1B00408177 /* Transport.swift in Sources */,
 				CCF69EA21C46BA7100961988 /* DictionaryExtension.swift in Sources */,
 				CC0C23B41C3F0C1B00408177 /* Request.swift in Sources */,
+				CC70B56A1CA485CB0015F61F /* BasicAuth.swift in Sources */,
 				CC0C23AC1C3F0B8600408177 /* Filter.swift in Sources */,
-				1E43A2041C9886ED0087BFBF /* Auth.swift in Sources */,
+				CC70B5681CA485B70015F61F /* Auth.swift in Sources */,
 				CC05BAB31C40A862007D9BAB /* SocketIOClientFactory.swift in Sources */,
 				CC0C23AD1C3F0B8600408177 /* Query.swift in Sources */,
 				CC2F36201C3FE50500902BD4 /* RequestMethod.swift in Sources */,

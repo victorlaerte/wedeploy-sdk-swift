@@ -12,7 +12,7 @@ class AuthTest : XCTestCase {
 
 		Launchpad
 			.url(url)
-			.auth(Auth(username, password))
+			.auth(BasicAuth(username, password))
 			.get()
 			.then { response in
 				XCTAssertEqual(response.statusCode, 200)
@@ -28,7 +28,7 @@ class AuthTest : XCTestCase {
 
 		Launchpad
 			.url(url)
-			.auth(Auth(username, "wrong"))
+			.auth(BasicAuth(username, "wrong"))
 			.get()
 			.then { response in
 				XCTAssertEqual(response.statusCode, 401)
@@ -55,7 +55,7 @@ class AuthTest : XCTestCase {
 
 	func testBasicHeader() {
 		let request = Request(headers: [:], url: "", params: [])
-		let auth = Auth("bruno.farache@liferay.com", "test")
+		let auth = BasicAuth("bruno.farache@liferay.com", "test")
 		auth.authenticate(request)
 
 		XCTAssertEqual(

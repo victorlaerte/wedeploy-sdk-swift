@@ -1,6 +1,6 @@
 import Foundation
 
-public class Auth {
+public class BasicAuth : Auth {
 
 	public var password: String
 	public var username: String
@@ -10,7 +10,7 @@ public class Auth {
 		self.password = password
 	}
 
-	func authenticate(request: Request) {
+	public func authenticate(request: Request) {
 		var credentials = "\(username):\(password)"
 		let data = credentials.dataUsingEncoding(NSUTF8StringEncoding)
 		credentials = data!.base64EncodedStringWithOptions(
