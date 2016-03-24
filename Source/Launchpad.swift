@@ -4,12 +4,12 @@ import Socket_IO_Client_Swift
 
 public class Launchpad {
 
+	var auth: Auth?
 	var headers = [String: String]()
 	var path = ""
 	var query = Query()
 	var transport: Transport = NSURLSessionTransport()
-    var auth: Auth?
-    
+
 	var params: [NSURLQueryItem] {
 		return _params + query.query.asQueryItems
 	}
@@ -29,6 +29,11 @@ public class Launchpad {
 		return Launchpad(url)
 	}
 
+	public func auth(auth: Auth) -> Self {
+		self.auth = auth
+		return self
+	}
+
 	public func count() -> Self {
 		query.count()
 		return self
@@ -40,12 +45,10 @@ public class Launchpad {
 				method: .DELETE, headers: self.headers, url: self.url,
 				params: self.params)
 
-            self.auth?.authenticate(request)
+			self.auth?.authenticate(request)
 			self.transport.send(request, success: fulfill, failure: reject)
 		})
 
-        
-        
 		return promise
 	}
 
@@ -70,12 +73,11 @@ public class Launchpad {
 		let promise = Promise<Response>(promise: { fulfill, reject in
 			let request = Request(
 				headers: self.headers, url: self.url, params: self.params)
-            
-            self.auth?.authenticate(request)
-            self.transport.send(request, success: fulfill, failure: reject)
+
+			self.auth?.authenticate(request)
+			self.transport.send(request, success: fulfill, failure: reject)
 		})
-        
-        
+
 		return promise
 	}
 
@@ -126,7 +128,7 @@ public class Launchpad {
 			self.auth?.authenticate(request)
 			self.transport.send(request, success: fulfill, failure: reject)
 		})
-        
+
 		return promise
 	}
 
@@ -136,7 +138,7 @@ public class Launchpad {
 				method: .PUT, headers: self.headers, url: self.url,
 				params: self.params, body: body)
 
-            self.auth?.authenticate(request)
+			self.auth?.authenticate(request)
 			self.transport.send(request, success: fulfill, failure: reject)
 		})
 
@@ -159,10 +161,5 @@ public class Launchpad {
 		return SocketIOClientFactory.create(
 			self.url, params: self.params, options: options)
 	}
-
-    public func auth(auth: Auth) -> Self {
-        self.auth = auth
-        return self
-    }
 
 }
