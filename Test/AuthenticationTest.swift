@@ -6,59 +6,8 @@ class AuthenticationTest: XCTestCase {
 	let username = "igor.matos@liferay.com"
 	let password = "weloveliferay"
 	let url = "http://liferay.io/launchpad/swift/artists"
-	var artists = [[String: AnyObject]]()
-	var artistsToAdd = [
-		[
-			"name": "Rage Against The Machine",
-			"genre": "Rock / Rap Rock"
-		],
-		[
-			"name": "Led Zeppelin",
-			"genre": "Classic Rock"
-		]
-	]
 
-	override func tearDown() {
-		deleteAllArtists()
-	}
-
-	override func setUp() {
-		deleteAllArtists()
-
-		for artistToAdd in artistsToAdd {
-			let expectation = expect("setUp")
-
-			Launchpad
-				.url(url)
-				.auth(Auth(username, password))
-				.post(artistToAdd)
-				.then { response in
-					self.artists.append(response.body as! [String: AnyObject])
-					expectation.fulfill()
-				}
-				.done()
-
-			wait()
-		}
-
-	}
-
-	private func deleteAllArtists() {
-		let expectation = expect("tearDown")
-
-		Launchpad
-			.url(url)
-			.auth(Auth(username, password))
-			.delete()
-			.then { status -> () in
-				expectation.fulfill()
-			}
-			.done()
-
-		wait()
-	}
-
-	func testAuthSuccess(){
+	func testCorrectPassword(){
 		let expectation = expect("auth")
 
 		Launchpad
@@ -66,11 +15,7 @@ class AuthenticationTest: XCTestCase {
 			.auth(Auth(username, password))
 			.get()
 			.then { response in
-				guard let queryResponse = response.body as? [[String: AnyObject]] else {
-					return
-				}
-
-				XCTAssertEqual(queryResponse.count, 2)
+				XCTAssertEqual(response.statusCode, 200)
 				expectation.fulfill()
 			}
 			.done()
@@ -78,12 +23,12 @@ class AuthenticationTest: XCTestCase {
 		wait()
 	}
 
-	func testAuthFail(){
+	func testWrongPassword() {
 		let expectation = expect("auth")
 
 		Launchpad
 			.url(url)
-			.auth(Auth(username, "anypassword"))
+			.auth(Auth(username, "wrong"))
 			.get()
 			.then { response in
 				XCTAssertEqual(response.statusCode, 401)
@@ -94,7 +39,7 @@ class AuthenticationTest: XCTestCase {
 		wait()
 	}
 
-	func testApiWithoutAuth(){
+	func testMissingAuth() {
 		let expectation = expect("auth")
 
 		Launchpad.url(url)
