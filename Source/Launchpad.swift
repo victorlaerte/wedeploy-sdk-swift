@@ -176,14 +176,12 @@ public class Launchpad {
         guard let auth = auth else {
             return request
         }
-        
-        if(auth.hasUsername() && auth.hasPassword()){
-            let credentials = auth.username() + ":" + auth.password()
-            let cred = credentials.dataUsingEncoding(NSUTF8StringEncoding)
-            let credentialsBase64 = cred!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
-            
-            request.headers["Authorization"] = "Basic " + credentialsBase64
-        }
+
+		let credentials = auth.username + ":" + auth.password
+		let cred = credentials.dataUsingEncoding(NSUTF8StringEncoding)
+		let credentialsBase64 = cred!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+		
+		request.headers["Authorization"] = "Basic " + credentialsBase64
         
         return request
     }

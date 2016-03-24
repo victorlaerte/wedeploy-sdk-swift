@@ -18,14 +18,6 @@ class AuthenticationTest: XCTestCase {
 		]
 	]
 
-	func testAuth_Username_and_Password() {
-		let auth = Auth.create("username", password: "password")
-		XCTAssert(auth.hasUsername())
-		XCTAssert(auth.hasPassword())
-		XCTAssertEqual(auth.username(), "username")
-		XCTAssertEqual(auth.password(), "password")
-	}
-
 	override func tearDown() {
 		deleteAllArtists()
 	}
