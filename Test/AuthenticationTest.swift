@@ -30,7 +30,7 @@ class AuthenticationTest: XCTestCase {
 
 			Launchpad
 				.url(url)
-				.auth(username, password: password)
+				.auth(Auth(username, password))
 				.post(artistToAdd)
 				.then { response in
 					self.artists.append(response.body as! [String: AnyObject])
@@ -48,7 +48,7 @@ class AuthenticationTest: XCTestCase {
 
 		Launchpad
 			.url(url)
-			.auth(username, password: password)
+			.auth(Auth(username, password))
 			.delete()
 			.then { status -> () in
 				expectation.fulfill()
@@ -63,7 +63,7 @@ class AuthenticationTest: XCTestCase {
 
 		Launchpad
 			.url(url)
-			.auth(username, password: password)
+			.auth(Auth(username, password))
 			.get()
 			.then { response in
 				guard let queryResponse = response.body as? [[String: AnyObject]] else {
@@ -83,7 +83,7 @@ class AuthenticationTest: XCTestCase {
 
 		Launchpad
 			.url(url)
-			.auth(username, password: "anypassword")
+			.auth(Auth(username, "anypassword"))
 			.get()
 			.then { response in
 				XCTAssertEqual(response.statusCode, 401)
@@ -109,22 +109,13 @@ class AuthenticationTest: XCTestCase {
 	}
 
 	func testBasicHeader() {
-		let credentials = "bruno.farache@liferay.com:test"
-		let cred = credentials.dataUsingEncoding(NSUTF8StringEncoding)
-		let credentialsBase64 = cred!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
-		let expectedHeader = "Basic \(credentialsBase64)"
+		let request = Request(headers: [:], url: "", params: [])
 		let auth = Auth("bruno.farache@liferay.com", "test")
+		auth.authenticate(request)
 
-		let launchpad = Launchpad.url(url).auth(auth)
-
-		var request = Request(
-			headers: launchpad.headers, url: launchpad.url, params: launchpad.params)
-
-		request = launchpad
-				.resolveAuthentication(request)
-
-		let header = request.headers["Authorization"]
-		XCTAssertEqual(expectedHeader, header)
+		XCTAssertEqual(
+			"Basic YnJ1bm8uZmFyYWNoZUBsaWZlcmF5LmNvbTp0ZXN0",
+			request.headers["Authorization"])
 	}
 
 }

@@ -10,4 +10,13 @@ public class Auth {
 		self.password = password
 	}
 
+	func authenticate(request: Request) {
+		var credentials = "\(username):\(password)"
+		let data = credentials.dataUsingEncoding(NSUTF8StringEncoding)
+		credentials = data!.base64EncodedStringWithOptions(
+			NSDataBase64EncodingOptions(rawValue: 0))
+
+		request.headers["Authorization"] = "Basic " + credentials
+	}
+
 }
