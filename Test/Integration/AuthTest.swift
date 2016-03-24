@@ -21,6 +21,14 @@ class AuthTest : XCTestCase {
 		username = settings["username"]
 	}
 
+	func testBasicHeader() {
+		let request = Request(headers: [:], url: "", params: [])
+		let auth = BasicAuth(username, "test")
+		auth.authenticate(request)
+
+		XCTAssertEqual(basicHeader, request.headers["Authorization"])
+	}
+
 	func testCorrectPassword() {
 		guard let p = password else {
 			return
@@ -35,6 +43,39 @@ class AuthTest : XCTestCase {
 			.get()
 			.then { response in
 				XCTAssertEqual(response.statusCode, 200)
+				expectation.fulfill()
+			}
+			.done()
+
+		wait()
+	}
+
+	func testMissingAuth() {
+		let expectation = expect("auth")
+
+		Launchpad
+			.url(server)
+			.path(path)
+			.get()
+			.then { response in
+				XCTAssertEqual(response.statusCode, 404)
+				expectation.fulfill()
+			}
+			.done()
+
+		wait()
+	}
+
+	func testWrongPassword() {
+		let expectation = expect("auth")
+
+		Launchpad
+			.url(server)
+			.path(path)
+			.auth(BasicAuth(username, "wrong"))
+			.get()
+			.then { response in
+				XCTAssertEqual(response.statusCode, 401)
 				expectation.fulfill()
 			}
 			.done()
@@ -150,47 +191,6 @@ class AuthTest : XCTestCase {
 			.done()
 
 		wait()
-	}
-
-	func testWrongPassword() {
-		let expectation = expect("auth")
-
-		Launchpad
-			.url(server)
-			.path(path)
-			.auth(BasicAuth(username, "wrong"))
-			.get()
-			.then { response in
-				XCTAssertEqual(response.statusCode, 401)
-				expectation.fulfill()
-			}
-			.done()
-
-		wait()
-	}
-
-	func testMissingAuth() {
-		let expectation = expect("auth")
-
-		Launchpad
-			.url(server)
-			.path(path)
-			.get()
-			.then { response in
-				XCTAssertEqual(response.statusCode, 404)
-				expectation.fulfill()
-			}
-			.done()
-
-		wait()
-	}
-
-	func testBasicHeader() {
-		let request = Request(headers: [:], url: "", params: [])
-		let auth = BasicAuth(username, "test")
-		auth.authenticate(request)
-
-		XCTAssertEqual(basicHeader, request.headers["Authorization"])
 	}
 
 }
