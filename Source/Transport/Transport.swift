@@ -3,15 +3,14 @@ import Foundation
 public protocol Transport {
 
 	func send(
-		request: Request, success: (Response -> ())?, failure: (NSError -> ())?)
+		request: Request, success: (Response -> ()), failure: (NSError -> ()))
 
 }
 
 public class NSURLSessionTransport : Transport {
 
 	public func send(
-		request: Request, success: (Response -> ())?,
-		failure: (NSError -> ())?) {
+		request: Request, success: (Response -> ()), failure: (NSError -> ())) {
 
 		let success = dispatchMainThread(success)
 		let failure = dispatchMainThread(failure)
@@ -39,8 +38,8 @@ public class NSURLSessionTransport : Transport {
 					}
 
 					let response = Response(
-						statusCode: httpURLResponse.statusCode, headers: headers,
-						body: data!)
+						statusCode: httpURLResponse.statusCode,
+						headers: headers, body: data!)
 
 					success(response)
 				}
@@ -52,13 +51,11 @@ public class NSURLSessionTransport : Transport {
 		}
 	}
 
-	func dispatchMainThread<T>(block: (T -> ())?) -> (Any? -> ()) {
+	func dispatchMainThread<T>(block: (T -> ())) -> (Any? -> ()) {
 		return { value in
-			if let b = block {
-				dispatch_async(dispatch_get_main_queue(), {
-					b(value as! T)
-				})
-			}
+			dispatch_async(dispatch_get_main_queue(), {
+				block(value as! T)
+			})
 		}
 	}
 

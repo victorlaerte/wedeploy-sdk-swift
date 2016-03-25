@@ -200,13 +200,13 @@ class MockTransport : Transport {
 	var request : Request?
 
 	func send(
-		request: Request, success: (Response -> ())?,
-		failure: (NSError -> ())?) {
+		request: Request, success: (Response -> ()),
+		failure: (NSError -> ())) {
 
 		self.request = request
 
 		let data = "".dataUsingEncoding(NSUTF8StringEncoding)
-		success!(Response(statusCode: 200, headers: [:], body: data!))
+		success(Response(statusCode: 200, headers: [:], body: data!))
 	}
 
 }
