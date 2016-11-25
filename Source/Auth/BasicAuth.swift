@@ -12,9 +12,8 @@ public class BasicAuth : Auth {
 
 	public func authenticate(request: Request) {
 		var credentials = "\(username):\(password)"
-		let data = credentials.dataUsingEncoding(NSUTF8StringEncoding)
-		credentials = data!.base64EncodedStringWithOptions(
-			NSDataBase64EncodingOptions(rawValue: 0))
+		let data = credentials.data(using: .utf8)
+		credentials = data!.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
 
 		request.headers["Authorization"] = "Basic " + credentials
 	}
