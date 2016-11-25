@@ -3,27 +3,26 @@ import Foundation
 internal extension Dictionary {
 
 	var asJSON: String {
-		let data = try! NSJSONSerialization.dataWithJSONObject(
-			self as! AnyObject, options: NSJSONWritingOptions())
+		let data = try! JSONSerialization.data(withJSONObject: self as AnyObject)
 
-		return NSString(data: data, encoding: NSUTF8StringEncoding)! as String
+		return String(data: data, encoding: .utf8)!
 	}
 
-	var asQueryItems: [NSURLQueryItem] {
-		var items = [NSURLQueryItem]()
+	var asQueryItems: [URLQueryItem] {
+		var items = [URLQueryItem]()
 
 		for (key, value) in self {
 			if ((value is [AnyObject]) || (value is [String: AnyObject])) {
-				let data = try! NSJSONSerialization.dataWithJSONObject(
-					value as! AnyObject, options: NSJSONWritingOptions())
+				let data = try! JSONSerialization.data(withJSONObject:
+					value as AnyObject)
 
-				let json = NSString(data: data, encoding: NSUTF8StringEncoding)
+				let json = String(data: data, encoding: .utf8)
 
 				items.append(
-					NSURLQueryItem(name: "\(key)", value: json! as String))
+					URLQueryItem(name: "\(key)", value: json! as String))
 			}
 			else {
-				items.append(NSURLQueryItem(name: "\(key)", value: "\(value)"))
+				items.append(URLQueryItem(name: "\(key)", value: "\(value)"))
 			}
 		}
 
