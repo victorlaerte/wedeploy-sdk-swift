@@ -27,13 +27,13 @@ public class Query : CustomStringConvertible {
 	}
 
 	public func filter(field: String, _ value: AnyObject) -> Self {
-		return self.filter(Filter(field, value))
+		return self.filter(filter: Filter(field, value))
 	}
 
 	public func filter(field: String, _ op: String, _ value: AnyObject)
 		-> Self {
 
-		return self.filter(Filter(field, op, value))
+		return self.filter(filter: Filter(field, op, value))
 	}
 
 	public func filter(filter: Filter) -> Self {
@@ -42,17 +42,17 @@ public class Query : CustomStringConvertible {
 
 		filters.append(filter.filter)
 
-		query["filter"] = filters
+		query["filter"] = filters as AnyObject
 		return self
 	}
 
 	public func limit(limit: Int) -> Self {
-		query["limit"] = limit
+		query["limit"] = limit as AnyObject
 		return self
 	}
 
 	public func offset(offset: Int) -> Self {
-		query["offset"] = offset
+		query["offset"] = offset as AnyObject
 		return self
 	}
 
@@ -60,12 +60,12 @@ public class Query : CustomStringConvertible {
 		var sort = query["sort"] as? [[String: String]] ?? [[String: String]]()
 		sort.append([name: order.rawValue])
 
-		query["sort"] = sort
+		query["sort"] = sort as AnyObject
 		return self
 	}
 
-	public func type(type: QueryType) -> Self {
-		query["type"] = type.rawValue
+	public func type(_ type: QueryType) -> Self {
+		query["type"] = type.rawValue as AnyObject
 		return self
 	}
 
