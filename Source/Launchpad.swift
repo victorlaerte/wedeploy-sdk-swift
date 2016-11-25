@@ -1,6 +1,6 @@
 import Foundation
 import later
-import Socket_IO_Client_Swift
+import SocketIO
 
 public class Launchpad {
 
@@ -10,7 +10,7 @@ public class Launchpad {
 	var query = Query()
 	var transport: Transport = NSURLSessionTransport()
 
-	var params: [NSURLQueryItem] {
+	var params: [URLQueryItem] {
 		return _params + query.query.asQueryItems
 	}
 
@@ -18,7 +18,7 @@ public class Launchpad {
 		return _url + path
 	}
 
-	var _params = [NSURLQueryItem]()
+	var _params = [URLQueryItem]()
 	var _url: String
 
 	public init(_ url: String) {
@@ -40,32 +40,33 @@ public class Launchpad {
 	}
 
 	public func delete() -> Promise<Response> {
+
 		let promise = Promise<Response>(promise: { fulfill, reject in
 			let request = Request(
 				method: .DELETE, headers: self.headers, url: self.url,
 				params: self.params)
 
-			self.auth?.authenticate(request)
-			self.transport.send(request, success: fulfill, failure: reject)
+			self.auth?.authenticate(request: request)
+			self.transport.send(request: request, success: fulfill, failure: reject)
 		})
 
 		return promise
 	}
 
 	public func filter(field: String, _ value: AnyObject) -> Self {
-		query.filter(field, value)
+		query.filter(field: field, value)
 		return self
 	}
 
 	public func filter(field: String, _ op: String, _ value: AnyObject)
 		-> Self {
 
-		query.filter(field, op, value)
+		//query.filter(field, op, value)
 		return self
 	}
 
 	public func filter(filter: Filter) -> Self {
-		query.filter(filter)
+		//query.filter(filter)
 		return self
 	}
 
@@ -74,8 +75,8 @@ public class Launchpad {
 			let request = Request(
 				headers: self.headers, url: self.url, params: self.params)
 
-			self.auth?.authenticate(request)
-			self.transport.send(request, success: fulfill, failure: reject)
+			self.auth?.authenticate(request: request)
+			self.transport.send(request: request, success: fulfill, failure: reject)
 		})
 
 		return promise
@@ -87,17 +88,17 @@ public class Launchpad {
 	}
 
 	public func limit(limit: Int) -> Self {
-		query.limit(limit)
+		query.limit(limit: limit)
 		return self
 	}
 
 	public func offset(offset: Int) -> Self {
-		query.offset(offset)
+		query.offset(offset: offset)
 		return self
 	}
 
 	public func param(name: String, _ value: String) -> Self {
-		_params.append(NSURLQueryItem(name: name, value: value))
+		_params.append(URLQueryItem(name: name, value: value))
 		return self
 	}
 
@@ -107,8 +108,8 @@ public class Launchpad {
 				method: .PATCH, headers: self.headers, url: self.url,
 				params: self.params, body: body)
 
-			self.auth?.authenticate(request)
-			self.transport.send(request, success: fulfill, failure: reject)
+			self.auth?.authenticate(request: request)
+			self.transport.send(request: request, success: fulfill, failure: reject)
 		})
 
 		return promise
@@ -125,8 +126,8 @@ public class Launchpad {
 				method: .POST, headers: self.headers, url: self.url,
 				params: self.params, body: body)
 
-			self.auth?.authenticate(request)
-			self.transport.send(request, success: fulfill, failure: reject)
+			self.auth?.authenticate(request: request)
+			self.transport.send(request: request, success: fulfill, failure: reject)
 		})
 
 		return promise
@@ -138,15 +139,15 @@ public class Launchpad {
 				method: .PUT, headers: self.headers, url: self.url,
 				params: self.params, body: body)
 
-			self.auth?.authenticate(request)
-			self.transport.send(request, success: fulfill, failure: reject)
+			self.auth?.authenticate(request: request)
+			self.transport.send(request: request, success: fulfill, failure: reject)
 		})
 
 		return promise
 	}
 
 	public func sort(name: String, order: Query.Order = .ASC) -> Self {
-		query.sort(name, order: order)
+		query.sort(name: name, order: order)
 		return self
 	}
 
@@ -155,11 +156,11 @@ public class Launchpad {
 		return self
 	}
 
-	public func watch(options: Set<SocketIOClientOption> = [])
-		-> SocketIOClient {
-
-		return SocketIOClientFactory.create(
-			self.url, params: self.params, options: options)
-	}
+//	public func watch(options: Set<SocketIOClientOption> = [])
+//		-> SocketIOClient {
+//
+//		return SocketIOClientFactory.create(
+//			self.url, params: self.params, options: options)
+//	}
 
 }
