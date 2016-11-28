@@ -28,11 +28,11 @@ public class Response {
 				return parsed as AnyObject
 			}
 			catch {
-				return parseString(body: body) as AnyObject
+				return parseString(body: body) as AnyObject?
 			}
 		}
 		else {
-			return parseString(body: body) as AnyObject
+			return parseString(body: body) as AnyObject?
 		}
 	}
 
