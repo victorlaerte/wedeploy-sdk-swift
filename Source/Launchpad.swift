@@ -2,28 +2,8 @@ import Foundation
 import later
 import SocketIO
 
-public struct WeDeployAuth {
 
-	let url: String
-	let transport = NSURLSessionTransport()
 
-	public func signInWithEmailAndPassword(username: String, password: String) -> Promise<Response> {
-		let promise = Promise<Response> { (fulfill, reject) in
-
-			let userParam = URLQueryItem(name: "username", value: username)
-			let passParam = URLQueryItem(name: "password", value: password)
-			let grantTypeParam = URLQueryItem(name: "grant_type", value: "password")
-
-			let url = "\(self.url)/oauth/token"
-
-			let request = Request(headers: nil, url: url, params: [userParam, passParam, grantTypeParam])
-
-			self.transport.send(request: request, success: fulfill, failure: reject)
-		}
-
-		return promise
-	}
-}
 public class Launchpad {
 
 	var auth: Auth?
