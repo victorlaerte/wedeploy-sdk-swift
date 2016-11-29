@@ -116,6 +116,13 @@ public class WeDeployAuth : RequestBuilder {
 			}
 	}
 
+	public func signOut() {
+		self.authorization = nil
+		self.currentUser = nil
+
+		WeDeploy.authSession?.currentAuth = nil
+		WeDeploy.authSession?.currentUser = nil
+	}
 	func validateResponse(response: Response) throws -> Dictionary<String, AnyObject> {
 		guard response.statusCode == 200,
 			let body = response.body as? Dictionary<String, AnyObject>
