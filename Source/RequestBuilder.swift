@@ -13,7 +13,7 @@ import RxSwift
 
 public class RequestBuilder {
 
-	var auth: Auth?
+	var authorization: Auth?
 	var headers = [String: String]()
 	var path = ""
 	var transport: Transport = NSURLSessionTransport()
@@ -27,13 +27,13 @@ public class RequestBuilder {
 		return _url + path
 	}
 
-	private var _url: String
+	var _url: String
 
 	public init(_ url: String) {
 		self._url = url
 	}
 
-	public static func url(_ url: String) -> RequestBuilder {
+	public class func url(_ url: String) -> RequestBuilder {
 		return RequestBuilder(url)
 	}
 
@@ -47,17 +47,17 @@ public class RequestBuilder {
 		return self
 	}
 
-	public func transport(transport: Transport) -> Self {
+	public func transport(_ transport: Transport) -> Self {
 		self.transport = transport
 		return self
 	}
 
 	public func authorize(auth: Auth) -> Self {
-		self.auth = auth
+		self.authorization = auth
 		return self
 	}
 
-	public func path(path: String) -> Self {
+	public func path(_ path: String) -> Self {
 		self.path += path
 		return self
 	}
@@ -120,7 +120,7 @@ public class RequestBuilder {
 				method: self.requestMethod, headers: self.headers, url: self.url,
 				params: self.params, body: self.body as AnyObject?)
 
-			self.auth?.authenticate(request: request)
+			self.authorization?.authenticate(request: request)
 
 			self.transport.send(request: request, success: fulfill, failure: reject)
 		}
@@ -133,7 +133,7 @@ public class RequestBuilder {
 			method: self.requestMethod, headers: self.headers, url: self.url,
 			params: self.params, body: self.body as AnyObject?)
 
-		self.auth?.authenticate(request: request)
+		self.authorization?.authenticate(request: request)
 
 		self.transport.send(
 			request: request,
@@ -147,7 +147,7 @@ public class RequestBuilder {
 				method: self.requestMethod, headers: self.headers, url: self.url,
 				params: self.params, body: self.body as AnyObject?)
 
-			self.auth?.authenticate(request: request)
+			self.authorization?.authenticate(request: request)
 
 			self.transport.send(request: request, success: { response in
 
