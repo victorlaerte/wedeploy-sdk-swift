@@ -11,16 +11,19 @@ import Foundation
 
 public class WeDeploy : RequestBuilder {
 
+	override public class func url(_ url: String) -> WeDeploy {
+		return WeDeploy(url)
+	}
 
-	public func authModule() -> Self {
+	public func auth() -> WeDeployAuth {
+		return WeDeployAuth(self.url)
+	}
+
+	public func data() -> Self {
 		return self
 	}
 
-	public func dataModule() -> Self {
-		return self
-	}
-
-	public func emailModule() -> Self {
+	public func email() -> Self {
 		return self
 	}
 }
