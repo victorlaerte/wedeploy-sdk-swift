@@ -8,6 +8,7 @@
 
 import Foundation
 import later
+import RxSwift
 
 
 public class RequestBuilder {
@@ -122,6 +123,39 @@ public class RequestBuilder {
 			self.auth?.authenticate(request: request)
 
 			self.transport.send(request: request, success: fulfill, failure: reject)
+		}
+	}
+
+	public func sendWithCallback(
+			success: @escaping ((Response) -> ()), failure: @escaping (Error) -> ()) {
+
+		let request = Request(
+			method: self.requestMethod, headers: self.headers, url: self.url,
+			params: self.params, body: self.body as AnyObject?)
+
+		self.auth?.authenticate(request: request)
+
+		self.transport.send(request: request, success: success, failure: failure)
+	}
+
+	public func sendWithObservable() -> Observable<Response> {
+		return Observable.create { observer in
+			let request = Request(
+				method: self.requestMethod, headers: self.headers, url: self.url,
+				params: self.params, body: self.body as AnyObject?)
+
+			self.auth?.authenticate(request: request)
+
+			self.transport.send(request: request, success: { response in
+
+				observer.on(.next(response))
+				observer.on(.completed)
+
+			}, failure: { error in
+				observer.on(.error(error))
+			})
+
+			return Disposables.create()
 		}
 	}
 
