@@ -1,9 +1,11 @@
 PODS:
   - later (0.1.0)
+  - RxSwift (3.0.1)
   - Socket.IO-Client-Swift (8.1.2)
 
 DEPENDENCIES:
   - later (from `../later`)
+  - RxSwift
   - Socket.IO-Client-Swift (~> 8.1)
 
 EXTERNAL SOURCES:
@@ -12,8 +14,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   later: 956bed82bd77304be303a41b76909e47aa2881f9
+  RxSwift: af5680055c4ad04480189c52d28385b1029493a6
   Socket.IO-Client-Swift: 542d82e6708f9901b3f6c1d134fb60fa0d09d4d1
 
-PODFILE CHECKSUM: dfc50b069d453bf42f4fb2b52e4f145a9d33e3b5
+PODFILE CHECKSUM: 1d974f05c4ed2fac66f486b9d3b0d0b3983de745
 
 COCOAPODS: 1.1.1
