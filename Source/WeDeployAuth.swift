@@ -116,6 +116,28 @@ public class WeDeployAuth : RequestBuilder {
 			}
 	}
 
+	public func getUser(id: String) -> Promise<User> {
+
+		return RequestBuilder
+				.url(self._url)
+				.path("/users")
+				.path("/\(id)")
+				.authorize(auth: authorization)
+				.get()
+				.withPromise()
+				.then { response -> Promise<User> in
+
+					return Promise<User> { fulfill, reject in
+						do {
+							let body = try self.validateResponse(response: response)
+
+							fulfill(User(json: body))
+						} catch let error {
+							reject(error)
+						}
+					}
+				}
+	}
 	public func signOut() {
 		self.authorization = nil
 		self.currentUser = nil
