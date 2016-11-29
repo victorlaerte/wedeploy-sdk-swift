@@ -39,7 +39,7 @@ public class WeDeployAuth : RequestBuilder {
 
 	public func signInWith(username: String, password: String) -> Promise<User> {
 
-		return self.path("/oauth/token")
+		return RequestBuilder.url(self._url).path("/oauth/token")
 			.param(name: "grant_type", value: "password")
 			.param(name: "username", value: username)
 			.param(name: "password", value: password)
@@ -48,16 +48,22 @@ public class WeDeployAuth : RequestBuilder {
 			.then { response -> Promise<Auth> in
 
 				return Promise<Auth> { fulfill, reject in
-					guard response.statusCode == 200,
-						let body = response.body as? Dictionary<String, AnyObject>,
-						let token = body["access_token"] as? String
-						else {
-							reject(WeDeployError.badRequest(message: response.body?.description ?? ""))
-							return
+					do {
+						let body = try self.validateResponse(response: response)
+
+						let token = body["access_token"] as! String
+
+						let auth = OAuth(token: token)
+
+						self.authorization = auth
+						WeDeploy.authSession?.currentAuth = auth
+
+						fulfill(auth)
+
+					} catch let error {
+						reject(error)
 					}
 
-					let auth = OAuth(token: token)
-					fulfill(auth)
 				}
 			}.then { auth -> Promise<Response> in
 
@@ -73,6 +79,10 @@ public class WeDeployAuth : RequestBuilder {
 				let body = response.body as! Dictionary<String, AnyObject>
 
 				let user = User(json: body)
+
+				self.currentUser = user
+				WeDeploy.authSession?.currentUser = user
+
 				return user
 			}
 	}
