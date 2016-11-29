@@ -4,6 +4,15 @@ import RxSwift
 
 public class WeDeployAuth : RequestBuilder {
 
+	var currentUser: User?
+
+	init(_ url: String, user: User? = nil, authorization: Auth? = nil) {
+		super.init(url)
+
+		self.currentUser = user
+		self.authorization = authorization
+	}
+
 	public func signInWith(
 			username: String, password: String, callback: @escaping (User?, Error?) -> ()) {
 
