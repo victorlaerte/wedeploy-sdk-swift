@@ -27,7 +27,7 @@ public class RequestBuilder {
 		return _url + path
 	}
 
-	var _url: String
+	private var _url: String
 
 	public init(_ url: String) {
 		self._url = url

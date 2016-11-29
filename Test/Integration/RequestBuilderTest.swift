@@ -23,6 +23,56 @@ class RequestBuilderTest : XCTestCase {
 		XCTAssertEqual(requestBuilder.headers["Content-Type"]!, "application/x-www-form-urlencoded")
 	}
 
+
+	func testTestBody() {
+		let exp = expectation(description: "")
+		RequestBuilder.url("http://auth.easley84.wedeploy.io")
+				.path(path: "/oauth/token")
+				.param(name: "grant_type", value: "password")
+				.param(name: "username", value: "test@test.com")
+				.param(name: "password", value: "test")
+				.get()
+				.sendWithPromise()
+				.done(block: { response, error in
+					print(response!.body)
+					print(error)
+				})
+
+		waitForExpectations(timeout: 10, handler: nil)
+	}
+
+	func testTestBody1() {
+		let exp = expectation(description: "")
+		RequestBuilder.url("http://auth.easley84.wedeploy.io")
+			.path(path: "/oauth/token")
+			.param(name: "grant_type", value: "password")
+			.param(name: "username", value: "test@test.com")
+			.param(name: "password", value: "test")
+			.get()
+			.sendWithCallback(success: { (response) in
+				print(response.body)
+			}, failure: {(error) in
+				print(error)
+			})
+
+		waitForExpectations(timeout: 10, handler: nil)
+	}
+
+	func testTestBody2() {
+		let exp = expectation(description: "")
+		RequestBuilder.url("http://auth.easley84.wedeploy.io")
+			.path(path: "/oauth/token")
+			.param(name: "grant_type", value: "password")
+			.param(name: "username", value: "test@test.com")
+			.param(name: "password", value: "test")
+			.get()
+			.sendWithObservable()
+			.subscribe(onNext: { (response: Response) in
+				print(response.body)
+			})
+
+		waitForExpectations(timeout: 10, handler: nil)
+	}
 }
 
 
