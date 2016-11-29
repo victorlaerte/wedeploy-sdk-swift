@@ -113,7 +113,7 @@ public class RequestBuilder {
 		return self
 	}
 
-	public func sendWithPromise() -> Promise<Response> {
+	public func withPromise() -> Promise<Response> {
 
 		return Promise<Response> { fulfill, reject in
 			let request = Request(
@@ -126,8 +126,8 @@ public class RequestBuilder {
 		}
 	}
 
-	public func sendWithCallback(
-			success: @escaping ((Response) -> ()), failure: @escaping (Error) -> ()) {
+	public func withCallback(
+			callback: @escaping (Response?, Error?) -> ()) {
 
 		let request = Request(
 			method: self.requestMethod, headers: self.headers, url: self.url,
@@ -135,10 +135,13 @@ public class RequestBuilder {
 
 		self.auth?.authenticate(request: request)
 
-		self.transport.send(request: request, success: success, failure: failure)
+		self.transport.send(
+			request: request,
+			success: { callback($0, nil) },
+			failure: { callback(nil, $0) })
 	}
 
-	public func sendWithObservable() -> Observable<Response> {
+	public func withObservable() -> Observable<Response> {
 		return Observable.create { observer in
 			let request = Request(
 				method: self.requestMethod, headers: self.headers, url: self.url,
