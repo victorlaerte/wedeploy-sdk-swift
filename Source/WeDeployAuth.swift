@@ -13,30 +13,6 @@ public class WeDeployAuth : RequestBuilder {
 		self.authorization = authorization
 	}
 
-	public func signInWith(
-			username: String, password: String, callback: @escaping (User?, Error?) -> ()) {
-
-		signInWith(username: username, password: password).done(block: callback)
-	}
-
-	public func signInWith(
-		username: String, password: String) -> Observable<User> {
-
-		return Observable.create { observer in
-			self.signInWith(username: username, password: password).done { user, error in
-				if let user = user {
-					observer.on(.next(user))
-					observer.on(.completed)
-				}
-				else {
-					observer.on(.error(error!))
-				}
-			}
-
-			return Disposables.create()
-		}
-	}
-
 	public func signInWith(username: String, password: String) -> Promise<User> {
 
 		return RequestBuilder.url(self._url).path("/oauth/token")
@@ -167,6 +143,8 @@ public class WeDeployAuth : RequestBuilder {
 		WeDeploy.authSession?.currentAuth = nil
 		WeDeploy.authSession?.currentUser = nil
 	}
+
+
 	func validateResponse(response: Response) throws -> Dictionary<String, AnyObject> {
 		guard response.statusCode == 200,
 			let body = response.body as? Dictionary<String, AnyObject>
@@ -177,3 +155,4 @@ public class WeDeployAuth : RequestBuilder {
 		return body
 	}
 }
+
