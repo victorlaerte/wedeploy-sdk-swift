@@ -138,6 +138,28 @@ public class WeDeployAuth : RequestBuilder {
 					}
 				}
 	}
+
+	public func sendPasswordReset(email: String) -> Promise<Void> {
+
+		return RequestBuilder
+				.url(self._url)
+				.path("/user/recover")
+				.form(name: "email", value: email)
+				.post()
+				.withPromise()
+				.then { response -> Promise<Void> in
+
+				 	return Promise<Void> { fulfill, reject in
+						if response.statusCode == 200 {
+							fulfill(())
+						}
+						else {
+							reject(WeDeployError.badRequest(message: response.body?.description ?? ""))
+						}
+					}
+				}
+	}
+
 	public func signOut() {
 		self.authorization = nil
 		self.currentUser = nil
