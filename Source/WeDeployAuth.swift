@@ -76,4 +76,43 @@ public class WeDeployAuth : RequestBuilder {
 				return user
 			}
 	}
+
+	public func createUser(email: String, password: String, name: String?) -> Promise<User> {
+		var body = [
+					"email" : email,
+					"password" : password
+				]
+
+		if let name = name {
+			body["name"] = name
+		}
+
+		return RequestBuilder
+				.url(self._url)
+				.path("/users")
+				.post(body: body as AnyObject?)
+				.withPromise()
+			.then { response -> Promise<User> in
+
+				return Promise<User> { fulfill, reject in
+					do {
+						let body = try self.validateResponse(response: response)
+
+						fulfill(User(json: body))
+					} catch let error {
+						reject(error)
+					}
+				}
+			}
+	}
+
+	func validateResponse(response: Response) throws -> Dictionary<String, AnyObject> {
+		guard response.statusCode == 200,
+			let body = response.body as? Dictionary<String, AnyObject>
+			else {
+				throw WeDeployError.badRequest(message: response.body?.description ?? "")
+			}
+
+		return body
+	}
 }
