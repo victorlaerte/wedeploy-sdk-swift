@@ -18,6 +18,7 @@
 		0BBF702C1DEC93FC00C94DA8 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF702B1DEC93FC00C94DA8 /* RequestBuilder.swift */; };
 		0BBF702F1DECA19800C94DA8 /* RequestBuilderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF702D1DECA14400C94DA8 /* RequestBuilderTest.swift */; };
 		0BC5F29997DAE88DAB06725E /* Pods_Launchpad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF3374202A79C241212ADF5 /* Pods_Launchpad.framework */; };
+		0BD6B4141DED78AE0020668D /* WeDeploy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD6B4131DED78AE0020668D /* WeDeploy.swift */; };
 		0BDABE911DEAEA27001B02BF /* ResponseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23CD1C3F0EC700408177 /* ResponseTest.swift */; };
 		6794F3F4E026CB82877DC436 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E386CAEBCEAF7E5E88E260D0 /* Pods_Tests.framework */; };
 		CC0C23881C3DA36400408177 /* Launchpad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC0C237E1C3DA36400408177 /* Launchpad.framework */; };
@@ -49,6 +50,7 @@
 		0BBF70271DEC92D500C94DA8 /* Launchpad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Launchpad.swift; sourceTree = "<group>"; };
 		0BBF702B1DEC93FC00C94DA8 /* RequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
 		0BBF702D1DECA14400C94DA8 /* RequestBuilderTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilderTest.swift; sourceTree = "<group>"; };
+		0BD6B4131DED78AE0020668D /* WeDeploy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeploy.swift; sourceTree = "<group>"; };
 		10C44B554DDD5050970CC947 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		3D1D7BBBC03C30936556DE5A /* Pods-Launchpad.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Launchpad.release.xcconfig"; path = "Pods/Target Support Files/Pods-Launchpad/Pods-Launchpad.release.xcconfig"; sourceTree = "<group>"; };
 		4B03390AE8AA6E754AA68237 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				0BBF70271DEC92D500C94DA8 /* Launchpad.swift */,
 				0BB3BE771DE8565E00FA90EE /* User.swift */,
 				0BBF702B1DEC93FC00C94DA8 /* RequestBuilder.swift */,
+				0BD6B4131DED78AE0020668D /* WeDeploy.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				0B74EDBB1DE6E797007AE62C /* DictionaryExtension.swift in Sources */,
 				0BB0C2BC1DE8333D00CACDE1 /* OAuth.swift in Sources */,
 				0BBF702C1DEC93FC00C94DA8 /* RequestBuilder.swift in Sources */,
+				0BD6B4141DED78AE0020668D /* WeDeploy.swift in Sources */,
 				0B74EDBC1DE6E797007AE62C /* Filter.swift in Sources */,
 				0BBF70281DEC92D500C94DA8 /* Launchpad.swift in Sources */,
 				CC0C23B61C3F0C1B00408177 /* Transport.swift in Sources */,
