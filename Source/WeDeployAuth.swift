@@ -28,7 +28,7 @@ public class WeDeployAuth : RequestBuilder {
 
 						let token = body["access_token"] as! String
 
-						let auth = OAuth(token: token)
+						let auth = TokenAuth(token: token)
 
 						self.authorization = auth
 						WeDeploy.authSession?.currentAuth = auth

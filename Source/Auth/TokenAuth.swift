@@ -1,7 +1,7 @@
 import Foundation
 
 
-public struct OAuth: Auth {
+public struct TokenAuth: Auth {
 
 	public let token: String
 	
