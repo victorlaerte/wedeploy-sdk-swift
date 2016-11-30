@@ -71,50 +71,53 @@ public class RequestBuilder {
 		return self
 	}
 
-	public func get() -> Self {
+	public func get() -> Promise<Response> {
 		requestMethod = .GET
 
-		return self
+		print("url: \(self.url) token: \(self.authorization)")
+
+		return doCall()
 	}
 
-	public func post(body: AnyObject? = nil) -> Self {
+	public func post(body: AnyObject? = nil) -> Promise<Response> {
 		requestMethod = .POST
 
 		if body != nil {
 			self.body = body
 		}
 
-		return self
+		print("post: \(self.url) token: \(self.authorization)")
+
+		return doCall()
 	}
 
-	public func patch(body: AnyObject? = nil) -> Self {
+	public func patch(body: AnyObject? = nil) -> Promise<Response> {
 		requestMethod = .PATCH
 
 		if body != nil {
 			self.body = body
 		}
 
-		return self
+		return doCall()
 	}
 
-	public func put(body: AnyObject? = nil) -> Self {
+	public func put(body: AnyObject? = nil) -> Promise<Response> {
 		requestMethod = .PUT
 
 		if body != nil {
 			self.body = body
 		}
 
-		return self
+		return doCall()
 	}
 
-	public func delete() -> Self {
+	public func delete() -> Promise<Response> {
 		requestMethod = .DELETE
 
-		return self
+		return doCall()
 	}
 
-	public func withPromise() -> Promise<Response> {
-
+	func doCall() -> Promise<Response> {
 		return Promise<Response> { fulfill, reject in
 			let request = Request(
 				method: self.requestMethod, headers: self.headers, url: self.url,
@@ -125,43 +128,6 @@ public class RequestBuilder {
 			self.transport.send(request: request, success: fulfill, failure: reject)
 		}
 	}
-
-	public func withCallback(
-			callback: @escaping (Response?, Error?) -> ()) {
-
-		let request = Request(
-			method: self.requestMethod, headers: self.headers, url: self.url,
-			params: self.params, body: self.body as AnyObject?)
-
-		self.authorization?.authenticate(request: request)
-
-		self.transport.send(
-			request: request,
-			success: { callback($0, nil) },
-			failure: { callback(nil, $0) })
-	}
-
-	public func withObservable() -> Observable<Response> {
-		return Observable.create { observer in
-			let request = Request(
-				method: self.requestMethod, headers: self.headers, url: self.url,
-				params: self.params, body: self.body as AnyObject?)
-
-			self.authorization?.authenticate(request: request)
-
-			self.transport.send(request: request, success: { response in
-
-				observer.on(.next(response))
-				observer.on(.completed)
-
-			}, failure: { error in
-				observer.on(.error(error))
-			})
-
-			return Disposables.create()
-		}
-	}
-
 
 	private func formBody() -> String? {
 		guard !formFields.isEmpty else {
@@ -175,4 +141,5 @@ public class RequestBuilder {
 			.reduce([], { $0 + [$1.0! + "=" + $1.1!]})
 			.joined(separator: "&")
 	}
+
 }

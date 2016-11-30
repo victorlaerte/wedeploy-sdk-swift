@@ -20,7 +20,6 @@ public class WeDeployAuth : RequestBuilder {
 			.param(name: "username", value: username)
 			.param(name: "password", value: password)
 			.get()
-			.withPromise()
 			.then { response -> Promise<Auth> in
 
 				return Promise<Auth> { fulfill, reject in
@@ -48,7 +47,6 @@ public class WeDeployAuth : RequestBuilder {
 						.path("/user")
 						.authorize(auth: auth)
 						.get()
-						.withPromise()
 
 			}.then { (response: Response) -> User in
 			
@@ -77,7 +75,6 @@ public class WeDeployAuth : RequestBuilder {
 				.url(self._url)
 				.path("/users")
 				.post(body: body as AnyObject?)
-				.withPromise()
 			.then { response -> Promise<User> in
 
 				return Promise<User> { fulfill, reject in
@@ -100,7 +97,6 @@ public class WeDeployAuth : RequestBuilder {
 				.path("/\(id)")
 				.authorize(auth: authorization)
 				.get()
-				.withPromise()
 				.then { response -> Promise<User> in
 
 					return Promise<User> { fulfill, reject in
@@ -122,7 +118,6 @@ public class WeDeployAuth : RequestBuilder {
 				.path("/user/recover")
 				.form(name: "email", value: email)
 				.post()
-				.withPromise()
 				.then { response -> Promise<Void> in
 
 				 	return Promise<Void> { fulfill, reject in

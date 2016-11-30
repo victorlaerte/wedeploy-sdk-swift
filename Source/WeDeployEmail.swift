@@ -23,7 +23,6 @@ public class WeDeployEmail : RequestBuilder {
 				.form(name: "message", value: body)
 				.authorize(auth: authorization)
 				.post()
-				.withPromise()
 				.then { response -> Promise<String> in
 					Promise<String> { fulfill, reject in
 						if response.statusCode == 200 {
