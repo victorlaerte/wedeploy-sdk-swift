@@ -29,7 +29,7 @@ public class WeDeployEmail : RequestBuilder {
 							fulfill(response.body!.description)
 						}
 						else {
-							reject(WeDeployError.badRequest(message: response.body?.description ?? ""))
+							reject(WeDeployError.errorFrom(response: response))
 						}
 					}
 				}

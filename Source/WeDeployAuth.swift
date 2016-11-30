@@ -127,7 +127,7 @@ public class WeDeployAuth : RequestBuilder {
 							fulfill(())
 						}
 						else {
-							reject(WeDeployError.badRequest(message: response.body?.description ?? ""))
+							reject(WeDeployError.errorFrom(response: response))
 						}
 					}
 				}
@@ -144,10 +144,10 @@ public class WeDeployAuth : RequestBuilder {
 
 	func validateResponse(response: Response) throws -> [String : AnyObject] {
 		guard response.statusCode == 200,
-			let body = response.body as? Dictionary<String, AnyObject>
-			else {
-				throw WeDeployError.badRequest(message: response.body?.description ?? "")
-			}
+			let body = response.body as? [String : AnyObject]
+		else {
+			throw WeDeployError.errorFrom(response: response)
+		}
 
 		return body
 	}
