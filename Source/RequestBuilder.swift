@@ -52,7 +52,7 @@ public class RequestBuilder {
 		return self
 	}
 
-	public func authorize(auth: Auth) -> Self {
+	public func authorize(auth: Auth?) -> Self {
 		self.authorization = auth
 		return self
 	}
