@@ -1,4 +1,4 @@
-@testable import Launchpad
+@testable import WeDeploy
 import XCTest
 
 class ResponseTest : XCTestCase {

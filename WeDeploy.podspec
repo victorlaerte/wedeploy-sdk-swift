@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-	s.name					= "Launchpad"
+	s.name					= "WeDeploy"
 	s.version				= "0.3.0"
 	s.summary				= "Swift API Client for Launchpad Project."
 	s.homepage				= "https://github.com/launchpad-project/api.swift"

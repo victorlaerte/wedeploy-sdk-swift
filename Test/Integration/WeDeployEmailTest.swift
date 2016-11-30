@@ -5,7 +5,7 @@
 //  Created by Victor Galán on 30/11/16.
 //  Copyright © 2016 Liferay Inc. All rights reserved.
 
-@testable import Launchpad
+@testable import WeDeploy
 import later
 import RxSwift
 import XCTest

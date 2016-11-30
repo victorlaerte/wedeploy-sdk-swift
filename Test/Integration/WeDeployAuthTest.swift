@@ -6,7 +6,7 @@
 //  Copyright © 2016 Liferay Inc. All rights reserved.
 //
 
-@testable import Launchpad
+@testable import WeDeploy
 import XCTest
 import later
 import RxSwift
