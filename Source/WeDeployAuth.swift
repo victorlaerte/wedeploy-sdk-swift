@@ -1,3 +1,17 @@
+/**
+* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+*
+* This library is free software; you can redistribute it and/or modify it under
+* the terms of the GNU Lesser General Public License as published by the Free
+* Software Foundation; either version 2.1 of the License, or (at your option)
+* any later version.
+*
+* This library is distributed in the hope that it will be useful, but WITHOUT
+* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+* details.
+*/
+
 import Foundation
 import later
 import RxSwift
@@ -14,7 +28,6 @@ public class WeDeployAuth : RequestBuilder {
 	}
 
 	public func signInWith(username: String, password: String) -> Promise<User> {
-
 		return RequestBuilder.url(self._url).path("/oauth/token")
 			.param(name: "grant_type", value: "password")
 			.param(name: "username", value: username)
@@ -25,9 +38,7 @@ public class WeDeployAuth : RequestBuilder {
 				return Promise<Auth> { fulfill, reject in
 					do {
 						let body = try self.validateResponse(response: response)
-
 						let token = body["access_token"] as! String
-
 						let auth = TokenAuth(token: token)
 
 						self.authorization = auth
@@ -92,7 +103,6 @@ public class WeDeployAuth : RequestBuilder {
 	}
 
 	public func getUser(id: String) -> Promise<User> {
-
 		return RequestBuilder
 				.url(self._url)
 				.path("/users")
@@ -114,7 +124,6 @@ public class WeDeployAuth : RequestBuilder {
 	}
 
 	public func sendPasswordReset(email: String) -> Promise<Void> {
-
 		return RequestBuilder
 				.url(self._url)
 				.path("/user/recover")
