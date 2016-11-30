@@ -74,8 +74,6 @@ public class RequestBuilder {
 	public func get() -> Promise<Response> {
 		requestMethod = .GET
 
-		print("url: \(self.url) token: \(self.authorization)")
-
 		return doCall()
 	}
 
@@ -85,8 +83,6 @@ public class RequestBuilder {
 		if body != nil {
 			self.body = body
 		}
-
-		print("post: \(self.url) token: \(self.authorization)")
 
 		return doCall()
 	}

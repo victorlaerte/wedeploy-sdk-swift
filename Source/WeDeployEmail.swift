@@ -26,7 +26,7 @@ public class WeDeployEmail : RequestBuilder {
 				.then { response -> Promise<String> in
 					Promise<String> { fulfill, reject in
 						if response.statusCode == 200 {
-							fulfill(response.body?.description)
+							fulfill(response.body!.description)
 						}
 						else {
 							reject(WeDeployError.badRequest(message: response.body?.description ?? ""))

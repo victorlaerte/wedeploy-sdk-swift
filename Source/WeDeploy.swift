@@ -58,6 +58,7 @@ public class WeDeploy : RequestBuilder {
 	}
 
 	public class func email(_ url: String) -> WeDeployEmail {
-		return WeDeployEmail(url).authorize(auth: authSession?.currentAuth)
+		return WeDeployEmail(url)
+				.authorize(auth: authSession?.currentAuth)
 	}
 }

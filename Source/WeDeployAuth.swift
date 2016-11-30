@@ -40,7 +40,8 @@ public class WeDeployAuth : RequestBuilder {
 					}
 
 				}
-			}.then { auth -> Promise<Response> in
+			}
+			.then { auth -> Promise<Response> in
 
 				return RequestBuilder
 						.url(self._url)
@@ -48,7 +49,8 @@ public class WeDeployAuth : RequestBuilder {
 						.authorize(auth: auth)
 						.get()
 
-			}.then { (response: Response) -> User in
+			}
+			.then { (response: Response) -> User in
 			
 				let body = response.body as! Dictionary<String, AnyObject>
 
@@ -75,18 +77,18 @@ public class WeDeployAuth : RequestBuilder {
 				.url(self._url)
 				.path("/users")
 				.post(body: body as AnyObject?)
-			.then { response -> Promise<User> in
+				.then { response -> Promise<User> in
 
-				return Promise<User> { fulfill, reject in
-					do {
-						let body = try self.validateResponse(response: response)
+					return Promise<User> { fulfill, reject in
+						do {
+							let body = try self.validateResponse(response: response)
 
-						fulfill(User(json: body))
-					} catch let error {
-						reject(error)
+							fulfill(User(json: body))
+						} catch let error {
+							reject(error)
+						}
 					}
 				}
-			}
 	}
 
 	public func getUser(id: String) -> Promise<User> {
