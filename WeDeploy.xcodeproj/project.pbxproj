@@ -51,15 +51,15 @@
 /* Begin PBXFileReference section */
 		0B46BA131DEED48B00EB28CF /* WeDeployAuthTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployAuthTest.swift; sourceTree = "<group>"; };
 		0B46BA151DEEDB7300EB28CF /* WeDeployEmailTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployEmailTest.swift; sourceTree = "<group>"; };
-		0B5802301DED8644002C3E7A /* WeDeployAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployAuth.swift; sourceTree = "<group>"; };
+		0B5802301DED8644002C3E7A /* WeDeployAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeDeployAuth.swift; path = ../WeDeployAuth.swift; sourceTree = "<group>"; };
 		0B5802321DED9FF7002C3E7A /* WeDeployError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployError.swift; sourceTree = "<group>"; };
-		0B5802341DEDE67C002C3E7A /* WeDeployEmail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployEmail.swift; sourceTree = "<group>"; };
+		0B5802341DEDE67C002C3E7A /* WeDeployEmail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeDeployEmail.swift; path = ../WeDeployEmail.swift; sourceTree = "<group>"; };
 		0B5802371DEDEA12002C3E7A /* laterExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = laterExtensions.swift; sourceTree = "<group>"; };
 		0BB0C2BB1DE8333D00CACDE1 /* TokenAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenAuth.swift; sourceTree = "<group>"; };
 		0BB0C2C01DE83C1200CACDE1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0BB3BE711DE83EA800FA90EE /* later.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = later.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Launchpad-emslkopwsmprnrhgagkulhklvnwe/Build/Products/Debug-iphonesimulator/later/later.framework"; sourceTree = "<group>"; };
 		0BB3BE771DE8565E00FA90EE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		0BBF702B1DEC93FC00C94DA8 /* RequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
+		0BBF702B1DEC93FC00C94DA8 /* RequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestBuilder.swift; path = ../RequestBuilder.swift; sourceTree = "<group>"; };
 		0BBF702D1DECA14400C94DA8 /* RequestBuilderTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilderTest.swift; sourceTree = "<group>"; };
 		0BD6B4131DED78AE0020668D /* WeDeploy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeploy.swift; sourceTree = "<group>"; };
 		0BF86F69F34BAE738DC658C4 /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +130,15 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		0BD43C2B1DEF2F2A00F7C7FE /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				0B5802301DED8644002C3E7A /* WeDeployAuth.swift */,
+				0B5802341DEDE67C002C3E7A /* WeDeployEmail.swift */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
 		82A93149548E5AB8A5323AB2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +179,7 @@
 		CC0C23AF1C3F0C1B00408177 /* Transport */ = {
 			isa = PBXGroup;
 			children = (
+				0BBF702B1DEC93FC00C94DA8 /* RequestBuilder.swift */,
 				CC0C23B01C3F0C1B00408177 /* Request.swift */,
 				CC2F361F1C3FE50500902BD4 /* RequestMethod.swift */,
 				CC0C23B11C3F0C1B00408177 /* Response.swift */,
@@ -247,17 +257,15 @@
 		CCA17B991ADEC3CB000BF430 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				0BD43C2B1DEF2F2A00F7C7FE /* Modules */,
 				0B5802361DEDE9FC002C3E7A /* Extensions */,
 				CC70B5661CA485B70015F61F /* Auth */,
 				CC0C23A91C3F0B8600408177 /* Query */,
 				CC05BAB11C40A862007D9BAB /* RealTime */,
 				CC0C23AF1C3F0C1B00408177 /* Transport */,
 				0BB3BE771DE8565E00FA90EE /* User.swift */,
-				0BBF702B1DEC93FC00C94DA8 /* RequestBuilder.swift */,
 				0BD6B4131DED78AE0020668D /* WeDeploy.swift */,
-				0B5802301DED8644002C3E7A /* WeDeployAuth.swift */,
 				0B5802321DED9FF7002C3E7A /* WeDeployError.swift */,
-				0B5802341DEDE67C002C3E7A /* WeDeployEmail.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
