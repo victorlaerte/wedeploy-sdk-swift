@@ -14,18 +14,6 @@
 
 import Foundation
 
-struct AuthSession {
-	internal var currentUser: User?
-	internal var currentAuth: Auth?
-
-	let url: String
-
-	init(_ url: String) {
-		self.url = url
-	}
-
-}
-
 
 public class WeDeploy : RequestBuilder {
 
