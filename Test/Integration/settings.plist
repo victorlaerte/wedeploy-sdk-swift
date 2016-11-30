@@ -2,13 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>path</key>
-	<string>/loop/books</string>
-	<key>protectedPath</key>
-	<string>/loop/protected</string>
-	<key>server</key>
-	<string>http://liferay.io</string>
+	<key>authModuleUrl</key>
+	<string>http://auth.easley84.wedeploy.io</string>
+	<key>emailModuleUrl</key>
+	<string>http://email.easley84.wedeploy.io</string>
+	<key>userId</key>
+	<string>191510224485334880</string>
+	<key>password</key>
+	<string>test</string>
 	<key>username</key>
-	<string>bruno.farache@liferay.com</string>
+	<string>test@test.com</string>
 </dict>
 </plist>
