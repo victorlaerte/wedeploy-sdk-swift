@@ -13,7 +13,7 @@ public struct User {
 	public let name: String?
 	public let id: String
 
-	public init(json: Dictionary<String, AnyObject>) {
+	public init(json: [String :AnyObject]) {
 
 		email = json["email"] as! String
 		name = json["name"] as? String

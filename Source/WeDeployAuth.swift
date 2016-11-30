@@ -52,7 +52,7 @@ public class WeDeployAuth : RequestBuilder {
 			}
 			.then { (response: Response) -> User in
 			
-				let body = response.body as! Dictionary<String, AnyObject>
+				let body = response.body as! [String : AnyObject]
 
 				let user = User(json: body)
 
@@ -142,7 +142,7 @@ public class WeDeployAuth : RequestBuilder {
 	}
 
 
-	func validateResponse(response: Response) throws -> Dictionary<String, AnyObject> {
+	func validateResponse(response: Response) throws -> [String : AnyObject] {
 		guard response.statusCode == 200,
 			let body = response.body as? Dictionary<String, AnyObject>
 			else {
