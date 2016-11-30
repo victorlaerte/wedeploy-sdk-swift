@@ -7,15 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B46BA141DEED48B00EB28CF /* WeDeployAuthTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B46BA131DEED48B00EB28CF /* WeDeployAuthTest.swift */; };
+		0B46BA161DEEDB7300EB28CF /* WeDeployEmailTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B46BA151DEEDB7300EB28CF /* WeDeployEmailTest.swift */; };
+		0B46BA171DEEDD9900EB28CF /* BaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23C71C3F0EC700408177 /* BaseTest.swift */; };
 		0B5802311DED8644002C3E7A /* WeDeployAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5802301DED8644002C3E7A /* WeDeployAuth.swift */; };
+		0B5802331DED9FF7002C3E7A /* WeDeployError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5802321DED9FF7002C3E7A /* WeDeployError.swift */; };
+		0B5802351DEDE67C002C3E7A /* WeDeployEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5802341DEDE67C002C3E7A /* WeDeployEmail.swift */; };
+		0B5802381DEDEA12002C3E7A /* laterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5802371DEDEA12002C3E7A /* laterExtensions.swift */; };
 		0B74EDBB1DE6E797007AE62C /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF69EA11C46BA7100961988 /* DictionaryExtension.swift */; };
 		0B74EDBC1DE6E797007AE62C /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23AA1C3F0B8600408177 /* Filter.swift */; };
 		0B74EDBD1DE6E797007AE62C /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23AB1C3F0B8600408177 /* Query.swift */; };
-		0BB0C2BC1DE8333D00CACDE1 /* OAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB0C2BB1DE8333D00CACDE1 /* OAuth.swift */; };
+		0BB0C2BC1DE8333D00CACDE1 /* TokenAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB0C2BB1DE8333D00CACDE1 /* TokenAuth.swift */; };
 		0BB0C2C11DE83C1200CACDE1 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BB0C2C01DE83C1200CACDE1 /* XCTest.framework */; };
 		0BB3BE721DE83EA800FA90EE /* later.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BB3BE711DE83EA800FA90EE /* later.framework */; };
 		0BB3BE781DE8565E00FA90EE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB3BE771DE8565E00FA90EE /* User.swift */; };
-		0BBF70281DEC92D500C94DA8 /* Launchpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF70271DEC92D500C94DA8 /* Launchpad.swift */; };
 		0BBF702C1DEC93FC00C94DA8 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF702B1DEC93FC00C94DA8 /* RequestBuilder.swift */; };
 		0BBF702F1DECA19800C94DA8 /* RequestBuilderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF702D1DECA14400C94DA8 /* RequestBuilderTest.swift */; };
 		0BC5F29997DAE88DAB06725E /* Pods_Launchpad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF3374202A79C241212ADF5 /* Pods_Launchpad.framework */; };
@@ -44,12 +49,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B46BA131DEED48B00EB28CF /* WeDeployAuthTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployAuthTest.swift; sourceTree = "<group>"; };
+		0B46BA151DEEDB7300EB28CF /* WeDeployEmailTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployEmailTest.swift; sourceTree = "<group>"; };
 		0B5802301DED8644002C3E7A /* WeDeployAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployAuth.swift; sourceTree = "<group>"; };
-		0BB0C2BB1DE8333D00CACDE1 /* OAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth.swift; sourceTree = "<group>"; };
+		0B5802321DED9FF7002C3E7A /* WeDeployError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployError.swift; sourceTree = "<group>"; };
+		0B5802341DEDE67C002C3E7A /* WeDeployEmail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployEmail.swift; sourceTree = "<group>"; };
+		0B5802371DEDEA12002C3E7A /* laterExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = laterExtensions.swift; sourceTree = "<group>"; };
+		0BB0C2BB1DE8333D00CACDE1 /* TokenAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenAuth.swift; sourceTree = "<group>"; };
 		0BB0C2C01DE83C1200CACDE1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0BB3BE711DE83EA800FA90EE /* later.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = later.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Launchpad-emslkopwsmprnrhgagkulhklvnwe/Build/Products/Debug-iphonesimulator/later/later.framework"; sourceTree = "<group>"; };
 		0BB3BE771DE8565E00FA90EE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		0BBF70271DEC92D500C94DA8 /* Launchpad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Launchpad.swift; sourceTree = "<group>"; };
 		0BBF702B1DEC93FC00C94DA8 /* RequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
 		0BBF702D1DECA14400C94DA8 /* RequestBuilderTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilderTest.swift; sourceTree = "<group>"; };
 		0BD6B4131DED78AE0020668D /* WeDeploy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeploy.swift; sourceTree = "<group>"; };
@@ -113,6 +122,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B5802361DEDE9FC002C3E7A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0B5802371DEDEA12002C3E7A /* laterExtensions.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		87EE4772BEF57BDCE68DF874 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +197,8 @@
 				CC0C23CA1C3F0EC700408177 /* LaunchpadTest.swift */,
 				CC0C23CB1C3F0EC700408177 /* settings.plist */,
 				0BBF702D1DECA14400C94DA8 /* RequestBuilderTest.swift */,
+				0B46BA131DEED48B00EB28CF /* WeDeployAuthTest.swift */,
+				0B46BA151DEEDB7300EB28CF /* WeDeployEmailTest.swift */,
 			);
 			path = Integration;
 			sourceTree = "<group>";
@@ -220,7 +239,7 @@
 			children = (
 				CC70B5671CA485B70015F61F /* Auth.swift */,
 				CC70B5691CA485CB0015F61F /* BasicAuth.swift */,
-				0BB0C2BB1DE8333D00CACDE1 /* OAuth.swift */,
+				0BB0C2BB1DE8333D00CACDE1 /* TokenAuth.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -228,15 +247,17 @@
 		CCA17B991ADEC3CB000BF430 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				0B5802361DEDE9FC002C3E7A /* Extensions */,
 				CC70B5661CA485B70015F61F /* Auth */,
 				CC0C23A91C3F0B8600408177 /* Query */,
 				CC05BAB11C40A862007D9BAB /* RealTime */,
 				CC0C23AF1C3F0C1B00408177 /* Transport */,
-				0BBF70271DEC92D500C94DA8 /* Launchpad.swift */,
 				0BB3BE771DE8565E00FA90EE /* User.swift */,
 				0BBF702B1DEC93FC00C94DA8 /* RequestBuilder.swift */,
 				0BD6B4131DED78AE0020668D /* WeDeploy.swift */,
 				0B5802301DED8644002C3E7A /* WeDeployAuth.swift */,
+				0B5802321DED9FF7002C3E7A /* WeDeployError.swift */,
+				0B5802341DEDE67C002C3E7A /* WeDeployEmail.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -461,19 +482,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BB3BE781DE8565E00FA90EE /* User.swift in Sources */,
+				0B5802331DED9FF7002C3E7A /* WeDeployError.swift in Sources */,
 				0B74EDBB1DE6E797007AE62C /* DictionaryExtension.swift in Sources */,
 				0B5802311DED8644002C3E7A /* WeDeployAuth.swift in Sources */,
-				0BB0C2BC1DE8333D00CACDE1 /* OAuth.swift in Sources */,
+				0BB0C2BC1DE8333D00CACDE1 /* TokenAuth.swift in Sources */,
 				0BBF702C1DEC93FC00C94DA8 /* RequestBuilder.swift in Sources */,
 				0BD6B4141DED78AE0020668D /* WeDeploy.swift in Sources */,
 				0B74EDBC1DE6E797007AE62C /* Filter.swift in Sources */,
-				0BBF70281DEC92D500C94DA8 /* Launchpad.swift in Sources */,
 				CC0C23B61C3F0C1B00408177 /* Transport.swift in Sources */,
 				CC0C23B41C3F0C1B00408177 /* Request.swift in Sources */,
 				0B74EDBD1DE6E797007AE62C /* Query.swift in Sources */,
+				0B5802381DEDEA12002C3E7A /* laterExtensions.swift in Sources */,
 				CC70B56A1CA485CB0015F61F /* BasicAuth.swift in Sources */,
 				CC70B5681CA485B70015F61F /* Auth.swift in Sources */,
 				CC2F36201C3FE50500902BD4 /* RequestMethod.swift in Sources */,
+				0B5802351DEDE67C002C3E7A /* WeDeployEmail.swift in Sources */,
 				CC0C23B51C3F0C1B00408177 /* Response.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -482,8 +505,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B46BA171DEEDD9900EB28CF /* BaseTest.swift in Sources */,
+				0B46BA141DEED48B00EB28CF /* WeDeployAuthTest.swift in Sources */,
 				0BDABE911DEAEA27001B02BF /* ResponseTest.swift in Sources */,
 				0BBF702F1DECA19800C94DA8 /* RequestBuilderTest.swift in Sources */,
+				0B46BA161DEEDB7300EB28CF /* WeDeployEmailTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
