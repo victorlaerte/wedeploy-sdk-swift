@@ -13,11 +13,28 @@
 */
 
 import Foundation
+import later
+import RxSwift
 
-public enum RequestMethod: String {
-	case DELETE = "DELETE",
-		GET = "GET",
-		PATCH = "PATCH",
-		POST = "POST",
-		PUT = "PUT"
+public extension Promise {
+
+	func toCallback(callback: @escaping (T?, Error?) -> ()) {
+		self.done(block: callback)
+	}
+
+	func toObservable() -> Observable<T> {
+		return Observable.create { observer in
+			self.done { (value, error) in
+				if let value = value {
+					observer.on(.next(value))
+					observer.on(.completed)
+				}
+				else {
+					observer.on(.error(error!))
+				}
+			}
+
+			return Disposables.create()
+		}
+	}
 }

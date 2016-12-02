@@ -14,10 +14,14 @@
 
 import Foundation
 
-public enum RequestMethod: String {
-	case DELETE = "DELETE",
-		GET = "GET",
-		PATCH = "PATCH",
-		POST = "POST",
-		PUT = "PUT"
+
+public struct TokenAuth: Auth {
+
+	public let token: String
+	
+	public func authenticate(request: Request) {
+		let bearer = "Bearer \(token)"
+
+		request.headers["Authorization"] = bearer
+	}
 }

@@ -1,3 +1,17 @@
+/**
+* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+*
+* This library is free software; you can redistribute it and/or modify it under
+* the terms of the GNU Lesser General Public License as published by the Free
+* Software Foundation; either version 2.1 of the License, or (at your option)
+* any later version.
+*
+* This library is distributed in the hope that it will be useful, but WITHOUT
+* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+* details.
+*/
+
 import Foundation
 
 public class Response {
@@ -14,34 +28,33 @@ public class Response {
 		return (statusCode >= 200) && (statusCode <= 399)
 	}
 
-	init(statusCode: Int, headers: [String: String], body: NSData) {
+	init(statusCode: Int, headers: [String: String], body: Data) {
 		self.statusCode = statusCode
 		self.headers = headers
-		self.body = parse(body)
+		self.body = parse(body: body)
 	}
 
-	func parse(body: NSData) -> AnyObject? {
-		if (contentType?.rangeOfString("application/json") != nil) {
+	func parse(body: Data) -> AnyObject? {
+		if (contentType?.range(of: "application/json") != nil) {
 			do {
-				let parsed = try NSJSONSerialization.JSONObjectWithData(
-					body, options: .AllowFragments)
+				let parsed = try JSONSerialization.jsonObject(with: body, options: .allowFragments)
 
-				return parsed
+				return parsed as AnyObject
 			}
 			catch {
-				return parseString(body)
+				return parseString(body: body) as AnyObject?
 			}
 		}
 		else {
-			return parseString(body)
+			return parseString(body: body) as AnyObject?
 		}
 	}
 
-	func parseString(body: NSData) -> NSString? {
-		var string: NSString?
+	func parseString(body: Data) -> String? {
+		var string: String?
 
-		if (body.length > 0) {
-			string = NSString(data: body, encoding: NSUTF8StringEncoding)
+		if (body.count > 0) {
+			string = String(data: body, encoding: .utf8)
 		}
 
 		return string

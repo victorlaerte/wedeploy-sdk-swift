@@ -14,10 +14,20 @@
 
 import Foundation
 
-public enum RequestMethod: String {
-	case DELETE = "DELETE",
-		GET = "GET",
-		PATCH = "PATCH",
-		POST = "POST",
-		PUT = "PUT"
+public struct User {
+	public let email: String
+	public let name: String?
+	public let id: String
+
+	public init(json: [String :AnyObject]) {
+		email = json["email"] as! String
+		name = json["name"] as? String
+		id = json["id"] as! String
+	}
+
+	public init(email: String, name: String) {
+		self.email = email
+		self.name = name
+		self.id = ""
+	}
 }

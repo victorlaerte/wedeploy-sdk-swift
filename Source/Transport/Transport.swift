@@ -1,27 +1,41 @@
+/**
+* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+*
+* This library is free software; you can redistribute it and/or modify it under
+* the terms of the GNU Lesser General Public License as published by the Free
+* Software Foundation; either version 2.1 of the License, or (at your option)
+* any later version.
+*
+* This library is distributed in the hope that it will be useful, but WITHOUT
+* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+* details.
+*/
+
 import Foundation
 
 public protocol Transport {
 
 	func send(
-		request: Request, success: (Response -> ()), failure: (NSError -> ()))
+		request: Request, success: @escaping ((Response) -> ()), failure: @escaping (Error) -> ())
 
 }
 
 public class NSURLSessionTransport : Transport {
 
 	public func send(
-		request: Request, success: (Response -> ()), failure: (NSError -> ())) {
+		request: Request, success: @escaping ((Response) -> ()), failure: @escaping (Error) -> ()) {
 
 		let success = dispatchMainThread(success)
 		let failure = dispatchMainThread(failure)
         
-		let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
-		let session = NSURLSession(configuration: config)
+		let config = URLSessionConfiguration.ephemeral
+		let session = URLSession(configuration: config)
 
 		do {
 			let request = try request.toURLRequest()
 
-			session.dataTaskWithRequest(
+			session.dataTask(with:
 				request,
 				completionHandler: { (data, r, error) in
 					if let e = error {
@@ -29,7 +43,7 @@ public class NSURLSessionTransport : Transport {
 						return
 					}
 
-					let httpURLResponse = r as! NSHTTPURLResponse
+					let httpURLResponse = r as! HTTPURLResponse
 					let headerFields = httpURLResponse.allHeaderFields
 					var headers = [String: String]()
 
@@ -51,11 +65,12 @@ public class NSURLSessionTransport : Transport {
 		}
 	}
 
-	func dispatchMainThread<T>(block: (T -> ())) -> (Any? -> ()) {
+	func dispatchMainThread<T>(_ block: @escaping (T) -> ()) -> (T) -> () {
 		return { value in
-			dispatch_async(dispatch_get_main_queue(), {
-				block(value as! T)
-			})
+
+			DispatchQueue.main.async {
+				block(value)
+			}
 		}
 	}
 

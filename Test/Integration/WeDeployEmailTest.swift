@@ -12,12 +12,26 @@
 * details.
 */
 
-import Foundation
+@testable import WeDeploy
+import later
+import RxSwift
+import XCTest
 
-public enum RequestMethod: String {
-	case DELETE = "DELETE",
-		GET = "GET",
-		PATCH = "PATCH",
-		POST = "POST",
-		PUT = "PUT"
+class WeDeployEmailTest: BaseTest {
+
+	func testGetUser() {
+		let expect = expectation(description: "correct user")
+
+		executeAuthenticated {
+			WeDeploy
+				.email(self.emailModuleUrl)
+				.sendEmail(from: self.username, to: self.username, subject: "subject", body: "body")
+				.done { id, _ in
+					XCTAssertNotNil(id)
+					expect.fulfill()
+				}
+		}
+
+		waitForExpectations(timeout: 10, handler: nil)
+	}
 }
