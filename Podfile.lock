@@ -4,19 +4,24 @@ PODS:
   - Socket.IO-Client-Swift (8.1.2)
 
 DEPENDENCIES:
-  - later (from `../later`)
+  - later (from `https://github.com/victorg1991/later.git`)
   - RxSwift
   - Socket.IO-Client-Swift (~> 8.1)
 
 EXTERNAL SOURCES:
   later:
-    :path: "../later"
+    :git: https://github.com/victorg1991/later.git
+
+CHECKOUT OPTIONS:
+  later:
+    :commit: 8155802e4dfcbc50db537c326e9f0ca8a148fdfc
+    :git: https://github.com/victorg1991/later.git
 
 SPEC CHECKSUMS:
   later: 956bed82bd77304be303a41b76909e47aa2881f9
   RxSwift: af5680055c4ad04480189c52d28385b1029493a6
   Socket.IO-Client-Swift: 542d82e6708f9901b3f6c1d134fb60fa0d09d4d1
 
-PODFILE CHECKSUM: 77d683efdaa08bfae148357a603e2ba29850dbaf
+PODFILE CHECKSUM: c89eb12b304f4455c1cb13eca95ad8a7d8d56dbc
 
 COCOAPODS: 1.1.1
