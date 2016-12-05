@@ -1,15 +1,16 @@
 
-target 'WeDeploy' do
+def commonPods
 	pod 'Socket.IO-Client-Swift', '~> 8.1'
-	pod 'later', :git => 'https://github.com/victorg1991/later.git'
+	pod 'later'
 	pod 'RxSwift'
 	use_frameworks!
 end
 
 
+target 'WeDeploy' do
+	commonPods
+end
+
 target 'Tests' do
-	pod 'Socket.IO-Client-Swift', '~> 8.1'
-	pod 'later', :git => 'https://github.com/victorg1991/later.git'
-	pod 'RxSwift'
-	use_frameworks!
+	commonPods
 end
