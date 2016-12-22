@@ -33,9 +33,9 @@ public class WeDeployAuth : RequestBuilder {
 			.param(name: "username", value: username)
 			.param(name: "password", value: password)
 			.get()
-			.then { response -> Promise<Auth> in
+			.then { response -> Promise<()> in
 
-				return Promise<Auth> { fulfill, reject in
+				return Promise<()> { fulfill, reject in
 					do {
 						let body = try self.validateResponse(response: response)
 						let token = body["access_token"] as! String
@@ -44,7 +44,7 @@ public class WeDeployAuth : RequestBuilder {
 						self.authorization = auth
 						WeDeploy.authSession?.currentAuth = auth
 
-						fulfill(auth)
+						fulfill(())
 
 					} catch let error {
 						reject(error)
@@ -52,17 +52,19 @@ public class WeDeployAuth : RequestBuilder {
 
 				}
 			}
-			.then { auth -> Promise<Response> in
-
-				return RequestBuilder
-						.url(self._url)
-						.path("/user")
-						.authorize(auth: auth)
-						.get()
-
+			.then { _ -> Promise<User> in
+				return self.getCurrentUser()
 			}
+	}
+
+	public func getCurrentUser() -> Promise<User> {
+		return RequestBuilder
+			.url(self._url)
+			.path("/user")
+			.authorize(auth: self.authorization)
+			.get()
 			.then { (response: Response) -> User in
-			
+
 				let body = response.body as! [String : AnyObject]
 
 				let user = User(json: body)
@@ -71,7 +73,8 @@ public class WeDeployAuth : RequestBuilder {
 				WeDeploy.authSession?.currentUser = user
 
 				return user
-			}
+		}
+	}
 	}
 
 	public func createUser(email: String, password: String, name: String?) -> Promise<User> {
