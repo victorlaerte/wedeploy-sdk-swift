@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
 								:tag => s.version.to_s
 							}
 	s.source_files			= "Source/**/*.swift"
-	s.dependency			"later", "= 0.1.0"
+	s.dependency			"later", "~> 0.2"
 	s.dependency			"Socket.IO-Client-Swift", "~> 8.1"
 	s.dependency			"RxSwift", "~> 3.0"
 end
