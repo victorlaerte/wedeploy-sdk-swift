@@ -18,6 +18,9 @@ import RxSwift
 
 public class WeDeployAuth : RequestBuilder {
 
+	public static var urlRedirect = PublishSubject<URL>()
+	public static var tokenSubscription: Disposable?
+
 	var currentUser: User?
 
 	init(_ url: String, user: User? = nil, authorization: Auth? = nil) {
@@ -75,6 +78,35 @@ public class WeDeployAuth : RequestBuilder {
 				return user
 		}
 	}
+
+	public func handle(url: URL) {
+		WeDeployAuth.urlRedirect.on(.next(url))
+	}
+
+	public func signInWithRedirect(provider: AuthProvider, onSignIn: @escaping (User?, Error?) -> ()) {
+		let authUrl = self._url
+		WeDeployAuth.tokenSubscription?.dispose()
+		
+		WeDeployAuth.tokenSubscription = WeDeployAuth.urlRedirect
+			.subscribe(onNext: { url in
+				let token = url.absoluteString.components(separatedBy: "access_token=")[1]
+				let auth = TokenAuth(token: token)
+
+				self.authorization = auth
+				WeDeploy.authSession?.currentAuth = auth
+
+				self.getCurrentUser()
+					.done { user, error in
+						if let user = user {
+							onSignIn(user, nil )
+						}
+						else {
+							onSignIn(nil, error)
+						}
+					}
+				})
+
+		open(URL(string: "\(authUrl)/oauth/authorize\(provider.providerUrl)")!)
 	}
 
 	public func createUser(email: String, password: String, name: String?) -> Promise<User> {
