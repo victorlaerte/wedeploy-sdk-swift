@@ -15,19 +15,22 @@
 import Foundation
 
 public struct User {
-	public let email: String
+	public let email: String?
 	public let name: String?
 	public let id: String
+	public let photoUrl: String?
 
 	public init(json: [String :AnyObject]) {
-		email = json["email"] as! String
+		email = json["email"] as? String
 		name = json["name"] as? String
 		id = json["id"] as! String
+		photoUrl = json["photoUrl"] as? String
 	}
 
-	public init(email: String, name: String) {
+	public init(email: String, name: String, photoUrl: String? = nil) {
 		self.email = email
 		self.name = name
 		self.id = ""
+		self.photoUrl = photoUrl
 	}
 }
