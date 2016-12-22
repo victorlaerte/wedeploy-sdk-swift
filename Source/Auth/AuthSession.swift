@@ -9,8 +9,8 @@
 import Foundation
 
 public struct AuthSession {
-	internal var currentUser: User?
-	internal var currentAuth: Auth?
+	public var currentUser: User?
+	public var currentAuth: Auth?
 
 	let url: String
 

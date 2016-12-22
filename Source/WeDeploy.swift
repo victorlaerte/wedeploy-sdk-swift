@@ -17,7 +17,7 @@ import Foundation
 
 public class WeDeploy : RequestBuilder {
 
-	internal static var authSession: AuthSession?
+	public static var authSession: AuthSession?
 
 	override var authorization: Auth? {
 		set {
