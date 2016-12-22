@@ -163,5 +163,15 @@ public class WeDeployAuth : RequestBuilder {
 
 		return body
 	}
+
+	func open(_ url: URL) {
+		if #available(iOS 10.0, *) {
+			UIApplication.shared.open(url, options: [:], completionHandler: nil)
+		}
+		else {
+			UIApplication.shared.openURL(url)
+		}
+	}
+
 }
 
