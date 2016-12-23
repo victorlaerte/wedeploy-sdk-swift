@@ -1,4 +1,4 @@
-import Launchpad
+import WeDeploy
 import XCTest
 
 class FilterTest : XCTestCase {
@@ -60,6 +60,8 @@ class FilterTest : XCTestCase {
 			.or("age < 15" as Filter)
 			.and(Filter("name = foo"))
 
+		print(filter.filter)
+
 		assertJSON(
 			"{\"and\":[" +
 				"{\"or\":[" +
@@ -72,7 +74,7 @@ class FilterTest : XCTestCase {
 	}
 
 	func testCustom() {
-		let filter = Filter("age", ">", 12)
+		let filter = Filter(field: "age", op: ">", value: 12)
 		assertJSON("{\"age\":{\"operator\":\">\",\"value\":12}}", filter.filter)
 	}
 
@@ -191,6 +193,7 @@ class FilterTest : XCTestCase {
 
 	func testStringConvertible() {
 		let filter: Filter = "age > 12"
+
 		assertJSON("{\"age\":{\"operator\":\">\",\"value\":12}}", filter.filter)
 	}
 
