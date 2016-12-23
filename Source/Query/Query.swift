@@ -40,14 +40,14 @@ public class Query : CustomStringConvertible {
 		return type(.FETCH)
 	}
 
-	public func filter(field: String, _ value: AnyObject) -> Self {
+	public func filter<T: CustomStringConvertible>(field: String, _ value: T) -> Self {
 		return self.filter(filter: Filter(field, value))
 	}
 
-	public func filter(field: String, _ op: String, _ value: AnyObject)
+	public func filter<T: CustomStringConvertible>(field: String, _ op: String, _ value: T)
 		-> Self {
 
-		return self.filter(filter: Filter(field, op, value))
+		return self.filter(filter: Filter(field: field, op: op, value: value))
 	}
 
 	public func filter(filter: Filter) -> Self {
