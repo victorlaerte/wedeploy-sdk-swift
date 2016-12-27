@@ -12,6 +12,9 @@ import later
 
 public class WeDeployData : RequestBuilder {
 
+	var query = Query()
+	var filter: Filter?
+
 	public init(url: String, authorization: Auth?) {
 		super.init(url)
 
@@ -52,6 +55,83 @@ public class WeDeployData : RequestBuilder {
 			.path("/\(collectionOrResourcePath)")
 			.authorize(auth: self.authorization)
 			.delete()
+	}
+
+	public func orderBy(field: String, order: Query.Order) -> Self {
+		query.sort(name: field, order: order)
+		return self
+	}
+
+	public func `where`<T: CustomStringConvertible>(field: String, op: String, value: T) -> Self {
+		filter = Filter(field: field, op: op, value: value)
+		return self
+	}
+
+	public func or<T: CustomStringConvertible>(field: String, op: String, value: T) -> Self {
+		filter?.or(Filter(field: field, op: op, value: value))
+		return self
+	}
+
+	public func match(field: String, pattern: String) -> Self {
+		filter = Filter.similar(field: field, value: pattern)
+		return self
+	}
+
+	public func similar(field: String, query: String) -> Self {
+		filter = Filter.similar(field: field, value: query)
+		return self
+	}
+
+	public func limit(_ limit: Int) -> Self {
+		query.limit(limit: limit)
+		return self
+	}
+
+	public func offset(_ offset: Int) -> Self {
+		query.offset(offset: offset)
+		return self
+	}
+
+	public func search(resourcePath: String) -> Promise<[String: AnyObject]> {
+		query.isSearch = true
+		return doGetRequest(resourcePath: resourcePath)
+			.then { response -> Promise<[String : AnyObject]> in
+				return self.castResponseAndReturnPromise(response: response, type: [String : AnyObject].self)
+			}
+	}
+
+	public func get(resourcePath: String) -> Promise<[[String: AnyObject]]> {
+		return doGetRequest(resourcePath: resourcePath)
+			.then { response -> Promise<[[String : AnyObject]]> in
+				return self.castResponseAndReturnPromise(response: response, type: [[String : AnyObject]].self)
+			}
+	}
+
+	public func getCount(resourcePath: String) -> Promise<Int> {
+		query.count()
+		return doGetRequest(resourcePath: resourcePath)
+			.then { response -> Promise<Int> in
+				return self.castResponseAndReturnPromise(response: response, type: Int.self)
+		}
+	}
+
+	public func doGetRequest(resourcePath: String) -> Promise<Response> {
+		if let filter = filter {
+			query.filter(filter: filter)
+		}
+
+		let request = RequestBuilder.url(self._url)
+
+		if query.query.count != 0 {
+			request.params =  query.query.asQueryItems
+		}
+
+		query = Query()
+		filter = nil
+
+		return request.authorize(auth: self.authorization)
+			.path("/\(resourcePath)")
+			.get()
 	}
 
 	func doCreateRequest(resource: String, object: AnyObject) -> Promise<Response> {
