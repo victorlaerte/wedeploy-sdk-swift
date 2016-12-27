@@ -23,6 +23,7 @@ class BaseTest : XCTestCase {
 
 	var authModuleUrl: String!
 	var emailModuleUrl: String!
+	var dataModuleUrl: String!
 
 	override func setUp() {
 		loadSettings()
@@ -39,6 +40,7 @@ class BaseTest : XCTestCase {
 
 		authModuleUrl = settings["authModuleUrl"]
 		emailModuleUrl = settings["emailModuleUrl"]
+		dataModuleUrl = settings["dataModuleUrl"]
 	}
 
 	func executeAuthenticated(block: @escaping () -> ()) {
