@@ -36,6 +36,17 @@ public class WeDeployData : RequestBuilder {
 			}
 	}
 
+	public func update(resourcePath: String, updatedAttributes: [String: AnyObject]) -> Promise<[String: AnyObject]> {
+		return RequestBuilder.url(self._url)
+			.authorize(auth: self.authorization)
+			.path("/\(resourcePath)")
+			.patch()
+			.then { response -> Promise<[String : AnyObject]> in
+			
+				return self.castResponseAndReturnPromise(response: response, type: [String : AnyObject].self)
+			}
+	}
+
 	func doCreateRequest(resource: String, object: AnyObject) -> Promise<Response> {
 		return RequestBuilder.url(self._url)
 			.authorize(auth: self.authorization)
