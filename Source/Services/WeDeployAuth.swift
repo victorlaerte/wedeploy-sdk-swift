@@ -40,7 +40,7 @@ public class WeDeployAuth : RequestBuilder {
 
 				return Promise<()> { fulfill, reject in
 					do {
-						let body = try self.validateResponse(response: response)
+						let body = try response.validate()
 						let token = body["access_token"] as! String
 						let auth = TokenAuth(token: token)
 
@@ -138,7 +138,7 @@ public class WeDeployAuth : RequestBuilder {
 
 					return Promise<User> { fulfill, reject in
 						do {
-							let body = try self.validateResponse(response: response)
+							let body = try response.validate()
 
 							fulfill(User(json: body))
 						} catch let error {
@@ -159,7 +159,7 @@ public class WeDeployAuth : RequestBuilder {
 
 					return Promise<User> { fulfill, reject in
 						do {
-							let body = try self.validateResponse(response: response)
+							let body = try response.validate()
 
 							fulfill(User(json: body))
 						} catch let error {
@@ -194,17 +194,6 @@ public class WeDeployAuth : RequestBuilder {
 
 		WeDeploy.authSession?.currentAuth = nil
 		WeDeploy.authSession?.currentUser = nil
-	}
-
-
-	func validateResponse(response: Response) throws -> [String : AnyObject] {
-		guard response.statusCode == 200,
-			let body = response.body as? [String : AnyObject]
-		else {
-			throw WeDeployError.errorFrom(response: response)
-		}
-
-		return body
 	}
 
 	func open(_ url: URL) {
