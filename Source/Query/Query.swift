@@ -18,6 +18,8 @@ public class Query : CustomStringConvertible {
 
 	public private(set) var query = [String: AnyObject]()
 
+	public var isSearch = false
+
 	public enum QueryType: String {
 		case COUNT = "count", FETCH = "fetch"
 	}
@@ -56,7 +58,13 @@ public class Query : CustomStringConvertible {
 
 		filters.append(filter.filter)
 
-		query["filter"] = filters as AnyObject
+		if isSearch {
+			query["search"] = filters as AnyObject
+		}
+		else {
+			query["filter"] = filters as AnyObject
+		}
+		
 		return self
 	}
 
