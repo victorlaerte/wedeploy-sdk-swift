@@ -47,6 +47,13 @@ public class WeDeployData : RequestBuilder {
 			}
 	}
 
+	public func delete(collectionOrResourcePath: String) ->Promise<Response> {
+		return RequestBuilder.url(self._url)
+			.path("/\(collectionOrResourcePath)")
+			.authorize(auth: self.authorization)
+			.delete()
+	}
+
 	func doCreateRequest(resource: String, object: AnyObject) -> Promise<Response> {
 		return RequestBuilder.url(self._url)
 			.authorize(auth: self.authorization)
