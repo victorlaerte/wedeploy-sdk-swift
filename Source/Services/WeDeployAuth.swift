@@ -55,17 +55,9 @@ public class WeDeployAuth : RequestBuilder {
 
 				}
 			}
-			.then { _ -> Promise<User> in
+			.then { _ -> Promise<Response> in
 				return self.getCurrentUser()
 			}
-	}
-
-	public func getCurrentUser() -> Promise<User> {
-		return RequestBuilder
-			.url(self._url)
-			.path("/user")
-			.authorize(auth: self.authorization)
-			.get()
 			.then { (response: Response) -> User in
 
 				let body = response.body as! [String : AnyObject]
@@ -76,7 +68,15 @@ public class WeDeployAuth : RequestBuilder {
 				WeDeploy.authSession?.currentUser = user
 
 				return user
-		}
+			}
+	}
+
+	public func getCurrentUser() -> Promise<Response> {
+		return RequestBuilder
+			.url(self._url)
+			.path("/user")
+			.authorize(auth: self.authorization)
+			.get()
 	}
 
 	public func handle(url: URL) {
@@ -96,6 +96,17 @@ public class WeDeployAuth : RequestBuilder {
 				WeDeploy.authSession?.currentAuth = auth
 
 				self.getCurrentUser()
+					.then { (response: Response) -> User in
+
+						let body = response.body as! [String : AnyObject]
+
+						let user = User(json: body)
+
+						self.currentUser = user
+						WeDeploy.authSession?.currentUser = user
+						
+						return user
+					}
 					.done { user, error in
 						if let user = user {
 							onSignIn(user, nil )
