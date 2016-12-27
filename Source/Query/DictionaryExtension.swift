@@ -17,7 +17,7 @@ import Foundation
 internal extension Dictionary {
 
 	var asJSON: String {
-		let data = try! JSONSerialization.data(withJSONObject: self as AnyObject)
+		let data = try! JSONSerialization.data(withJSONObject: self)
 
 		return String(data: data, encoding: .utf8)!
 	}
