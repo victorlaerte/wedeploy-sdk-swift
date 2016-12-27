@@ -47,8 +47,8 @@ public class WeDeploy : RequestBuilder {
 				authorization: authSession!.currentAuth)
 	}
 
-	public func data() -> Self {
-		return self
+	public class func data(_ url: String) -> WeDeployData {
+		return WeDeployData(url: url, authorization: authSession?.currentAuth)
 	}
 
 	public class func email(_ url: String) -> WeDeployEmail {
