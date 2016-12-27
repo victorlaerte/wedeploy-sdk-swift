@@ -60,4 +60,18 @@ public class Response {
 		return string
 	}
 
+	func validate() throws -> [String : AnyObject] {
+		return try validateBody(bodyType: [String : AnyObject].self)
+	}
+
+	func validateBody<T>(bodyType: T.Type) throws -> T {
+		guard statusCode == 200,
+			let body = body as? T
+			else {
+				throw WeDeployError.errorFrom(response: self)
+		}
+
+		return body
+	}
+
 }
