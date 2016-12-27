@@ -39,14 +39,21 @@ public class WeDeployData : RequestBuilder {
 			}
 	}
 
-	public func update(resourcePath: String, updatedAttributes: [String: AnyObject]) -> Promise<[String: AnyObject]> {
+	public func update(resourcePath: String, updatedAttributes: [String: AnyObject]) -> Promise<Void> {
 		return RequestBuilder.url(self._url)
 			.authorize(auth: self.authorization)
 			.path("/\(resourcePath)")
 			.patch()
-			.then { response -> Promise<[String : AnyObject]> in
-			
-				return self.castResponseAndReturnPromise(response: response, type: [String : AnyObject].self)
+			.then { response -> Promise<Void> in
+
+				return Promise<Void> { fulfill, reject in
+					if response.statusCode == 204 {
+						fulfill(())
+					}
+					else {
+						reject(WeDeployError.errorFrom(response: response))
+					}
+				}
 			}
 	}
 
