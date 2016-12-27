@@ -65,7 +65,7 @@ public class Response {
 	}
 
 	func validateBody<T>(bodyType: T.Type) throws -> T {
-		guard statusCode == 200,
+		guard 200 ..< 300 ~= statusCode,
 			let body = body as? T
 			else {
 				throw WeDeployError.errorFrom(response: self)
