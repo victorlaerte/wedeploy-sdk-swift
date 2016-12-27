@@ -116,6 +116,14 @@ public class Filter : CustomStringConvertible, ExpressibleByStringLiteral {
 		return Filter(field: field, op: "~", value: value)
 	}
 
+	public static func match<T: CustomStringConvertible>(field: String, value: T) -> Filter {
+		return Filter(field: field, op: "match", value: value)
+	}
+
+	public static func similar<T: CustomStringConvertible>(field: String, value: T) -> Filter {
+		return Filter(field: field, op: "similar", value: value)
+	}
+
 	func and(_ filters: [Filter]) -> Self {
 		let and = filter["and"] as? [[String: AnyObject]] ?? [self.filter]
 
