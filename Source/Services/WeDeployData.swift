@@ -8,6 +8,7 @@
 
 import Foundation
 import later
+import SocketIO
 
 
 public class WeDeployData : RequestBuilder {
@@ -120,6 +121,17 @@ public class WeDeployData : RequestBuilder {
 			.then { response -> Promise<Int> in
 				return self.castResponseAndReturnPromise(response: response, type: Int.self)
 		}
+	}
+
+	public func watch(resourcePath: String) -> SocketIOClient {
+		if let filter = filter {
+			query.filter(filter: filter)
+		}
+		
+		let url = "\(self._url)/\(resourcePath)"
+		var options = SocketIOClientConfiguration()
+
+		return SocketIOClientFactory.create(url: url, params: query.query.asQueryItems, options: &options)
 	}
 
 	public func doGetRequest(resourcePath: String) -> Promise<Response> {
