@@ -23,6 +23,8 @@
 		0BBF702F1DECA19800C94DA8 /* RequestBuilderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF702D1DECA14400C94DA8 /* RequestBuilderTest.swift */; };
 		0BD43C2D1DEF30E600F7C7FE /* AuthSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD43C2C1DEF30E600F7C7FE /* AuthSession.swift */; };
 		0BD6B4141DED78AE0020668D /* WeDeploy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD6B4131DED78AE0020668D /* WeDeploy.swift */; };
+		0BDA424A1E13B19000533412 /* SocketIOClientFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC05BAB21C40A862007D9BAB /* SocketIOClientFactory.swift */; };
+		0BDA424C1E13F2CA00533412 /* WatchTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC05BAB51C40A880007D9BAB /* WatchTest.swift */; };
 		0BDABE911DEAEA27001B02BF /* ResponseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23CD1C3F0EC700408177 /* ResponseTest.swift */; };
 		0BE1D1311E0D33C600FFE689 /* AuthProviderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1D1301E0D33C600FFE689 /* AuthProviderTest.swift */; };
 		0BE1D1331E0D3C2700FFE689 /* FilterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23BC1C3F0D3300408177 /* FilterTest.swift */; };
@@ -529,6 +531,7 @@
 				0B5802331DED9FF7002C3E7A /* WeDeployError.swift in Sources */,
 				0B74EDBB1DE6E797007AE62C /* DictionaryExtension.swift in Sources */,
 				0BB0C2BC1DE8333D00CACDE1 /* TokenAuth.swift in Sources */,
+				0BDA424A1E13B19000533412 /* SocketIOClientFactory.swift in Sources */,
 				0BF2B5D01E12518E004A4DF1 /* WeDeployData.swift in Sources */,
 				0BBF702C1DEC93FC00C94DA8 /* RequestBuilder.swift in Sources */,
 				0BD6B4141DED78AE0020668D /* WeDeploy.swift in Sources */,
@@ -556,6 +559,7 @@
 				0BE1D1341E0D3C9500FFE689 /* XCTestCaseExtension.swift in Sources */,
 				0BF2B5D31E1254A4004A4DF1 /* WeDeployDataTest.swift in Sources */,
 				0BE1D1331E0D3C2700FFE689 /* FilterTest.swift in Sources */,
+				0BDA424C1E13F2CA00533412 /* WatchTest.swift in Sources */,
 				0B46BA171DEEDD9900EB28CF /* BaseTest.swift in Sources */,
 				0B46BA141DEED48B00EB28CF /* WeDeployAuthTest.swift in Sources */,
 				0BDABE911DEAEA27001B02BF /* ResponseTest.swift in Sources */,
