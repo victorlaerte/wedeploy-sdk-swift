@@ -167,4 +167,14 @@ public class WeDeployData {
 			.post(body: object)
 	}
 
+	func castResponseAndReturnPromise<T>(response: Response, type: T.Type) -> Promise<T> {
+		return Promise<T> { fulfill, reject in
+			do {
+				let body = try response.validateBody(bodyType: T.self)
+				fulfill(body)
+			} catch let error {
+				reject(error)
+			}
+		}
+	}
 }
