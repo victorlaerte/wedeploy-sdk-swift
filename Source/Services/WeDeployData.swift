@@ -27,18 +27,16 @@ public class WeDeployData {
 	public func create(resource: String, object: [String : AnyObject]) -> Promise<[String : AnyObject]> {
 
 		return doCreateRequest(resource: resource, object: object as AnyObject)
-			.then { response -> Promise<[String : AnyObject]> in
-
-				return self.castResponseAndReturnPromise(response: response, type: [String : AnyObject].self)
+			.then {
+				return self.castResponseAndReturnPromise(response: $0)
 			}
 	}
 
 	public func create(resource: String, object: [[String : AnyObject]]) -> Promise<[[String : AnyObject]]> {
 
 		return doCreateRequest(resource: resource, object: object as AnyObject)
-			.then { response -> Promise<[[String : AnyObject]]> in
-
-				return self.castResponseAndReturnPromise(response: response, type: [[String : AnyObject]].self)
+			.then {
+				return self.castResponseAndReturnPromise(response: $0)
 			}
 	}
 
@@ -105,24 +103,24 @@ public class WeDeployData {
 	public func search(resourcePath: String) -> Promise<[String: AnyObject]> {
 		query.isSearch = true
 		return doGetRequest(resourcePath: resourcePath)
-			.then { response -> Promise<[String : AnyObject]> in
-				return self.castResponseAndReturnPromise(response: response, type: [String : AnyObject].self)
+			.then {
+				return self.castResponseAndReturnPromise(response: $0)
 			}
 	}
 
 	public func get(resourcePath: String) -> Promise<[[String: AnyObject]]> {
 		return doGetRequest(resourcePath: resourcePath)
-			.then { response -> Promise<[[String : AnyObject]]> in
-				return self.castResponseAndReturnPromise(response: response, type: [[String : AnyObject]].self)
+			.then {
+				return self.castResponseAndReturnPromise(response: $0)
 			}
 	}
 
 	public func getCount(resourcePath: String) -> Promise<Int> {
 		query = query.count()
 		return doGetRequest(resourcePath: resourcePath)
-			.then { response -> Promise<Int> in
-				return self.castResponseAndReturnPromise(response: response, type: Int.self)
-		}
+			.then {
+				return self.castResponseAndReturnPromise(response: $0)
+			}
 	}
 
 	public func watch(resourcePath: String) -> SocketIOClient {
@@ -167,7 +165,7 @@ public class WeDeployData {
 			.post(body: object)
 	}
 
-	func castResponseAndReturnPromise<T>(response: Response, type: T.Type) -> Promise<T> {
+	func castResponseAndReturnPromise<T>(response: Response, type: T.Type? = T.self) -> Promise<T> {
 		return Promise<T> { fulfill, reject in
 			do {
 				let body = try response.validateBody(bodyType: T.self)
