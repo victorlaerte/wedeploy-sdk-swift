@@ -42,11 +42,11 @@ public class Query : CustomStringConvertible {
 		return type(.FETCH)
 	}
 
-	public func filter<T: CustomStringConvertible>(field: String, _ value: T) -> Self {
+	public func filter<T>(field: String, _ value: T) -> Self {
 		return self.filter(filter: Filter(field, value))
 	}
 
-	public func filter<T: CustomStringConvertible>(field: String, _ op: String, _ value: T)
+	public func filter<T>(field: String, _ op: String, _ value: T)
 		-> Self {
 
 		return self.filter(filter: Filter(field: field, op: op, value: value))

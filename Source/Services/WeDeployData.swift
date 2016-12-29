@@ -70,13 +70,13 @@ public class WeDeployData : RequestBuilder {
 		return self
 	}
 
-	public func `where`<T: CustomStringConvertible>(field: String, op: String, value: T) -> Self {
+	public func `where`<T>(field: String, op: String, value: T) -> Self {
 		filter = Filter(field: field, op: op, value: value)
 		return self
 	}
 
-	public func or<T: CustomStringConvertible>(field: String, op: String, value: T) -> Self {
-		filter?.or(Filter(field: field, op: op, value: value))
+	public func or<T>(field: String, op: String, value: T) -> Self {
+		filter = filter?.or(Filter(field: field, op: op, value: value))
 		return self
 	}
 
