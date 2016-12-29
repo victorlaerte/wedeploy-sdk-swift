@@ -217,4 +217,16 @@ class FilterTest : XCTestCase {
 			"{\"name\":{\"operator\":\"=\",\"value\":\"foo\"}}", filter.filter)
 	}
 
+	func testSimilarOperator() {
+		let filter = Filter.similar(field: "age", value: 12)
+
+		assertJSON("{\"age\":{\"operator\":\"similar\",\"value\":12}}", filter.filter)
+	}
+
+	func testMatchOperator() {
+		let filter = Filter.match(field: "age", value: 12)
+
+		assertJSON("{\"age\":{\"operator\":\"match\",\"value\":12}}", filter.filter)
+	}
+
 }
