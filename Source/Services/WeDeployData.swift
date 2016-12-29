@@ -131,7 +131,12 @@ public class WeDeployData : RequestBuilder {
 		let url = "\(self._url)/\(resourcePath)"
 		var options = SocketIOClientConfiguration()
 
-		return SocketIOClientFactory.create(url: url, params: query.query.asQueryItems, options: &options)
+		let socket = SocketIOClientFactory.create(url: url, params: query.query.asQueryItems, options: &options)
+
+		query = Query()
+		filter = nil
+
+		return socket
 	}
 
 	public func doGetRequest(resourcePath: String) -> Promise<Response> {
