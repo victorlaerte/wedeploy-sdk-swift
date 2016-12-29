@@ -15,6 +15,8 @@
 		0B74EDBB1DE6E797007AE62C /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF69EA11C46BA7100961988 /* DictionaryExtension.swift */; };
 		0B74EDBC1DE6E797007AE62C /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23AA1C3F0B8600408177 /* Filter.swift */; };
 		0B74EDBD1DE6E797007AE62C /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23AB1C3F0B8600408177 /* Query.swift */; };
+		0BAC8D701E14F28500E75548 /* QueryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23BD1C3F0D3300408177 /* QueryTest.swift */; };
+		0BAC8D711E15018600E75548 /* DictionaryExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF69EA31C46C77900961988 /* DictionaryExtensionTest.swift */; };
 		0BB0C2BC1DE8333D00CACDE1 /* TokenAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB0C2BB1DE8333D00CACDE1 /* TokenAuth.swift */; };
 		0BB0C2C11DE83C1200CACDE1 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BB0C2C01DE83C1200CACDE1 /* XCTest.framework */; };
 		0BB3BE721DE83EA800FA90EE /* later.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BB3BE711DE83EA800FA90EE /* later.framework */; };
@@ -561,7 +563,9 @@
 				0BE1D1331E0D3C2700FFE689 /* FilterTest.swift in Sources */,
 				0BDA424C1E13F2CA00533412 /* WatchTest.swift in Sources */,
 				0B46BA171DEEDD9900EB28CF /* BaseTest.swift in Sources */,
+				0BAC8D701E14F28500E75548 /* QueryTest.swift in Sources */,
 				0B46BA141DEED48B00EB28CF /* WeDeployAuthTest.swift in Sources */,
+				0BAC8D711E15018600E75548 /* DictionaryExtensionTest.swift in Sources */,
 				0BDABE911DEAEA27001B02BF /* ResponseTest.swift in Sources */,
 				0BBF702F1DECA19800C94DA8 /* RequestBuilderTest.swift in Sources */,
 				0BE1D1311E0D33C600FFE689 /* AuthProviderTest.swift in Sources */,

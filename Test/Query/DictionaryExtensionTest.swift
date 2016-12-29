@@ -1,4 +1,4 @@
-@testable import Launchpad
+@testable import WeDeploy
 import XCTest
 
 class DictionaryExtensionTest : XCTestCase {
@@ -12,7 +12,7 @@ class DictionaryExtensionTest : XCTestCase {
 				"year": 1982
 			],
 			"array": [1, 2, 3]
-		]
+		] as [String : Any]
 
 		let items = dic.asQueryItems
 

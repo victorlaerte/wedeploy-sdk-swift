@@ -1,15 +1,15 @@
-import Launchpad
+import WeDeploy
 import XCTest
 
 class QueryTest : XCTestCase {
 
 	func testComplex_Query() {
 		let query = Query()
-			.filter(Filter.gt("age", 12))
-			.sort("age", order: Query.Order.DESC)
-			.sort("name")
-			.offset(5)
-			.limit(10)
+			.filter(filter: Filter.gt("age", 12))
+			.sort(name: "age", order: Query.Order.DESC)
+			.sort(name: "name")
+			.offset(offset: 5)
+			.limit(limit: 10)
 			.fetch()
 
 		assertJSON("{" +
@@ -23,7 +23,7 @@ class QueryTest : XCTestCase {
 	}
 
 	func testFilter_With_Instance() {
-		let query = Query().filter(Filter.gt("age", 12))
+		let query = Query().filter(filter: Filter.gt("age", 12))
 
 		assertJSON(
 			"{\"filter\":[{\"age\":{\"operator\":\">\",\"value\":12}}]}",
@@ -32,9 +32,9 @@ class QueryTest : XCTestCase {
 
 	func testFilter_With_Multiple_Filters() {
 		let query = Query()
-			.filter(Filter.gt("age", 12))
-			.filter("age", "<", 15)
-			.filter("name", "Foo")
+			.filter(filter: Filter.gt("age", 12))
+			.filter(field:"age", "<", 15)
+			.filter(field:"name", "Foo")
 
 		assertJSON(
 			"{\"filter\":[{\"age\":{\"operator\":\">\",\"value\":12}}," +
@@ -44,7 +44,7 @@ class QueryTest : XCTestCase {
 	}
 
 	func testFilter_With_Operator() {
-		let query = Query().filter("age", ">", 12)
+		let query = Query().filter(field: "age", ">", 12)
 
 		assertJSON(
 			"{\"filter\":[{\"age\":{\"operator\":\">\",\"value\":12}}]}",
@@ -52,7 +52,7 @@ class QueryTest : XCTestCase {
 	}
 
 	func testFilter_With_Optional_Operator() {
-		let query = Query().filter("age", 12)
+		let query = Query().filter(field: "age", 12)
 
 		assertJSON(
 			"{\"filter\":[{\"age\":{\"operator\":\"=\",\"value\":12}}]}",
@@ -60,20 +60,20 @@ class QueryTest : XCTestCase {
 	}
 
 	func testOffset() {
-		let query = Query().offset(5)
+		let query = Query().offset(offset: 5)
 		assertJSON("{\"offset\":5}", query.query)
 	}
 
 	func testLimit() {
-		let query = Query().limit(10)
+		let query = Query().limit(limit: 10)
 		assertJSON("{\"limit\":10}", query.query)
 	}
 
 	func testSort() {
-		let query = Query().sort("title")
+		let query = Query().sort(name: "title")
 		XCTAssertEqual("{\"sort\":[{\"title\":\"asc\"}]}", query.description)
 
-		query.sort("author", order: Query.Order.DESC)
+		query.sort(name: "author", order: Query.Order.DESC)
 
 		assertJSON(
 			"{\"sort\":[{\"title\":\"asc\"},{\"author\":\"desc\"}]}",
@@ -88,6 +88,17 @@ class QueryTest : XCTestCase {
 	func testType_Fetch() {
 		let query = Query().fetch()
 		assertJSON("{\"type\":\"fetch\"}", query.query)
+	}
+
+	func testSearch_Query() {
+		let query = Query()
+		query.isSearch = true
+
+		query.filter(field: "age", "=", 12)
+
+		assertJSON(
+			"{\"search\":[{\"age\":{\"operator\":\"=\",\"value\":12}}]}",
+			query.query)
 	}
 
 }
