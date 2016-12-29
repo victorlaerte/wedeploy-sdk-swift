@@ -66,7 +66,7 @@ public class WeDeployData : RequestBuilder {
 	}
 
 	public func orderBy(field: String, order: Query.Order) -> Self {
-		query.sort(name: field, order: order)
+		query = query.sort(name: field, order: order)
 		return self
 	}
 
@@ -91,12 +91,12 @@ public class WeDeployData : RequestBuilder {
 	}
 
 	public func limit(_ limit: Int) -> Self {
-		query.limit(limit: limit)
+		query = query.limit(limit: limit)
 		return self
 	}
 
 	public func offset(_ offset: Int) -> Self {
-		query.offset(offset: offset)
+		query = query.offset(offset: offset)
 		return self
 	}
 
@@ -116,7 +116,7 @@ public class WeDeployData : RequestBuilder {
 	}
 
 	public func getCount(resourcePath: String) -> Promise<Int> {
-		query.count()
+		query = query.count()
 		return doGetRequest(resourcePath: resourcePath)
 			.then { response -> Promise<Int> in
 				return self.castResponseAndReturnPromise(response: response, type: Int.self)
@@ -125,7 +125,7 @@ public class WeDeployData : RequestBuilder {
 
 	public func watch(resourcePath: String) -> SocketIOClient {
 		if let filter = filter {
-			query.filter(filter: filter)
+			query = query.filter(filter: filter)
 		}
 		
 		let url = "\(self._url)/\(resourcePath)"
@@ -136,7 +136,7 @@ public class WeDeployData : RequestBuilder {
 
 	public func doGetRequest(resourcePath: String) -> Promise<Response> {
 		if let filter = filter {
-			query.filter(filter: filter)
+			query = query.filter(filter: filter)
 		}
 
 		let request = RequestBuilder.url(self._url)
