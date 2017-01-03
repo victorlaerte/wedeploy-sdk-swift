@@ -136,12 +136,10 @@ public class RequestBuilder {
 			return nil
 		}
 
-		return formFields.map {
-				($0.key.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-		 			$0.value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))
-			}
-			.reduce([], { $0 + [$1.0! + "=" + $1.1!]})
-			.joined(separator: "&")
+		return formFields.reduce([]) { (result, element: (key: String, value: String)) -> [String] in
+			result + [element.key + "=" + (element.value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? element.value)]
+		}
+		.joined(separator: "&")
 	}
 
 }
