@@ -25,14 +25,12 @@ class QueryTest : XCTestCase {
 			.sort(name: "name")
 			.offset(offset: 5)
 			.limit(limit: 10)
-			.fetch()
 
 		assertJSON("{" +
 			"\"limit\":10," +
 			"\"sort\":[{\"age\":\"desc\"},{\"name\":\"asc\"}]," +
 			"\"offset\":5," +
 			"\"filter\":[{\"age\":{\"operator\":\">\",\"value\":12}}]," +
-			"\"type\":\"fetch\"" +
 			"}",
 			query.query)
 	}
@@ -98,11 +96,6 @@ class QueryTest : XCTestCase {
 	func testType_Count() {
 		let query = Query().count()
 		assertJSON("{\"type\":\"count\"}", query.query)
-	}
-
-	func testType_Fetch() {
-		let query = Query().fetch()
-		assertJSON("{\"type\":\"fetch\"}", query.query)
 	}
 
 	func testSearch_Query() {
