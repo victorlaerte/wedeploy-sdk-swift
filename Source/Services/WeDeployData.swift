@@ -65,11 +65,6 @@ public class WeDeployData {
 			.delete()
 	}
 
-	public func orderBy(field: String, order: Query.Order) -> Self {
-		query = query.sort(name: field, order: order)
-		return self
-	}
-
 	public func `where`<T>(field: String, op: String, value: T) -> Self {
 		filter = Filter(field: field, op: op, value: value)
 		return self
@@ -80,6 +75,41 @@ public class WeDeployData {
 		return self
 	}
 
+	public func none<T>(field: String, value: [T]) -> Self {
+		filter = self.getOrCreateFilter().and(Filter.none(field, value))
+		return self
+	}
+
+	public func lt<T>(field: String, value: T) -> Self {
+		filter = self.getOrCreateFilter().and(Filter.lt(field, value))
+		return self
+	}
+
+	public func lte<T>(field: String, value: T) -> Self {
+		filter = self.getOrCreateFilter().and(Filter.lte(field, value))
+		return self
+	}
+
+	public func gt<T>(field: String, value: T) -> Self {
+		filter = self.getOrCreateFilter().and(Filter.gt(field, value))
+		return self
+	}
+
+	public func gte<T>(field: String, value: T) -> Self {
+		filter = self.getOrCreateFilter().and(Filter.gte(field, value))
+		return self
+	}
+
+	public func equal<T>(field: String, value: T) -> Self {
+		filter = self.getOrCreateFilter().and(Filter.equal(field, value))
+		return self
+	}
+
+	public func any<T>(field: String, value: [T]) -> Self {
+		filter = self.getOrCreateFilter().and(Filter.any(field, value))
+		return self
+	}
+
 	public func match(field: String, pattern: String) -> Self {
 		filter = Filter.similar(field: field, value: pattern)
 		return self
@@ -87,6 +117,11 @@ public class WeDeployData {
 
 	public func similar(field: String, query: String) -> Self {
 		filter = Filter.similar(field: field, value: query)
+		return self
+	}
+
+	public func orderBy(field: String, order: Query.Order) -> Self {
+		query = query.sort(name: field, order: order)
 		return self
 	}
 
@@ -156,6 +191,14 @@ public class WeDeployData {
 		return request.authorize(auth: self.authorization)
 			.path("/\(resourcePath)")
 			.get()
+	}
+
+	func getOrCreateFilter() -> Filter {
+		if let filter = filter {
+			return filter
+		}
+
+		return Filter()
 	}
 
 	func doCreateRequest(resource: String, object: AnyObject) -> Promise<Response> {

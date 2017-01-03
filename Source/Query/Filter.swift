@@ -52,6 +52,8 @@ public class Filter : CustomStringConvertible, ExpressibleByStringLiteral {
 		] as AnyObject
 	}
 
+	public init() {}
+
 	public required convenience init(extendedGraphemeClusterLiteral: String) {
 		self.init(extendedGraphemeClusterLiteral)
 	}
