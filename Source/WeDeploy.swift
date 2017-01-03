@@ -48,11 +48,10 @@ public class WeDeploy : RequestBuilder {
 	}
 
 	public class func data(_ url: String) -> WeDeployData {
-		return WeDeployData(url: url, authorization: authSession?.currentAuth)
+		return WeDeployData(url, authorization: authSession?.currentAuth)
 	}
 
 	public class func email(_ url: String) -> WeDeployEmail {
-		return WeDeployEmail(url)
-				.authorize(auth: authSession?.currentAuth)
+		return WeDeployEmail(url, authorization: authSession?.currentAuth)
 	}
 }

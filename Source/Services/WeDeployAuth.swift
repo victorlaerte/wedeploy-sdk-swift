@@ -16,22 +16,24 @@ import Foundation
 import later
 import RxSwift
 
-public class WeDeployAuth : RequestBuilder {
+public class WeDeployAuth {
 
 	public static var urlRedirect = PublishSubject<URL>()
 	public static var tokenSubscription: Disposable?
 
-	var currentUser: User?
+	public var currentUser: User?
+
+	var authorization: Auth?
+	let url: String
 
 	init(_ url: String, user: User? = nil, authorization: Auth? = nil) {
-		super.init(url)
-
+		self.url = url
 		self.currentUser = user
 		self.authorization = authorization
 	}
 
 	public func signInWith(username: String, password: String) -> Promise<User> {
-		return RequestBuilder.url(self._url).path("/oauth/token")
+		return RequestBuilder.url(self.url).path("/oauth/token")
 			.param(name: "grant_type", value: "password")
 			.param(name: "username", value: username)
 			.param(name: "password", value: password)
@@ -73,7 +75,7 @@ public class WeDeployAuth : RequestBuilder {
 
 	public func getCurrentUser() -> Promise<Response> {
 		return RequestBuilder
-			.url(self._url)
+			.url(self.url)
 			.path("/user")
 			.authorize(auth: self.authorization)
 			.get()
@@ -84,7 +86,7 @@ public class WeDeployAuth : RequestBuilder {
 	}
 
 	public func signInWithRedirect(provider: AuthProvider, onSignIn: @escaping (User?, Error?) -> ()) {
-		let authUrl = self._url
+		let authUrl = self.url
 		WeDeployAuth.tokenSubscription?.dispose()
 		
 		WeDeployAuth.tokenSubscription = WeDeployAuth.urlRedirect
@@ -131,7 +133,7 @@ public class WeDeployAuth : RequestBuilder {
 		}
 
 		return RequestBuilder
-				.url(self._url)
+				.url(self.url)
 				.path("/users")
 				.post(body: body as AnyObject?)
 				.then { response -> Promise<User> in
@@ -150,7 +152,7 @@ public class WeDeployAuth : RequestBuilder {
 
 	public func getUser(id: String) -> Promise<User> {
 		return RequestBuilder
-				.url(self._url)
+				.url(self.url)
 				.path("/users")
 				.path("/\(id)")
 				.authorize(auth: authorization)
@@ -171,7 +173,7 @@ public class WeDeployAuth : RequestBuilder {
 
 	public func sendPasswordReset(email: String) -> Promise<Void> {
 		return RequestBuilder
-				.url(self._url)
+				.url(self.url)
 				.path("/user/recover")
 				.form(name: "email", value: email)
 				.post()

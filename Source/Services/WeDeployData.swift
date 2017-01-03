@@ -11,14 +11,16 @@ import later
 import SocketIO
 
 
-public class WeDeployData : RequestBuilder {
+public class WeDeployData {
 
 	var query = Query()
 	var filter: Filter?
 
-	public init(url: String, authorization: Auth?) {
-		super.init(url)
+	let authorization: Auth?
+	let url: String
 
+	init(_ url: String, authorization: Auth? = nil) {
+		self.url = url
 		self.authorization = authorization
 	}
 
@@ -41,7 +43,7 @@ public class WeDeployData : RequestBuilder {
 	}
 
 	public func update(resourcePath: String, updatedAttributes: [String: AnyObject]) -> Promise<Void> {
-		return RequestBuilder.url(self._url)
+		return RequestBuilder.url(self.url)
 			.authorize(auth: self.authorization)
 			.path("/\(resourcePath)")
 			.patch()
@@ -59,7 +61,7 @@ public class WeDeployData : RequestBuilder {
 	}
 
 	public func delete(collectionOrResourcePath: String) ->Promise<Response> {
-		return RequestBuilder.url(self._url)
+		return RequestBuilder.url(self.url)
 			.path("/\(collectionOrResourcePath)")
 			.authorize(auth: self.authorization)
 			.delete()
@@ -128,7 +130,7 @@ public class WeDeployData : RequestBuilder {
 			query = query.filter(filter: filter)
 		}
 		
-		let url = "\(self._url)/\(resourcePath)"
+		let url = "\(self.url)/\(resourcePath)"
 		var options = SocketIOClientConfiguration()
 
 		let socket = SocketIOClientFactory.create(url: url, params: query.query.asQueryItems, options: &options)
@@ -139,12 +141,12 @@ public class WeDeployData : RequestBuilder {
 		return socket
 	}
 
-	public func doGetRequest(resourcePath: String) -> Promise<Response> {
+	func doGetRequest(resourcePath: String) -> Promise<Response> {
 		if let filter = filter {
 			query = query.filter(filter: filter)
 		}
 
-		let request = RequestBuilder.url(self._url)
+		let request = RequestBuilder.url(self.url)
 
 		if query.query.count != 0 {
 			request.params =  query.query.asQueryItems
@@ -159,7 +161,7 @@ public class WeDeployData : RequestBuilder {
 	}
 
 	func doCreateRequest(resource: String, object: AnyObject) -> Promise<Response> {
-		return RequestBuilder.url(self._url)
+		return RequestBuilder.url(self.url)
 			.authorize(auth: self.authorization)
 			.path("/\(resource)")
 			.post(body: object)
