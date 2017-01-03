@@ -19,6 +19,9 @@ public class WeDeploy : RequestBuilder {
 
 	public static var authSession: AuthSession?
 
+	static var dataUrl: String?
+	static var emailUrl: String?
+
 	override var authorization: Auth? {
 		set {
 			self.authorization = newValue
@@ -48,10 +51,26 @@ public class WeDeploy : RequestBuilder {
 	}
 
 	public class func data(_ url: String) -> WeDeployData {
+		dataUrl = url
+
 		return WeDeployData(url, authorization: authSession?.currentAuth)
 	}
 
+	public class func data() -> WeDeployData {
+		precondition(dataUrl != nil, "you have to initialize data module")
+
+		return WeDeployData(dataUrl!, authorization: authSession?.currentAuth)
+	}
+
 	public class func email(_ url: String) -> WeDeployEmail {
+		emailUrl = url
+
 		return WeDeployEmail(url, authorization: authSession?.currentAuth)
+	}
+
+	public class func email() -> WeDeployEmail {
+		precondition(emailUrl != nil, "you have to initialize data module")
+
+		return WeDeployEmail(emailUrl!, authorization: authSession?.currentAuth)
 	}
 }
