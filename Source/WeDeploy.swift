@@ -36,6 +36,7 @@ public class WeDeploy : RequestBuilder {
 	}
 
 	public class func auth(_ url: String) -> WeDeployAuth {
+		let url = validate(url: url)
 		authSession = AuthSession(url)
 
 		return WeDeployAuth(url)
@@ -51,9 +52,9 @@ public class WeDeploy : RequestBuilder {
 	}
 
 	public class func data(_ url: String) -> WeDeployData {
-		dataUrl = url
+		dataUrl = validate(url: url)
 
-		return WeDeployData(url, authorization: authSession?.currentAuth)
+		return WeDeployData(dataUrl!, authorization: authSession?.currentAuth)
 	}
 
 	public class func data() -> WeDeployData {
@@ -63,14 +64,28 @@ public class WeDeploy : RequestBuilder {
 	}
 
 	public class func email(_ url: String) -> WeDeployEmail {
-		emailUrl = url
+		emailUrl = validate(url: url)
 
-		return WeDeployEmail(url, authorization: authSession?.currentAuth)
+		return WeDeployEmail(emailUrl!, authorization: authSession?.currentAuth)
 	}
 
 	public class func email() -> WeDeployEmail {
 		precondition(emailUrl != nil, "you have to initialize data module")
 
 		return WeDeployEmail(emailUrl!, authorization: authSession?.currentAuth)
+	}
+
+	class func validate(url: String) -> String {
+		var finalUrl = url
+		if !url.hasPrefix("http://") && !url.hasPrefix("https://") {
+			finalUrl = "http://" + finalUrl
+		}
+
+		if url.hasSuffix("/") {
+			let slashIndex = finalUrl.index(finalUrl.endIndex, offsetBy: -1)
+			finalUrl = finalUrl.substring(to: slashIndex)
+		}
+
+		return finalUrl
 	}
 }
