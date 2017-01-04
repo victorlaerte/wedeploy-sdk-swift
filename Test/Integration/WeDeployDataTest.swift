@@ -82,14 +82,14 @@ class WeDeployDataTest: BaseTest {
 
 	let collectionName = "things"
 
-	let data: [[String: AnyObject]] = [
-		["name": "aname1" as AnyObject, "yearsOld": "10" as AnyObject],
-		["name": "aname2" as AnyObject, "yearsOld": "15" as AnyObject],
-		["name": "aname3" as AnyObject, "yearsOld": "20" as AnyObject],
-		["name": "aname4" as AnyObject, "yearsOld": "25" as AnyObject],
-		["name": "aname5" as AnyObject, "yearsOld": "35" as AnyObject],
-		["name": "aname6" as AnyObject, "yearsOld": "45" as AnyObject],
-		["name": "aname7" as AnyObject, "yearsOld": "55" as AnyObject]
+	let data: [[String: String]] = [
+		["name": "aname1" , "yearsOld": "10" ],
+		["name": "aname2" , "yearsOld": "15" ],
+		["name": "aname3" , "yearsOld": "20" ],
+		["name": "aname4" , "yearsOld": "25" ],
+		["name": "aname5" , "yearsOld": "35" ],
+		["name": "aname6" , "yearsOld": "45" ],
+		["name": "aname7" , "yearsOld": "55" ]
 	]
 
 	override func setUp() {
@@ -98,7 +98,7 @@ class WeDeployDataTest: BaseTest {
 		let exp = expect(description: "filling data")
 
 		WeDeploy.data(self.dataModuleUrl)
-			.create(resource: collectionName, object: data)
+			.create(resource: collectionName, object: data as [[String: AnyObject]])
 			.done { _ ,_ in
 				exp.fulfill()
 			}
