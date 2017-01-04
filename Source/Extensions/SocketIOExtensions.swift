@@ -21,13 +21,16 @@ import SocketIO
 public extension SocketIOClient {
 
 	func on(_ event: String) -> Observable<[Any]> {
-
+		var selfRetained: SocketIOClient? = self
+		
 		return Observable.create { [weak self] observer in
 			self?.on(event) { items, _ in
 				observer.on(.next(items))
 			}
 
-			return Disposables.create()
+			return Disposables.create(with: {
+				selfRetained = nil
+			})
 		}
 	}
 }
