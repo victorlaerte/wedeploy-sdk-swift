@@ -20,12 +20,12 @@ import SocketIO
 
 public extension SocketIOClient {
 
-	func on(_ event: String) -> Observable<[Any]> {
+	func on(_ event: String) -> Observable<[[String: AnyObject]]> {
 		var selfRetained: SocketIOClient? = self
 		
 		return Observable.create { [weak self] observer in
 			self?.on(event) { items, _ in
-				observer.on(.next(items))
+				observer.on(.next((items[0] as! [[String : AnyObject]])))
 			}
 
 			return Disposables.create(with: {
