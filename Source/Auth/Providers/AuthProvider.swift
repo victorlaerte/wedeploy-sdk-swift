@@ -20,29 +20,41 @@ public class AuthProvider {
 	public enum Provider : String {
 		case github = "github"
 		case facebook = "facebook"
+		case google = "google"
 	}
 
 	let provider: Provider
 	let redirectUri: String
 
-	var scope: String?
+	public var scope: String?
+	public var providerScope: String?
 
 	public init(provider: Provider, redirectUri: String) {
 		self.provider = provider
 		self.redirectUri = redirectUri
+
 	}
 
-	var providerUrl: String {
+	var providerParams: [URLQueryItem] {
 
-		var url = ""
-		url += "?provider=\(provider)"
-		url += "&redirect_uri=\(redirectUri.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)"
+		var queryItems = [URLQueryItem]()
 
-		if let scope = scope {
-			url += "&scope=\(scope)"
+		queryItems.append(URLQueryItem(name: "provider", value: provider.rawValue))
+
+		if let providerScope = providerScope {
+			queryItems.append(URLQueryItem(name: "provider_scope", value: providerScope))
+		}
+		else if provider == .google {
+			queryItems.append(URLQueryItem(name: "provider_scope", value: "email"))
 		}
 
-		return url
+		if let scope = scope {
+			queryItems.append(URLQueryItem(name: "scope", value: scope))
+		}
+
+		queryItems.append(URLQueryItem(name: "redirect_uri", value: redirectUri))
+
+		return queryItems
 	}
 	
 }

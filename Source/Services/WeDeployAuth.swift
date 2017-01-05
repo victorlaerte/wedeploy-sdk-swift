@@ -108,7 +108,11 @@ public class WeDeployAuth {
 					}
 				})
 
-		open(URL(string: "\(authUrl)/oauth/authorize\(provider.providerUrl)")!)
+		var url = URLComponents(string: "\(authUrl)/oauth/authorize")!
+		url.queryItems = provider.providerParams
+
+
+		open(url.url!)
 	}
 
 	public func createUser(email: String, password: String, name: String?) -> Promise<User> {

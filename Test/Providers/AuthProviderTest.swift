@@ -21,25 +21,29 @@ class AuthProviderTest: XCTestCase {
 		let providerGithub = AuthProvider(provider: .github, redirectUri: "")
 		let providerFacebook = AuthProvider(provider: .facebook, redirectUri: "")
 
-		XCTAssertTrue(providerGithub.providerUrl.contains("github"))
-		XCTAssertTrue(providerFacebook.providerUrl.contains("facebook"))
+		let githubQuery = providerGithub.providerParams.filter { $0.name == "provider" }[0]
+		let facebookQuery = providerFacebook.providerParams.filter { $0.name == "provider" }[0]
+
+		XCTAssertEqual(githubQuery.value, "github")
+		XCTAssertEqual(facebookQuery.value, "facebook")
 
 	}
 
 	func testProviderShouldIncludeRedirectUriInProviderUrl() {
 		let provider = AuthProvider(provider: .github, redirectUri: "someurl")
 
-		XCTAssertEqual("?provider=github&redirect_uri=someurl", provider.providerUrl)
+		let redirectParam = provider.providerParams.filter { $0.name == "redirect_uri" }[0]
+
+		XCTAssertEqual(redirectParam.value, "someurl")
 	}
 
 	func testProviderShouldIncludeScopeIfExist() {
-		let providerWithoutScope = AuthProvider(provider: .github, redirectUri: "someurl")
 		let providerWithScope = AuthProvider(provider: .github, redirectUri: "someurl")
 		providerWithScope.scope = "someScope"
 
-		XCTAssertFalse(providerWithoutScope.providerUrl.contains("scope"))
+		let scopeParam = providerWithScope.providerParams.filter { $0.name == "scope" }[0]
 
-		XCTAssertEqual("?provider=github&redirect_uri=someurl&scope=someScope", providerWithScope.providerUrl)
+		XCTAssertEqual(scopeParam.value, "someScope")
 	}
     
 }
