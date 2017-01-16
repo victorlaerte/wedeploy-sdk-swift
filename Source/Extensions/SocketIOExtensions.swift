@@ -17,6 +17,10 @@ import later
 import RxSwift
 import SocketIO
 
+public enum WeDeploySocketEvent : String {
+	case changes = "changes"
+	case error = "error"
+}
 
 public extension SocketIOClient {
 
@@ -33,4 +37,15 @@ public extension SocketIOClient {
 			})
 		}
 	}
+
+	func on(_ event: WeDeploySocketEvent, callback: @escaping NormalCallback) {
+		on(event.rawValue, callback: callback)
+	}
+
+	func on(_ event: WeDeploySocketEvent, callback: @escaping NormalCallback)
+			-> Observable<[[String: AnyObject]]> {
+
+		return on(event.rawValue)
+	}
+
 }
