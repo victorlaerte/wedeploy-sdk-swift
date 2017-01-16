@@ -4,4 +4,4 @@ language: objective-c
 
 script:
    - set -o pipefail
-   - xcodebuild clean test -project WeDeploy.xworkspace -scheme later -destination "platform=iOS Simulator,name=iPhone 7 Plus" | xcpretty
+   - xcodebuild clean test -project WeDeploy.xworkspace -scheme WeDeploy -destination "platform=iOS Simulator,name=iPhone 7 Plus" | xcpretty
