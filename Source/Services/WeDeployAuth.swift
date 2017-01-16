@@ -143,6 +143,40 @@ public class WeDeployAuth {
 				}
 	}
 
+	public func updateUser(id: String, email: String? = nil, password: String? = nil, name: String? = nil) -> Promise<Void> {
+		var body = [String : String]()
+
+		if let email = email {
+			body["email"] = email
+		}
+
+		if let password = password {
+			body["password"] = password
+		}
+
+		if let name = name {
+			body["name"] = name
+		}
+
+		return RequestBuilder
+			.url(self.url)
+			.path("/users")
+			.path("/\(id)")
+			.authorize(auth: authorization)
+			.patch(body: body as AnyObject?)
+			.then { response -> Promise<Void> in
+
+				return Promise<Void> { fulfill, reject in
+					if response.statusCode == 204 {
+						fulfill(())
+					}
+					else {
+						reject(WeDeployError.errorFrom(response: response))
+					}
+				}
+		}
+	}
+
 	public func getUser(id: String) -> Promise<User> {
 		return RequestBuilder
 				.url(self.url)
