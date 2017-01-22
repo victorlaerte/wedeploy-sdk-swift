@@ -37,6 +37,11 @@ public class WeDeploy : RequestBuilder {
 
 	public class func auth(_ url: String) -> WeDeployAuth {
 		let url = validate(url: url)
+
+		if let authSession = authSession, authSession.url == url {
+			return auth()
+		}
+
 		authSession = AuthSession(url)
 
 		return WeDeployAuth(url)
