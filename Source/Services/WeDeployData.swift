@@ -71,6 +71,16 @@ public class WeDeployData {
 			.delete()
 	}
 
+	public func filter(filter: Filter) -> Self {
+		self.filter = filter
+		return self
+	}
+
+	public func query(query: Query) -> Self {
+		self.query = query
+		return self
+	}
+
 	public func `where`<T>(field: String, op: String, value: T) -> Self {
 		filter = Filter(field: field, op: op, value: value)
 		return self
