@@ -13,7 +13,7 @@
 */
 
 import Foundation
-import later
+import PromiseKit
 import RxSwift
 
 public class WeDeployEmail {
@@ -36,8 +36,8 @@ public class WeDeployEmail {
 				.form(name: "message", value: body)
 				.authorize(auth: authorization)
 				.post()
-				.then { response -> Promise<String> in
-					Promise<String> { fulfill, reject in
+				.then { response ->in
+					return Promise<String> { fulfill, reject in
 						if response.statusCode == 200 {
 							fulfill(response.body!.description)
 						}

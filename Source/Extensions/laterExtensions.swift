@@ -13,24 +13,31 @@
 */
 
 import Foundation
-import later
+import PromiseKit
 import RxSwift
 
 public extension Promise {
 
 	func toCallback(callback: @escaping (T?, Error?) -> ()) {
-		self.done(block: callback)
+		self.tap { result in
+			switch result {
+				case .fulfilled(let value):
+					callback(value, nil)
+				case .rejected(let error):
+					callback(nil, error)
+			}
+		}
 	}
 
 	func toObservable() -> Observable<T> {
 		return Observable.create { observer in
-			self.done { (value, error) in
-				if let value = value {
-					observer.on(.next(value))
-					observer.on(.completed)
-				}
-				else {
-					observer.on(.error(error!))
+			self.tap { result in
+				switch result {
+					case .fulfilled(let value):
+						observer.onNext(value)
+						observer.onCompleted()
+					case .rejected(let error):
+						observer.onError(error)
 				}
 			}
 

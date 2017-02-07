@@ -13,7 +13,7 @@
 */
 
 import Foundation
-import later
+import PromiseKit
 import RxSwift
 
 public class WeDeployAuth {
@@ -98,11 +98,11 @@ public class WeDeployAuth {
 				WeDeploy.authSession?.currentAuth = auth
 
 				self.getCurrentUser()
-					.done { user, error in
-						if let user = user {
-							onSignIn(user, nil )
-						}
-						else {
+					.tap { result in
+						switch result {
+						case .fulfilled(let user):
+							onSignIn(user, nil)
+						case .rejected(let error):
 							onSignIn(nil, error)
 						}
 					}
