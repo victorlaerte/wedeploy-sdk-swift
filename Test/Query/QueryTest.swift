@@ -86,7 +86,7 @@ class QueryTest : XCTestCase {
 		let query = Query().sort(name: "title")
 		XCTAssertEqual("{\"sort\":[{\"title\":\"asc\"}]}", query.description)
 
-		query.sort(name: "author", order: Query.Order.DESC)
+		_ = query.sort(name: "author", order: Query.Order.DESC)
 
 		assertJSON(
 			"{\"sort\":[{\"title\":\"asc\"},{\"author\":\"desc\"}]}",
@@ -102,7 +102,7 @@ class QueryTest : XCTestCase {
 		let query = Query()
 		query.isSearch = true
 
-		query.filter(field: "age", "=", 12)
+		_ = query.filter(field: "age", "=", 12)
 
 		assertJSON(
 			"{\"search\":[{\"age\":{\"operator\":\"=\",\"value\":12}}]}",

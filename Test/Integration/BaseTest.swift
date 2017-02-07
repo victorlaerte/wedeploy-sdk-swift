@@ -46,7 +46,7 @@ class BaseTest : XCTestCase {
 	func executeAuthenticated(block: @escaping () -> ()) {
 		WeDeploy.auth(authModuleUrl)
 			.signInWith(username: username, password: password)
-			.done { _, _ in
+			.tap { _ in
 				block()
 		}
 	}
