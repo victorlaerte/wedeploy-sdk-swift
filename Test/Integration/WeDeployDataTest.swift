@@ -20,9 +20,9 @@ class WeDeployDataCreationTest: BaseTest {
 
 
 	func testCreateResource() {
-		let resource: [String: AnyObject] = [
-			"title" : "a title" as AnyObject,
-			"description": "a description" as AnyObject
+		let resource: [String: Any] = [
+			"title" : "a title",
+			"description": "a description"
 		]
 
 		let expect = expectation(description: "resource created")
@@ -47,14 +47,14 @@ class WeDeployDataCreationTest: BaseTest {
 	}
 
 	func testCreateMultipleResources() {
-		let resource1: [String: AnyObject] = [
-			"title" : "a title" as AnyObject,
-			"description": "a description" as AnyObject
+		let resource1: [String: Any] = [
+			"title" : "a title",
+			"description": "a description"
 		]
 
-		let resource2: [String: AnyObject] = [
-			"title" : "another title" as AnyObject,
-			"description": "another description" as AnyObject
+		let resource2: [String: Any] = [
+			"title" : "another title",
+			"description": "another description"
 		]
 
 		let expect = expectation(description: "resources created")

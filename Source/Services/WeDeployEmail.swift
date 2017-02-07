@@ -39,7 +39,7 @@ public class WeDeployEmail {
 				.then { response ->in
 					return Promise<String> { fulfill, reject in
 						if response.statusCode == 200 {
-							fulfill(response.body!.description)
+							fulfill(response.body! as! String)
 						}
 						else {
 							reject(WeDeployError.errorFrom(response: response))

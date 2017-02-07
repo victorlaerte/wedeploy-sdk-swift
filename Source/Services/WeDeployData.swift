@@ -30,23 +30,23 @@ public class WeDeployData {
 		self.authorization = authorization
 	}
 
-	public func create(resource: String, object: [String : AnyObject]) -> Promise<[String : AnyObject]> {
+	public func create(resource: String, object: [String : Any]) -> Promise<[String : AnyObject]> {
 
-		return doCreateRequest(resource: resource, object: object as AnyObject)
+		return doCreateRequest(resource: resource, object: object)
 			.then {
 				return self.castResponseAndReturnPromise(response: $0)
 			}
 	}
 
-	public func create(resource: String, object: [[String : AnyObject]]) -> Promise<[[String : AnyObject]]> {
+	public func create(resource: String, object: [[String : Any]]) -> Promise<[[String : AnyObject]]> {
 
-		return doCreateRequest(resource: resource, object: object as AnyObject)
+		return doCreateRequest(resource: resource, object: object)
 			.then {
 				return self.castResponseAndReturnPromise(response: $0)
 			}
 	}
 
-	public func update(resourcePath: String, updatedAttributes: [String: AnyObject]) -> Promise<Void> {
+	public func update(resourcePath: String, updatedAttributes: [String: Any]) -> Promise<Void> {
 		return RequestBuilder.url(self.url)
 			.authorize(auth: self.authorization)
 			.path("/\(resourcePath)")
@@ -217,7 +217,7 @@ public class WeDeployData {
 		return Filter()
 	}
 
-	func doCreateRequest(resource: String, object: AnyObject) -> Promise<Response> {
+	func doCreateRequest(resource: String, object: Any) -> Promise<Response> {
 		return RequestBuilder.url(self.url)
 			.authorize(auth: self.authorization)
 			.path("/\(resource)")

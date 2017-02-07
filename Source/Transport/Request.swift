@@ -16,7 +16,7 @@ import Foundation
 
 public class Request {
 
-	var body: AnyObject?
+	var body: Any?
 	var headers: [String: String]
 	var method: RequestMethod
 	var params: [URLQueryItem]
@@ -24,7 +24,7 @@ public class Request {
 
 	init(
 		method: RequestMethod = .GET, headers: [String: String]?, url: String,
-		params: [URLQueryItem]?, body: AnyObject? = nil) {
+		params: [URLQueryItem]?, body: Any? = nil) {
 
 		self.method = method
 		self.headers = headers ?? [:]
