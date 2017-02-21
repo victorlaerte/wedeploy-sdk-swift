@@ -14,7 +14,6 @@
 
 @testable import WeDeploy
 import XCTest
-import later
 
 class RequestBuilderTest : XCTestCase {
 

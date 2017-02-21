@@ -36,7 +36,7 @@ public class WeDeployEmail {
 				.form(name: "message", value: body)
 				.authorize(auth: authorization)
 				.post()
-				.then { response ->in
+				.then { response in
 					return Promise<String> { fulfill, reject in
 						if response.statusCode == 200 {
 							fulfill(response.body! as! String)

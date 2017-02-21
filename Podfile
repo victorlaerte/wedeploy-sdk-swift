@@ -1,17 +1,9 @@
-
-def commonPods
-	pod 'Socket.IO-Client-Swift', '~> 8.1'
-	pod 'later', :git => 'https://github.com/victorg1991/later', :branch => 'master'
-	pod 'RxSwift'
-	pod 'PromiseKit'
+abstract_target "api-swift" do 
 	use_frameworks!
-end
+	pod 'Socket.IO-Client-Swift', '~> 8.1'
+	pod 'RxSwift', '~> 3.0'
+	pod 'PromiseKit', '~> 4.0'
 
-
-target 'WeDeploy' do
-	commonPods
-end
-
-target 'Tests' do
-	commonPods
+	target 'WeDeploy'
+	target 'Tests'
 end

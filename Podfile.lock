@@ -1,41 +1,28 @@
 PODS:
-  - later (0.2.0)
-  - PromiseKit (4.1.3):
-    - PromiseKit/Foundation (= 4.1.3)
-    - PromiseKit/QuartzCore (= 4.1.3)
-    - PromiseKit/UIKit (= 4.1.3)
-  - PromiseKit/CorePromise (4.1.3)
-  - PromiseKit/Foundation (4.1.3):
+  - PromiseKit (4.1.7):
+    - PromiseKit/Foundation (= 4.1.7)
+    - PromiseKit/QuartzCore (= 4.1.7)
+    - PromiseKit/UIKit (= 4.1.7)
+  - PromiseKit/CorePromise (4.1.7)
+  - PromiseKit/Foundation (4.1.7):
     - PromiseKit/CorePromise
-  - PromiseKit/QuartzCore (4.1.3):
+  - PromiseKit/QuartzCore (4.1.7):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (4.1.3):
+  - PromiseKit/UIKit (4.1.7):
     - PromiseKit/CorePromise
-  - RxSwift (3.1.0)
+  - RxSwift (3.2.0)
   - Socket.IO-Client-Swift (8.2.0)
 
 DEPENDENCIES:
-  - later (from `https://github.com/victorg1991/later`, branch `master`)
-  - PromiseKit
-  - RxSwift
+  - PromiseKit (~> 4.0)
+  - RxSwift (~> 3.0)
   - Socket.IO-Client-Swift (~> 8.1)
 
-EXTERNAL SOURCES:
-  later:
-    :branch: master
-    :git: https://github.com/victorg1991/later
-
-CHECKOUT OPTIONS:
-  later:
-    :commit: 08666e210cb196040d9154efdfd63df9b967b9bb
-    :git: https://github.com/victorg1991/later
-
 SPEC CHECKSUMS:
-  later: 1c4f0846d4799471e77171db9f95eeb567b9d31c
-  PromiseKit: 56baec63efa89210c023260879435a5a6b3bff00
-  RxSwift: 83ff553e7593fdfdcb2562933a64c0284dffdadc
+  PromiseKit: 779f2e41faf62d854e7593026ddbcb0bb5c5002d
+  RxSwift: 46574f70d416b7923c237195939cc488a7fbf3a0
   Socket.IO-Client-Swift: 900cf511777045c80d1ce1f11f71261e87765dd1
 
-PODFILE CHECKSUM: 5c80c0f8f023ca60cdb7a7d71641ed85099df990
+PODFILE CHECKSUM: 9f61a587886c7698440a18c185e97e98506ec763
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0
