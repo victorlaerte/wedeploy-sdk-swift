@@ -32,7 +32,7 @@
 		0BE1D1341E0D3C9500FFE689 /* XCTestCaseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0631621AEB17530097D129 /* XCTestCaseExtension.swift */; };
 		0BF2B5D01E12518E004A4DF1 /* WeDeployData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF2B5CF1E12518E004A4DF1 /* WeDeployData.swift */; };
 		0BF2B5D31E1254A4004A4DF1 /* WeDeployDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF2B5D11E12548E004A4DF1 /* WeDeployDataTest.swift */; };
-		0BF2B5DA1E12635C004A4DF1 /* laterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF2B5D81E12635C004A4DF1 /* laterExtensions.swift */; };
+		0BF2B5DA1E12635C004A4DF1 /* PromiseKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF2B5D81E12635C004A4DF1 /* PromiseKitExtensions.swift */; };
 		0BF2B5DB1E12635C004A4DF1 /* SocketIOExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF2B5D91E12635C004A4DF1 /* SocketIOExtensions.swift */; };
 		88EB6CDE1DF1A7EF00FE7362 /* WeDeployAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EB6CDC1DF1A7EF00FE7362 /* WeDeployAuth.swift */; };
 		88EB6CDF1DF1A7EF00FE7362 /* WeDeployEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EB6CDD1DF1A7EF00FE7362 /* WeDeployEmail.swift */; };
@@ -75,7 +75,7 @@
 		0BE1D1301E0D33C600FFE689 /* AuthProviderTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthProviderTest.swift; sourceTree = "<group>"; };
 		0BF2B5CF1E12518E004A4DF1 /* WeDeployData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployData.swift; sourceTree = "<group>"; };
 		0BF2B5D11E12548E004A4DF1 /* WeDeployDataTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployDataTest.swift; sourceTree = "<group>"; };
-		0BF2B5D81E12635C004A4DF1 /* laterExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = laterExtensions.swift; sourceTree = "<group>"; };
+		0BF2B5D81E12635C004A4DF1 /* PromiseKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseKitExtensions.swift; sourceTree = "<group>"; };
 		0BF2B5D91E12635C004A4DF1 /* SocketIOExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOExtensions.swift; sourceTree = "<group>"; };
 		0BF86F69F34BAE738DC658C4 /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DBDFE41BBB60578698879A9 /* Pods-WeDeploy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeDeploy.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeDeploy/Pods-WeDeploy.release.xcconfig"; sourceTree = "<group>"; };
@@ -163,7 +163,7 @@
 		0BF2B5D71E12635C004A4DF1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				0BF2B5D81E12635C004A4DF1 /* laterExtensions.swift */,
+				0BF2B5D81E12635C004A4DF1 /* PromiseKitExtensions.swift */,
 				0BF2B5D91E12635C004A4DF1 /* SocketIOExtensions.swift */,
 			);
 			path = Extensions;
@@ -548,7 +548,7 @@
 				0BBF702C1DEC93FC00C94DA8 /* RequestBuilder.swift in Sources */,
 				0BD6B4141DED78AE0020668D /* WeDeploy.swift in Sources */,
 				0BD43C2D1DEF30E600F7C7FE /* AuthSession.swift in Sources */,
-				0BF2B5DA1E12635C004A4DF1 /* laterExtensions.swift in Sources */,
+				0BF2B5DA1E12635C004A4DF1 /* PromiseKitExtensions.swift in Sources */,
 				0B74EDBC1DE6E797007AE62C /* Filter.swift in Sources */,
 				CC0C23B61C3F0C1B00408177 /* Transport.swift in Sources */,
 				CC0C23B41C3F0C1B00408177 /* Request.swift in Sources */,
