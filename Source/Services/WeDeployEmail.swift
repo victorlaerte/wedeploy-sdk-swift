@@ -13,14 +13,22 @@
 */
 
 import Foundation
-import later
+import PromiseKit
 import RxSwift
 
-public class WeDeployEmail : RequestBuilder {
+public class WeDeployEmail {
+
+	let authorization: Auth?
+	let url: String
+
+	init(_ url: String, authorization: Auth? = nil) {
+		self.url = url
+		self.authorization = authorization
+	}
 
 	public func sendEmail(from: String, to: String, subject: String? = "", body: String) -> Promise<String> {
 		return RequestBuilder
-				.url(self._url)
+				.url(self.url)
 				.path("/emails")
 				.form(name: "from", value: from)
 				.form(name: "to", value: to)
@@ -28,10 +36,10 @@ public class WeDeployEmail : RequestBuilder {
 				.form(name: "message", value: body)
 				.authorize(auth: authorization)
 				.post()
-				.then { response -> Promise<String> in
-					Promise<String> { fulfill, reject in
+				.then { response in
+					return Promise<String> { fulfill, reject in
 						if response.statusCode == 200 {
-							fulfill(response.body!.description)
+							fulfill(response.body! as! String)
 						}
 						else {
 							reject(WeDeployError.errorFrom(response: response))

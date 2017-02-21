@@ -13,7 +13,7 @@
 */
 
 import Foundation
-import later
+import PromiseKit
 import RxSwift
 
 
@@ -25,7 +25,7 @@ public class RequestBuilder {
 	var transport: Transport = NSURLSessionTransport()
 	var formFields = [String: String]()
 	var requestMethod: RequestMethod = .GET
-	var body: AnyObject?
+	var body: Any?
 
 	var params = [URLQueryItem]()
 
@@ -72,7 +72,7 @@ public class RequestBuilder {
 		headers["Content-Type"] = "application/x-www-form-urlencoded"
 		formFields[name] = value
 
-		body = formBody() as AnyObject?
+		body = formBody()
 
 		return self
 	}
@@ -83,7 +83,7 @@ public class RequestBuilder {
 		return doCall()
 	}
 
-	public func post(body: AnyObject? = nil) -> Promise<Response> {
+	public func post(body: Any? = nil) -> Promise<Response> {
 		requestMethod = .POST
 
 		if body != nil {
@@ -93,7 +93,7 @@ public class RequestBuilder {
 		return doCall()
 	}
 
-	public func patch(body: AnyObject? = nil) -> Promise<Response> {
+	public func patch(body: Any? = nil) -> Promise<Response> {
 		requestMethod = .PATCH
 
 		if body != nil {
@@ -103,7 +103,7 @@ public class RequestBuilder {
 		return doCall()
 	}
 
-	public func put(body: AnyObject? = nil) -> Promise<Response> {
+	public func put(body: Any? = nil) -> Promise<Response> {
 		requestMethod = .PUT
 
 		if body != nil {
@@ -123,7 +123,7 @@ public class RequestBuilder {
 		return Promise<Response> { fulfill, reject in
 			let request = Request(
 				method: self.requestMethod, headers: self.headers, url: self.url,
-				params: self.params, body: self.body as AnyObject?)
+				params: self.params, body: self.body)
 
 			self.authorization?.authenticate(request: request)
 
@@ -136,12 +136,10 @@ public class RequestBuilder {
 			return nil
 		}
 
-		return formFields.map {
-				($0.key.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-		 			$0.value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))
-			}
-			.reduce([], { $0 + [$1.0! + "=" + $1.1!]})
-			.joined(separator: "&")
+		return formFields.reduce([]) { (result, element: (key: String, value: String)) -> [String] in
+			result + [element.key + "=" + (element.value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? element.value)]
+		}
+		.joined(separator: "&")
 	}
 
 }

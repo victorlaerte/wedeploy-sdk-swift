@@ -13,7 +13,6 @@
 */
 
 @testable import WeDeploy
-import later
 import RxSwift
 import XCTest
 
@@ -26,10 +25,14 @@ class WeDeployEmailTest: BaseTest {
 			WeDeploy
 				.email(self.emailModuleUrl)
 				.sendEmail(from: self.username, to: self.username, subject: "subject", body: "body")
-				.done { id, _ in
-					XCTAssertNotNil(id)
-					expect.fulfill()
-				}
+				.tap { result in
+					if case .fulfilled(_) = result {
+						expect.fulfill()
+					}
+					else {
+						XCTFail()
+					}
+			}
 		}
 
 		waitForExpectations(timeout: 10, handler: nil)

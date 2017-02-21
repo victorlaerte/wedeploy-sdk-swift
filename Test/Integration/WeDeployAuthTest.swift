@@ -14,7 +14,7 @@
 
 @testable import WeDeploy
 import XCTest
-import later
+import PromiseKit
 import RxSwift
 import Foundation
 
@@ -29,10 +29,14 @@ class WeDeployAuthTest : BaseTest {
 
 		WeDeploy.auth(authModuleUrl)
 				.signInWith(username: username, password: password)
-				.done { user, _ in
-					XCTAssertNotNil(user)
-					XCTAssertEqual(user?.email, self.username)
-					expect.fulfill()
+				.tap { result in
+					if case let .fulfilled(user) = result {
+						XCTAssertEqual(user.email, self.username)
+						expect.fulfill()
+					}
+					else {
+						XCTFail()
+					}
 				}
 
 		waitForExpectations(timeout: 5, handler: nil)
@@ -79,10 +83,14 @@ class WeDeployAuthTest : BaseTest {
 		executeAuthenticated {
 			WeDeploy.auth()
 				.getUser(id: self.userId)
-				.done { user, _ in
-					XCTAssertNotNil(user)
-					XCTAssertEqual(user?.email, self.username)
-					expect.fulfill()
+				.tap { result in
+					if case let .fulfilled(user) = result {
+						XCTAssertEqual(user.email, self.username)
+						expect.fulfill()
+					}
+					else {
+						XCTFail()
+					}
 				}
 		}
 
@@ -94,13 +102,15 @@ class WeDeployAuthTest : BaseTest {
 
 		WeDeploy.auth(authModuleUrl)
 				.sendPasswordReset(email: username)
-				.done { _, error in
-					XCTAssertNil(error)
-					expect.fulfill()
+				.tap { result in
+					if case .fulfilled(_) = result {
+						expect.fulfill()
+					}
+					else {
+						XCTFail()
+					}
 				}
 
 		waitForExpectations(timeout: 10, handler: nil)
 	}
-
-
 }

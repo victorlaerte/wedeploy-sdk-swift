@@ -34,7 +34,7 @@ public struct WeDeployError : Error, CustomDebugStringConvertible {
 		else {
 			return WeDeployError(
 					code: response?.statusCode ?? -1,
-					message: response?.body?.description ?? "No response body from the server",
+					message: response?.body as? String ?? "No response body from the server",
 					errors: [])
 		}
 

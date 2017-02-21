@@ -16,7 +16,7 @@ import Foundation
 
 public class Response {
 
-	public private(set) var body: AnyObject?
+	public private(set) var body: Any?
 	public let headers: [String: String]
 	public let statusCode: Int
 
@@ -34,19 +34,19 @@ public class Response {
 		self.body = parse(body: body)
 	}
 
-	func parse(body: Data) -> AnyObject? {
+	func parse(body: Data) -> Any? {
 		if (contentType?.range(of: "application/json") != nil) {
 			do {
 				let parsed = try JSONSerialization.jsonObject(with: body, options: .allowFragments)
 
-				return parsed as AnyObject
+				return parsed
 			}
 			catch {
-				return parseString(body: body) as AnyObject?
+				return parseString(body: body)
 			}
 		}
 		else {
-			return parseString(body: body) as AnyObject?
+			return parseString(body: body)
 		}
 	}
 
@@ -58,6 +58,20 @@ public class Response {
 		}
 
 		return string
+	}
+
+	func validate() throws -> [String : AnyObject] {
+		return try validateBody(bodyType: [String : AnyObject].self)
+	}
+
+	func validateBody<T>(bodyType: T.Type) throws -> T {
+		guard 200 ..< 300 ~= statusCode,
+			let body = body as? T
+			else {
+				throw WeDeployError.errorFrom(response: self)
+		}
+
+		return body
 	}
 
 }

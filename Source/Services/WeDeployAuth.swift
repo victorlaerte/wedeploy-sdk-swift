@@ -13,38 +13,43 @@
 */
 
 import Foundation
-import later
+import PromiseKit
 import RxSwift
 
-public class WeDeployAuth : RequestBuilder {
+public class WeDeployAuth {
 
-	var currentUser: User?
+	public static var urlRedirect = PublishSubject<URL>()
+	public static var tokenSubscription: Disposable?
+
+	public var currentUser: User?
+
+	var authorization: Auth?
+	let url: String
 
 	init(_ url: String, user: User? = nil, authorization: Auth? = nil) {
-		super.init(url)
-
+		self.url = url
 		self.currentUser = user
 		self.authorization = authorization
 	}
 
 	public func signInWith(username: String, password: String) -> Promise<User> {
-		return RequestBuilder.url(self._url).path("/oauth/token")
+		return RequestBuilder.url(self.url).path("/oauth/token")
 			.param(name: "grant_type", value: "password")
 			.param(name: "username", value: username)
 			.param(name: "password", value: password)
 			.get()
-			.then { response -> Promise<Auth> in
+			.then { response -> Promise<()> in
 
-				return Promise<Auth> { fulfill, reject in
+				return Promise<()> { fulfill, reject in
 					do {
-						let body = try self.validateResponse(response: response)
+						let body = try response.validate()
 						let token = body["access_token"] as! String
 						let auth = TokenAuth(token: token)
 
 						self.authorization = auth
 						WeDeploy.authSession?.currentAuth = auth
 
-						fulfill(auth)
+						fulfill(())
 
 					} catch let error {
 						reject(error)
@@ -52,17 +57,19 @@ public class WeDeployAuth : RequestBuilder {
 
 				}
 			}
-			.then { auth -> Promise<Response> in
-
-				return RequestBuilder
-						.url(self._url)
-						.path("/user")
-						.authorize(auth: auth)
-						.get()
-
+			.then { _ -> Promise<User> in
+				return self.getCurrentUser()
 			}
+	}
+
+	public func getCurrentUser() -> Promise<User> {
+		return RequestBuilder
+			.url(self.url)
+			.path("/user")
+			.authorize(auth: self.authorization)
+			.get()
 			.then { (response: Response) -> User in
-			
+
 				let body = response.body as! [String : AnyObject]
 
 				let user = User(json: body)
@@ -72,6 +79,40 @@ public class WeDeployAuth : RequestBuilder {
 
 				return user
 			}
+	}
+
+	public func handle(url: URL) {
+		WeDeployAuth.urlRedirect.on(.next(url))
+	}
+
+	public func signInWithRedirect(provider: AuthProvider, onSignIn: @escaping (User?, Error?) -> ()) {
+		let authUrl = self.url
+		WeDeployAuth.tokenSubscription?.dispose()
+		
+		WeDeployAuth.tokenSubscription = WeDeployAuth.urlRedirect
+			.subscribe(onNext: { url in
+				let token = url.absoluteString.components(separatedBy: "access_token=")[1]
+				let auth = TokenAuth(token: token)
+
+				self.authorization = auth
+				WeDeploy.authSession?.currentAuth = auth
+
+				self.getCurrentUser()
+					.tap { result in
+						switch result {
+						case .fulfilled(let user):
+							onSignIn(user, nil)
+						case .rejected(let error):
+							onSignIn(nil, error)
+						}
+					}
+				})
+
+		var url = URLComponents(string: "\(authUrl)/oauth/authorize")!
+		url.queryItems = provider.providerParams
+
+
+		open(url.url!)
 	}
 
 	public func createUser(email: String, password: String, name: String?) -> Promise<User> {
@@ -85,14 +126,14 @@ public class WeDeployAuth : RequestBuilder {
 		}
 
 		return RequestBuilder
-				.url(self._url)
+				.url(self.url)
 				.path("/users")
 				.post(body: body as AnyObject?)
 				.then { response -> Promise<User> in
 
 					return Promise<User> { fulfill, reject in
 						do {
-							let body = try self.validateResponse(response: response)
+							let body = try response.validate()
 
 							fulfill(User(json: body))
 						} catch let error {
@@ -102,9 +143,43 @@ public class WeDeployAuth : RequestBuilder {
 				}
 	}
 
+	public func updateUser(id: String, email: String? = nil, password: String? = nil, name: String? = nil) -> Promise<Void> {
+		var body = [String : String]()
+
+		if let email = email {
+			body["email"] = email
+		}
+
+		if let password = password {
+			body["password"] = password
+		}
+
+		if let name = name {
+			body["name"] = name
+		}
+
+		return RequestBuilder
+			.url(self.url)
+			.path("/users")
+			.path("/\(id)")
+			.authorize(auth: authorization)
+			.patch(body: body as AnyObject?)
+			.then { response -> Promise<Void> in
+
+				return Promise<Void> { fulfill, reject in
+					if response.statusCode == 204 {
+						fulfill(())
+					}
+					else {
+						reject(WeDeployError.errorFrom(response: response))
+					}
+				}
+		}
+	}
+
 	public func getUser(id: String) -> Promise<User> {
 		return RequestBuilder
-				.url(self._url)
+				.url(self.url)
 				.path("/users")
 				.path("/\(id)")
 				.authorize(auth: authorization)
@@ -113,7 +188,7 @@ public class WeDeployAuth : RequestBuilder {
 
 					return Promise<User> { fulfill, reject in
 						do {
-							let body = try self.validateResponse(response: response)
+							let body = try response.validate()
 
 							fulfill(User(json: body))
 						} catch let error {
@@ -125,7 +200,7 @@ public class WeDeployAuth : RequestBuilder {
 
 	public func sendPasswordReset(email: String) -> Promise<Void> {
 		return RequestBuilder
-				.url(self._url)
+				.url(self.url)
 				.path("/user/recover")
 				.form(name: "email", value: email)
 				.post()
@@ -150,15 +225,14 @@ public class WeDeployAuth : RequestBuilder {
 		WeDeploy.authSession?.currentUser = nil
 	}
 
-
-	func validateResponse(response: Response) throws -> [String : AnyObject] {
-		guard response.statusCode == 200,
-			let body = response.body as? [String : AnyObject]
-		else {
-			throw WeDeployError.errorFrom(response: response)
+	func open(_ url: URL) {
+		if #available(iOS 10.0, *) {
+			UIApplication.shared.open(url, options: [:], completionHandler: nil)
 		}
-
-		return body
+		else {
+			UIApplication.shared.openURL(url)
+		}
 	}
+
 }
 

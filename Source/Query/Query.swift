@@ -16,11 +16,9 @@ import Foundation
 
 public class Query : CustomStringConvertible {
 
-	public private(set) var query = [String: AnyObject]()
+	public private(set) var query = [String: Any]()
 
-	public enum QueryType: String {
-		case COUNT = "count", FETCH = "fetch"
-	}
+	public var isSearch = false
 
 	public enum Order: String {
 		case ASC = "asc", DESC = "desc"
@@ -32,22 +30,14 @@ public class Query : CustomStringConvertible {
 
 	public init() {}
 
-	public func count() -> Self {
-		return type(.COUNT)
-	}
-
-	public func fetch() -> Self {
-		return type(.FETCH)
-	}
-
-	public func filter(field: String, _ value: AnyObject) -> Self {
+	public func filter<T>(field: String, _ value: T) -> Self {
 		return self.filter(filter: Filter(field, value))
 	}
 
-	public func filter(field: String, _ op: String, _ value: AnyObject)
+	public func filter<T>(field: String, _ op: String, _ value: T)
 		-> Self {
 
-		return self.filter(filter: Filter(field, op, value))
+		return self.filter(filter: Filter(field: field, op: op, value: value))
 	}
 
 	public func filter(filter: Filter) -> Self {
@@ -56,17 +46,18 @@ public class Query : CustomStringConvertible {
 
 		filters.append(filter.filter)
 
-		query["filter"] = filters as AnyObject
+		query[isSearch ? "search" : "filter"] = filters
+		
 		return self
 	}
 
 	public func limit(limit: Int) -> Self {
-		query["limit"] = limit as AnyObject
+		query["limit"] = limit
 		return self
 	}
 
 	public func offset(offset: Int) -> Self {
-		query["offset"] = offset as AnyObject
+		query["offset"] = offset
 		return self
 	}
 
@@ -74,12 +65,12 @@ public class Query : CustomStringConvertible {
 		var sort = query["sort"] as? [[String: String]] ?? [[String: String]]()
 		sort.append([name: order.rawValue])
 
-		query["sort"] = sort as AnyObject
+		query["sort"] = sort
 		return self
 	}
 
-	public func type(_ type: QueryType) -> Self {
-		query["type"] = type.rawValue as AnyObject
+	public func count() -> Self {
+		query["type"] = "count"
 		return self
 	}
 

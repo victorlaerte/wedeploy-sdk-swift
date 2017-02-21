@@ -30,25 +30,29 @@ public class Filter : CustomStringConvertible, ExpressibleByStringLiteral {
 			$0 == " "
 		}.map(String.init)
 
-		var value: AnyObject = parts[2] as AnyObject
+		let field = parts[0]
+		let op = parts[1]
 
 		if let i = Int(parts[2]) {
-			value = i as AnyObject
+			self.init(field: field, op: op, value: i)
 		}
-
-		self.init(parts[0], parts[1], value)
+		else {
+			self.init(field: field, op: op, value: parts[2])
+		}
 	}
 
-	public convenience init(_ field: String, _ value: AnyObject) {
-		self.init(field, "=", value)
+	public convenience init<T>(_ field: String, _ value: T) {
+		self.init(field: field, op: "=", value: value)
 	}
 
-	public init(_ field: String, _ op: String, _ value: AnyObject) {
+	public init<T>(field: String, op: String, value: T) {
 		filter[field] = [
 			"operator": op,
 			"value": value
 		] as AnyObject
 	}
+
+	public init() {}
 
 	public required convenience init(extendedGraphemeClusterLiteral: String) {
 		self.init(extendedGraphemeClusterLiteral)
@@ -62,36 +66,36 @@ public class Filter : CustomStringConvertible, ExpressibleByStringLiteral {
 		self.init(unicodeScalarLiteral)
 	}
 
-	public func and(filters: Filter...) -> Self {
-		return self.and(filters: filters)
+	public func and(_ filters: Filter...) -> Self {
+		return self.and(filters)
 	}
 
-	public static func any(field: String, _ value: [AnyObject]) -> Filter {
-		return Filter(field, "any", value as AnyObject)
+	public static func any<T>(_ field: String, _ value: [T]) -> Filter {
+		return Filter(field: field, op: "any", value: value)
 	}
 
-	public static func equal(field: String, _ value: AnyObject) -> Filter {
+	public static func equal<T>(_ field: String, _ value: T) -> Filter {
 		return Filter(field, value)
 	}
 
-	public static func gt(field: String, _ value: AnyObject) -> Filter {
-		return Filter(field, ">", value)
+	public static func gt<T>(_ field: String, _ value: T) -> Filter {
+		return Filter(field: field, op: ">", value: value)
 	}
 
-	public static func gte(field: String, _ value: AnyObject) -> Filter {
-		return Filter(field, ">=", value)
+	public static func gte<T>(_ field: String, _ value: T) -> Filter {
+		return Filter(field: field, op: ">=", value: value)
 	}
 
-	public static func lt(field: String, _ value: AnyObject) -> Filter {
-		return Filter(field, "<", value)
+	public static func lt<T>(_ field: String, _ value: T) -> Filter {
+		return Filter(field: field, op: "<", value: value)
 	}
 
-	public static func lte(field: String, _ value: AnyObject) -> Filter {
-		return Filter(field, "<=", value)
+	public static func lte<T>(_ field: String, _ value: T) -> Filter {
+		return Filter(field: field, op: "<=", value: value)
 	}
 
-	public static func none(field: String, _ value: [AnyObject]) -> Filter {
-		return Filter(field, "none", value as AnyObject)
+	public static func none<T>(_ field: String, _ value: [T]) -> Filter {
+		return Filter(field: field, op: "none", value: value)
 	}
 
 	public func not() -> Filter {
@@ -102,19 +106,27 @@ public class Filter : CustomStringConvertible, ExpressibleByStringLiteral {
 		return self
 	}
 
-	public static func notEqual(field: String, _ value: AnyObject) -> Filter {
-		return Filter(field, "!=", value)
+	public static func notEqual<T>(_ field: String, _ value: T) -> Filter {
+		return Filter(field: field, op: "!=", value: value)
 	}
 
-	public func or(filters: Filter...) -> Self {
-		return self.or(filters: filters)
+	public func or(_ filters: Filter...) -> Self {
+		return self.or(filters)
 	}
 
-	public static func regex(field: String, _ value: AnyObject) -> Filter {
-		return Filter(field, "~", value)
+	public static func regex<T>(_ field: String, _ value: T) -> Filter {
+		return Filter(field: field, op: "~", value: value)
 	}
 
-	func and(filters: [Filter]) -> Self {
+	public static func match<T>(field: String, value: T) -> Filter {
+		return Filter(field: field, op: "match", value: value)
+	}
+
+	public static func similar<T>(field: String, value: T) -> Filter {
+		return Filter(field: field, op: "similar", value: value)
+	}
+
+	func and(_ filters: [Filter]) -> Self {
 		let and = filter["and"] as? [[String: AnyObject]] ?? [self.filter]
 
 		filter = [
@@ -124,7 +136,7 @@ public class Filter : CustomStringConvertible, ExpressibleByStringLiteral {
 		return self
 	}
 
-	func or(filters: [Filter]) -> Self {
+	func or(_ filters: [Filter]) -> Self {
 		let or = filter["or"] as? [[String: AnyObject]] ?? [self.filter]
 
 		filter = [
@@ -137,11 +149,11 @@ public class Filter : CustomStringConvertible, ExpressibleByStringLiteral {
 }
 
 public func &&(left: Filter, right: Filter) -> Filter {
-	return left.and(filters: right)
+	return left.and(right)
 }
 
 public func ||(left: Filter, right: Filter) -> Filter {
-	return left.or(filters: right)
+	return left.or(right)
 }
 
 public prefix func !(filter: Filter) -> Filter {

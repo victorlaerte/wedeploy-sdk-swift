@@ -1,22 +1,37 @@
+/**
+* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+*
+* This library is free software; you can redistribute it and/or modify it under
+* the terms of the GNU Lesser General Public License as published by the Free
+* Software Foundation; either version 2.1 of the License, or (at your option)
+* any later version.
+*
+* This library is distributed in the hope that it will be useful, but WITHOUT
+* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+* details.
+*/
+
+
 import XCTest
 
 extension XCTestCase {
 
-	func assertJSON(expected: String, _ result: [String: AnyObject]) {
-		let dic1 = try! NSJSONSerialization.JSONObjectWithData(
-			expected.dataUsingEncoding(NSUTF8StringEncoding)!,
-			options: .AllowFragments) as! [String: AnyObject]
+	func assertJSON(_ expected: String, _ result: [String: Any]) {
+		let dic1 = try! JSONSerialization.jsonObject(with:
+			expected.data(using: .utf8)!,
+			options: .allowFragments) as! [String: Any]
 
 		let dic2 = NSDictionary(dictionary: result) as [NSObject : AnyObject]
 
-		XCTAssertTrue(NSDictionary(dictionary: dic1).isEqualToDictionary(dic2))
+		XCTAssertTrue(NSDictionary(dictionary: dic1).isEqual(to: dic2))
 	}
 
 	func expect(description: String!) -> XCTestExpectation {
-		return expectationWithDescription(description)
+		return expectation(description: description)
 	}
 
-	func fail(error: NSError?) {
+	func fail(error: Error?) {
 		if (error == nil) {
 			return
 		}
@@ -25,8 +40,8 @@ extension XCTestCase {
 	}
 
 	func wait(timeout: Double? = 2, assert: (() -> ())? = nil) {
-		waitForExpectationsWithTimeout(timeout!) { error in
-			self.fail(error)
+		waitForExpectations(timeout: timeout!) { error in
+			self.fail(error: error )
 			assert?()
 		}
 	}

@@ -3,50 +3,47 @@
 ## Connect to your API
 
 ```ruby
-pod 'Launchpad'
+pod 'WeDeploy'
 ```
 
 ```swift
-import Launchpad
+import WeDeploy
 ```
 
-## Read and Write Data
+## Login
 
 ```swift
-Launchpad
-	.url("http://liferay.io/<YOUR-APP>/<YOUR-SERVICE>/items")
-	.post([
-		"title": "Star Wars IV",
-		"year": 1977
-	])
-	.then { response in
-		print("Data saved")
-	}
-.done()
+WeDeploy.auth("http://<YOUR-SERVICE>.<YOUR-PROJECT>/wedeploy.io)
+	.signInWith(username: "yourusername", password: "yourpassword")
+	.done { user, error in 
+		print(user)
+	} 
 ```
 
 ```swift
-Launchpad
-	.url("http://liferay.io/<YOUR-APP>/<YOUR-SERVICE>/items")
-	.get()
-	.then { response in
-		let movies = response.body as? [String: AnyObject]
-		print(movies)
-	}
-.done()
+WeDeploy.auth("http://<YOUR-SERVICE>.<YOUR-PROJECT>/wedeploy.io)
+	.signInWith(username: "yourusername", password: "yourpassword")
+	.toObservable()
+	.subscribe(onNext: { user in
+		print(user)
+	})
+	.addDisposableTo(disposeBag)
 ```
 
 ```swift
-Launchpad
-	.url("http://liferay.io/app/service/movies")
-	.filter("year", ">", 2000)
-	.sort("rating")
-	.limit(2)
-	.offset(1)
-	.get()
-	.then { response in
-		let movies = response.body as? [String: AnyObject]
-		print(movies)
-	}
-.done()
+WeDeploy.auth("http://<YOUR-SERVICE>.<YOUR-PROJECT>/wedeploy.io)
+	.signInWith(username: "yourusername", password: "yourpassword")
+	.toCallback { user, error in
+		print(user)
+	} 
+```
+
+## Send Email
+
+```swift
+WeDeploy.email("http://<YOUR-SERVICE>.<YOUR-PROJECT>/wedeploy.io)
+	.sendEmail(from: "from@from.com", to: "to@to.com", subject: "aSubject", body: "aBody")
+	.done { emailId in 
+		print(emailId)
+	} 
 ```
