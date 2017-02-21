@@ -16,7 +16,7 @@ import Foundation
 
 public class Query : CustomStringConvertible {
 
-	public private(set) var query = [String: AnyObject]()
+	public private(set) var query = [String: Any]()
 
 	public var isSearch = false
 
@@ -52,12 +52,12 @@ public class Query : CustomStringConvertible {
 	}
 
 	public func limit(limit: Int) -> Self {
-		query["limit"] = limit as AnyObject
+		query["limit"] = limit
 		return self
 	}
 
 	public func offset(offset: Int) -> Self {
-		query["offset"] = offset as AnyObject
+		query["offset"] = offset
 		return self
 	}
 
@@ -65,12 +65,12 @@ public class Query : CustomStringConvertible {
 		var sort = query["sort"] as? [[String: String]] ?? [[String: String]]()
 		sort.append([name: order.rawValue])
 
-		query["sort"] = sort as AnyObject
+		query["sort"] = sort
 		return self
 	}
 
 	public func count() -> Self {
-		query["type"] = "count" as AnyObject
+		query["type"] = "count"
 		return self
 	}
 

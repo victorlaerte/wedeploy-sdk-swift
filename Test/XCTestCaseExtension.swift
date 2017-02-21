@@ -17,10 +17,10 @@ import XCTest
 
 extension XCTestCase {
 
-	func assertJSON(_ expected: String, _ result: [String: AnyObject]) {
+	func assertJSON(_ expected: String, _ result: [String: Any]) {
 		let dic1 = try! JSONSerialization.jsonObject(with:
 			expected.data(using: .utf8)!,
-			options: .allowFragments) as! [String: AnyObject]
+			options: .allowFragments) as! [String: Any]
 
 		let dic2 = NSDictionary(dictionary: result) as [NSObject : AnyObject]
 
