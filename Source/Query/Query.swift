@@ -46,12 +46,7 @@ public class Query : CustomStringConvertible {
 
 		filters.append(filter.filter)
 
-		if isSearch {
-			query["search"] = filters as AnyObject
-		}
-		else {
-			query["filter"] = filters as AnyObject
-		}
+		query[isSearch ? "search" : "filter"] = filters
 		
 		return self
 	}
