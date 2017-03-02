@@ -122,6 +122,33 @@ class WeDeployAuthTest : BaseTest {
 		waitForExpectations(timeout: 10, handler: nil)
 	}
 
+	func  testDeleteUser() {
+		let expect = expectation(description: "")
+
+		executeAuthenticated {
+			WeDeploy.auth()
+				.createUser(email: "new2@new.com", password: "new", name: "new")
+				.toObservable()
+				.flatMap { user in
+					WeDeploy.auth()
+						.signInWith(username: "new2@new.com", password: "new")
+						.toObservable()
+				}
+				.flatMap { user in
+					WeDeploy.auth()
+						.deleteUser(id: user.id)
+						.toObservable()
+				}
+				.subscribe(onNext: { _ in
+					expect.fulfill()
+				}, onError: { error in print(error); XCTFail()})
+				.disposed(by: self.bag)
+		}
+
+		waitForExpectations(timeout: 20, handler: nil)
+
+	}
+
 	func testSendRecoverPasswordEmail() {
 		let expect = expectation(description: "")
 

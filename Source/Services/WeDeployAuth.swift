@@ -181,6 +181,26 @@ public class WeDeployAuth {
 		}
 	}
 
+	public func deleteUser(id: String) -> Promise<Void> {
+		return RequestBuilder
+			.url(self.url)
+			.path("/users")
+			.path("/\(id)")
+			.authorize(auth: authorization)
+			.delete()
+			.then { response -> Promise<Void> in
+
+				return Promise<Void> { fulfill, reject in
+					if response.statusCode == 204 {
+						fulfill(())
+					}
+					else {
+						reject(WeDeployError.errorFrom(response: response))
+					}
+				}
+		}
+	}
+
 	public func getUser(id: String) -> Promise<User> {
 		return RequestBuilder
 				.url(self.url)
