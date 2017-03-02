@@ -48,4 +48,15 @@ public class WeDeployEmail {
 				}
 	}
 
+	public func checkEmailStatus(id: String) -> Promise<String> {
+		return RequestBuilder
+			.url(self.url)
+			.path("/emails/\(id)/status")
+			.authorize(auth: authorization)
+			.get()
+			.then { response in
+				try response.validateBody(bodyType: String.self)
+			}
+	}
+
 }

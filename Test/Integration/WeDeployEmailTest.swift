@@ -37,4 +37,21 @@ class WeDeployEmailTest: BaseTest {
 
 		waitForExpectations(timeout: 10, handler: nil)
 	}
+
+	func testGetEmailStatus() {
+		let expect = expectation(description: "correct user")
+
+		executeAuthenticated {
+			WeDeploy.email(self.emailModuleUrl)
+				.checkEmailStatus(id: "202605176596079530")
+				.then { _ in
+					expect.fulfill()
+				}
+				.catch { _ in
+					XCTFail()
+				}
+		}
+
+		waitForExpectations(timeout: 10, handler: nil)
+	}
 }
