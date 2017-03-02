@@ -62,7 +62,7 @@ public class WeDeployAuth {
 			}
 	}
 
-	public func getCurrentUser() -> Promise<User> {
+	internal func getCurrentUser() -> Promise<User> {
 		return RequestBuilder
 			.url(self.url)
 			.path("/user")
@@ -143,7 +143,7 @@ public class WeDeployAuth {
 				}
 	}
 
-	public func updateUser(id: String, email: String? = nil, password: String? = nil, name: String? = nil) -> Promise<Void> {
+	public func updateUser(id: String, email: String? = nil, password: String? = nil, name: String? = nil, photoUrl: String? = nil) -> Promise<Void> {
 		var body = [String : String]()
 
 		if let email = email {
@@ -156,6 +156,10 @@ public class WeDeployAuth {
 
 		if let name = name {
 			body["name"] = name
+		}
+
+		if let photoUrl = photoUrl {
+			body["photoUrl"] = photoUrl
 		}
 
 		return RequestBuilder

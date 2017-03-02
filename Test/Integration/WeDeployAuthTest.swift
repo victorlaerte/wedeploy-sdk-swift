@@ -97,6 +97,31 @@ class WeDeployAuthTest : BaseTest {
 		waitForExpectations(timeout: 10, handler: nil)
 	}
 
+	func testUpdateUser() {
+		let expect = expectation(description: "")
+
+		executeAuthenticated {
+			let currentUserId = WeDeploy.auth().currentUser!.id
+
+			WeDeploy.auth()
+				.updateUser(id: currentUserId, name: "new", photoUrl: "http://somephoto.com")
+				.toObservable()
+				.flatMap {
+					WeDeploy.auth()
+						.getCurrentUser()
+						.toObservable()
+				}
+				.subscribe(onNext: { (user) in
+					XCTAssertEqual(user.name , "new")
+					XCTAssertEqual(user.photoUrl, "http://somephoto.com")
+					expect.fulfill()
+				}, onError: { _ in XCTFail()})
+				.disposed(by: self.bag)
+		}
+
+		waitForExpectations(timeout: 10, handler: nil)
+	}
+
 	func testSendRecoverPasswordEmail() {
 		let expect = expectation(description: "")
 
