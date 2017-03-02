@@ -217,12 +217,32 @@ public class WeDeployAuth {
 				}
 	}
 
-	public func signOut() {
-		self.authorization = nil
-		self.currentUser = nil
+	public func signOut() -> Promise<Void> {
+		precondition(self.authorization != nil && self.authorization is TokenAuth,
+				"you have to have an authentication to sign out")
 
-		WeDeploy.authSession?.currentAuth = nil
-		WeDeploy.authSession?.currentUser = nil
+		let token = (self.authorization as! TokenAuth).token
+		return RequestBuilder
+				.url(self.url)
+				.path("/oauth/revoke")
+				.param(name: "token", value: token)
+				.get()
+				.then { [weak self] response in
+					self?.authorization = nil
+					self?.currentUser = nil
+
+					WeDeploy.authSession?.currentAuth = nil
+					WeDeploy.authSession?.currentUser = nil
+
+					return Promise<Void> { fulfill, reject in
+						if response.statusCode == 200 {
+							fulfill(())
+						}
+						else {
+							reject(WeDeployError.errorFrom(response: response))
+						}
+					}
+				}
 	}
 
 	func open(_ url: URL) {

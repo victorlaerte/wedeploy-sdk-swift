@@ -113,4 +113,23 @@ class WeDeployAuthTest : BaseTest {
 
 		waitForExpectations(timeout: 10, handler: nil)
 	}
+
+	func testSignOut() {
+		let expect = expectation(description: "")
+
+		executeAuthenticated {
+			WeDeploy.auth()
+				.signOut()
+				.tap { result in
+					if case .fulfilled(_) = result {
+						expect.fulfill()
+					}
+					else {
+						XCTFail()
+					}
+				}
+		}
+
+		waitForExpectations(timeout: 10, handler: nil)
+	}
 }
