@@ -41,7 +41,7 @@ public extension SocketIOClient {
 		on(event.rawValue, callback: callback)
 	}
 
-	func on(_ event: WeDeploySocketEvent, callback: @escaping NormalCallback)
+	func on(_ event: WeDeploySocketEvent)
 			-> Observable<[[String: AnyObject]]> {
 
 		return on(event.rawValue)
