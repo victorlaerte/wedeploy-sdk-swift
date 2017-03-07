@@ -135,8 +135,10 @@ public class WeDeployAuth {
 				}
 	}
 
-	public func updateUser(id: String, email: String? = nil, password: String? = nil, name: String? = nil, photoUrl: String? = nil) -> Promise<Void> {
-		var body = [String : String]()
+	public func updateUser(id: String, email: String? = nil, password: String? = nil,
+			name: String? = nil, photoUrl: String? = nil, attrs: [String : Any] = [:] ) -> Promise<Void> {
+
+		var body = [String : Any]()
 
 		if let email = email {
 			body["email"] = email
@@ -154,17 +156,18 @@ public class WeDeployAuth {
 			body["photoUrl"] = photoUrl
 		}
 
+		for (key, element) in attrs {
+			body[key] = element
+		}
+
 		return RequestBuilder
 			.url(self.url)
 			.path("/users")
 			.path("/\(id)")
 			.authorize(auth: authorization)
-			.patch(body: body as AnyObject?)
+			.patch(body: body)
 			.then { response in
 				try response.validateEmptyBody()
-			}
-			.catch { error in 
-				print(error)
 			}
 	}
 
