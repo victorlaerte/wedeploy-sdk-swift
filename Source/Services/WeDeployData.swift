@@ -33,16 +33,16 @@ public class WeDeployData {
 	public func create(resource: String, object: [String : Any]) -> Promise<[String : AnyObject]> {
 
 		return doCreateRequest(resource: resource, object: object)
-			.then {
-				return self.castResponseAndReturnPromise(response: $0)
+			.then { response in
+				try response.validate()
 			}
 	}
 
 	public func create(resource: String, object: [[String : Any]]) -> Promise<[[String : AnyObject]]> {
 
 		return doCreateRequest(resource: resource, object: object)
-			.then {
-				return self.castResponseAndReturnPromise(response: $0)
+			.then { response in
+				try response.validateBody(bodyType: [[String : AnyObject]].self)
 			}
 	}
 
@@ -51,16 +51,8 @@ public class WeDeployData {
 			.authorize(auth: self.authorization)
 			.path("/\(resourcePath)")
 			.patch()
-			.then { response -> Promise<Void> in
-
-				return Promise<Void> { fulfill, reject in
-					if response.statusCode == 204 {
-						fulfill(())
-					}
-					else {
-						reject(WeDeployError.errorFrom(response: response))
-					}
-				}
+			.then { response in
+				try response.validateEmptyBody()
 			}
 	}
 
@@ -154,23 +146,23 @@ public class WeDeployData {
 	public func search(resourcePath: String) -> Promise<[String: AnyObject]> {
 		query.isSearch = true
 		return doGetRequest(resourcePath: resourcePath)
-			.then {
-				return self.castResponseAndReturnPromise(response: $0)
+			.then { response in
+				try response.validate()
 			}
 	}
 
 	public func get(resourcePath: String) -> Promise<[[String: AnyObject]]> {
 		return doGetRequest(resourcePath: resourcePath)
-			.then {
-				return self.castResponseAndReturnPromise(response: $0)
+			.then { response in
+				try response.validateBody(bodyType: [[String : AnyObject]].self)
 			}
 	}
 
 	public func getCount(resourcePath: String) -> Promise<Int> {
 		query = query.count()
 		return doGetRequest(resourcePath: resourcePath)
-			.then {
-				return self.castResponseAndReturnPromise(response: $0)
+			.then { response in
+				try response.validateBody(bodyType: Int.self)
 			}
 	}
 
@@ -222,16 +214,5 @@ public class WeDeployData {
 			.authorize(auth: self.authorization)
 			.path("/\(resource)")
 			.post(body: object)
-	}
-
-	func castResponseAndReturnPromise<T>(response: Response, type: T.Type? = T.self) -> Promise<T> {
-		return Promise<T> { fulfill, reject in
-			do {
-				let body = try response.validateBody(bodyType: T.self)
-				fulfill(body)
-			} catch let error {
-				reject(error)
-			}
-		}
 	}
 }

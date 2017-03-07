@@ -70,7 +70,7 @@ public class WeDeployAuth {
 			.get()
 			.then { (response: Response) -> User in
 
-				let body = response.body as! [String : AnyObject]
+				let body = try response.validate()
 
 				let user = User(json: body)
 
@@ -129,17 +129,9 @@ public class WeDeployAuth {
 				.url(self.url)
 				.path("/users")
 				.post(body: body as AnyObject?)
-				.then { response -> Promise<User> in
-
-					return Promise<User> { fulfill, reject in
-						do {
-							let body = try response.validate()
-
-							fulfill(User(json: body))
-						} catch let error {
-							reject(error)
-						}
-					}
+				.then { response -> User in
+					let body = try response.validate()
+					return User(json: body)
 				}
 	}
 
@@ -168,17 +160,12 @@ public class WeDeployAuth {
 			.path("/\(id)")
 			.authorize(auth: authorization)
 			.patch(body: body as AnyObject?)
-			.then { response -> Promise<Void> in
-
-				return Promise<Void> { fulfill, reject in
-					if response.statusCode == 204 {
-						fulfill(())
-					}
-					else {
-						reject(WeDeployError.errorFrom(response: response))
-					}
-				}
-		}
+			.then { response in
+				try response.validateEmptyBody()
+			}
+			.catch { error in 
+				print(error)
+			}
 	}
 
 	public func deleteUser(id: String) -> Promise<Void> {
@@ -188,17 +175,9 @@ public class WeDeployAuth {
 			.path("/\(id)")
 			.authorize(auth: authorization)
 			.delete()
-			.then { response -> Promise<Void> in
-
-				return Promise<Void> { fulfill, reject in
-					if response.statusCode == 204 {
-						fulfill(())
-					}
-					else {
-						reject(WeDeployError.errorFrom(response: response))
-					}
-				}
-		}
+			.then { response  in
+				try response.validateEmptyBody()
+			}
 	}
 
 	public func getUser(id: String) -> Promise<User> {
@@ -208,17 +187,9 @@ public class WeDeployAuth {
 				.path("/\(id)")
 				.authorize(auth: authorization)
 				.get()
-				.then { response -> Promise<User> in
-
-					return Promise<User> { fulfill, reject in
-						do {
-							let body = try response.validate()
-
-							fulfill(User(json: body))
-						} catch let error {
-							reject(error)
-						}
-					}
+				.then { response -> User in
+					let body = try response.validate()
+					return User(json: body)
 				}
 	}
 
@@ -228,16 +199,8 @@ public class WeDeployAuth {
 				.path("/user/recover")
 				.form(name: "email", value: email)
 				.post()
-				.then { response -> Promise<Void> in
-
-				 	return Promise<Void> { fulfill, reject in
-						if response.statusCode == 200 {
-							fulfill(())
-						}
-						else {
-							reject(WeDeployError.errorFrom(response: response))
-						}
-					}
+				.then { response in
+				 	try response.validateEmptyBody()
 				}
 	}
 
@@ -251,21 +214,14 @@ public class WeDeployAuth {
 				.path("/oauth/revoke")
 				.param(name: "token", value: token)
 				.get()
-				.then { [weak self] response in
+				.then { [weak self] response -> Void in
 					self?.authorization = nil
 					self?.currentUser = nil
 
 					WeDeploy.authSession?.currentAuth = nil
 					WeDeploy.authSession?.currentUser = nil
 
-					return Promise<Void> { fulfill, reject in
-						if response.statusCode == 200 {
-							fulfill(())
-						}
-						else {
-							reject(WeDeployError.errorFrom(response: response))
-						}
-					}
+					return try response.validateEmptyBody()
 				}
 	}
 

@@ -145,7 +145,7 @@ class WeDeployAuthTest : BaseTest {
 				.disposed(by: self.bag)
 		}
 
-		waitForExpectations(timeout: 20, handler: nil)
+		waitForExpectations(timeout: 10, handler: nil)
 
 	}
 

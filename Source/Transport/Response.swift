@@ -64,14 +64,27 @@ public class Response {
 		return try validateBody(bodyType: [String : AnyObject].self)
 	}
 
-	func validateBody<T>(bodyType: T.Type) throws -> T {
-		guard 200 ..< 300 ~= statusCode,
+	func validateBody<T>(bodyType: T.Type? = T.self) throws -> T {
+		guard isSucceeded(),
 			let body = body as? T
 			else {
+				print("Trying to cast \(self.body.self) into \(T.self)")
 				throw WeDeployError.errorFrom(response: self)
-		}
+			}
 
 		return body
+	}
+
+	func validateEmptyBody() throws -> Void {
+		guard isSucceeded() else {
+			throw WeDeployError.errorFrom(response: self)
+		}
+
+		return ()
+	}
+
+	func isSucceeded() -> Bool {
+		return 200 ..< 300 ~= statusCode
 	}
 
 }
