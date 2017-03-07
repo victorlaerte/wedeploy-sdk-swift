@@ -14,6 +14,7 @@
 
 @testable import WeDeploy
 import XCTest
+import PromiseKit
 
 class WeDeployDataCreationTest: BaseTest {
 
@@ -172,8 +173,9 @@ class WeDeployDataTest: BaseTest {
 		WeDeploy
 			.data(self.dataModuleUrl)
 			.where(field: "yearsOld", op: ">", value: "14")
-			.getCount(resourcePath: collectionName)
-			.tap {	result in
+			.count()
+			.get(resourcePath: collectionName)
+			.tap { (result: Result<Int>) in
 				if case let .fulfilled(count) = result {
 					XCTAssertEqual(count, 6)
 
@@ -195,7 +197,7 @@ class WeDeployDataTest: BaseTest {
 			.where(field: "yearsOld", op: ">", value: "14")
 			.limit(1)
 			.get(resourcePath: collectionName)
-			.tap {	result in
+			.tap { result in
 				if case let .fulfilled(items) = result {
 					XCTAssertEqual(items.count, 1)
 
@@ -295,7 +297,7 @@ class WeDeployDataTest: BaseTest {
 			.limit(1)
 			.offset(1)
 			.get(resourcePath: collectionName)
-			.tap {	result in
+			.tap { result in
 				if case let .fulfilled(items) = result {
 					XCTAssertEqual(items.count, 1)
 					XCTAssertEqual(items[0]["yearsOld"] as? String, "20")

@@ -143,6 +143,11 @@ public class WeDeployData {
 		return self
 	}
 
+	public func count() -> Self {
+		query = query.count()
+		return self
+	}
+
 	public func search(resourcePath: String) -> Promise<[String: AnyObject]> {
 		query.isSearch = true
 		return doGetRequest(resourcePath: resourcePath)
@@ -151,18 +156,14 @@ public class WeDeployData {
 			}
 	}
 
-	public func get(resourcePath: String) -> Promise<[[String: AnyObject]]> {
-		return doGetRequest(resourcePath: resourcePath)
-			.then { response in
-				try response.validateBody(bodyType: [[String : AnyObject]].self)
-			}
+	public func get(resourcePath: String) -> Promise<[[String: AnyObject]]>{
+		return get(resourcePath: resourcePath, type: [[String: AnyObject]].self)
 	}
 
-	public func getCount(resourcePath: String) -> Promise<Int> {
-		query = query.count()
+	public func get<T>(resourcePath: String, type: T.Type = T.self) -> Promise<T> {
 		return doGetRequest(resourcePath: resourcePath)
 			.then { response in
-				try response.validateBody(bodyType: Int.self)
+				try response.validateBody(bodyType: T.self)
 			}
 	}
 
