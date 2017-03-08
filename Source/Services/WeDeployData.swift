@@ -128,6 +128,15 @@ public class WeDeployData {
 		return self
 	}
 
+	public func distance(field: String, latitude: Double,
+		longitude: Double, min: Int? = nil, max: Int? = nil) -> Self {
+
+		filter = self.getOrCreateFilter()
+				.and(Filter.distance(field: field, latitude: latitude, longitude: longitude, min: min, max: max))
+
+		return self
+	}
+
 	public func orderBy(field: String, order: Query.Order) -> Self {
 		query = query.sort(name: field, order: order)
 		return self

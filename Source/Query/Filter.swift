@@ -126,6 +126,23 @@ public class Filter : CustomStringConvertible, ExpressibleByStringLiteral {
 		return Filter(field: field, op: "similar", value: value)
 	}
 
+	public static func distance(field: String, latitude: Double,
+			longitude: Double, min: Int? = nil, max: Int? = nil) -> Filter {
+			
+		var value: [String : Any] = [
+			"location" : [latitude, longitude]
+		]
+
+		if let min = min {
+			value["min"] = min
+		}
+		if let max = max {
+			value["max"] = max
+		}
+
+		return Filter(field: field, op: "gd", value: value)
+	}
+
 	func and(_ filters: [Filter]) -> Self {
 		let and = filter["and"] as? [[String: AnyObject]] ?? [self.filter]
 

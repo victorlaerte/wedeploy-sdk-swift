@@ -206,6 +206,23 @@ class FilterTest : XCTestCase {
 		assertJSON("{\"age\":{\"operator\":\"~\",\"value\":12}}", filter.filter)
 	}
 
+	func testDistance() {
+		let filter = Filter.distance(field: "point", latitude: 0, longitude: 0, min: 0, max: 2)
+
+		assertJSON("{\"point\":{\"operator\":\"gd\",\"value\":" +
+		 "{\"location\": [0, 0], \"min\": 0, \"max\": 2}" +
+		"}}", filter.filter)
+	}
+
+	func testDistanceWithoutMin() {
+		let filter = Filter.distance(field: "point", latitude: 0, longitude: 0, max: 2)
+
+		assertJSON("{\"point\":{\"operator\":\"gd\",\"value\":" +
+		 "{\"location\": [0, 0], \"max\": 2}" +
+			"}}", filter.filter)
+	}
+
+
 	func testStringConvertible() {
 		let filter: Filter = "age > 12"
 
