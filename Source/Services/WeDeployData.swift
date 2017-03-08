@@ -119,7 +119,7 @@ public class WeDeployData {
 	}
 
 	public func match(field: String, pattern: String) -> Self {
-		filter = Filter.similar(field: field, value: pattern)
+		filter = Filter.match(field: field, value: pattern)
 		return self
 	}
 
