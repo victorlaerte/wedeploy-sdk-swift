@@ -16,15 +16,7 @@ import Foundation
 import PromiseKit
 import RxSwift
 
-public class WeDeployEmail {
-
-	let authorization: Auth?
-	let url: String
-
-	init(_ url: String, authorization: Auth? = nil) {
-		self.url = url
-		self.authorization = authorization
-	}
+public class WeDeployEmail : WeDeployService {
 
 	public func sendEmail(from: String, to: String, subject: String? = "", body: String) -> Promise<String> {
 		return RequestBuilder

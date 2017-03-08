@@ -17,18 +17,10 @@ import PromiseKit
 import SocketIO
 
 
-public class WeDeployData {
+public class WeDeployData : WeDeployService {
 
 	var query = Query()
 	var filter: Filter?
-
-	let authorization: Auth?
-	let url: String
-
-	init(_ url: String, authorization: Auth? = nil) {
-		self.url = url
-		self.authorization = authorization
-	}
 
 	public func create(resource: String, object: [String : Any]) -> Promise<[String : AnyObject]> {
 

@@ -16,20 +16,16 @@ import Foundation
 import PromiseKit
 import RxSwift
 
-public class WeDeployAuth {
+public class WeDeployAuth : WeDeployService {
 
 	public static var urlRedirect = PublishSubject<URL>()
 	public static var tokenSubscription: Disposable?
 
 	public var currentUser: User?
 
-	var authorization: Auth?
-	let url: String
-
 	init(_ url: String, user: User? = nil, authorization: Auth? = nil) {
-		self.url = url
+		super.init(url, authorization: authorization)
 		self.currentUser = user
-		self.authorization = authorization
 	}
 
 	public func signInWith(username: String, password: String) -> Promise<User> {

@@ -30,6 +30,7 @@
 		0BE1D1311E0D33C600FFE689 /* AuthProviderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1D1301E0D33C600FFE689 /* AuthProviderTest.swift */; };
 		0BE1D1331E0D3C2700FFE689 /* FilterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23BC1C3F0D3300408177 /* FilterTest.swift */; };
 		0BE1D1341E0D3C9500FFE689 /* XCTestCaseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0631621AEB17530097D129 /* XCTestCaseExtension.swift */; };
+		0BE285A01E7057BB00E56EDE /* WeDeployService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE2859F1E7057BB00E56EDE /* WeDeployService.swift */; };
 		0BF2B5D01E12518E004A4DF1 /* WeDeployData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF2B5CF1E12518E004A4DF1 /* WeDeployData.swift */; };
 		0BF2B5D31E1254A4004A4DF1 /* WeDeployDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF2B5D11E12548E004A4DF1 /* WeDeployDataTest.swift */; };
 		0BF2B5DA1E12635C004A4DF1 /* PromiseKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF2B5D81E12635C004A4DF1 /* PromiseKitExtensions.swift */; };
@@ -73,6 +74,7 @@
 		0BD43C2C1DEF30E600F7C7FE /* AuthSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthSession.swift; sourceTree = "<group>"; };
 		0BD6B4131DED78AE0020668D /* WeDeploy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeploy.swift; sourceTree = "<group>"; };
 		0BE1D1301E0D33C600FFE689 /* AuthProviderTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthProviderTest.swift; sourceTree = "<group>"; };
+		0BE2859F1E7057BB00E56EDE /* WeDeployService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployService.swift; sourceTree = "<group>"; };
 		0BF2B5CF1E12518E004A4DF1 /* WeDeployData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployData.swift; sourceTree = "<group>"; };
 		0BF2B5D11E12548E004A4DF1 /* WeDeployDataTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployDataTest.swift; sourceTree = "<group>"; };
 		0BF2B5D81E12635C004A4DF1 /* PromiseKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseKitExtensions.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				88EB6CDC1DF1A7EF00FE7362 /* WeDeployAuth.swift */,
 				88EB6CDD1DF1A7EF00FE7362 /* WeDeployEmail.swift */,
 				0BF2B5CF1E12518E004A4DF1 /* WeDeployData.swift */,
+				0BE2859F1E7057BB00E56EDE /* WeDeployService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -556,6 +559,7 @@
 				0B74EDBD1DE6E797007AE62C /* Query.swift in Sources */,
 				CC70B56A1CA485CB0015F61F /* BasicAuth.swift in Sources */,
 				0B43AB161E0C0E8500701E52 /* AuthProvider.swift in Sources */,
+				0BE285A01E7057BB00E56EDE /* WeDeployService.swift in Sources */,
 				88EB6CDE1DF1A7EF00FE7362 /* WeDeployAuth.swift in Sources */,
 				CC70B5681CA485B70015F61F /* Auth.swift in Sources */,
 				88EB6CDF1DF1A7EF00FE7362 /* WeDeployEmail.swift in Sources */,
