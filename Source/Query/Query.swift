@@ -51,6 +51,16 @@ public class Query : CustomStringConvertible {
 		return self
 	}
 
+	public func aggregate(aggregation: Aggregation) -> Self {
+		var aggregations = query["aggregation"] as? [[String: AnyObject]] ?? [[String: AnyObject]]()
+
+		aggregations.append(aggregation.aggregation)
+
+		query["aggregation"] = aggregations
+
+		return self
+	}
+
 	public func limit(limit: Int) -> Self {
 		query["limit"] = limit
 		return self

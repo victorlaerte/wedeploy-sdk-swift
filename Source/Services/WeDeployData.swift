@@ -149,6 +149,17 @@ public class WeDeployData : WeDeployService {
 		return self
 	}
 
+	public func aggregate(name: String, field: String, op: String, value: Any? = nil) -> Self {
+		let aggregation = Aggregation(name: name, field: field, op: op, value: value)
+		query = query.aggregate(aggregation: aggregation)
+		return self
+	}
+
+	public func aggregate(aggregation: Aggregation) -> Self {
+		query = query.aggregate(aggregation: aggregation)
+		return self
+	}
+
 	public func search(resourcePath: String) -> Promise<[String: AnyObject]> {
 		query.isSearch = true
 		return doGetRequest(resourcePath: resourcePath)
