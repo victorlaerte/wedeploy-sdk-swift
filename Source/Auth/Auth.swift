@@ -18,4 +18,16 @@ public protocol Auth {
 
 	func authenticate(request: Request)
 
+	var authHeaders: [String : String] { get }
+
+}
+
+extension Auth {
+
+	public func authenticate(request: Request) {
+		for (key, value) in authHeaders {
+			request.headers[key] = value
+		}
+	}
+
 }
