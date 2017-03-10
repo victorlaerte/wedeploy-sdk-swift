@@ -41,11 +41,11 @@ public class Filter : CustomStringConvertible, ExpressibleByStringLiteral {
 		}
 	}
 
-	public convenience init<T>(_ field: String, _ value: T) {
+	public convenience init(_ field: String, _ value: Any) {
 		self.init(field: field, op: "=", value: value)
 	}
 
-	public init<T>(field: String, op: String, value: T) {
+	public init(field: String, op: String, value: Any) {
 		filter[field] = [
 			"operator": op,
 			"value": value
@@ -70,31 +70,31 @@ public class Filter : CustomStringConvertible, ExpressibleByStringLiteral {
 		return self.and(filters)
 	}
 
-	public static func any<T>(_ field: String, _ value: [T]) -> Filter {
+	public static func any(_ field: String, _ value: [Any]) -> Filter {
 		return Filter(field: field, op: "any", value: value)
 	}
 
-	public static func equal<T>(_ field: String, _ value: T) -> Filter {
+	public static func equal(_ field: String, _ value: Any) -> Filter {
 		return Filter(field, value)
 	}
 
-	public static func gt<T>(_ field: String, _ value: T) -> Filter {
+	public static func gt(_ field: String, _ value: Any) -> Filter {
 		return Filter(field: field, op: ">", value: value)
 	}
 
-	public static func gte<T>(_ field: String, _ value: T) -> Filter {
+	public static func gte(_ field: String, _ value: Any) -> Filter {
 		return Filter(field: field, op: ">=", value: value)
 	}
 
-	public static func lt<T>(_ field: String, _ value: T) -> Filter {
+	public static func lt(_ field: String, _ value: Any) -> Filter {
 		return Filter(field: field, op: "<", value: value)
 	}
 
-	public static func lte<T>(_ field: String, _ value: T) -> Filter {
+	public static func lte(_ field: String, _ value: Any) -> Filter {
 		return Filter(field: field, op: "<=", value: value)
 	}
 
-	public static func none<T>(_ field: String, _ value: [T]) -> Filter {
+	public static func none(_ field: String, _ value: [Any]) -> Filter {
 		return Filter(field: field, op: "none", value: value)
 	}
 
@@ -106,7 +106,7 @@ public class Filter : CustomStringConvertible, ExpressibleByStringLiteral {
 		return self
 	}
 
-	public static func notEqual<T>(_ field: String, _ value: T) -> Filter {
+	public static func notEqual(_ field: String, _ value: Any) -> Filter {
 		return Filter(field: field, op: "!=", value: value)
 	}
 
@@ -114,15 +114,15 @@ public class Filter : CustomStringConvertible, ExpressibleByStringLiteral {
 		return self.or(filters)
 	}
 
-	public static func regex<T>(_ field: String, _ value: T) -> Filter {
+	public static func regex(_ field: String, _ value: Any) -> Filter {
 		return Filter(field: field, op: "~", value: value)
 	}
 
-	public static func match<T>(field: String, value: T) -> Filter {
+	public static func match(field: String, value: Any) -> Filter {
 		return Filter(field: field, op: "match", value: value)
 	}
 
-	public static func similar<T>(field: String, value: T) -> Filter {
+	public static func similar(field: String, value: Any) -> Filter {
 		return Filter(field: field, op: "similar", value: value)
 	}
 

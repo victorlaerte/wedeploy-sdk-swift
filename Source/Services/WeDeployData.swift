@@ -65,47 +65,47 @@ public class WeDeployData : WeDeployService {
 		return self
 	}
 
-	public func `where`<T>(field: String, op: String, value: T) -> Self {
+	public func `where`(field: String, op: String, value: Any) -> Self {
 		filter = Filter(field: field, op: op, value: value)
 		return self
 	}
 
-	public func or<T>(field: String, op: String, value: T) -> Self {
+	public func or(field: String, op: String, value: Any) -> Self {
 		filter = filter?.or(Filter(field: field, op: op, value: value))
 		return self
 	}
 
-	public func none<T>(field: String, value: [T]) -> Self {
+	public func none(field: String, value: [Any]) -> Self {
 		filter = self.getOrCreateFilter().and(Filter.none(field, value))
 		return self
 	}
 
-	public func lt<T>(field: String, value: T) -> Self {
+	public func lt(field: String, value: Any) -> Self {
 		filter = self.getOrCreateFilter().and(Filter.lt(field, value))
 		return self
 	}
 
-	public func lte<T>(field: String, value: T) -> Self {
+	public func lte(field: String, value: Any) -> Self {
 		filter = self.getOrCreateFilter().and(Filter.lte(field, value))
 		return self
 	}
 
-	public func gt<T>(field: String, value: T) -> Self {
+	public func gt(field: String, value: Any) -> Self {
 		filter = self.getOrCreateFilter().and(Filter.gt(field, value))
 		return self
 	}
 
-	public func gte<T>(field: String, value: T) -> Self {
+	public func gte(field: String, value: Any) -> Self {
 		filter = self.getOrCreateFilter().and(Filter.gte(field, value))
 		return self
 	}
 
-	public func equal<T>(field: String, value: T) -> Self {
+	public func equal(field: String, value: Any) -> Self {
 		filter = self.getOrCreateFilter().and(Filter.equal(field, value))
 		return self
 	}
 
-	public func any<T>(field: String, value: [T]) -> Self {
+	public func any(field: String, value: [Any]) -> Self {
 		filter = self.getOrCreateFilter().and(Filter.any(field, value))
 		return self
 	}

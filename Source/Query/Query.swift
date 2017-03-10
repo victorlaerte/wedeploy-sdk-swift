@@ -30,11 +30,11 @@ public class Query : CustomStringConvertible {
 
 	public init() {}
 
-	public func filter<T>(field: String, _ value: T) -> Self {
+	public func filter(field: String, _ value: Any) -> Self {
 		return self.filter(filter: Filter(field, value))
 	}
 
-	public func filter<T>(field: String, _ op: String, _ value: T)
+	public func filter(field: String, _ op: String, _ value: Any)
 		-> Self {
 
 		return self.filter(filter: Filter(field: field, op: op, value: value))
