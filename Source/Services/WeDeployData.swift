@@ -187,7 +187,7 @@ public class WeDeployData : WeDeployService {
 		let url = "\(self.url)/\(resourcePath)"
 		var options = SocketIOClientConfiguration()
 
-		let socket = SocketIOClientFactory.create(url: url, params: query.query.asQueryItems, options: &options)
+		let socket = SocketIOClientFactory.create(url: url, params: query.query.asQueryItems, auth: authorization, options: &options)
 
 		query = Query()
 		filter = nil

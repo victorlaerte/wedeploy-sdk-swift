@@ -18,7 +18,7 @@ import SocketIO
 public class SocketIOClientFactory {
 
 	public class func create(
-			url: String, params: [URLQueryItem]? = [],
+			url: String, params: [URLQueryItem]? = [], auth: Auth? = nil,
 			options: inout SocketIOClientConfiguration)
 		-> SocketIOClient {
 
@@ -30,6 +30,9 @@ public class SocketIOClientFactory {
 
 		options.insert(.connectParams(["EIO": "3", "url": urlComponents.query]))
 		options.insert(.path(urlComponents.path))
+		if let auth = auth {
+			options.insert(.extraHeaders(auth.authHeaders))
+		}
 
 		let socket = SocketIOClient(socketURL: URL(string: urlComponents.host)!, config: options)
 		socket.connect()
