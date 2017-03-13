@@ -61,6 +61,16 @@ public class Query : CustomStringConvertible {
 		return self
 	}
 
+	public func highlight(fields: [String]) -> Self {
+		var highlights = query["highlight"] as? [String] ?? [String]()
+
+		highlights.append(contentsOf: fields)
+
+		query["highlight"] = highlights
+
+		return self
+	}
+
 	public func limit(limit: Int) -> Self {
 		query["limit"] = limit
 		return self
