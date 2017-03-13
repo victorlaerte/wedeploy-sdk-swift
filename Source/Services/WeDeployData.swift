@@ -116,7 +116,7 @@ public class WeDeployData : WeDeployService {
 	}
 
 	public func similar(field: String, query: String) -> Self {
-		filter = Filter.similar(field: field, value: query)
+		filter = Filter.similar(field: field, query: query)
 		return self
 	}
 

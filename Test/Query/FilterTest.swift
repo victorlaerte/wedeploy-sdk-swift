@@ -250,9 +250,9 @@ class FilterTest : XCTestCase {
 	}
 
 	func testSimilarOperator() {
-		let filter = Filter.similar(field: "age", value: 12)
+		let filter = Filter.similar(field: "age", query: 12)
 
-		assertJSON("{\"age\":{\"operator\":\"similar\",\"value\":12}}", filter.filter)
+		assertJSON("{\"age\":{\"operator\":\"similar\",\"value\":{\"query\":12}}}", filter.filter)
 	}
 
 	func testMatchOperator() {

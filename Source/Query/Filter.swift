@@ -122,8 +122,8 @@ public class Filter : CustomStringConvertible, ExpressibleByStringLiteral {
 		return Filter(field: field, op: "match", value: value)
 	}
 
-	public static func similar(field: String, value: Any) -> Filter {
-		return Filter(field: field, op: "similar", value: value)
+	public static func similar(field: String, query: Any) -> Filter {
+		return Filter(field: field, op: "similar", value: ["query": query])
 	}
 
 	public static func distance(field: String, latitude: Double,
