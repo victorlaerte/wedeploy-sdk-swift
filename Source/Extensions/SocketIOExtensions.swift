@@ -38,7 +38,7 @@ public enum RealTimeEventType : String {
 
 		case .changes:
 			let rawEvent = eventItems[0] as? [[String: Any]]
-			document = ["changes" : rawEvent]
+			document = ["changes" : rawEvent as Any]
 
 		case .error:
 			let error = eventItems[0]
