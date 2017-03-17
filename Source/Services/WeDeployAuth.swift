@@ -21,59 +21,31 @@ public class WeDeployAuth : WeDeployService {
 	public static var urlRedirect = PublishSubject<URL>()
 	public static var tokenSubscription: Disposable?
 
-	public var currentUser: User?
-
-	init(_ url: String, user: User? = nil, authorization: Auth? = nil) {
-		super.init(url, authorization: authorization)
-		self.currentUser = user
-	}
-
-	public func signInWith(username: String, password: String) -> Promise<User> {
+	public func signInWith(username: String, password: String) -> Promise<Auth> {
 		return RequestBuilder.url(self.url).path("/oauth/token")
 			.param(name: "grant_type", value: "password")
 			.param(name: "username", value: username)
 			.param(name: "password", value: password)
 			.get()
-			.then { response -> Promise<()> in
+			.then { response -> Auth in
+				let body = try response.validate()
+				let token = body["access_token"] as! String
+				let auth = TokenAuth(token: token)
 
-				return Promise<()> { fulfill, reject in
-					do {
-						let body = try response.validate()
-						let token = body["access_token"] as! String
-						let auth = TokenAuth(token: token)
-
-						self.authorization = auth
-						WeDeploy.authSession?.currentAuth = auth
-
-						fulfill(())
-
-					} catch let error {
-						reject(error)
-					}
-
-				}
-			}
-			.then { _ -> Promise<User> in
-				return self.getCurrentUser()
+				return auth
 			}
 	}
 
-	internal func getCurrentUser() -> Promise<User> {
+	public func getCurrentUser() -> Promise<User> {
 		return RequestBuilder
 			.url(self.url)
 			.path("/user")
 			.authorize(auth: self.authorization)
 			.get()
 			.then { (response: Response) -> User in
-
 				let body = try response.validate()
 
-				let user = User(json: body)
-
-				self.currentUser = user
-				WeDeploy.authSession?.currentUser = user
-
-				return user
+				return User(json: body)
 			}
 	}
 
@@ -81,27 +53,16 @@ public class WeDeployAuth : WeDeployService {
 		WeDeployAuth.urlRedirect.on(.next(url))
 	}
 
-	public func signInWithRedirect(provider: AuthProvider, onSignIn: @escaping (User?, Error?) -> ()) {
+	public func signInWithRedirect(provider: AuthProvider, onSignIn: @escaping (Auth?, Error?) -> ()) {
 		let authUrl = self.url
 		WeDeployAuth.tokenSubscription?.dispose()
 		
 		WeDeployAuth.tokenSubscription = WeDeployAuth.urlRedirect
 			.subscribe(onNext: { url in
-				let token = url.absoluteString.components(separatedBy: "access_token=")[1]
-				let auth = TokenAuth(token: token)
+					let token = url.absoluteString.components(separatedBy: "access_token=")[1]
+					let auth = TokenAuth(token: token)
 
-				self.authorization = auth
-				WeDeploy.authSession?.currentAuth = auth
-
-				self.getCurrentUser()
-					.tap { result in
-						switch result {
-						case .fulfilled(let user):
-							onSignIn(user, nil)
-						case .rejected(let error):
-							onSignIn(nil, error)
-						}
-					}
+					onSignIn(auth, nil)
 				})
 
 		var url = URLComponents(string: "\(authUrl)/oauth/authorize")!
@@ -213,13 +174,7 @@ public class WeDeployAuth : WeDeployService {
 				.path("/oauth/revoke")
 				.param(name: "token", value: token)
 				.get()
-				.then { [weak self] response -> Void in
-					self?.authorization = nil
-					self?.currentUser = nil
-
-					WeDeploy.authSession?.currentAuth = nil
-					WeDeploy.authSession?.currentUser = nil
-
+				.then { response -> Void in
 					return try response.validateEmptyBody()
 				}
 	}

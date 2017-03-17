@@ -17,67 +17,26 @@ import Foundation
 
 public class WeDeploy : RequestBuilder {
 
-	public static var authSession: AuthSession?
-
-	static var dataUrl: String?
-	static var emailUrl: String?
-
-	override var authorization: Auth? {
-		set {
-			self.authorization = newValue
-		}
-		get {
-			return WeDeploy.authSession?.currentAuth
-		}
-	}
-
 	override public class func url(_ url: String) -> WeDeploy {
 		return WeDeploy(url)
 	}
 
-	public class func auth(_ url: String) -> WeDeployAuth {
+	public class func auth(_ url: String, authorization: Auth? = nil) -> WeDeployAuth {
 		let url = validate(url: url)
 
-		if let authSession = authSession, authSession.url == url {
-			return auth()
-		}
-
-		authSession = AuthSession(url)
-
-		return WeDeployAuth(url)
+		return WeDeployAuth(url, authorization: authorization)
 	}
 
-	public class func auth() -> WeDeployAuth {
-		precondition(authSession != nil, "you have to initialize auth module")
+	public class func data(_ url: String, authorization: Auth? = nil) -> WeDeployData {
+		let dataUrl = validate(url: url)
 
-		return WeDeployAuth(
-				authSession!.url,
-				user: authSession!.currentUser,
-				authorization: authSession!.currentAuth)
+		return WeDeployData(dataUrl, authorization: authorization)
 	}
 
-	public class func data(_ url: String) -> WeDeployData {
-		dataUrl = validate(url: url)
+	public class func email(_ url: String, authorization: Auth? = nil) -> WeDeployEmail {
+		let emailUrl = validate(url: url)
 
-		return WeDeployData(dataUrl!, authorization: authSession?.currentAuth)
-	}
-
-	public class func data() -> WeDeployData {
-		precondition(dataUrl != nil, "you have to initialize data module")
-
-		return WeDeployData(dataUrl!, authorization: authSession?.currentAuth)
-	}
-
-	public class func email(_ url: String) -> WeDeployEmail {
-		emailUrl = validate(url: url)
-
-		return WeDeployEmail(emailUrl!, authorization: authSession?.currentAuth)
-	}
-
-	public class func email() -> WeDeployEmail {
-		precondition(emailUrl != nil, "you have to initialize data module")
-
-		return WeDeployEmail(emailUrl!, authorization: authSession?.currentAuth)
+		return WeDeployEmail(emailUrl, authorization: authorization)
 	}
 
 	class func validate(url: String) -> String {
