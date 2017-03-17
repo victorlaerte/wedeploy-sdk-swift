@@ -108,12 +108,9 @@
 		CC0C23BC1C3F0D3300408177 /* FilterTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTest.swift; sourceTree = "<group>"; };
 		CC0C23BD1C3F0D3300408177 /* QueryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryTest.swift; sourceTree = "<group>"; };
 		CC0C23C71C3F0EC700408177 /* BaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTest.swift; sourceTree = "<group>"; };
-		CC0C23C81C3F0EC700408177 /* LaunchpadQueryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchpadQueryTest.swift; sourceTree = "<group>"; };
-		CC0C23CA1C3F0EC700408177 /* LaunchpadTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchpadTest.swift; sourceTree = "<group>"; };
 		CC0C23CB1C3F0EC700408177 /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = settings.plist; sourceTree = "<group>"; };
 		CC0C23CD1C3F0EC700408177 /* ResponseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseTest.swift; sourceTree = "<group>"; };
 		CC2F361F1C3FE50500902BD4 /* RequestMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
-		CC70B5631CA484A60015F61F /* AuthTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTest.swift; sourceTree = "<group>"; };
 		CC70B5671CA485B70015F61F /* Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		CC70B5691CA485CB0015F61F /* BasicAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicAuth.swift; sourceTree = "<group>"; };
 		CC9F47B11C4076DB005243FE /* WeDeploy.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WeDeploy.podspec; sourceTree = "<group>"; };
@@ -254,10 +251,7 @@
 		CC0C23C61C3F0EC700408177 /* Integration */ = {
 			isa = PBXGroup;
 			children = (
-				CC70B5631CA484A60015F61F /* AuthTest.swift */,
 				CC0C23C71C3F0EC700408177 /* BaseTest.swift */,
-				CC0C23C81C3F0EC700408177 /* LaunchpadQueryTest.swift */,
-				CC0C23CA1C3F0EC700408177 /* LaunchpadTest.swift */,
 				CC0C23CB1C3F0EC700408177 /* settings.plist */,
 				0BBF702D1DECA14400C94DA8 /* RequestBuilderTest.swift */,
 				0B46BA131DEED48B00EB28CF /* WeDeployAuthTest.swift */,
