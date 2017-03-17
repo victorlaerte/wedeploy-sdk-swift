@@ -27,23 +27,18 @@ class WeDeployDataCreationTest: BaseTest {
 
 		let expect = expectation(description: "resource created")
 
-		executeAuthenticated {
-			WeDeploy.data(self.dataModuleUrl)
+		executeAuthenticated { auth in
+			WeDeploy.data(self.dataModuleUrl, authorization: auth)
 				.create(resource: "things", object: resource)
-				.tap { result  in
-					if case let .fulfilled(item) = result {
-						XCTAssertEqual(item["title"] as! String, resource["title"] as! String)
-						XCTAssertEqual(item["description"] as! String, resource["description"] as! String)
+				.valueOrFail { item in
+					XCTAssertEqual(item["title"] as! String, resource["title"] as! String)
+					XCTAssertEqual(item["description"] as! String, resource["description"] as! String)
 
-						expect.fulfill()
-					}
-					else {
-						XCTFail()
-					}
+					expect.fulfill()
 				}
 		}
 
-		waitForExpectations(timeout: 10, handler: nil)
+		waitForExpectations(timeout: 5, handler: nil)
 	}
 
 	func testCreateMultipleResources() {
@@ -59,21 +54,16 @@ class WeDeployDataCreationTest: BaseTest {
 
 		let expect = expectation(description: "resources created")
 
-		executeAuthenticated {
-			WeDeploy.data(self.dataModuleUrl)
+		executeAuthenticated { auth in
+			WeDeploy.data(self.dataModuleUrl, authorization: auth)
 				.create(resource: "things", object: [resource1, resource2])
-				.tap { result in
-					if case let .fulfilled(items) = result {
-						XCTAssertEqual(items.count, 2)
-						XCTAssertEqual(items[0]["title"] as! String, resource1["title"] as! String)
-						XCTAssertEqual(items[1]["title"] as! String, resource2["title"] as! String)
+				.valueOrFail { items in
+					XCTAssertEqual(items.count, 2)
+					XCTAssertEqual(items[0]["title"] as? String, resource1["title"] as? String)
+					XCTAssertEqual(items[1]["title"] as? String, resource2["title"] as? String)
 
-						expect.fulfill()
-					}
-					else {
-						XCTFail()
-					}
-			}
+					expect.fulfill()
+				}
 		}
 
 		waitForExpectations(timeout: 10, handler: nil)
@@ -102,7 +92,7 @@ class WeDeployDataTest: BaseTest {
 		let exp = expect(description: "filling data")
 
 		WeDeploy.data(self.dataModuleUrl)
-			.create(resource: collectionName, object: data as [[String: AnyObject]])
+			.create(resource: collectionName, object: data)
 			.tap { _ in
 				exp.fulfill()
 			}
@@ -131,15 +121,9 @@ class WeDeployDataTest: BaseTest {
 			.data(self.dataModuleUrl)
 			.where(field: "yearsOld", op: ">", value: "14")
 			.get(resourcePath: collectionName)
-			.tap { result in
-				if case let .fulfilled(items) = result {
-					XCTAssertEqual(items.count, 6)
-
-					exp.fulfill()
-				}
-				else {
-					XCTFail()
-				}
+			.valueOrFail { items in
+				XCTAssertEqual(items.count, 6)
+				exp.fulfill()
 			}
 
 		waitForExpectations(timeout: 10, handler: nil)
@@ -153,16 +137,11 @@ class WeDeployDataTest: BaseTest {
 			.where(field: "yearsOld", op: ">", value: "14")
 			.any(field: "yearsOld", value: ["20","25"])
 			.get(resourcePath: collectionName)
-			.tap { result in
-				if case let .fulfilled(items) = result {
-					XCTAssertEqual(items.count, 2)
+			.valueOrFail { items in
+				XCTAssertEqual(items.count, 2)
 
-					exp.fulfill()
-				}
-				else {
-					XCTFail()
-				}
-		}
+				exp.fulfill()
+			}
 
 		waitForExpectations(timeout: 10, handler: nil)
 	}
@@ -175,16 +154,11 @@ class WeDeployDataTest: BaseTest {
 			.where(field: "yearsOld", op: ">", value: "14")
 			.count()
 			.get(resourcePath: collectionName)
-			.tap { (result: Result<Int>) in
-				if case let .fulfilled(count) = result {
-					XCTAssertEqual(count, 6)
+			.valueOrFail { (count: Int) in
+				XCTAssertEqual(count, 6)
 
-					exp.fulfill()
-				}
-				else {
-					XCTFail()
-				}
-		}
+				exp.fulfill()
+			}
 
 		waitForExpectations(timeout: 10, handler: nil)
 	}
@@ -197,16 +171,11 @@ class WeDeployDataTest: BaseTest {
 			.where(field: "yearsOld", op: ">", value: "14")
 			.limit(1)
 			.get(resourcePath: collectionName)
-			.tap { result in
-				if case let .fulfilled(items) = result {
-					XCTAssertEqual(items.count, 1)
+			.valueOrFail { items in
+				XCTAssertEqual(items.count, 1)
 
-					exp.fulfill()
-				}
-				else {
-					XCTFail()
-				}
-		}
+				exp.fulfill()
+			}
 
 		waitForExpectations(timeout: 10, handler: nil)
 	}
@@ -219,20 +188,15 @@ class WeDeployDataTest: BaseTest {
 			.where(field: "yearsOld", op: ">", value: "14")
 			.orderBy(field: "yearsOld", order: .ASC)
 			.get(resourcePath: collectionName)
-			.tap { result in
-				if case let .fulfilled(items) = result {
-					XCTAssertEqual(items.count, 6)
+			.valueOrFail { items in
+				XCTAssertEqual(items.count, 6)
 
-					XCTAssertEqual(items[0]["yearsOld"] as? String, "15")
-					XCTAssertEqual(items[1]["yearsOld"] as? String, "20")
-					XCTAssertEqual(items[2]["yearsOld"] as? String, "25")
+				XCTAssertEqual(items[0]["yearsOld"] as? String, "15")
+				XCTAssertEqual(items[1]["yearsOld"] as? String, "20")
+				XCTAssertEqual(items[2]["yearsOld"] as? String, "25")
 
-					exp.fulfill()
-				}
-				else {
-					XCTFail()
-				}
-		}
+				exp.fulfill()
+			}
 
 		waitForExpectations(timeout: 10, handler: nil)
 	}
@@ -245,20 +209,15 @@ class WeDeployDataTest: BaseTest {
 			.where(field: "yearsOld", op: ">", value: "14")
 			.orderBy(field: "yearsOld", order: .DESC)
 			.get(resourcePath: collectionName)
-			.tap { result in
-				if case let .fulfilled(items) = result {
-					XCTAssertEqual(items.count, 6)
+			.valueOrFail { items in
+				XCTAssertEqual(items.count, 6)
 
-					XCTAssertEqual(items[0]["yearsOld"] as? String, "55")
-					XCTAssertEqual(items[1]["yearsOld"] as? String, "45")
-					XCTAssertEqual(items[2]["yearsOld"] as? String, "35")
+				XCTAssertEqual(items[0]["yearsOld"] as? String, "55")
+				XCTAssertEqual(items[1]["yearsOld"] as? String, "45")
+				XCTAssertEqual(items[2]["yearsOld"] as? String, "35")
 
-					exp.fulfill()
-				}
-				else {
-					XCTFail()
-				}
-		}
+				exp.fulfill()
+			}
 
 		waitForExpectations(timeout: 10, handler: nil)
 	}
@@ -272,17 +231,12 @@ class WeDeployDataTest: BaseTest {
 			.orderBy(field: "yearsOld", order: .ASC)
 			.offset(1)
 			.get(resourcePath: collectionName)
-			.tap { result in
-				if case let .fulfilled(items) = result {
-					XCTAssertEqual(items.count, 5)
-					XCTAssertEqual(items[0]["yearsOld"] as? String ?? "0", "20")
+			.valueOrFail { items in
+				XCTAssertEqual(items.count, 5)
+				XCTAssertEqual(items[0]["yearsOld"] as? String ?? "0", "20")
 
-					exp.fulfill()
-				}
-				else {
-					XCTFail()
-				}
-		}
+				exp.fulfill()
+			}
 
 		waitForExpectations(timeout: 10, handler: nil)
 	}
@@ -297,18 +251,12 @@ class WeDeployDataTest: BaseTest {
 			.limit(1)
 			.offset(1)
 			.get(resourcePath: collectionName)
-			.tap { result in
-				if case let .fulfilled(items) = result {
-					XCTAssertEqual(items.count, 1)
-					XCTAssertEqual(items[0]["yearsOld"] as? String, "20")
+			.valueOrFail { items in
+				XCTAssertEqual(items.count, 1)
+				XCTAssertEqual(items[0]["yearsOld"] as? String, "20")
 
-					exp.fulfill()
-				}
-				else {
-					XCTFail()
-				}
-
-		}
+				exp.fulfill()
+			}
 
 		waitForExpectations(timeout: 10, handler: nil)
 	}

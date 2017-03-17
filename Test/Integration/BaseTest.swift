@@ -14,6 +14,7 @@
 
 import WeDeploy
 import XCTest
+import PromiseKit
 
 class BaseTest : XCTestCase {
 
@@ -43,11 +44,29 @@ class BaseTest : XCTestCase {
 		dataModuleUrl = settings["dataModuleUrl"]
 	}
 
-	func executeAuthenticated(block: @escaping () -> ()) {
+	func executeAuthenticated(block: @escaping (Auth) -> ()) {
 		WeDeploy.auth(authModuleUrl)
 			.signInWith(username: username, password: password)
-			.tap { _ in
-				block()
+			.tap { auth in
+				if case let .fulfilled(auth) = auth {
+					block(auth)
+				}
 		}
 	}
 }
+
+extension Promise {
+
+	func valueOrFail(_ action: @escaping (T) -> Void) {
+		self.tap { result in
+			switch result {
+				case .fulfilled(let value):
+					action(value)
+				case .rejected(let error):
+					XCTFail("Rejected promise with error \(error)")
+			}
+		}
+	}
+}
+
+

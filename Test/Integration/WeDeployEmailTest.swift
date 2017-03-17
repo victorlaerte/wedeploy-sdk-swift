@@ -21,18 +21,14 @@ class WeDeployEmailTest: BaseTest {
 	func testGetUser() {
 		let expect = expectation(description: "correct user")
 
-		executeAuthenticated {
+		executeAuthenticated { auth in
 			WeDeploy
 				.email(self.emailModuleUrl)
+				.authorize(auth: auth)
 				.sendEmail(from: self.username, to: self.username, subject: "subject", body: "body")
-				.tap { result in
-					if case .fulfilled(_) = result {
-						expect.fulfill()
-					}
-					else {
-						XCTFail()
-					}
-			}
+				.valueOrFail { _ in
+					expect.fulfill()
+				}
 		}
 
 		waitForExpectations(timeout: 10, handler: nil)
@@ -41,14 +37,12 @@ class WeDeployEmailTest: BaseTest {
 	func testGetEmailStatus() {
 		let expect = expectation(description: "correct user")
 
-		executeAuthenticated {
+		executeAuthenticated { auth in
 			WeDeploy.email(self.emailModuleUrl)
+				.authorize(auth: auth)
 				.checkEmailStatus(id: "202605176596079530")
-				.then { _ in
+				.valueOrFail { _ in
 					expect.fulfill()
-				}
-				.catch { _ in
-					XCTFail()
 				}
 		}
 

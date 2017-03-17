@@ -14,7 +14,6 @@
 
 @testable import WeDeploy
 import XCTest
-import PromiseKit
 import RxSwift
 import Foundation
 
@@ -28,16 +27,10 @@ class WeDeployAuthTest : BaseTest {
 		let expect = expectation(description: "correct login")
 
 		WeDeploy.auth(authModuleUrl)
-				.signInWith(username: username, password: password)
-				.tap { result in
-					if case let .fulfilled(user) = result {
-						XCTAssertEqual(user.email, self.username)
-						expect.fulfill()
-					}
-					else {
-						XCTFail()
-					}
-				}
+			.signInWith(username: username, password: password)
+			.valueOrFail { auth in
+				expect.fulfill()
+			}
 
 		waitForExpectations(timeout: 5, handler: nil)
 	}
@@ -48,13 +41,11 @@ class WeDeployAuthTest : BaseTest {
 		WeDeploy.auth(authModuleUrl)
 			.signInWith(username: username, password: password)
 			.toObservable()
-			.subscribe(onNext: { user in
-				XCTAssertNotNil(user)
-				XCTAssertEqual(user.email, self.username)
+			.subscribe(onNext: { auth in
 				expect.fulfill()
 			},
-			onError: { _ in
-				XCTFail("this should not be called")
+			onError: { error in
+				XCTFail("Failed with error \(error)")
 			})
 			.addDisposableTo(bag)
 
@@ -68,11 +59,27 @@ class WeDeployAuthTest : BaseTest {
 
 		WeDeploy.auth(authModuleUrl)
 			.signInWith(username: username, password: password)
-			.toCallback { user, _ in
-				XCTAssertNotNil(user)
-				XCTAssertEqual(user?.email, self.username)
+			.toCallback { auth, error in
+				XCTAssertNotNil(auth)
+				XCTAssertNil(error)
 				expect.fulfill()
 			}
+
+		waitForExpectations(timeout: 5, handler: nil)
+	}
+
+
+	func testCurrentUser() {
+		let expect = expectation(description: "correct user")
+
+		executeAuthenticated { auth in
+			WeDeploy.auth(self.authModuleUrl, authorization: auth)
+				.getCurrentUser()
+				.valueOrFail { user in
+					XCTAssertEqual(user.email, self.username)
+					expect.fulfill()
+				}
+		}
 
 		waitForExpectations(timeout: 5, handler: nil)
 	}
@@ -80,17 +87,13 @@ class WeDeployAuthTest : BaseTest {
 	func testGetUser() {
 		let expect = expectation(description: "correct user")
 
-		executeAuthenticated {
-			WeDeploy.auth()
+		executeAuthenticated { auth in
+			WeDeploy.auth(self.authModuleUrl)
+				.authorize(auth: auth)
 				.getUser(id: self.userId)
-				.tap { result in
-					if case let .fulfilled(user) = result {
-						XCTAssertEqual(user.email, self.username)
-						expect.fulfill()
-					}
-					else {
-						XCTFail()
-					}
+				.valueOrFail { user in
+					XCTAssertEqual(user.email, self.username)
+					expect.fulfill()
 				}
 		}
 
@@ -100,67 +103,42 @@ class WeDeployAuthTest : BaseTest {
 	func testUpdateUser() {
 		let expect = expectation(description: "")
 
-		executeAuthenticated {
-			let currentUserId = WeDeploy.auth().currentUser!.id
+		executeAuthenticated { auth in
 
-			WeDeploy.auth()
-				.updateUser(id: currentUserId, name: "new", photoUrl: "http://somephoto.com")
-				.toObservable()
-				.flatMap {
-					WeDeploy.auth()
-						.getCurrentUser()
-						.toObservable()
+			//Get current user
+			WeDeploy.auth(self.authModuleUrl, authorization: auth)
+				.getCurrentUser()
+				.then { currentUser in
+
+					// Update user
+					WeDeploy.auth(self.authModuleUrl)
+						.authorize(auth: auth)
+						.updateUser(id: currentUser.id, name: "new", photoUrl: "http://somephoto.com")
 				}
-				.subscribe(onNext: { (user) in
+				.then { _ in
+					// Get current user again
+					WeDeploy.auth(self.authModuleUrl)
+						.authorize(auth: auth)
+						.getCurrentUser()
+				}
+				.valueOrFail { user in
 					XCTAssertEqual(user.name , "new")
 					XCTAssertEqual(user.photoUrl, "http://somephoto.com")
 					expect.fulfill()
-				}, onError: { _ in XCTFail()})
-				.disposed(by: self.bag)
+				}
 		}
 
 		waitForExpectations(timeout: 10, handler: nil)
 	}
 
-	func  testDeleteUser() {
-		let expect = expectation(description: "")
-
-		executeAuthenticated {
-			WeDeploy.auth()
-				.createUser(email: "new2@new.com", password: "new", name: "new")
-				.toObservable()
-				.flatMap { user in
-					WeDeploy.auth()
-						.signInWith(username: "new2@new.com", password: "new")
-						.toObservable()
-				}
-				.flatMap { user in
-					WeDeploy.auth()
-						.deleteUser(id: user.id)
-						.toObservable()
-				}
-				.subscribe(onNext: { _ in
-					expect.fulfill()
-				}, onError: { error in print(error); XCTFail()})
-				.disposed(by: self.bag)
-		}
-
-		waitForExpectations(timeout: 10, handler: nil)
-
-	}
 
 	func testSendRecoverPasswordEmail() {
 		let expect = expectation(description: "")
 
 		WeDeploy.auth(authModuleUrl)
 				.sendPasswordReset(email: username)
-				.tap { result in
-					if case .fulfilled(_) = result {
-						expect.fulfill()
-					}
-					else {
-						XCTFail()
-					}
+				.valueOrFail { _ in
+					expect.fulfill()
 				}
 
 		waitForExpectations(timeout: 10, handler: nil)
@@ -169,16 +147,11 @@ class WeDeployAuthTest : BaseTest {
 	func testSignOut() {
 		let expect = expectation(description: "")
 
-		executeAuthenticated {
-			WeDeploy.auth()
+		executeAuthenticated { auth in
+			WeDeploy.auth(self.authModuleUrl, authorization: auth)
 				.signOut()
-				.tap { result in
-					if case .fulfilled(_) = result {
-						expect.fulfill()
-					}
-					else {
-						XCTFail()
-					}
+				.valueOrFail { _ in
+					expect.fulfill()
 				}
 		}
 
