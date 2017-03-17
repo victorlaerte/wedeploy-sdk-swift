@@ -65,12 +65,13 @@ public class Response {
 	}
 
 	func validateBody<T>(bodyType: T.Type? = T.self) throws -> T {
-		guard isSucceeded(),
-			let body = body as? T
-			else {
+		guard isSucceeded() else {
+			throw WeDeployError.errorFrom(response: self)
+		}
+		guard let body = body as? T else {
 				print("Trying to cast \(self.body.self) into \(T.self)")
 				throw WeDeployError.errorFrom(response: self)
-			}
+		}
 
 		return body
 	}
