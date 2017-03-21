@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B0DD1351E7697F30009BF66 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0DD1341E7697F30009BF66 /* StringExtensions.swift */; };
 		0B43AB161E0C0E8500701E52 /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B43AB151E0C0E8500701E52 /* AuthProvider.swift */; };
 		0B46BA141DEED48B00EB28CF /* WeDeployAuthTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B46BA131DEED48B00EB28CF /* WeDeployAuthTest.swift */; };
 		0B46BA161DEEDB7300EB28CF /* WeDeployEmailTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B46BA151DEEDB7300EB28CF /* WeDeployEmailTest.swift */; };
@@ -63,7 +62,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0B0DD1341E7697F30009BF66 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		0B43AB151E0C0E8500701E52 /* AuthProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
 		0B46BA131DEED48B00EB28CF /* WeDeployAuthTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployAuthTest.swift; sourceTree = "<group>"; };
 		0B46BA151DEEDB7300EB28CF /* WeDeployEmailTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployEmailTest.swift; sourceTree = "<group>"; };
@@ -168,7 +166,6 @@
 			children = (
 				0BF2B5D81E12635C004A4DF1 /* PromiseKitExtensions.swift */,
 				0BF2B5D91E12635C004A4DF1 /* SocketIOExtensions.swift */,
-				0B0DD1341E7697F30009BF66 /* StringExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -564,7 +561,6 @@
 				88EB6CDE1DF1A7EF00FE7362 /* WeDeployAuth.swift in Sources */,
 				CC70B5681CA485B70015F61F /* Auth.swift in Sources */,
 				88EB6CDF1DF1A7EF00FE7362 /* WeDeployEmail.swift in Sources */,
-				0B0DD1351E7697F30009BF66 /* StringExtensions.swift in Sources */,
 				CC2F36201C3FE50500902BD4 /* RequestMethod.swift in Sources */,
 				CC0C23B51C3F0C1B00408177 /* Response.swift in Sources */,
 			);

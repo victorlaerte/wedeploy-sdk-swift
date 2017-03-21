@@ -167,18 +167,9 @@ public class WeDeployData : WeDeployService {
 
 	public func search(resourcePath: String) -> Promise<[String: AnyObject]> {
 		query.isSearch = true
-		let lastQuery = query
 		return doGetRequest(resourcePath: resourcePath)
 			.then { response in
 				try response.validate()
-			}
-			.then { search -> [String: AnyObject] in
-				guard let highlights = lastQuery.query["highlight"] as? [String] else {
-					return search
-				}
-
-				return self
-					.parseHighlightsIntoAttributedString(highlights: highlights, dictionary: search)
 			}
 	}
 
@@ -241,34 +232,5 @@ public class WeDeployData : WeDeployService {
 			.authorize(auth: self.authorization)
 			.path("/\(resource)")
 			.post(body: object)
-	}
-
-	func parseHighlightsIntoAttributedString(highlights: [String], dictionary: [String: AnyObject])
-			-> [String: AnyObject] {
-
-		guard let documents = dictionary["documents"] as? [[String: AnyObject]] else {
-			return dictionary
-		}
-
-		var mutableDict = dictionary
-		var finalDocuments = [[String: Any]]()
-
-		for highlight in highlights {
-			for document in documents {
-				var finalDocument = document
-				if let parsedHighlight = (document[highlight] as? String)?.asAttributedString {
-					finalDocument[highlight] = parsedHighlight
-				}
-				finalDocuments.append(finalDocument)
-			}
-		}
-
-		mutableDict["documents"] = finalDocuments as AnyObject
-
-		return mutableDict
-	}
-
-	deinit {
-
 	}
 }
