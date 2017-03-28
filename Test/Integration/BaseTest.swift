@@ -31,8 +31,8 @@ class BaseTest : XCTestCase {
 	}
 
 	private func loadSettings() {
-		let bundle = Bundle(identifier: "com.liferay.WeDeploy.Tests")
-		let file = bundle!.path(forResource: "settings", ofType: "plist")
+		let bundle = Bundle(for: type(of: self))
+		let file = bundle.path(forResource: "settings", ofType: "plist")
 		let settings = NSDictionary(contentsOfFile: file!) as! [String: String]
 
 		username = settings["username"]

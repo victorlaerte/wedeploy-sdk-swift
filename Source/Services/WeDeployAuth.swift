@@ -179,6 +179,14 @@ public class WeDeployAuth : WeDeployService {
 				}
 	}
 
+	#if os(macOS)
+
+	func open(_ url: URL) {
+		NSWorkspace.shared().open(url)
+	}
+
+	#else
+
 	func open(_ url: URL) {
 		if #available(iOS 10.0, *) {
 			UIApplication.shared.open(url, options: [:], completionHandler: nil)
@@ -187,6 +195,7 @@ public class WeDeployAuth : WeDeployService {
 			UIApplication.shared.openURL(url)
 		}
 	}
-
+	
+	#endif
 }
 
