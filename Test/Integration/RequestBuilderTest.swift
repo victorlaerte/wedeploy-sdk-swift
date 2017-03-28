@@ -28,6 +28,16 @@ class RequestBuilderTest : XCTestCase {
 		XCTAssertEqual(requestBuilder.headers["Content-Type"]!, "application/x-www-form-urlencoded")
 	}
 
+	func testHeadersWithSameName() {
+
+		let requestBuilder = RequestBuilder.url("test.com")
+			.header(name: "HeaderName", value: "HeaderValue1")
+			.header(name: "HeaderName", value: "HeaderValue2")
+			.header(name: "HeaderName", value: "HeaderValue3")
+
+		XCTAssertEqual(requestBuilder.headers["HeaderName"], "HeaderValue1, HeaderValue2, HeaderValue3")
+	}
+
 }
 
 

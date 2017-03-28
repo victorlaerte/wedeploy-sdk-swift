@@ -49,7 +49,11 @@ public class RequestBuilder {
 	}
 
 	public func header(name: String, value: String) -> Self {
-		headers[name] = value
+		var newValue = value
+		if let currentValue = headers[name] {
+			newValue = "\(currentValue), \(value)"
+		}
+		headers[name] = newValue
 		return self
 	}
 
