@@ -121,10 +121,13 @@ public class WeDeployData : WeDeployService {
 	}
 
 	public func distance(field: String, latitude: Double,
-		longitude: Double, min: Int? = nil, max: Int? = nil) -> Self {
+		longitude: Double, range: Range) -> Self {
 
 		filter = self.getOrCreateFilter()
-				.and(Filter.distance(field: field, latitude: latitude, longitude: longitude, min: min, max: max))
+				.and(Filter.distance(field: field, latitude: latitude, longitude: longitude, range: range))
+
+		return self
+	}
 
 		return self
 	}

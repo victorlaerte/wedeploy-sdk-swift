@@ -132,20 +132,24 @@ public class Filter : CustomStringConvertible, ExpressibleByStringLiteral {
 	}
 
 	public static func distance(field: String, latitude: Double,
-			longitude: Double, min: Int? = nil, max: Int? = nil) -> Filter {
+			longitude: Double, range: Range) -> Filter {
 			
 		var value: [String : Any] = [
 			"location" : [latitude, longitude]
 		]
 
-		if let min = min {
+		if let min = range.from {
 			value["min"] = min
 		}
-		if let max = max {
+		if let max = range.to {
 			value["max"] = max
 		}
 
 		return Filter(field: field, op: "gd", value: value)
+	}
+
+	public static func range(field: String, range: Range) -> Filter {
+		return Filter(field: field, op: "range", value: range.value)
 	}
 
 	public static func phrase(field: String, value: Any) -> Filter {

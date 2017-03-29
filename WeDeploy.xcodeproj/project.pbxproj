@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B34CD8B1E8BF34300E12884 /* Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B34CD8A1E8BF34300E12884 /* Range.swift */; };
 		0B43AB161E0C0E8500701E52 /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B43AB151E0C0E8500701E52 /* AuthProvider.swift */; };
 		0B46BA141DEED48B00EB28CF /* WeDeployAuthTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B46BA131DEED48B00EB28CF /* WeDeployAuthTest.swift */; };
 		0B46BA161DEEDB7300EB28CF /* WeDeployEmailTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B46BA151DEEDB7300EB28CF /* WeDeployEmailTest.swift */; };
@@ -165,6 +166,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B34CD8A1E8BF34300E12884 /* Range.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Range.swift; sourceTree = "<group>"; };
 		0B43AB151E0C0E8500701E52 /* AuthProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
 		0B46BA131DEED48B00EB28CF /* WeDeployAuthTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployAuthTest.swift; sourceTree = "<group>"; };
 		0B46BA151DEEDB7300EB28CF /* WeDeployEmailTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployEmailTest.swift; sourceTree = "<group>"; };
@@ -471,6 +473,7 @@
 				CC0C23AA1C3F0B8600408177 /* Filter.swift */,
 				CC0C23AB1C3F0B8600408177 /* Query.swift */,
 				0B575EDF1E6F0A7500A8B021 /* Aggregation.swift */,
+				0B34CD8A1E8BF34300E12884 /* Range.swift */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -1072,6 +1075,7 @@
 				0B5802331DED9FF7002C3E7A /* WeDeployError.swift in Sources */,
 				0B74EDBB1DE6E797007AE62C /* DictionaryExtension.swift in Sources */,
 				0BB0C2BC1DE8333D00CACDE1 /* TokenAuth.swift in Sources */,
+				0B34CD8B1E8BF34300E12884 /* Range.swift in Sources */,
 				0BDA424A1E13B19000533412 /* SocketIOClientFactory.swift in Sources */,
 				0BF2B5D01E12518E004A4DF1 /* WeDeployData.swift in Sources */,
 				0BBF702C1DEC93FC00C94DA8 /* RequestBuilder.swift in Sources */,
