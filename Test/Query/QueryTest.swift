@@ -100,12 +100,12 @@ class QueryTest : XCTestCase {
 
 	func testSearch_Query() {
 		let query = Query()
-		query.isSearch = true
+		_ = query.search()
 
 		_ = query.filter(field: "age", "=", 12)
 
 		assertJSON(
-			"{\"search\":[{\"age\":{\"operator\":\"=\",\"value\":12}}]}",
+			"{\"filter\":[{\"age\":{\"operator\":\"=\",\"value\":12}}], \"type\": \"search\"}",
 			query.query)
 	}
 

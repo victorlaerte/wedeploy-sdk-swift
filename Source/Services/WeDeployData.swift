@@ -169,7 +169,7 @@ public class WeDeployData : WeDeployService {
 	}
 
 	public func search(resourcePath: String) -> Promise<[String: AnyObject]> {
-		query.isSearch = true
+		query = query.search()
 		return doGetRequest(resourcePath: resourcePath)
 			.then { response in
 				try response.validate()
