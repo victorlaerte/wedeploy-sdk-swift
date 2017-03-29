@@ -45,11 +45,16 @@ public class Filter : CustomStringConvertible, ExpressibleByStringLiteral {
 		self.init(field: field, op: "=", value: value)
 	}
 
-	public init(field: String, op: String, value: Any) {
-		filter[field] = [
+	public init(field: String, op: String, value: Any?) {
+		var newFilter: [String: Any] = [
 			"operator": op,
-			"value": value
-		] as AnyObject
+		]
+
+		if let value = value {
+			newFilter["value"] = value
+		}
+
+		filter[field] = newFilter as AnyObject
 	}
 
 	public init() {}
@@ -141,6 +146,30 @@ public class Filter : CustomStringConvertible, ExpressibleByStringLiteral {
 		}
 
 		return Filter(field: field, op: "gd", value: value)
+	}
+
+	public static func phrase(field: String, value: Any) -> Filter {
+		return Filter(field: field, op: "phrase", value: value)
+	}
+
+	public static func prefix(field: String, value: Any) -> Filter {
+		return Filter(field: field, op: "pre", value: value)
+	}
+
+	public static func missing(field: String) -> Filter {
+		return Filter(field: field, op: "missing", value: nil)
+	}
+
+	public static func exists(field: String) -> Filter {
+		return Filter(field: field, op: "exists", value: nil)
+	}
+
+	public static func fuzzy(field: String, query: Any, fuzziness: Int = 1) -> Filter {
+		let value: [String : Any] = [
+			"query": query,
+			"fuzziness": fuzziness
+		]
+		return Filter(field: field, op: "fuzzy", value: value)
 	}
 
 	func and(_ filters: [Filter]) -> Self {
