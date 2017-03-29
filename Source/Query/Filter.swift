@@ -152,6 +152,19 @@ public class Filter : CustomStringConvertible, ExpressibleByStringLiteral {
 		return Filter(field: field, op: "range", value: range.value)
 	}
 
+	public static func polygon(field: String, points: [GeoPoint]) -> Filter {
+		return Filter(field: field, op: "gp", value: points.map({ $0.value}))
+	}
+
+	public static func shape(field: String, shapes: [Geo]) -> Filter {
+		let value = [
+			"type" : "geometrycollection",
+			"geometries": shapes.map({ $0.value })
+		] as [String : Any]
+		
+		return Filter(field: field, op: "gs", value: value)
+	}
+
 	public static func phrase(field: String, value: Any) -> Filter {
 		return Filter(field: field, op: "phrase", value: value)
 	}

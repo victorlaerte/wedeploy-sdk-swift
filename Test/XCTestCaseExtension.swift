@@ -22,9 +22,9 @@ extension XCTestCase {
 			expected.data(using: .utf8)!,
 			options: .allowFragments) as! [String: Any]
 
-		let dic2 = NSDictionary(dictionary: result) as [NSObject : AnyObject]
+		let dic2 = NSDictionary(dictionary: result)
 
-		XCTAssertTrue(NSDictionary(dictionary: dic1).isEqual(to: dic2))
+		XCTAssertEqual(NSDictionary(dictionary: dic1), dic2)
 	}
 
 	func expect(description: String!) -> XCTestExpectation {
