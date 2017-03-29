@@ -12,6 +12,12 @@
 * details.
 */
 
+#if os(macOS)
+	import AppKit
+#else
+	import UIKit
+#endif
+
 import Foundation
 import PromiseKit
 import RxSwift
@@ -188,7 +194,7 @@ public class WeDeployAuth : WeDeployService {
 	#else
 
 	func open(_ url: URL) {
-		if #available(iOS 10.0, *) {
+		if #available(iOS 10.0, tvOS 10.0, *) {
 			UIApplication.shared.open(url, options: [:], completionHandler: nil)
 		}
 		else {
