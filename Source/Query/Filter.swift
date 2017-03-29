@@ -144,22 +144,34 @@ public class Filter : CustomStringConvertible, ExpressibleByStringLiteral {
 	}
 
 	func and(_ filters: [Filter]) -> Self {
-		let and = filter["and"] as? [[String: AnyObject]] ?? [self.filter]
+		let ands: [[String: AnyObject]]
+		if self.filter.isEmpty {
+			ands = filters.map({ $0.filter })
+		}
+		else {
+			ands = (filter["and"] as? [[String: AnyObject]] ?? [self.filter]) + filters.map({ $0.filter })
+		}
 
 		filter = [
-			"and": and + filters.map({ $0.filter }) as AnyObject
+			"and": ands as AnyObject
 		]
 
 		return self
 	}
 
 	func or(_ filters: [Filter]) -> Self {
-		let or = filter["or"] as? [[String: AnyObject]] ?? [self.filter]
-
+		let ors: [[String: AnyObject]]
+		if self.filter.isEmpty {
+			ors = filters.map({ $0.filter })
+		}
+		else {
+			ors = (filter["or"] as? [[String: AnyObject]] ?? [self.filter]) + filters.map({ $0.filter })
+		}
+		
 		filter = [
-			"or": or + filters.map({ $0.filter }) as AnyObject
+			"or": ors as AnyObject
 		]
-
+		
 		return self
 	}
 

@@ -31,6 +31,16 @@ class FilterTest : XCTestCase {
 			filter.filter)
 	}
 
+	func testAnd_WithOneFilter() {
+		let filter = Filter().and(Filter.gt("age", 12))
+
+		assertJSON(
+			"{\"and\":[" +
+				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
+			"]}",
+			filter.filter)
+	}
+
 	func testAnd_Overloaded_Operator() {
 		let filter = Filter
 			.gt("age", 12) &&
@@ -166,6 +176,17 @@ class FilterTest : XCTestCase {
 		assertJSON(
 			"{\"or\":[" +
 				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
+				"{\"age\":{\"operator\":\"<\",\"value\":15}}" +
+			"]}",
+			filter.filter)
+	}
+	
+	func testOr_WithOneFilter() {
+		let filter = Filter()
+			.or(Filter.lt("age", 15))
+		
+		assertJSON(
+			"{\"or\":[" +
 				"{\"age\":{\"operator\":\"<\",\"value\":15}}" +
 			"]}",
 			filter.filter)
