@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0BCA2B2D1E8AA5CC00C5F0FE"
-               BuildableName = "WeDeploy_macOS.framework"
+               BuildableName = "WeDeploy.framework"
                BlueprintName = "WeDeploy-macOS"
                ReferencedContainer = "container:WeDeploy.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0BCA2B2D1E8AA5CC00C5F0FE"
-            BuildableName = "WeDeploy_macOS.framework"
+            BuildableName = "WeDeploy.framework"
             BlueprintName = "WeDeploy-macOS"
             ReferencedContainer = "container:WeDeploy.xcodeproj">
          </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0BCA2B2D1E8AA5CC00C5F0FE"
-            BuildableName = "WeDeploy_macOS.framework"
+            BuildableName = "WeDeploy.framework"
             BlueprintName = "WeDeploy-macOS"
             ReferencedContainer = "container:WeDeploy.xcodeproj">
          </BuildableReference>
@@ -83,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0BCA2B2D1E8AA5CC00C5F0FE"
-            BuildableName = "WeDeploy_macOS.framework"
+            BuildableName = "WeDeploy.framework"
             BlueprintName = "WeDeploy-macOS"
             ReferencedContainer = "container:WeDeploy.xcodeproj">
          </BuildableReference>
