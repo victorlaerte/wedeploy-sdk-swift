@@ -16,12 +16,12 @@ import Foundation
 import RxSwift
 import SocketIO
 
-public enum RealTimeEventType : String {
-	case changes = "changes"
-	case error = "error"
-	case create = "create"
-	case update = "update"
-	case delete = "delete"
+public enum RealTimeEventType: String {
+	case changes
+	case error
+	case create
+	case update
+	case delete
 
 	public static func realTimeEvent(from type: String, eventItems: [Any]) -> RealTimeEvent? {
 		guard let eventType = RealTimeEventType(rawValue: type) else { return nil }
@@ -38,11 +38,11 @@ public enum RealTimeEventType : String {
 
 		case .changes:
 			let rawEvent = eventItems[0] as? [[String: Any]]
-			document = ["changes" : rawEvent as Any]
+			document = ["changes": rawEvent as Any]
 
 		case .error:
 			let error = eventItems[0]
-			document = ["error" : error]
+			document = ["error": error]
 		}
 
 		return RealTimeEvent(type: type, document: document)
@@ -58,7 +58,7 @@ public extension SocketIOClient {
 
 	func on(_ event: String) -> Observable<RealTimeEvent> {
 		var selfRetained: SocketIOClient? = self
-		
+
 		return Observable.create { [weak self] observer in
 			self?.on(event) { items, _ in
 				guard let realTimeEvent = RealTimeEventType.realTimeEvent(from: event, eventItems: items) else {
@@ -80,7 +80,7 @@ public extension SocketIOClient {
 	}
 
 	func on(_ event: RealTimeEventType, callback: @escaping (RealTimeEvent) -> Void) {
-		self.on(event.rawValue) { items,  _ in
+		self.on(event.rawValue) { items, _ in
 			let realTimeEvent = RealTimeEventType.realTimeEvent(from: event, eventItems: items)
 
 			callback(realTimeEvent)

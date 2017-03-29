@@ -12,11 +12,10 @@
 * details.
 */
 
-
 import WeDeploy
 import XCTest
 
-class QueryTest : XCTestCase {
+class QueryTest: XCTestCase {
 
 	func testComplex_Query() {
 		let query = Query()

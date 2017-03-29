@@ -16,8 +16,7 @@ import Foundation
 import PromiseKit
 import SocketIO
 
-
-public class WeDeployData : WeDeployService {
+public class WeDeployData: WeDeployService {
 
 	var query = Query()
 	var filter: Filter?
@@ -34,7 +33,7 @@ public class WeDeployData : WeDeployService {
 
 		return doCreateRequest(resource: resource, object: object)
 			.then { response in
-				try response.validateBody(bodyType: [[String : AnyObject]].self)
+				try response.validateBody(bodyType: [[String: AnyObject]].self)
 			}
 	}
 
@@ -126,31 +125,31 @@ public class WeDeployData : WeDeployService {
 	public func fuzzy(field: String, query: Any, fuzziness: Int = 0) -> Self {
 		return self.where(filter: Filter.fuzzy(field: field, query: query, fuzziness: fuzziness))
 	}
-	
+
 	public func range(field: String, range: Range) -> Self {
 		return self.where(filter: Filter.range(field: field, range: range))
 	}
-	
+
 	public  func polygon(field: String, points: [GeoPoint]) -> Self {
 		return self.where(filter: Filter.polygon(field: field, points: points))
 	}
-	
+
 	public func shape(field: String, shapes: [Geo]) -> Self {
 		return self.where(filter: Filter.shape(field: field, shapes: shapes))
 	}
-	
+
 	public func phrase(field: String, value: Any) -> Self {
 		return self.where(filter: Filter.phrase(field: field, value: value))
 	}
-	
+
 	public func prefix(field: String, value: Any) -> Self {
 		return self.where(filter: Filter.prefix(field: field, value: value))
 	}
-	
+
 	public func missing(field: String) -> Self {
 		return self.where(filter: Filter.missing(field: field))
 	}
-	
+
 	public func exists(field: String) -> Self {
 		return self.where(filter: Filter.exists(field: field))
 	}
@@ -199,7 +198,7 @@ public class WeDeployData : WeDeployService {
 			}
 	}
 
-	public func get(resourcePath: String) -> Promise<[[String: AnyObject]]>{
+	public func get(resourcePath: String) -> Promise<[[String: AnyObject]]> {
 		return get(resourcePath: resourcePath, type: [[String: AnyObject]].self)
 	}
 
@@ -214,11 +213,12 @@ public class WeDeployData : WeDeployService {
 		if let filter = filter {
 			query = query.filter(filter: filter)
 		}
-		
+
 		let url = "\(self.url)/\(resourcePath)"
 		var options = SocketIOClientConfiguration()
 
-		let socket = SocketIOClientFactory.create(url: url, params: query.query.asQueryItems, auth: authorization, options: &options)
+		let socket = SocketIOClientFactory.create(url: url, params: query.query.asQueryItems,
+				auth: authorization, options: &options)
 
 		query = Query()
 		filter = nil

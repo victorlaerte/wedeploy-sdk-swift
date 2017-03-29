@@ -15,7 +15,7 @@
 @testable import WeDeploy
 import XCTest
 
-class RequestBuilderTest : XCTestCase {
+class RequestBuilderTest: XCTestCase {
 
 	func testFormBody() {
 
@@ -40,19 +40,18 @@ class RequestBuilderTest : XCTestCase {
 
 }
 
+class MockTransport: Transport {
 
-class MockTransport : Transport {
-
-	var request : Request?
+	var request: Request?
 
 	func send(
-		request: Request, success: @escaping (Response) -> (),
-		failure: @escaping (Error) -> ()) {
+		request: Request, success: @escaping (Response) -> Void,
+		failure: @escaping (Error) -> Void) {
 
 		self.request = request
 
 		let data = "".data(using: .utf8)
 		success(Response(statusCode: 200, headers: [:], body: data!))
 	}
-	
+
 }

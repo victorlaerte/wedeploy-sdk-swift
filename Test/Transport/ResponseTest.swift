@@ -12,11 +12,10 @@
 * details.
 */
 
-
 @testable import WeDeploy
 import XCTest
 
-class ResponseTest : XCTestCase {
+class ResponseTest: XCTestCase {
 
 	func testEmptyData() {
 		let data = "".data(using: .utf8)
@@ -40,7 +39,6 @@ class ResponseTest : XCTestCase {
 	func testJSON() {
 		let data = "{\"foo\": \"bar\"}".data(using: .utf8)
 
-
 		let headers = ["Content-Type": "application/json; charset=UTF-8"]
 		let response = Response(statusCode: 200, headers: headers, body: data!)
 		let body = response.body as! [String: String]
@@ -50,7 +48,6 @@ class ResponseTest : XCTestCase {
 
 	func testMalformedJSON() {
 		let data = "{\"foo\": \"bar".data(using: .utf8)
-
 
 		let headers = ["Content-Type": "application/json; charset=UTF-8"]
 		let response = Response(statusCode: 200, headers: headers, body: data!)

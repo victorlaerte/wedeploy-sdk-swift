@@ -22,7 +22,7 @@ public class SocketIOClientFactory {
 			options: inout SocketIOClientConfiguration)
 		-> SocketIOClient {
 
-		if (!options.contains(.forceNew(false))) {
+		if !options.contains(.forceNew(false)) {
 			options.insert(.forceNew(true))
 		}
 

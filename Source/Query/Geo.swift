@@ -35,12 +35,12 @@ public struct GeoPoint: Geo {
 public struct BoundingBox: Geo {
 	public let upperLeft: GeoPoint
 	public let lowerRight: GeoPoint
-	
+
 	public init(upperLeft: GeoPoint, lowerRight: GeoPoint) {
 		self.upperLeft = upperLeft
 		self.lowerRight = lowerRight
 	}
-	
+
 	public var value: Any {
 		var val = [String: Any]()
 		val["type"] = "envelope"
@@ -53,7 +53,7 @@ public struct BoundingBox: Geo {
 public struct Circle: Geo {
 	public let center: GeoPoint
 	public let radius: Double
-	
+
 	public init(center: GeoPoint, radius: Double) {
 		self.center = center
 		self.radius = radius
@@ -71,7 +71,7 @@ public struct Circle: Geo {
 
 public struct Line: Geo {
 	public let coordinates: [GeoPoint]
-	
+
 	public init(coordinates: [GeoPoint]) {
 		self.coordinates = coordinates
 	}
@@ -87,7 +87,7 @@ public struct Line: Geo {
 
 public struct Polygon: Geo {
 	public let coordinates: [GeoPoint]
-	
+
 	public init(coordinates: [GeoPoint]) {
 		self.coordinates = coordinates
 	}

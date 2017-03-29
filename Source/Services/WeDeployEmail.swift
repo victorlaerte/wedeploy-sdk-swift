@@ -16,7 +16,7 @@ import Foundation
 import PromiseKit
 import RxSwift
 
-public class WeDeployEmail : WeDeployService {
+public class WeDeployEmail: WeDeployService {
 
 	var params: [(name: String, value: String)] = []
 

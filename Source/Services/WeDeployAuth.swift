@@ -22,7 +22,7 @@ import Foundation
 import PromiseKit
 import RxSwift
 
-public class WeDeployAuth : WeDeployService {
+public class WeDeployAuth: WeDeployService {
 
 	public static var urlRedirect = PublishSubject<URL>()
 	public static var tokenSubscription: Disposable?
@@ -59,10 +59,10 @@ public class WeDeployAuth : WeDeployService {
 		WeDeployAuth.urlRedirect.on(.next(url))
 	}
 
-	public func signInWithRedirect(provider: AuthProvider, onSignIn: @escaping (Auth?, Error?) -> ()) {
+	public func signInWithRedirect(provider: AuthProvider, onSignIn: @escaping (Auth?, Error?) -> Void) {
 		let authUrl = self.url
 		WeDeployAuth.tokenSubscription?.dispose()
-		
+
 		WeDeployAuth.tokenSubscription = WeDeployAuth.urlRedirect
 			.subscribe(onNext: { url in
 					let token = url.absoluteString.components(separatedBy: "access_token=")[1]
@@ -74,14 +74,13 @@ public class WeDeployAuth : WeDeployService {
 		var url = URLComponents(string: "\(authUrl)/oauth/authorize")!
 		url.queryItems = provider.providerParams
 
-
 		open(url.url!)
 	}
 
 	public func createUser(email: String, password: String, name: String?) -> Promise<User> {
 		var body = [
-					"email" : email,
-					"password" : password
+					"email": email,
+					"password": password
 				]
 
 		if let name = name {
@@ -101,7 +100,7 @@ public class WeDeployAuth : WeDeployService {
 	public func updateUser(id: String, email: String? = nil, password: String? = nil,
 			name: String? = nil, photoUrl: String? = nil, attrs: [String : Any] = [:] ) -> Promise<Void> {
 
-		var body = [String : Any]()
+		var body = [String: Any]()
 
 		if let email = email {
 			body["email"] = email
@@ -201,7 +200,6 @@ public class WeDeployAuth : WeDeployService {
 			UIApplication.shared.openURL(url)
 		}
 	}
-	
+
 	#endif
 }
-

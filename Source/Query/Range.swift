@@ -26,7 +26,7 @@ public struct Range {
 
 	public var value: [String: Any] {
 		var desc = [String: Any]()
-		
+
 		if let from = from {
 			desc["from"] = from
 		}

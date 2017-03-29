@@ -16,7 +16,7 @@ import WeDeploy
 import XCTest
 import PromiseKit
 
-class BaseTest : XCTestCase {
+class BaseTest: XCTestCase {
 
 	var username: String!
 	var password: String!
@@ -44,7 +44,7 @@ class BaseTest : XCTestCase {
 		dataModuleUrl = settings["dataModuleUrl"]
 	}
 
-	func executeAuthenticated(block: @escaping (Auth) -> ()) {
+	func executeAuthenticated(block: @escaping (Auth) -> Void) {
 		WeDeploy.auth(authModuleUrl)
 			.signInWith(username: username, password: password)
 			.tap { auth in
@@ -68,5 +68,3 @@ extension Promise {
 		}
 	}
 }
-
-

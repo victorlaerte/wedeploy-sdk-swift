@@ -14,7 +14,7 @@
 
 import Foundation
 
-public class Query : CustomStringConvertible {
+public class Query: CustomStringConvertible {
 
 	public private(set) var query = [String: Any]()
 
@@ -45,7 +45,7 @@ public class Query : CustomStringConvertible {
 		filters.append(filter.filter)
 
 		query["filter"] = filters
-		
+
 		return self
 	}
 
@@ -91,7 +91,7 @@ public class Query : CustomStringConvertible {
 		query["type"] = "count"
 		return self
 	}
-	
+
 	public func search() -> Self {
 		query["type"] = "search"
 		return self

@@ -14,12 +14,11 @@
 
 import Foundation
 
-
 public struct TokenAuth: Auth {
 
 	public let token: String
 
 	public var authHeaders: [String : String] {
-		return ["Authorization" : "Bearer \(token)"]
+		return ["Authorization": "Bearer \(token)"]
 	}
 }

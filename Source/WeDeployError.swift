@@ -14,7 +14,7 @@
 
 import Foundation
 
-public struct WeDeployError : Error, CustomDebugStringConvertible {
+public struct WeDeployError: Error, CustomDebugStringConvertible {
 
 	let code: Int
 	let message: String

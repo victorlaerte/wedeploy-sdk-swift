@@ -14,8 +14,7 @@
 
 import Foundation
 
-
-public class WeDeploy : RequestBuilder {
+public class WeDeploy: RequestBuilder {
 
 	override public class func url(_ url: String) -> WeDeploy {
 		return WeDeploy(url)

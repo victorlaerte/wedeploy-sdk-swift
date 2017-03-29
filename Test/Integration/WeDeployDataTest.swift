@@ -18,10 +18,9 @@ import PromiseKit
 
 class WeDeployDataCreationTest: BaseTest {
 
-
 	func testCreateResource() {
 		let resource: [String: Any] = [
-			"title" : "a title",
+			"title": "a title",
 			"description": "a description"
 		]
 
@@ -43,12 +42,12 @@ class WeDeployDataCreationTest: BaseTest {
 
 	func testCreateMultipleResources() {
 		let resource1: [String: Any] = [
-			"title" : "a title",
+			"title": "a title",
 			"description": "a description"
 		]
 
 		let resource2: [String: Any] = [
-			"title" : "another title",
+			"title": "another title",
 			"description": "another description"
 		]
 
@@ -71,19 +70,18 @@ class WeDeployDataCreationTest: BaseTest {
 
 }
 
-
 class WeDeployDataTest: BaseTest {
 
 	let collectionName = "things"
 
 	let data: [[String: String]] = [
-		["name": "aname1" , "yearsOld": "10" ],
-		["name": "aname2" , "yearsOld": "15" ],
-		["name": "aname3" , "yearsOld": "20" ],
-		["name": "aname4" , "yearsOld": "25" ],
-		["name": "aname5" , "yearsOld": "35" ],
-		["name": "aname6" , "yearsOld": "45" ],
-		["name": "aname7" , "yearsOld": "55" ]
+		["name": "aname1", "yearsOld": "10" ],
+		["name": "aname2", "yearsOld": "15" ],
+		["name": "aname3", "yearsOld": "20" ],
+		["name": "aname4", "yearsOld": "25" ],
+		["name": "aname5", "yearsOld": "35" ],
+		["name": "aname6", "yearsOld": "45" ],
+		["name": "aname7", "yearsOld": "55" ]
 	]
 
 	override func setUp() {
@@ -135,7 +133,7 @@ class WeDeployDataTest: BaseTest {
 		WeDeploy
 			.data(self.dataModuleUrl)
 			.where(field: "yearsOld", op: ">", value: "14")
-			.any(field: "yearsOld", value: ["20","25"])
+			.any(field: "yearsOld", value: ["20", "25"])
 			.get(resourcePath: collectionName)
 			.valueOrFail { items in
 				XCTAssertEqual(items.count, 2)

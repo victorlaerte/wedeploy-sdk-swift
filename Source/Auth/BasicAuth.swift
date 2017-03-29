@@ -14,7 +14,7 @@
 
 import Foundation
 
-public class BasicAuth : Auth {
+public class BasicAuth: Auth {
 
 	public var password: String
 	public var username: String
@@ -29,6 +29,6 @@ public class BasicAuth : Auth {
 		let data = credentials.data(using: .utf8)
 		credentials = data!.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
 
-		return ["Authorization" : "Basic " + credentials]
+		return ["Authorization": "Basic " + credentials]
 	}
 }

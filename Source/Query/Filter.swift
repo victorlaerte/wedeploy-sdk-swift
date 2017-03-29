@@ -17,7 +17,7 @@ import Foundation
 public typealias ExtendedGraphemeClusterLiteralType = String
 public typealias UnicodeScalarLiteralType = String
 
-public class Filter : CustomStringConvertible, ExpressibleByStringLiteral {
+public class Filter: CustomStringConvertible, ExpressibleByStringLiteral {
 
 	public private(set) var filter = [String: AnyObject]()
 
@@ -47,7 +47,7 @@ public class Filter : CustomStringConvertible, ExpressibleByStringLiteral {
 
 	public init(field: String, op: String, value: Any?) {
 		var newFilter: [String: Any] = [
-			"operator": op,
+			"operator": op
 		]
 
 		if let value = value {
@@ -133,9 +133,9 @@ public class Filter : CustomStringConvertible, ExpressibleByStringLiteral {
 
 	public static func distance(field: String, latitude: Double,
 			longitude: Double, range: Range) -> Filter {
-			
+
 		var value: [String : Any] = [
-			"location" : [latitude, longitude]
+			"location": [latitude, longitude]
 		]
 
 		if let min = range.from {
@@ -158,10 +158,10 @@ public class Filter : CustomStringConvertible, ExpressibleByStringLiteral {
 
 	public static func shape(field: String, shapes: [Geo]) -> Filter {
 		let value = [
-			"type" : "geometrycollection",
+			"type": "geometrycollection",
 			"geometries": shapes.map({ $0.value })
 		] as [String : Any]
-		
+
 		return Filter(field: field, op: "gs", value: value)
 	}
 
@@ -213,24 +213,24 @@ public class Filter : CustomStringConvertible, ExpressibleByStringLiteral {
 		else {
 			ors = (filter["or"] as? [[String: AnyObject]] ?? [self.filter]) + filters.map({ $0.filter })
 		}
-		
+
 		filter = [
 			"or": ors as AnyObject
 		]
-		
+
 		return self
 	}
 
 }
 
-public func &&(left: Filter, right: Filter) -> Filter {
+public func && (left: Filter, right: Filter) -> Filter {
 	return left.and(right)
 }
 
-public func ||(left: Filter, right: Filter) -> Filter {
+public func || (left: Filter, right: Filter) -> Filter {
 	return left.or(right)
 }
 
-public prefix func !(filter: Filter) -> Filter {
+public prefix func ! (filter: Filter) -> Filter {
 	return filter.not()
 }

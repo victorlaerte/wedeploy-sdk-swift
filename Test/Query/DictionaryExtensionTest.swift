@@ -12,11 +12,10 @@
 * details.
 */
 
-
 @testable import WeDeploy
 import XCTest
 
-class DictionaryExtensionTest : XCTestCase {
+class DictionaryExtensionTest: XCTestCase {
 
 	func testExtension() {
 		let dic = [

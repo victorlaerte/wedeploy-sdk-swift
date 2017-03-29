@@ -18,7 +18,7 @@ import RxSwift
 
 public extension Promise {
 
-	func toCallback(callback: @escaping (T?, Error?) -> ()) {
+	func toCallback(callback: @escaping (T?, Error?) -> Void) {
 		self.tap { result in
 			switch result {
 				case .fulfilled(let value):

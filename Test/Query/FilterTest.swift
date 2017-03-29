@@ -12,11 +12,10 @@
 * details.
 */
 
-
 import WeDeploy
 import XCTest
 
-class FilterTest : XCTestCase {
+class FilterTest: XCTestCase {
 
 	func testAnd() {
 		let filter = Filter
@@ -180,11 +179,11 @@ class FilterTest : XCTestCase {
 			"]}",
 			filter.filter)
 	}
-	
+
 	func testOr_WithOneFilter() {
 		let filter = Filter()
 			.or(Filter.lt("age", 15))
-		
+
 		assertJSON(
 			"{\"or\":[" +
 				"{\"age\":{\"operator\":\"<\",\"value\":15}}" +
@@ -251,7 +250,6 @@ class FilterTest : XCTestCase {
 		"}}", filter.filter)
 	}
 
-
 	func testStringConvertible() {
 		let filter: Filter = "age > 12"
 
@@ -296,22 +294,22 @@ class FilterTest : XCTestCase {
 
 		assertJSON("{\"shape\":{\"operator\":\"gp\",\"value\":[\"10.0,10.0\",\"20.0,30.5\"]}}", filter.filter)
 	}
-	
+
 	func testShapeOperator_WithOneShape() {
 		let filter = Filter.shape(field: "shape", shapes: [Circle(center: GeoPoint(lat: 0, long: 0), radius: 20)])
-		
+
 		assertJSON("{\"shape\":{\"operator\":\"gs\",\"value\":" +
 						"{\"type\": \"geometrycollection\",\"geometries\":" +
 								"[{\"coordinates\": \"0.0,0.0\", \"radius\": 20, \"type\": \"circle\"}]" +
 						"}}" +
 					"}", filter.filter)
 	}
-	
+
 	func testShapeOperator_WithSeveralShapes() {
 		let filter = Filter.shape(field: "shape", shapes:[
 			Circle(center: GeoPoint(lat: 0, long: 0), radius: 20),
 			BoundingBox(upperLeft: GeoPoint(lat:20.0, long:0.0), lowerRight: GeoPoint(lat: 0.0, long: 20.0))])
-		
+
 		assertJSON("{\"shape\":{\"operator\":\"gs\",\"value\":" +
 						"{\"type\": \"geometrycollection\",\"geometries\":" +
 							"[" +

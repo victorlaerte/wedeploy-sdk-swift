@@ -16,7 +16,6 @@ import Foundation
 import PromiseKit
 import RxSwift
 
-
 public class RequestBuilder {
 
 	var authorization: Auth?
@@ -141,7 +140,8 @@ public class RequestBuilder {
 		}
 
 		return formFields.reduce([]) { (result, element: (key: String, value: String)) -> [String] in
-			result + [element.key + "=" + (element.value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? element.value)]
+			result + [element.key + "=" + (element.value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+					?? element.value)]
 		}
 		.joined(separator: "&")
 	}

@@ -17,18 +17,16 @@ import XCTest
 import RxSwift
 import Foundation
 
-
-class WeDeployAuthTest : BaseTest {
+class WeDeployAuthTest: BaseTest {
 
 	var bag = DisposeBag()
-
 
 	func testSignInWithPromise() {
 		let expect = expectation(description: "correct login")
 
 		WeDeploy.auth(authModuleUrl)
 			.signInWith(username: username, password: password)
-			.valueOrFail { auth in
+			.valueOrFail { _ in
 				expect.fulfill()
 			}
 
@@ -41,7 +39,7 @@ class WeDeployAuthTest : BaseTest {
 		WeDeploy.auth(authModuleUrl)
 			.signInWith(username: username, password: password)
 			.toObservable()
-			.subscribe(onNext: { auth in
+			.subscribe(onNext: { _ in
 				expect.fulfill()
 			},
 			onError: { error in
@@ -67,7 +65,6 @@ class WeDeployAuthTest : BaseTest {
 
 		waitForExpectations(timeout: 5, handler: nil)
 	}
-
 
 	func testCurrentUser() {
 		let expect = expectation(description: "correct user")
@@ -122,7 +119,7 @@ class WeDeployAuthTest : BaseTest {
 						.getCurrentUser()
 				}
 				.valueOrFail { user in
-					XCTAssertEqual(user.name , "new")
+					XCTAssertEqual(user.name, "new")
 					XCTAssertEqual(user.photoUrl, "http://somephoto.com")
 					expect.fulfill()
 				}
@@ -130,7 +127,6 @@ class WeDeployAuthTest : BaseTest {
 
 		waitForExpectations(timeout: 10, handler: nil)
 	}
-
 
 	func testSendRecoverPasswordEmail() {
 		let expect = expectation(description: "")

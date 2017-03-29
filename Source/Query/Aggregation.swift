@@ -14,8 +14,7 @@
 
 import Foundation
 
-
-public class Aggregation : CustomStringConvertible {
+public class Aggregation: CustomStringConvertible {
 
 	public let aggregation: [String: AnyObject]
 

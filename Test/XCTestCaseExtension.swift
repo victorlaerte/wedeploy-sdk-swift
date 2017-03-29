@@ -12,7 +12,6 @@
 * details.
 */
 
-
 import XCTest
 
 extension XCTestCase {
@@ -32,14 +31,14 @@ extension XCTestCase {
 	}
 
 	func fail(error: Error?) {
-		if (error == nil) {
+		if error == nil {
 			return
 		}
 
 		XCTFail(error!.localizedDescription)
 	}
 
-	func wait(timeout: Double? = 2, assert: (() -> ())? = nil) {
+	func wait(timeout: Double? = 2, assert: (() -> Void)? = nil) {
 		waitForExpectations(timeout: timeout!) { error in
 			self.fail(error: error )
 			assert?()

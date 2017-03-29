@@ -12,7 +12,6 @@
 * details.
 */
 
-
 import Foundation
 
 public struct AuthSession {
@@ -26,4 +25,3 @@ public struct AuthSession {
 	}
 
 }
-
