@@ -66,70 +66,63 @@ public class WeDeployData : WeDeployService {
 	}
 
 	public func `where`(field: String, op: String, value: Any) -> Self {
-		filter = Filter(field: field, op: op, value: value)
+		filter = getOrCreateFilter().and(Filter(field: field, op: op, value: value))
+		return self
+	}
+
+	public func `where`(filter: Filter) -> Self {
+		self.filter = getOrCreateFilter().and(filter)
 		return self
 	}
 
 	public func or(field: String, op: String, value: Any) -> Self {
-		filter = filter?.or(Filter(field: field, op: op, value: value))
+		filter = getOrCreateFilter().or(Filter(field: field, op: op, value: value))
 		return self
 	}
 
 	public func none(field: String, value: [Any]) -> Self {
-		filter = self.getOrCreateFilter().and(Filter.none(field, value))
-		return self
+		return self.where(filter: Filter.none(field, value))
 	}
 
 	public func lt(field: String, value: Any) -> Self {
-		filter = self.getOrCreateFilter().and(Filter.lt(field, value))
-		return self
+		return self.where(filter: Filter.lt(field, value))
 	}
 
 	public func lte(field: String, value: Any) -> Self {
-		filter = self.getOrCreateFilter().and(Filter.lte(field, value))
-		return self
+		return self.where(filter: Filter.lte(field, value))
 	}
 
 	public func gt(field: String, value: Any) -> Self {
-		filter = self.getOrCreateFilter().and(Filter.gt(field, value))
-		return self
+		return self.where(filter: Filter.gt(field, value))
 	}
 
 	public func gte(field: String, value: Any) -> Self {
-		filter = self.getOrCreateFilter().and(Filter.gte(field, value))
-		return self
+		return self.where(filter: Filter.gt(field, value))
 	}
 
 	public func equal(field: String, value: Any) -> Self {
-		filter = self.getOrCreateFilter().and(Filter.equal(field, value))
-		return self
+		return self.where(filter: Filter.equal(field, value))
 	}
 
 	public func any(field: String, value: [Any]) -> Self {
-		filter = self.getOrCreateFilter().and(Filter.any(field, value))
-		return self
+		return self.where(filter: Filter.any(field, value))
 	}
 
 	public func match(field: String, pattern: String) -> Self {
-		filter = Filter.match(field: field, value: pattern)
-		return self
+		return self.where(filter: Filter.match(field: field, value: pattern))
 	}
 
 	public func similar(field: String, query: String) -> Self {
-		filter = Filter.similar(field: field, query: query)
-		return self
+		return self.where(filter: Filter.similar(field: field, query: query))
 	}
 
 	public func distance(field: String, latitude: Double,
 		longitude: Double, range: Range) -> Self {
 
-		filter = self.getOrCreateFilter()
-				.and(Filter.distance(field: field, latitude: latitude, longitude: longitude, range: range))
-
-		return self
+		return self.where(filter: Filter.distance(field: field,
+				latitude: latitude, longitude: longitude, range: range))
 	}
 
-		return self
 	}
 
 	public func orderBy(field: String, order: Query.Order) -> Self {
