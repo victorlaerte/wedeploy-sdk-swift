@@ -123,6 +123,36 @@ public class WeDeployData : WeDeployService {
 				latitude: latitude, longitude: longitude, range: range))
 	}
 
+	public func fuzzy(field: String, query: Any, fuzziness: Int = 0) -> Self {
+		return self.where(filter: Filter.fuzzy(field: field, query: query, fuzziness: fuzziness))
+	}
+	
+	public func range(field: String, range: Range) -> Self {
+		return self.where(filter: Filter.range(field: field, range: range))
+	}
+	
+	public  func polygon(field: String, points: [GeoPoint]) -> Self {
+		return self.where(filter: Filter.polygon(field: field, points: points))
+	}
+	
+	public func shape(field: String, shapes: [Geo]) -> Self {
+		return self.where(filter: Filter.shape(field: field, shapes: shapes))
+	}
+	
+	public func phrase(field: String, value: Any) -> Self {
+		return self.where(filter: Filter.phrase(field: field, value: value))
+	}
+	
+	public func prefix(field: String, value: Any) -> Self {
+		return self.where(filter: Filter.prefix(field: field, value: value))
+	}
+	
+	public func missing(field: String) -> Self {
+		return self.where(filter: Filter.missing(field: field))
+	}
+	
+	public func exists(field: String) -> Self {
+		return self.where(filter: Filter.exists(field: field))
 	}
 
 	public func orderBy(field: String, order: Query.Order) -> Self {
