@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B01B7E41E8CD54400B76E71 /* Geo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B34CD8C1E8C024C00E12884 /* Geo.swift */; };
+		0B01B7E51E8CD54500B76E71 /* Geo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B34CD8C1E8C024C00E12884 /* Geo.swift */; };
+		0B01B7E61E8CD54700B76E71 /* Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B34CD8A1E8BF34300E12884 /* Range.swift */; };
+		0B01B7E71E8CD54800B76E71 /* Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B34CD8A1E8BF34300E12884 /* Range.swift */; };
 		0B34CD8B1E8BF34300E12884 /* Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B34CD8A1E8BF34300E12884 /* Range.swift */; };
 		0B34CD8D1E8C024C00E12884 /* Geo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B34CD8C1E8C024C00E12884 /* Geo.swift */; };
 		0B43AB161E0C0E8500701E52 /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B43AB151E0C0E8500701E52 /* AuthProvider.swift */; };
@@ -983,11 +987,13 @@
 				0BCA2BA91E8AAB2D00C5F0FE /* Aggregation.swift in Sources */,
 				0BCA2B9D1E8AAB2D00C5F0FE /* WeDeployAuth.swift in Sources */,
 				0BCA2BA31E8AAB2D00C5F0FE /* BasicAuth.swift in Sources */,
+				0B01B7E41E8CD54400B76E71 /* Geo.swift in Sources */,
 				0BCA2BAC1E8AAB2D00C5F0FE /* Request.swift in Sources */,
 				0BCA2BB01E8AAB2D00C5F0FE /* User.swift in Sources */,
 				0BCA2BA51E8AAB2D00C5F0FE /* AuthSession.swift in Sources */,
 				0BCA2BB11E8AAB2D00C5F0FE /* WeDeploy.swift in Sources */,
 				0BCA2BA41E8AAB2D00C5F0FE /* TokenAuth.swift in Sources */,
+				0B01B7E61E8CD54700B76E71 /* Range.swift in Sources */,
 				0BCA2BA81E8AAB2D00C5F0FE /* Query.swift in Sources */,
 				0BCA2BA11E8AAB2D00C5F0FE /* AuthProvider.swift in Sources */,
 				0BCA2B9E1E8AAB2D00C5F0FE /* WeDeployEmail.swift in Sources */,
@@ -1033,11 +1039,13 @@
 				0BCA2BC11E8AAB2D00C5F0FE /* Aggregation.swift in Sources */,
 				0BCA2BB51E8AAB2D00C5F0FE /* WeDeployAuth.swift in Sources */,
 				0BCA2BBB1E8AAB2D00C5F0FE /* BasicAuth.swift in Sources */,
+				0B01B7E51E8CD54500B76E71 /* Geo.swift in Sources */,
 				0BCA2BC41E8AAB2D00C5F0FE /* Request.swift in Sources */,
 				0BCA2BC81E8AAB2D00C5F0FE /* User.swift in Sources */,
 				0BCA2BBD1E8AAB2D00C5F0FE /* AuthSession.swift in Sources */,
 				0BCA2BC91E8AAB2D00C5F0FE /* WeDeploy.swift in Sources */,
 				0BCA2BBC1E8AAB2D00C5F0FE /* TokenAuth.swift in Sources */,
+				0B01B7E71E8CD54800B76E71 /* Range.swift in Sources */,
 				0BCA2BC01E8AAB2D00C5F0FE /* Query.swift in Sources */,
 				0BCA2BB91E8AAB2D00C5F0FE /* AuthProvider.swift in Sources */,
 				0BCA2BB61E8AAB2D00C5F0FE /* WeDeployEmail.swift in Sources */,
