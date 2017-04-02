@@ -133,6 +133,7 @@
 		57CBB54C1E8AEE92006E8B5F /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CBB5441E8AED4E006E8B5F /* PromiseKit.framework */; };
 		57CBB54D1E8AEE92006E8B5F /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CBB5451E8AED4E006E8B5F /* RxSwift.framework */; };
 		57CBB54E1E8AEE92006E8B5F /* SocketIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CBB5461E8AED4E006E8B5F /* SocketIO.framework */; };
+		57F666031E918ACB007576F8 /* DistanceUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F666021E918ACB007576F8 /* DistanceUnit.swift */; };
 		88EB6CDE1DF1A7EF00FE7362 /* WeDeployAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EB6CDC1DF1A7EF00FE7362 /* WeDeployAuth.swift */; };
 		88EB6CDF1DF1A7EF00FE7362 /* WeDeployEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EB6CDD1DF1A7EF00FE7362 /* WeDeployEmail.swift */; };
 		CC0C23881C3DA36400408177 /* WeDeploy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC0C237E1C3DA36400408177 /* WeDeploy.framework */; };
@@ -248,6 +249,7 @@
 		57CBB56B1E8AEF57006E8B5F /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/Mac/PromiseKit.framework; sourceTree = "<group>"; };
 		57CBB56C1E8AEF57006E8B5F /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/Mac/RxSwift.framework; sourceTree = "<group>"; };
 		57CBB56D1E8AEF57006E8B5F /* SocketIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SocketIO.framework; path = Carthage/Build/Mac/SocketIO.framework; sourceTree = "<group>"; };
+		57F666021E918ACB007576F8 /* DistanceUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceUnit.swift; sourceTree = "<group>"; };
 		7B0CDEE64BB19267687ADF48 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88EB6CDC1DF1A7EF00FE7362 /* WeDeployAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployAuth.swift; sourceTree = "<group>"; };
 		88EB6CDD1DF1A7EF00FE7362 /* WeDeployEmail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployEmail.swift; sourceTree = "<group>"; };
@@ -481,6 +483,7 @@
 				0B575EDF1E6F0A7500A8B021 /* Aggregation.swift */,
 				0B34CD8A1E8BF34300E12884 /* Range.swift */,
 				0B34CD8C1E8C024C00E12884 /* Geo.swift */,
+				57F666021E918ACB007576F8 /* DistanceUnit.swift */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -1084,6 +1087,7 @@
 			files = (
 				0BB3BE781DE8565E00FA90EE /* User.swift in Sources */,
 				0B5802331DED9FF7002C3E7A /* WeDeployError.swift in Sources */,
+				57F666031E918ACB007576F8 /* DistanceUnit.swift in Sources */,
 				0B74EDBB1DE6E797007AE62C /* DictionaryExtension.swift in Sources */,
 				0BB0C2BC1DE8333D00CACDE1 /* TokenAuth.swift in Sources */,
 				0B34CD8D1E8C024C00E12884 /* Geo.swift in Sources */,

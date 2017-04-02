@@ -122,6 +122,13 @@ public class WeDeployData: WeDeployService {
 				latitude: latitude, longitude: longitude, range: range))
 	}
 
+	public func distance(field: String, latitude: Double, longitude: Double,
+		distance: DistanceUnit) -> Self {
+
+		return self.where(filter: Filter.distance(field: field,
+			latitude: latitude, longitude: longitude, distance: distance))
+	}
+
 	public func fuzzy(field: String, query: Any, fuzziness: Int = 0) -> Self {
 		return self.where(filter: Filter.fuzzy(field: field, query: query, fuzziness: fuzziness))
 	}

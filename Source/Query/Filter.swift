@@ -148,6 +148,13 @@ public class Filter: CustomStringConvertible, ExpressibleByStringLiteral {
 		return Filter(field: field, op: "gd", value: value)
 	}
 
+	public static func distance(field: String, latitude: Double,
+			longitude: Double, distance: DistanceUnit) -> Filter {
+
+		return Filter.distance(field: field, latitude: latitude,
+			longitude: longitude, range: Range(to: distance.value))
+	}
+
 	public static func range(field: String, range: Range) -> Filter {
 		return Filter(field: field, op: "range", value: range.value)
 	}
