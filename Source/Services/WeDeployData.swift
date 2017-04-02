@@ -41,7 +41,17 @@ public class WeDeployData: WeDeployService {
 		return RequestBuilder.url(self.url)
 			.authorize(auth: self.authorization)
 			.path("/\(resourcePath)")
-			.patch()
+			.patch(body: updatedAttributes)
+			.then { response in
+				try response.validateEmptyBody()
+			}
+	}
+
+	public func replace(resourcePath: String, replacedAttributes: [String: Any]) -> Promise<Void> {
+		return RequestBuilder.url(self.url)
+			.authorize(auth: self.authorization)
+			.path("/\(resourcePath)")
+			.put(body: replacedAttributes)
 			.then { response in
 				try response.validateEmptyBody()
 			}
