@@ -77,14 +77,24 @@ public class WeDeployAuth: WeDeployService {
 		open(url.url!)
 	}
 
-	public func createUser(email: String, password: String, name: String?) -> Promise<User> {
-		var body = [
+	public func createUser(email: String, password: String, name: String?,
+		photoUrl: String? = nil, attrs: [String: Any] = [:]) -> Promise<User> {
+
+		var body: [String: Any] = [
 					"email": email,
 					"password": password
 				]
 
 		if let name = name {
 			body["name"] = name
+		}
+
+		if let photoUrl = photoUrl {
+			body["photoUrl"] = photoUrl
+		}
+
+		for (key, element) in attrs {
+			body[key] = element
 		}
 
 		return RequestBuilder
