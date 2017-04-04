@@ -69,7 +69,7 @@ public class Response {
 			throw WeDeployError.errorFrom(response: self)
 		}
 		guard let body = body as? T else {
-				print("Trying to cast \(self.body.self) into \(T.self)")
+				print("Trying to cast \(String(describing: self.body.self)) into \(T.self)")
 				throw WeDeployError.errorFrom(response: self)
 		}
 
