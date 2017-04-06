@@ -50,8 +50,8 @@ public enum RealTimeEventType: String {
 }
 
 public struct RealTimeEvent {
-	let type: RealTimeEventType
-	let document: [String : Any]
+	public let type: RealTimeEventType
+	public let document: [String : Any]
 }
 
 public extension SocketIOClient {

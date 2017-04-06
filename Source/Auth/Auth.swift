@@ -22,7 +22,7 @@ public protocol Auth {
 
 }
 
-extension Auth {
+public extension Auth {
 
 	public func authenticate(request: Request) {
 		for (key, value) in authHeaders {

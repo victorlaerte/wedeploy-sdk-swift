@@ -22,8 +22,8 @@ public class AuthProvider {
 		case google
 	}
 
-	let provider: Provider
-	let redirectUri: String
+	public let provider: Provider
+	public let redirectUri: String
 
 	public var scope: String?
 	public var providerScope: String?
