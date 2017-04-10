@@ -18,30 +18,28 @@ import PromiseKit
 
 class BaseTest: XCTestCase {
 
-	var username: String!
-	var password: String!
-	var userId: String!
-
-	var authModuleUrl: String!
-	var emailModuleUrl: String!
-	var dataModuleUrl: String!
-
-	override func setUp() {
-		loadSettings()
+	var username: String {
+		return Constants.username
 	}
 
-	private func loadSettings() {
-		let bundle = Bundle(for: type(of: self))
-		let file = bundle.path(forResource: "settings", ofType: "plist")
-		let settings = NSDictionary(contentsOfFile: file!) as! [String: String]
+	var password: String {
+		return Constants.password
+	}
 
-		username = settings["username"]
-		password = settings["password"]
-		userId = settings["userId"]
+	var userId: String {
+		return Constants.userId
+	}
 
-		authModuleUrl = settings["authModuleUrl"]
-		emailModuleUrl = settings["emailModuleUrl"]
-		dataModuleUrl = settings["dataModuleUrl"]
+	var authModuleUrl: String {
+		return Constants.authModuleUrl
+	}
+
+	var emailModuleUrl: String {
+		return Constants.emailModuleUrl
+	}
+
+	var dataModuleUrl: String {
+		return Constants.dataModuleUrl
 	}
 
 	func executeAuthenticated(block: @escaping (Auth) -> Void) {
@@ -53,7 +51,6 @@ class BaseTest: XCTestCase {
 				}
 		}
 	}
-}
 
 extension Promise {
 
