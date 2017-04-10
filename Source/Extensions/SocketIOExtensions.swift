@@ -52,7 +52,7 @@ public enum RealTimeEventType: String {
 public struct RealTimeEvent {
 	public let type: RealTimeEventType
 	public let document: [String : Any]
-	
+
 	public init(type: RealTimeEventType, document: [String: Any]) {
 		self.type = type
 		self.document = document

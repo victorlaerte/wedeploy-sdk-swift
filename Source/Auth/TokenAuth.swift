@@ -21,7 +21,7 @@ public struct TokenAuth: Auth {
 	public var authHeaders: [String : String] {
 		return ["Authorization": "Bearer \(token)"]
 	}
-	
+
 	public init(token: String) {
 		self.token = token
 	}
