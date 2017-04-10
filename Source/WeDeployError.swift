@@ -47,3 +47,13 @@ public struct WeDeployError: Error, CustomDebugStringConvertible {
 		return WeDeployError(code: Int(code), message: message, errors: errors)
 	}
 }
+
+public enum WeDeployProviderError: Error {
+	case noAccessToken
+}
+
+extension WeDeployProviderError: CustomStringConvertible {
+	public var description: String {
+		return "No access token found in the url"
+	}
+}
