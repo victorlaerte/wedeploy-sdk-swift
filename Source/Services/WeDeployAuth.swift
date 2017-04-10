@@ -65,11 +65,15 @@ public class WeDeployAuth: WeDeployService {
 
 		WeDeployAuth.tokenSubscription = WeDeployAuth.urlRedirect
 			.subscribe(onNext: { url in
-					let token = url.absoluteString.components(separatedBy: "access_token=")[1]
-					let auth = TokenAuth(token: token)
-
+				let urlParts = url.absoluteString.components(separatedBy: "access_token=")
+				if urlParts.count == 2 {
+					let auth = TokenAuth(token: urlParts[1])
 					onSignIn(auth, nil)
-				})
+				}
+				else {
+					onSignIn(nil, WeDeployProviderError.noAccessToken)
+				}
+			})
 
 		var url = URLComponents(string: "\(authUrl)/oauth/authorize")!
 		url.queryItems = provider.providerParams
