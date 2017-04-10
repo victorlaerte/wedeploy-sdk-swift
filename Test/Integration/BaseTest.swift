@@ -52,16 +52,6 @@ class BaseTest: XCTestCase {
 		}
 	}
 
-extension Promise {
-
-	func valueOrFail(_ action: @escaping (T) -> Void) {
-		self.tap { result in
-			switch result {
-				case .fulfilled(let value):
-					action(value)
-				case .rejected(let error):
-					XCTFail("Rejected promise with error \(error)")
-			}
 		}
 	}
 }
