@@ -23,21 +23,19 @@ class WeDeployDataCreationTest: BaseTest {
 			"title": "a title",
 			"description": "a description"
 		]
-
-		let expect = expectation(description: "resource created")
-
-		executeAuthenticated { auth in
-			WeDeploy.data(self.dataModuleUrl, authorization: auth)
+		let auth = givenAnAuth()
+		
+		let (item, error) = WeDeploy.data(self.dataModuleUrl, authorization: auth)
 				.create(resource: "things", object: resource)
-				.valueOrFail { item in
-					XCTAssertEqual(item["title"] as! String, resource["title"] as! String)
-					XCTAssertEqual(item["description"] as! String, resource["description"] as! String)
-
-					expect.fulfill()
-				}
+				.sync()
+		
+		XCTAssertNotNil(item)
+		XCTAssertNil(error)
+		
+		if item != nil {
+			XCTAssertEqual(item!["title"] as! String, resource["title"] as! String)
+			XCTAssertEqual(item!["description"] as! String, resource["description"] as! String)
 		}
-
-		waitForExpectations(timeout: 5, handler: nil)
 	}
 
 	func testCreateMultipleResources() {
@@ -50,22 +48,20 @@ class WeDeployDataCreationTest: BaseTest {
 			"title": "another title",
 			"description": "another description"
 		]
+		let auth = givenAnAuth()
 
-		let expect = expectation(description: "resources created")
-
-		executeAuthenticated { auth in
-			WeDeploy.data(self.dataModuleUrl, authorization: auth)
-				.create(resource: "things", object: [resource1, resource2])
-				.valueOrFail { items in
-					XCTAssertEqual(items.count, 2)
-					XCTAssertEqual(items[0]["title"] as? String, resource1["title"] as? String)
-					XCTAssertEqual(items[1]["title"] as? String, resource2["title"] as? String)
-
-					expect.fulfill()
-				}
+		
+		let (items, error) = WeDeploy.data(self.dataModuleUrl, authorization: auth)
+			.create(resource: "things", object: [resource1, resource2])
+			.sync()
+		
+		XCTAssertNotNil(items)
+		XCTAssertNil(error)
+		if items != nil {
+			XCTAssertEqual(items!.count, 2)
+			XCTAssertEqual(items![0]["title"] as? String, resource1["title"] as? String)
+			XCTAssertEqual(items![1]["title"] as? String, resource2["title"] as? String)
 		}
-
-		waitForExpectations(timeout: 10, handler: nil)
 	}
 
 }
@@ -74,7 +70,7 @@ class WeDeployDataTest: BaseTest {
 
 	let collectionName = "things"
 
-	let data: [[String: String]] = [
+	var data: [[String: String]] = [
 		["name": "aname1", "yearsOld": "10" ],
 		["name": "aname2", "yearsOld": "15" ],
 		["name": "aname3", "yearsOld": "20" ],
@@ -87,176 +83,138 @@ class WeDeployDataTest: BaseTest {
 	override func setUp() {
 		super.setUp()
 
-		let exp = expect(description: "filling data")
-
-		WeDeploy.data(self.dataModuleUrl)
-			.create(resource: collectionName, object: data)
-			.tap { _ in
-				exp.fulfill()
-			}
-
-		waitForExpectations(timeout: 10, handler: nil)
+		_ = WeDeploy.data(self.dataModuleUrl)
+			.create(resource: collectionName, object: data).sync()
 	}
 
 	override func tearDown() {
 		super.tearDown()
 
-		let exp = expect(description: "empty data")
-
-		WeDeploy.data(self.dataModuleUrl)
+		_ = WeDeploy.data(self.dataModuleUrl)
 			.delete(collectionOrResourcePath: collectionName)
-			.tap { _ in
-				exp.fulfill()
-		}
-
-		waitForExpectations(timeout: 10, handler: nil)
+			.sync()
 	}
 
 	func testWhereOperator() {
-		let exp = expect(description: "where")
-
-		WeDeploy
-			.data(self.dataModuleUrl)
+		let (items, error) = WeDeploy.data(self.dataModuleUrl)
 			.where(field: "yearsOld", op: ">", value: "14")
 			.get(resourcePath: collectionName)
-			.valueOrFail { items in
-				XCTAssertEqual(items.count, 6)
-				exp.fulfill()
-			}
-
-		waitForExpectations(timeout: 10, handler: nil)
+			.sync()
+		
+		XCTAssertNotNil(items)
+		XCTAssertNil(error)
+		if items != nil {
+			XCTAssertEqual(items!.count, 6)
+		}
 	}
 
 	func testAnyOperator() {
-		let exp = expect(description: "where")
-
-		WeDeploy
-			.data(self.dataModuleUrl)
+		let (items, error) = WeDeploy.data(self.dataModuleUrl)
 			.where(field: "yearsOld", op: ">", value: "14")
 			.any(field: "yearsOld", value: ["20", "25"])
 			.get(resourcePath: collectionName)
-			.valueOrFail { items in
-				XCTAssertEqual(items.count, 2)
-
-				exp.fulfill()
-			}
-
-		waitForExpectations(timeout: 10, handler: nil)
+			.sync()
+		
+		XCTAssertNotNil(items)
+		XCTAssertNil(error)
+		if items != nil {
+			XCTAssertEqual(items!.count, 2)
+		}
 	}
 
 	func testCountOperator() {
-		let exp = expect(description: "where")
-
-		WeDeploy
-			.data(self.dataModuleUrl)
+		let (count, error) = WeDeploy.data(self.dataModuleUrl)
 			.where(field: "yearsOld", op: ">", value: "14")
 			.count()
-			.get(resourcePath: collectionName)
-			.valueOrFail { (count: Int) in
-				XCTAssertEqual(count, 6)
-
-				exp.fulfill()
-			}
-
-		waitForExpectations(timeout: 10, handler: nil)
+			.get(resourcePath: collectionName, type: Int.self)
+			.sync()
+		
+		XCTAssertNotNil(count)
+		XCTAssertNil(error)
+		XCTAssertEqual(count, 6)
 	}
 
 	func testLimitOperator() {
-		let exp = expect(description: "where")
-
-		WeDeploy
-			.data(self.dataModuleUrl)
+		 
+		let (items, error) = WeDeploy.data(self.dataModuleUrl)
 			.where(field: "yearsOld", op: ">", value: "14")
 			.limit(1)
 			.get(resourcePath: collectionName)
-			.valueOrFail { items in
-				XCTAssertEqual(items.count, 1)
-
-				exp.fulfill()
-			}
-
-		waitForExpectations(timeout: 10, handler: nil)
+			.sync()
+		
+		XCTAssertNotNil(items)
+		XCTAssertNil(error)
+		if items != nil {
+			XCTAssertEqual(items!.count, 1)
+		}
 	}
 
 	func testOrderAscOperator() {
-		let exp = expect(description: "where")
-
-		WeDeploy
-			.data(self.dataModuleUrl)
+		let (items, error) = WeDeploy.data(self.dataModuleUrl)
 			.where(field: "yearsOld", op: ">", value: "14")
 			.orderBy(field: "yearsOld", order: .ASC)
 			.get(resourcePath: collectionName)
-			.valueOrFail { items in
-				XCTAssertEqual(items.count, 6)
-
-				XCTAssertEqual(items[0]["yearsOld"] as? String, "15")
-				XCTAssertEqual(items[1]["yearsOld"] as? String, "20")
-				XCTAssertEqual(items[2]["yearsOld"] as? String, "25")
-
-				exp.fulfill()
-			}
-
-		waitForExpectations(timeout: 10, handler: nil)
+			.sync()
+		
+		XCTAssertNotNil(items)
+		XCTAssertNil(error)
+		if items != nil {
+			XCTAssertEqual(items!.count, 6)
+			XCTAssertEqual(items![0]["yearsOld"] as? String, "15")
+			XCTAssertEqual(items![1]["yearsOld"] as? String, "20")
+			XCTAssertEqual(items![2]["yearsOld"] as? String, "25")
+		}
 	}
 
 	func testOrderDescOperator() {
-		let exp = expect(description: "where")
-
-		WeDeploy
+		let (items, error) = WeDeploy
 			.data(self.dataModuleUrl)
 			.where(field: "yearsOld", op: ">", value: "14")
 			.orderBy(field: "yearsOld", order: .DESC)
 			.get(resourcePath: collectionName)
-			.valueOrFail { items in
-				XCTAssertEqual(items.count, 6)
-
-				XCTAssertEqual(items[0]["yearsOld"] as? String, "55")
-				XCTAssertEqual(items[1]["yearsOld"] as? String, "45")
-				XCTAssertEqual(items[2]["yearsOld"] as? String, "35")
-
-				exp.fulfill()
-			}
-
-		waitForExpectations(timeout: 10, handler: nil)
+			.sync()
+		
+		XCTAssertNotNil(items)
+		XCTAssertNil(error)
+		if items != nil {
+			XCTAssertEqual(items!.count, 6)
+			XCTAssertEqual(items![0]["yearsOld"] as? String, "55")
+			XCTAssertEqual(items![1]["yearsOld"] as? String, "45")
+			XCTAssertEqual(items![2]["yearsOld"] as? String, "35")
+		}
 	}
 
 	func testOffsetOperator() {
-		let exp = expect(description: "where")
-
-		WeDeploy
-			.data(self.dataModuleUrl)
+		let (items, error) = WeDeploy.data(self.dataModuleUrl)
 			.where(field: "yearsOld", op: ">", value: "14")
 			.orderBy(field: "yearsOld", order: .ASC)
 			.offset(1)
 			.get(resourcePath: collectionName)
-			.valueOrFail { items in
-				XCTAssertEqual(items.count, 5)
-				XCTAssertEqual(items[0]["yearsOld"] as? String ?? "0", "20")
+			.sync()
 
-				exp.fulfill()
-			}
-
-		waitForExpectations(timeout: 10, handler: nil)
+		XCTAssertNotNil(items)
+		XCTAssertNil(error)
+		if items != nil {
+			XCTAssertEqual(items!.count, 5)
+			XCTAssertEqual(items![0]["yearsOld"] as! String, "20")
+		}
 	}
 
 	func testOffsetLimitOperator() {
-		let exp = expect(description: "where")
-
-		WeDeploy
-			.data(self.dataModuleUrl)
+		let (items, error) = WeDeploy.data(self.dataModuleUrl)
 			.where(field: "yearsOld", op: ">", value: "14")
 			.orderBy(field: "yearsOld", order: .ASC)
 			.limit(1)
 			.offset(1)
 			.get(resourcePath: collectionName)
-			.valueOrFail { items in
-				XCTAssertEqual(items.count, 1)
-				XCTAssertEqual(items[0]["yearsOld"] as? String, "20")
+			.sync()
 
-				exp.fulfill()
-			}
-
-		waitForExpectations(timeout: 10, handler: nil)
+		XCTAssertNotNil(items)
+		XCTAssertNil(error)
+		if items != nil {
+			XCTAssertEqual(items!.count, 1)
+			XCTAssertEqual(items![0]["yearsOld"] as? String, "20")
+		}
 	}
 
 }
