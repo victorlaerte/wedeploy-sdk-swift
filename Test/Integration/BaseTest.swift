@@ -16,6 +16,10 @@ import WeDeploy
 import XCTest
 import PromiseKit
 
+enum TestError: Error {
+	case empty
+}
+
 class BaseTest: XCTestCase {
 
 	var username: String {
@@ -52,6 +56,14 @@ class BaseTest: XCTestCase {
 		}
 	}
 
+	func givenAnAuth() -> Auth? {
+		let (auth, _) = WeDeploy.auth(authModuleUrl).signInWith(username: username, password: password).sync()
+		if let auth = auth {
+			return auth
 		}
+
+		XCTFail("Error retrieving the authentication")
+		
+		return nil
 	}
 }
