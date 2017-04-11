@@ -16,7 +16,7 @@ import XCTest
 @testable import WeDeploy
 
 class AuthProviderTest: XCTestCase {
-    
+
 	func testProviderShouldReturnCorrectProviderName() {
 		let providerGithub = AuthProvider(provider: .github, redirectUri: "")
 		let providerFacebook = AuthProvider(provider: .facebook, redirectUri: "")
@@ -45,6 +45,5 @@ class AuthProviderTest: XCTestCase {
 
 		XCTAssertEqual(scopeParam.value, "someScope")
 	}
-    
-}
 
+}

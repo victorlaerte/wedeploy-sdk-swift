@@ -12,18 +12,20 @@
 * details.
 */
 
-
 import Foundation
 
-public struct AuthSession {
-	public var currentUser: User?
-	public var currentAuth: Auth?
+public class WeDeployService {
 
+	var authorization: Auth?
 	let url: String
 
-	init(_ url: String) {
+	init(_ url: String, authorization: Auth? = nil) {
 		self.url = url
+		self.authorization = authorization
 	}
 
+	public func authorize(auth: Auth?) -> Self {
+		authorization = auth
+		return self
+	}
 }
-

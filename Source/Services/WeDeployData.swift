@@ -16,33 +16,24 @@ import Foundation
 import PromiseKit
 import SocketIO
 
-
-public class WeDeployData {
+public class WeDeployData: WeDeployService {
 
 	var query = Query()
 	var filter: Filter?
 
-	let authorization: Auth?
-	let url: String
-
-	init(_ url: String, authorization: Auth? = nil) {
-		self.url = url
-		self.authorization = authorization
-	}
-
 	public func create(resource: String, object: [String : Any]) -> Promise<[String : AnyObject]> {
 
 		return doCreateRequest(resource: resource, object: object)
-			.then {
-				return self.castResponseAndReturnPromise(response: $0)
+			.then { response in
+				try response.validate()
 			}
 	}
 
 	public func create(resource: String, object: [[String : Any]]) -> Promise<[[String : AnyObject]]> {
 
 		return doCreateRequest(resource: resource, object: object)
-			.then {
-				return self.castResponseAndReturnPromise(response: $0)
+			.then { response in
+				try response.validateBody(bodyType: [[String: AnyObject]].self)
 			}
 	}
 
@@ -50,17 +41,19 @@ public class WeDeployData {
 		return RequestBuilder.url(self.url)
 			.authorize(auth: self.authorization)
 			.path("/\(resourcePath)")
-			.patch()
-			.then { response -> Promise<Void> in
+			.patch(body: updatedAttributes)
+			.then { response in
+				try response.validateEmptyBody()
+			}
+	}
 
-				return Promise<Void> { fulfill, reject in
-					if response.statusCode == 204 {
-						fulfill(())
-					}
-					else {
-						reject(WeDeployError.errorFrom(response: response))
-					}
-				}
+	public func replace(resourcePath: String, replacedAttributes: [String: Any]) -> Promise<Void> {
+		return RequestBuilder.url(self.url)
+			.authorize(auth: self.authorization)
+			.path("/\(resourcePath)")
+			.put(body: replacedAttributes)
+			.then { response in
+				try response.validateEmptyBody()
 			}
 	}
 
@@ -81,59 +74,101 @@ public class WeDeployData {
 		return self
 	}
 
-	public func `where`<T>(field: String, op: String, value: T) -> Self {
-		filter = Filter(field: field, op: op, value: value)
+	public func `where`(field: String, op: String, value: Any) -> Self {
+		filter = getOrCreateFilter().and(Filter(field: field, op: op, value: value))
 		return self
 	}
 
-	public func or<T>(field: String, op: String, value: T) -> Self {
-		filter = filter?.or(Filter(field: field, op: op, value: value))
+	public func `where`(filter: Filter) -> Self {
+		self.filter = getOrCreateFilter().and(filter)
 		return self
 	}
 
-	public func none<T>(field: String, value: [T]) -> Self {
-		filter = self.getOrCreateFilter().and(Filter.none(field, value))
+	public func or(field: String, op: String, value: Any) -> Self {
+		filter = getOrCreateFilter().or(Filter(field: field, op: op, value: value))
 		return self
 	}
 
-	public func lt<T>(field: String, value: T) -> Self {
-		filter = self.getOrCreateFilter().and(Filter.lt(field, value))
-		return self
+	public func none(field: String, value: [Any]) -> Self {
+		return self.where(filter: Filter.none(field, value))
 	}
 
-	public func lte<T>(field: String, value: T) -> Self {
-		filter = self.getOrCreateFilter().and(Filter.lte(field, value))
-		return self
+	public func lt(field: String, value: Any) -> Self {
+		return self.where(filter: Filter.lt(field, value))
 	}
 
-	public func gt<T>(field: String, value: T) -> Self {
-		filter = self.getOrCreateFilter().and(Filter.gt(field, value))
-		return self
+	public func lte(field: String, value: Any) -> Self {
+		return self.where(filter: Filter.lte(field, value))
 	}
 
-	public func gte<T>(field: String, value: T) -> Self {
-		filter = self.getOrCreateFilter().and(Filter.gte(field, value))
-		return self
+	public func gt(field: String, value: Any) -> Self {
+		return self.where(filter: Filter.gt(field, value))
 	}
 
-	public func equal<T>(field: String, value: T) -> Self {
-		filter = self.getOrCreateFilter().and(Filter.equal(field, value))
-		return self
+	public func gte(field: String, value: Any) -> Self {
+		return self.where(filter: Filter.gt(field, value))
 	}
 
-	public func any<T>(field: String, value: [T]) -> Self {
-		filter = self.getOrCreateFilter().and(Filter.any(field, value))
-		return self
+	public func equal(field: String, value: Any) -> Self {
+		return self.where(filter: Filter.equal(field, value))
+	}
+
+	public func any(field: String, value: [Any]) -> Self {
+		return self.where(filter: Filter.any(field, value))
 	}
 
 	public func match(field: String, pattern: String) -> Self {
-		filter = Filter.similar(field: field, value: pattern)
-		return self
+		return self.where(filter: Filter.match(field: field, value: pattern))
 	}
 
 	public func similar(field: String, query: String) -> Self {
-		filter = Filter.similar(field: field, value: query)
-		return self
+		return self.where(filter: Filter.similar(field: field, query: query))
+	}
+
+	public func distance(field: String, latitude: Double,
+		longitude: Double, range: Range) -> Self {
+
+		return self.where(filter: Filter.distance(field: field,
+				latitude: latitude, longitude: longitude, range: range))
+	}
+
+	public func distance(field: String, latitude: Double, longitude: Double,
+		distance: DistanceUnit) -> Self {
+
+		return self.where(filter: Filter.distance(field: field,
+			latitude: latitude, longitude: longitude, distance: distance))
+	}
+
+	public func fuzzy(field: String, query: Any, fuzziness: Int = 0) -> Self {
+		return self.where(filter: Filter.fuzzy(field: field, query: query, fuzziness: fuzziness))
+	}
+
+	public func range(field: String, range: Range) -> Self {
+		return self.where(filter: Filter.range(field: field, range: range))
+	}
+
+	public  func polygon(field: String, points: [GeoPoint]) -> Self {
+		return self.where(filter: Filter.polygon(field: field, points: points))
+	}
+
+	public func shape(field: String, shapes: [Geo]) -> Self {
+		return self.where(filter: Filter.shape(field: field, shapes: shapes))
+	}
+
+	public func phrase(field: String, value: Any) -> Self {
+		return self.where(filter: Filter.phrase(field: field, value: value))
+	}
+
+	public func prefix(field: String, value: Any) -> Self {
+		return self.where(filter: Filter.prefix(field: field, value: value))
+	}
+
+	public func missing(field: String) -> Self {
+		return self.where(filter: Filter.missing(field: field))
+	}
+
+	public func exists(field: String) -> Self {
+		return self.where(filter: Filter.exists(field: field))
 	}
 
 	public func orderBy(field: String, order: Query.Order) -> Self {
@@ -151,26 +186,43 @@ public class WeDeployData {
 		return self
 	}
 
+	public func count() -> Self {
+		query = query.count()
+		return self
+	}
+
+	public func aggregate(name: String, field: String, op: String, value: Any? = nil) -> Self {
+		let aggregation = Aggregation(name: name, field: field, op: op, value: value)
+		query = query.aggregate(aggregation: aggregation)
+		return self
+	}
+
+	public func aggregate(aggregation: Aggregation) -> Self {
+		query = query.aggregate(aggregation: aggregation)
+		return self
+	}
+
+	public func highlight(_ fields: String...) -> Self {
+		query = query.highlight(fields: fields)
+		return self
+	}
+
 	public func search(resourcePath: String) -> Promise<[String: AnyObject]> {
-		query.isSearch = true
+		query = query.search()
 		return doGetRequest(resourcePath: resourcePath)
-			.then {
-				return self.castResponseAndReturnPromise(response: $0)
+			.then { response in
+				try response.validate()
 			}
 	}
 
 	public func get(resourcePath: String) -> Promise<[[String: AnyObject]]> {
-		return doGetRequest(resourcePath: resourcePath)
-			.then {
-				return self.castResponseAndReturnPromise(response: $0)
-			}
+		return get(resourcePath: resourcePath, type: [[String: AnyObject]].self)
 	}
 
-	public func getCount(resourcePath: String) -> Promise<Int> {
-		query = query.count()
+	public func get<T>(resourcePath: String, type: T.Type = T.self) -> Promise<T> {
 		return doGetRequest(resourcePath: resourcePath)
-			.then {
-				return self.castResponseAndReturnPromise(response: $0)
+			.then { response in
+				try response.validateBody(bodyType: T.self)
 			}
 	}
 
@@ -178,11 +230,12 @@ public class WeDeployData {
 		if let filter = filter {
 			query = query.filter(filter: filter)
 		}
-		
+
 		let url = "\(self.url)/\(resourcePath)"
 		var options = SocketIOClientConfiguration()
 
-		let socket = SocketIOClientFactory.create(url: url, params: query.query.asQueryItems, options: &options)
+		let socket = SocketIOClientFactory.create(url: url, params: query.query.asQueryItems,
+				auth: authorization, options: &options)
 
 		query = Query()
 		filter = nil
@@ -222,16 +275,5 @@ public class WeDeployData {
 			.authorize(auth: self.authorization)
 			.path("/\(resource)")
 			.post(body: object)
-	}
-
-	func castResponseAndReturnPromise<T>(response: Response, type: T.Type? = T.self) -> Promise<T> {
-		return Promise<T> { fulfill, reject in
-			do {
-				let body = try response.validateBody(bodyType: T.self)
-				fulfill(body)
-			} catch let error {
-				reject(error)
-			}
-		}
 	}
 }

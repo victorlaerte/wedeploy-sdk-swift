@@ -19,18 +19,21 @@ public struct User {
 	public let name: String?
 	public let id: String
 	public let photoUrl: String?
+	public let attrs: [String : Any]
 
 	public init(json: [String :AnyObject]) {
 		email = json["email"] as? String
 		name = json["name"] as? String
 		id = json["id"] as! String
 		photoUrl = json["photoUrl"] as? String
+		attrs = json
 	}
 
-	public init(email: String, name: String, photoUrl: String? = nil) {
+	public init(email: String, name: String, photoUrl: String? = nil, attrs: [String : Any] = [:]) {
 		self.email = email
 		self.name = name
 		self.id = ""
 		self.photoUrl = photoUrl
+		self.attrs = attrs
 	}
 }

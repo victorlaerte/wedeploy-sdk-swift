@@ -16,7 +16,6 @@ import Foundation
 import PromiseKit
 import RxSwift
 
-
 public class RequestBuilder {
 
 	var authorization: Auth?
@@ -49,7 +48,11 @@ public class RequestBuilder {
 	}
 
 	public func header(name: String, value: String) -> Self {
-		headers[name] = value
+		var newValue = value
+		if let currentValue = headers[name] {
+			newValue = "\(currentValue), \(value)"
+		}
+		headers[name] = newValue
 		return self
 	}
 
@@ -137,7 +140,8 @@ public class RequestBuilder {
 		}
 
 		return formFields.reduce([]) { (result, element: (key: String, value: String)) -> [String] in
-			result + [element.key + "=" + (element.value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? element.value)]
+			result + [element.key + "=" + (element.value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+					?? element.value)]
 		}
 		.joined(separator: "&")
 	}

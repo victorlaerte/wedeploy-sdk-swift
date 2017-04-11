@@ -14,20 +14,26 @@
 
 import Foundation
 
-public protocol Auth {
+public struct Range {
 
-	func authenticate(request: Request)
+	public var from: Any?
+	public var to: Any?
 
-	var authHeaders: [String : String] { get }
-
-}
-
-public extension Auth {
-
-	public func authenticate(request: Request) {
-		for (key, value) in authHeaders {
-			request.headers[key] = value
-		}
+	public init(from: Any? = nil, to: Any? = nil) {
+		self.from = from
+		self.to = to
 	}
 
+	public var value: [String: Any] {
+		var desc = [String: Any]()
+
+		if let from = from {
+			desc["from"] = from
+		}
+		if let to = to {
+			desc["to"] = to
+		}
+
+		return desc
+	}
 }

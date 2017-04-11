@@ -14,17 +14,16 @@
 
 import Foundation
 
-
 public class AuthProvider {
 
-	public enum Provider : String {
-		case github = "github"
-		case facebook = "facebook"
-		case google = "google"
+	public enum Provider: String {
+		case github
+		case facebook
+		case google
 	}
 
-	let provider: Provider
-	let redirectUri: String
+	public let provider: Provider
+	public let redirectUri: String
 
 	public var scope: String?
 	public var providerScope: String?
@@ -56,5 +55,5 @@ public class AuthProvider {
 
 		return queryItems
 	}
-	
+
 }

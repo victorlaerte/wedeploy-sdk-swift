@@ -53,7 +53,7 @@ public class Request {
 		}
 	}
 
-	func toURLRequest() throws -> URLRequest  {
+	func toURLRequest() throws -> URLRequest {
 		let URL = NSURLComponents(string: url)!
 		URL.queryItems = params
 

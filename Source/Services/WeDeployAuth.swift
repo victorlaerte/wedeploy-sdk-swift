@@ -12,53 +12,33 @@
 * details.
 */
 
+#if os(macOS)
+	import AppKit
+#else
+	import UIKit
+#endif
+
 import Foundation
 import PromiseKit
 import RxSwift
 
-public class WeDeployAuth {
+public class WeDeployAuth: WeDeployService {
 
 	public static var urlRedirect = PublishSubject<URL>()
 	public static var tokenSubscription: Disposable?
 
-	public var currentUser: User?
-
-	var authorization: Auth?
-	let url: String
-
-	init(_ url: String, user: User? = nil, authorization: Auth? = nil) {
-		self.url = url
-		self.currentUser = user
-		self.authorization = authorization
-	}
-
-	public func signInWith(username: String, password: String) -> Promise<User> {
+	public func signInWith(username: String, password: String) -> Promise<Auth> {
 		return RequestBuilder.url(self.url).path("/oauth/token")
 			.param(name: "grant_type", value: "password")
 			.param(name: "username", value: username)
 			.param(name: "password", value: password)
 			.get()
-			.then { response -> Promise<()> in
+			.then { response -> Auth in
+				let body = try response.validate()
+				let token = body["access_token"] as! String
+				let auth = TokenAuth(token: token)
 
-				return Promise<()> { fulfill, reject in
-					do {
-						let body = try response.validate()
-						let token = body["access_token"] as! String
-						let auth = TokenAuth(token: token)
-
-						self.authorization = auth
-						WeDeploy.authSession?.currentAuth = auth
-
-						fulfill(())
-
-					} catch let error {
-						reject(error)
-					}
-
-				}
-			}
-			.then { _ -> Promise<User> in
-				return self.getCurrentUser()
+				return auth
 			}
 	}
 
@@ -69,15 +49,9 @@ public class WeDeployAuth {
 			.authorize(auth: self.authorization)
 			.get()
 			.then { (response: Response) -> User in
+				let body = try response.validate()
 
-				let body = response.body as! [String : AnyObject]
-
-				let user = User(json: body)
-
-				self.currentUser = user
-				WeDeploy.authSession?.currentUser = user
-
-				return user
+				return User(json: body)
 			}
 	}
 
@@ -85,66 +59,62 @@ public class WeDeployAuth {
 		WeDeployAuth.urlRedirect.on(.next(url))
 	}
 
-	public func signInWithRedirect(provider: AuthProvider, onSignIn: @escaping (User?, Error?) -> ()) {
+	public func signInWithRedirect(provider: AuthProvider, onSignIn: @escaping (Auth?, Error?) -> Void) {
 		let authUrl = self.url
 		WeDeployAuth.tokenSubscription?.dispose()
-		
+
 		WeDeployAuth.tokenSubscription = WeDeployAuth.urlRedirect
 			.subscribe(onNext: { url in
-				let token = url.absoluteString.components(separatedBy: "access_token=")[1]
-				let auth = TokenAuth(token: token)
-
-				self.authorization = auth
-				WeDeploy.authSession?.currentAuth = auth
-
-				self.getCurrentUser()
-					.tap { result in
-						switch result {
-						case .fulfilled(let user):
-							onSignIn(user, nil)
-						case .rejected(let error):
-							onSignIn(nil, error)
-						}
-					}
-				})
+				let urlParts = url.absoluteString.components(separatedBy: "access_token=")
+				if urlParts.count == 2 {
+					let auth = TokenAuth(token: urlParts[1])
+					onSignIn(auth, nil)
+				}
+				else {
+					onSignIn(nil, WeDeployProviderError.noAccessToken)
+				}
+			})
 
 		var url = URLComponents(string: "\(authUrl)/oauth/authorize")!
 		url.queryItems = provider.providerParams
 
-
 		open(url.url!)
 	}
 
-	public func createUser(email: String, password: String, name: String?) -> Promise<User> {
-		var body = [
-					"email" : email,
-					"password" : password
+	public func createUser(email: String, password: String, name: String?,
+		photoUrl: String? = nil, attrs: [String: Any] = [:]) -> Promise<User> {
+
+		var body: [String: Any] = [
+					"email": email,
+					"password": password
 				]
 
 		if let name = name {
 			body["name"] = name
 		}
 
+		if let photoUrl = photoUrl {
+			body["photoUrl"] = photoUrl
+		}
+
+		for (key, element) in attrs {
+			body[key] = element
+		}
+
 		return RequestBuilder
 				.url(self.url)
 				.path("/users")
 				.post(body: body as AnyObject?)
-				.then { response -> Promise<User> in
-
-					return Promise<User> { fulfill, reject in
-						do {
-							let body = try response.validate()
-
-							fulfill(User(json: body))
-						} catch let error {
-							reject(error)
-						}
-					}
+				.then { response -> User in
+					let body = try response.validate()
+					return User(json: body)
 				}
 	}
 
-	public func updateUser(id: String, email: String? = nil, password: String? = nil, name: String? = nil) -> Promise<Void> {
-		var body = [String : String]()
+	public func updateUser(id: String, email: String? = nil, password: String? = nil,
+			name: String? = nil, photoUrl: String? = nil, attrs: [String : Any] = [:] ) -> Promise<Void> {
+
+		var body = [String: Any]()
 
 		if let email = email {
 			body["email"] = email
@@ -158,23 +128,35 @@ public class WeDeployAuth {
 			body["name"] = name
 		}
 
+		if let photoUrl = photoUrl {
+			body["photoUrl"] = photoUrl
+		}
+
+		for (key, element) in attrs {
+			body[key] = element
+		}
+
 		return RequestBuilder
 			.url(self.url)
 			.path("/users")
 			.path("/\(id)")
 			.authorize(auth: authorization)
-			.patch(body: body as AnyObject?)
-			.then { response -> Promise<Void> in
+			.patch(body: body)
+			.then { response in
+				try response.validateEmptyBody()
+			}
+	}
 
-				return Promise<Void> { fulfill, reject in
-					if response.statusCode == 204 {
-						fulfill(())
-					}
-					else {
-						reject(WeDeployError.errorFrom(response: response))
-					}
-				}
-		}
+	public func deleteUser(id: String) -> Promise<Void> {
+		return RequestBuilder
+			.url(self.url)
+			.path("/users")
+			.path("/\(id)")
+			.authorize(auth: authorization)
+			.delete()
+			.then { response  in
+				try response.validateEmptyBody()
+			}
 	}
 
 	public func getUser(id: String) -> Promise<User> {
@@ -184,17 +166,9 @@ public class WeDeployAuth {
 				.path("/\(id)")
 				.authorize(auth: authorization)
 				.get()
-				.then { response -> Promise<User> in
-
-					return Promise<User> { fulfill, reject in
-						do {
-							let body = try response.validate()
-
-							fulfill(User(json: body))
-						} catch let error {
-							reject(error)
-						}
-					}
+				.then { response -> User in
+					let body = try response.validate()
+					return User(json: body)
 				}
 	}
 
@@ -204,29 +178,36 @@ public class WeDeployAuth {
 				.path("/user/recover")
 				.form(name: "email", value: email)
 				.post()
-				.then { response -> Promise<Void> in
-
-				 	return Promise<Void> { fulfill, reject in
-						if response.statusCode == 200 {
-							fulfill(())
-						}
-						else {
-							reject(WeDeployError.errorFrom(response: response))
-						}
-					}
+				.then { response in
+				 	try response.validateEmptyBody()
 				}
 	}
 
-	public func signOut() {
-		self.authorization = nil
-		self.currentUser = nil
+	public func signOut() -> Promise<Void> {
+		precondition(self.authorization != nil && self.authorization is TokenAuth,
+				"you have to have an authentication to sign out")
 
-		WeDeploy.authSession?.currentAuth = nil
-		WeDeploy.authSession?.currentUser = nil
+		let token = (self.authorization as! TokenAuth).token
+		return RequestBuilder
+				.url(self.url)
+				.path("/oauth/revoke")
+				.param(name: "token", value: token)
+				.get()
+				.then { response -> Void in
+					return try response.validateEmptyBody()
+				}
 	}
 
+	#if os(macOS)
+
 	func open(_ url: URL) {
-		if #available(iOS 10.0, *) {
+		NSWorkspace.shared().open(url)
+	}
+
+	#else
+
+	func open(_ url: URL) {
+		if #available(iOS 10.0, tvOS 10.0, *) {
 			UIApplication.shared.open(url, options: [:], completionHandler: nil)
 		}
 		else {
@@ -234,5 +215,5 @@ public class WeDeployAuth {
 		}
 	}
 
+	#endif
 }
-

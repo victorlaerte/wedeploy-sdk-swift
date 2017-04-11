@@ -12,12 +12,11 @@
 * details.
 */
 
-
 @testable import WeDeploy
 import SocketIO
 import XCTest
 
-class WatchTest : BaseTest {
+class WatchTest: BaseTest {
 
 	func testParseURLScheme() {
 		let urlHttp = SocketIOClientFactory.parseURL(url: "http://domain.com")

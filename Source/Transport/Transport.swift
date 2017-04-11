@@ -17,18 +17,18 @@ import Foundation
 public protocol Transport {
 
 	func send(
-		request: Request, success: @escaping ((Response) -> ()), failure: @escaping (Error) -> ())
+		request: Request, success: @escaping ((Response) -> Void), failure: @escaping (Error) -> Void)
 
 }
 
-public class NSURLSessionTransport : Transport {
+public class NSURLSessionTransport: Transport {
 
 	public func send(
-		request: Request, success: @escaping ((Response) -> ()), failure: @escaping (Error) -> ()) {
+		request: Request, success: @escaping ((Response) -> Void), failure: @escaping (Error) -> Void) {
 
 		let success = dispatchMainThread(success)
 		let failure = dispatchMainThread(failure)
-        
+
 		let config = URLSessionConfiguration.ephemeral
 		let session = URLSession(configuration: config)
 
@@ -65,7 +65,7 @@ public class NSURLSessionTransport : Transport {
 		}
 	}
 
-	func dispatchMainThread<T>(_ block: @escaping (T) -> ()) -> (T) -> () {
+	func dispatchMainThread<T>(_ block: @escaping (T) -> Void) -> (T) -> Void {
 		return { value in
 
 			DispatchQueue.main.async {

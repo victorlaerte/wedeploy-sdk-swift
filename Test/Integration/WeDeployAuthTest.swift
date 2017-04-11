@@ -14,103 +14,92 @@
 
 @testable import WeDeploy
 import XCTest
-import PromiseKit
-import RxSwift
 import Foundation
 
+class WeDeployAuthTest: BaseTest {
 
-class WeDeployAuthTest : BaseTest {
+	func testSignIn() {
+		let (auth, error) = WeDeploy.auth(authModuleUrl)
+			.signInWith(username: username, password: password).sync()
 
-	var bag = DisposeBag()
-
-
-	func testSignInWithPromise() {
-		let expect = expectation(description: "correct login")
-
-		WeDeploy.auth(authModuleUrl)
-				.signInWith(username: username, password: password)
-				.tap { result in
-					if case let .fulfilled(user) = result {
-						XCTAssertEqual(user.email, self.username)
-						expect.fulfill()
-					}
-					else {
-						XCTFail()
-					}
-				}
-
-		waitForExpectations(timeout: 5, handler: nil)
+		XCTAssertNotNil(auth)
+		XCTAssertNil(error)
 	}
 
-	func testSignInWithObservable() {
-		let expect = expectation(description: "correct login")
+	func testCurrentUser() {
+		let auth = givenAnAuth()
+		let authService = WeDeploy.auth(authModuleUrl, authorization: auth)
 
-		WeDeploy.auth(authModuleUrl)
-			.signInWith(username: username, password: password)
-			.toObservable()
-			.subscribe(onNext: { user in
-				XCTAssertNotNil(user)
-				XCTAssertEqual(user.email, self.username)
-				expect.fulfill()
-			},
-			onError: { _ in
-				XCTFail("this should not be called")
-			})
-			.addDisposableTo(bag)
+		let (user, error) = authService.getCurrentUser().sync()
 
-		waitForExpectations(timeout: 5, handler: { _ in
-			self.bag = DisposeBag()
-		})
-	}
-
-	func testSignInWithCallback() {
-		let expect = expectation(description: "correct login")
-
-		WeDeploy.auth(authModuleUrl)
-			.signInWith(username: username, password: password)
-			.toCallback { user, _ in
-				XCTAssertNotNil(user)
-				XCTAssertEqual(user?.email, self.username)
-				expect.fulfill()
-			}
-
-		waitForExpectations(timeout: 5, handler: nil)
+		XCTAssertNotNil(user)
+		XCTAssertNil(error)
+		if user != nil {
+			XCTAssertEqual(user!.email, username)
+		}
 	}
 
 	func testGetUser() {
-		let expect = expectation(description: "correct user")
+		let auth = givenAnAuth()
+		let authService = WeDeploy.auth(authModuleUrl, authorization: auth)
 
-		executeAuthenticated {
-			WeDeploy.auth()
-				.getUser(id: self.userId)
-				.tap { result in
-					if case let .fulfilled(user) = result {
-						XCTAssertEqual(user.email, self.username)
-						expect.fulfill()
-					}
-					else {
-						XCTFail()
-					}
-				}
+		let (user, error) = authService.getUser(id: userId).sync()
+
+		XCTAssertNotNil(user)
+		XCTAssertNil(error)
+		if user != nil {
+			XCTAssertEqual(user!.email, username)
+		}
+	}
+
+	func testUpdateUser() {
+		let auth = givenAnAuth()
+		let authService = WeDeploy.auth(authModuleUrl, authorization: auth)
+
+		// Get current user
+		let (user, error) = authService.getCurrentUser().sync()
+
+		if user == nil {
+			XCTFail("failed to obtain the user \(String(describing: error))")
+			return
 		}
 
-		waitForExpectations(timeout: 10, handler: nil)
+		// Update current user
+		let (voidResponse, errorUpdating): (Void?, Error?) = authService
+				.updateUser(id: user!.id, name: "new", photoUrl: "http://somephoto.com").sync()
+
+		if voidResponse == nil {
+			XCTFail("failed to obtain the user \(String(describing: errorUpdating))")
+			return
+		}
+
+		// Get current user again
+		let (userUpdated, errorUser) = authService.getCurrentUser().sync()
+
+		XCTAssertNotNil(userUpdated)
+		XCTAssertNil(errorUser)
+		if user != nil {
+			XCTAssertEqual(userUpdated!.name, "new")
+			XCTAssertEqual(userUpdated!.photoUrl, "http://somephoto.com")
+		}
 	}
 
 	func testSendRecoverPasswordEmail() {
-		let expect = expectation(description: "")
+		let authService = WeDeploy.auth(authModuleUrl)
 
-		WeDeploy.auth(authModuleUrl)
-				.sendPasswordReset(email: username)
-				.tap { result in
-					if case .fulfilled(_) = result {
-						expect.fulfill()
-					}
-					else {
-						XCTFail()
-					}
-				}
+		let (voidResponse, error): (Void?, Error?) = authService.sendPasswordReset(email: username).sync()
 
-		waitForExpectations(timeout: 10, handler: nil)
+		XCTAssertNotNil(voidResponse)
+		XCTAssertNil(error)
+	}
+
+	func testSignOut() {
+		let auth = givenAnAuth()
+		let authService = WeDeploy.auth(authModuleUrl, authorization: auth)
+
+		let (voidResponse, error): (Void?, Error?) = authService.signOut().sync()
+
+		XCTAssertNotNil(voidResponse)
+		XCTAssertNil(error)
 	}
 }

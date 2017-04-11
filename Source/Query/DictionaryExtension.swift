@@ -18,7 +18,6 @@ internal extension Dictionary {
 
 	var asJSON: String {
 		let data = try! JSONSerialization.data(withJSONObject: self)
-
 		return String(data: data, encoding: .utf8)!
 	}
 
@@ -26,7 +25,7 @@ internal extension Dictionary {
 		var items = [URLQueryItem]()
 
 		for (key, value) in self {
-			if ((value is [AnyObject]) || (value is [String: AnyObject])) {
+			if value is [AnyObject] || value is [String: AnyObject] {
 				let data = try! JSONSerialization.data(withJSONObject:
 					value as AnyObject)
 

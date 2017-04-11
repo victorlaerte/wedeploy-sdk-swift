@@ -12,7 +12,6 @@
 * details.
 */
 
-
 import XCTest
 
 extension XCTestCase {
@@ -22,9 +21,9 @@ extension XCTestCase {
 			expected.data(using: .utf8)!,
 			options: .allowFragments) as! [String: Any]
 
-		let dic2 = NSDictionary(dictionary: result) as [NSObject : AnyObject]
+		let dic2 = NSDictionary(dictionary: result)
 
-		XCTAssertTrue(NSDictionary(dictionary: dic1).isEqual(to: dic2))
+		XCTAssertEqual(NSDictionary(dictionary: dic1), dic2)
 	}
 
 	func expect(description: String!) -> XCTestExpectation {
@@ -32,14 +31,14 @@ extension XCTestCase {
 	}
 
 	func fail(error: Error?) {
-		if (error == nil) {
+		if error == nil {
 			return
 		}
 
 		XCTFail(error!.localizedDescription)
 	}
 
-	func wait(timeout: Double? = 2, assert: (() -> ())? = nil) {
+	func wait(timeout: Double? = 2, assert: (() -> Void)? = nil) {
 		waitForExpectations(timeout: timeout!) { error in
 			self.fail(error: error )
 			assert?()

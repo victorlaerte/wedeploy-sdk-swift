@@ -15,7 +15,7 @@
 @testable import WeDeploy
 import XCTest
 
-class RequestBuilderTest : XCTestCase {
+class RequestBuilderTest: XCTestCase {
 
 	func testFormBody() {
 
@@ -28,21 +28,30 @@ class RequestBuilderTest : XCTestCase {
 		XCTAssertEqual(requestBuilder.headers["Content-Type"]!, "application/x-www-form-urlencoded")
 	}
 
+	func testHeadersWithSameName() {
+
+		let requestBuilder = RequestBuilder.url("test.com")
+			.header(name: "HeaderName", value: "HeaderValue1")
+			.header(name: "HeaderName", value: "HeaderValue2")
+			.header(name: "HeaderName", value: "HeaderValue3")
+
+		XCTAssertEqual(requestBuilder.headers["HeaderName"], "HeaderValue1, HeaderValue2, HeaderValue3")
+	}
+
 }
 
+class MockTransport: Transport {
 
-class MockTransport : Transport {
-
-	var request : Request?
+	var request: Request?
 
 	func send(
-		request: Request, success: @escaping (Response) -> (),
-		failure: @escaping (Error) -> ()) {
+		request: Request, success: @escaping (Response) -> Void,
+		failure: @escaping (Error) -> Void) {
 
 		self.request = request
 
 		let data = "".data(using: .utf8)
 		success(Response(statusCode: 200, headers: [:], body: data!))
 	}
-	
+
 }

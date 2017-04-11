@@ -18,23 +18,26 @@ import XCTest
 
 class WeDeployEmailTest: BaseTest {
 
-	func testGetUser() {
-		let expect = expectation(description: "correct user")
+	func testSendEmail() {
+		let auth = givenAnAuth()
+		let emailService = WeDeploy.email(self.emailModuleUrl, authorization: auth)
+			.from(self.username)
+			.to(self.username)
+			.message("some message")
 
-		executeAuthenticated {
-			WeDeploy
-				.email(self.emailModuleUrl)
-				.sendEmail(from: self.username, to: self.username, subject: "subject", body: "body")
-				.tap { result in
-					if case .fulfilled(_) = result {
-						expect.fulfill()
-					}
-					else {
-						XCTFail()
-					}
-			}
-		}
+		let (emailId, error) = emailService.send().sync()
 
-		waitForExpectations(timeout: 10, handler: nil)
+		XCTAssertNotNil(emailId)
+		XCTAssertNil(error)
+	}
+
+	func testGetEmailStatus() {
+		let auth = givenAnAuth()
+		let emailServide = WeDeploy.email(self.emailModuleUrl, authorization: auth)
+
+		let (emailStatus, error) = emailServide.checkEmailStatus(id: "202605176596079530").sync()
+
+		XCTAssertNotNil(emailStatus)
+		XCTAssertNil(error)
 	}
 }

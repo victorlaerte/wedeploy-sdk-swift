@@ -35,7 +35,7 @@ public class Response {
 	}
 
 	func parse(body: Data) -> Any? {
-		if (contentType?.range(of: "application/json") != nil) {
+		if contentType?.range(of: "application/json") != nil {
 			do {
 				let parsed = try JSONSerialization.jsonObject(with: body, options: .allowFragments)
 
@@ -53,7 +53,7 @@ public class Response {
 	func parseString(body: Data) -> String? {
 		var string: String?
 
-		if (body.count > 0) {
+		if !body.isEmpty {
 			string = String(data: body, encoding: .utf8)
 		}
 
@@ -61,17 +61,31 @@ public class Response {
 	}
 
 	func validate() throws -> [String : AnyObject] {
-		return try validateBody(bodyType: [String : AnyObject].self)
+		return try validateBody(bodyType: [String: AnyObject].self)
 	}
 
-	func validateBody<T>(bodyType: T.Type) throws -> T {
-		guard 200 ..< 300 ~= statusCode,
-			let body = body as? T
-			else {
+	func validateBody<T>(bodyType: T.Type? = T.self) throws -> T {
+		guard isSucceeded() else {
+			throw WeDeployError.errorFrom(response: self)
+		}
+		guard let body = body as? T else {
+				print("Trying to cast \(String(describing: self.body.self)) into \(T.self)")
 				throw WeDeployError.errorFrom(response: self)
 		}
 
 		return body
+	}
+
+	func validateEmptyBody() throws {
+		guard isSucceeded() else {
+			throw WeDeployError.errorFrom(response: self)
+		}
+
+		return ()
+	}
+
+	func isSucceeded() -> Bool {
+		return 200 ..< 300 ~= statusCode
 	}
 
 }

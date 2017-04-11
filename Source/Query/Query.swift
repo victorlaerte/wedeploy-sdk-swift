@@ -14,11 +14,9 @@
 
 import Foundation
 
-public class Query : CustomStringConvertible {
+public class Query: CustomStringConvertible {
 
 	public private(set) var query = [String: Any]()
-
-	public var isSearch = false
 
 	public enum Order: String {
 		case ASC = "asc", DESC = "desc"
@@ -30,11 +28,11 @@ public class Query : CustomStringConvertible {
 
 	public init() {}
 
-	public func filter<T>(field: String, _ value: T) -> Self {
+	public func filter(field: String, _ value: Any) -> Self {
 		return self.filter(filter: Filter(field, value))
 	}
 
-	public func filter<T>(field: String, _ op: String, _ value: T)
+	public func filter(field: String, _ op: String, _ value: Any)
 		-> Self {
 
 		return self.filter(filter: Filter(field: field, op: op, value: value))
@@ -46,8 +44,28 @@ public class Query : CustomStringConvertible {
 
 		filters.append(filter.filter)
 
-		query[isSearch ? "search" : "filter"] = filters
-		
+		query["filter"] = filters
+
+		return self
+	}
+
+	public func aggregate(aggregation: Aggregation) -> Self {
+		var aggregations = query["aggregation"] as? [[String: AnyObject]] ?? [[String: AnyObject]]()
+
+		aggregations.append(aggregation.aggregation)
+
+		query["aggregation"] = aggregations
+
+		return self
+	}
+
+	public func highlight(fields: [String]) -> Self {
+		var highlights = query["highlight"] as? [String] ?? [String]()
+
+		highlights.append(contentsOf: fields)
+
+		query["highlight"] = highlights
+
 		return self
 	}
 
@@ -71,6 +89,11 @@ public class Query : CustomStringConvertible {
 
 	public func count() -> Self {
 		query["type"] = "count"
+		return self
+	}
+
+	public func search() -> Self {
+		query["type"] = "search"
 		return self
 	}
 

@@ -14,40 +14,56 @@
 
 import WeDeploy
 import XCTest
+import PromiseKit
 
-class BaseTest : XCTestCase {
+enum TestError: Error {
+	case empty
+}
 
-	var username: String!
-	var password: String!
-	var userId: String!
+class BaseTest: XCTestCase {
 
-	var authModuleUrl: String!
-	var emailModuleUrl: String!
-	var dataModuleUrl: String!
-
-	override func setUp() {
-		loadSettings()
+	var username: String {
+		return Constants.username
 	}
 
-	private func loadSettings() {
-		let bundle = Bundle(identifier: "com.liferay.WeDeploy.Tests")
-		let file = bundle!.path(forResource: "settings", ofType: "plist")
-		let settings = NSDictionary(contentsOfFile: file!) as! [String: String]
-
-		username = settings["username"]
-		password = settings["password"]
-		userId = settings["userId"]
-
-		authModuleUrl = settings["authModuleUrl"]
-		emailModuleUrl = settings["emailModuleUrl"]
-		dataModuleUrl = settings["dataModuleUrl"]
+	var password: String {
+		return Constants.password
 	}
 
-	func executeAuthenticated(block: @escaping () -> ()) {
+	var userId: String {
+		return Constants.userId
+	}
+
+	var authModuleUrl: String {
+		return Constants.authModuleUrl
+	}
+
+	var emailModuleUrl: String {
+		return Constants.emailModuleUrl
+	}
+
+	var dataModuleUrl: String {
+		return Constants.dataModuleUrl
+	}
+
+	func executeAuthenticated(block: @escaping (Auth) -> Void) {
 		WeDeploy.auth(authModuleUrl)
 			.signInWith(username: username, password: password)
-			.tap { _ in
-				block()
+			.tap { auth in
+				if case let .fulfilled(auth) = auth {
+					block(auth)
+				}
 		}
+	}
+
+	func givenAnAuth() -> Auth? {
+		let (auth, _) = WeDeploy.auth(authModuleUrl).signInWith(username: username, password: password).sync()
+		if let auth = auth {
+			return auth
+		}
+
+		XCTFail("Error retrieving the authentication")
+		
+		return nil
 	}
 }
