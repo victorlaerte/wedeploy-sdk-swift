@@ -20,6 +20,9 @@
 		0B46BA141DEED48B00EB28CF /* WeDeployAuthTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B46BA131DEED48B00EB28CF /* WeDeployAuthTest.swift */; };
 		0B46BA161DEEDB7300EB28CF /* WeDeployEmailTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B46BA151DEEDB7300EB28CF /* WeDeployEmailTest.swift */; };
 		0B46BA171DEEDD9900EB28CF /* BaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23C71C3F0EC700408177 /* BaseTest.swift */; };
+		0B520EA21EA74347001AB43B /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CBB56B1E8AEF57006E8B5F /* PromiseKit.framework */; };
+		0B520EA31EA74347001AB43B /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CBB56C1E8AEF57006E8B5F /* RxSwift.framework */; };
+		0B520EA41EA74347001AB43B /* SocketIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CBB56D1E8AEF57006E8B5F /* SocketIO.framework */; };
 		0B575EE01E6F0A7500A8B021 /* Aggregation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B575EDF1E6F0A7500A8B021 /* Aggregation.swift */; };
 		0B5802331DED9FF7002C3E7A /* WeDeployError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5802321DED9FF7002C3E7A /* WeDeployError.swift */; };
 		0B74EDBB1DE6E797007AE62C /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF69EA11C46BA7100961988 /* DictionaryExtension.swift */; };
@@ -31,8 +34,6 @@
 		0BB0C2C11DE83C1200CACDE1 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BB0C2C01DE83C1200CACDE1 /* XCTest.framework */; };
 		0BB3BE781DE8565E00FA90EE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB3BE771DE8565E00FA90EE /* User.swift */; };
 		0BBD1B801E97BF8500EA5474 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBD1B7D1E97BF3100EA5474 /* Constants.swift */; };
-		0BBD1B821E97C42C00EA5474 /* DistanceUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F666021E918ACB007576F8 /* DistanceUnit.swift */; };
-		0BBD1B831E97C42C00EA5474 /* DistanceUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F666021E918ACB007576F8 /* DistanceUnit.swift */; };
 		0BBD1B841E97DAE900EA5474 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBD1B7D1E97BF3100EA5474 /* Constants.swift */; };
 		0BBD1B851E97DAEA00EA5474 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBD1B7D1E97BF3100EA5474 /* Constants.swift */; };
 		0BBF702C1DEC93FC00C94DA8 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF702B1DEC93FC00C94DA8 /* RequestBuilder.swift */; };
@@ -134,9 +135,9 @@
 		577F127E1E8AF4E000612851 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CBB56B1E8AEF57006E8B5F /* PromiseKit.framework */; };
 		577F127F1E8AF4E000612851 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CBB56C1E8AEF57006E8B5F /* RxSwift.framework */; };
 		577F12801E8AF4E000612851 /* SocketIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CBB56D1E8AEF57006E8B5F /* SocketIO.framework */; };
-		57CBB5471E8AED4E006E8B5F /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CBB5441E8AED4E006E8B5F /* PromiseKit.framework */; };
-		57CBB5481E8AED4E006E8B5F /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CBB5451E8AED4E006E8B5F /* RxSwift.framework */; };
-		57CBB5491E8AED4E006E8B5F /* SocketIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CBB5461E8AED4E006E8B5F /* SocketIO.framework */; };
+		57CBB5471E8AED4E006E8B5F /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CBB5441E8AED4E006E8B5F /* PromiseKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		57CBB5481E8AED4E006E8B5F /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CBB5451E8AED4E006E8B5F /* RxSwift.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		57CBB5491E8AED4E006E8B5F /* SocketIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CBB5461E8AED4E006E8B5F /* SocketIO.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		57CBB54C1E8AEE92006E8B5F /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CBB5441E8AED4E006E8B5F /* PromiseKit.framework */; };
 		57CBB54D1E8AEE92006E8B5F /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CBB5451E8AED4E006E8B5F /* RxSwift.framework */; };
 		57CBB54E1E8AEE92006E8B5F /* SocketIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CBB5461E8AED4E006E8B5F /* SocketIO.framework */; };
@@ -153,7 +154,6 @@
 		CC2F36201C3FE50500902BD4 /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2F361F1C3FE50500902BD4 /* RequestMethod.swift */; };
 		CC70B5681CA485B70015F61F /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC70B5671CA485B70015F61F /* Auth.swift */; };
 		CC70B56A1CA485CB0015F61F /* BasicAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC70B5691CA485CB0015F61F /* BasicAuth.swift */; };
-		CC9F47B21C4076DB005243FE /* WeDeploy.podspec in Resources */ = {isa = PBXBuildFile; fileRef = CC9F47B11C4076DB005243FE /* WeDeploy.podspec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -296,6 +296,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B520EA21EA74347001AB43B /* PromiseKit.framework in Frameworks */,
+				0B520EA31EA74347001AB43B /* RxSwift.framework in Frameworks */,
+				0B520EA41EA74347001AB43B /* SocketIO.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,7 +685,6 @@
 				0BCA2B2A1E8AA5CC00C5F0FE /* Frameworks */,
 				0BCA2B2B1E8AA5CC00C5F0FE /* Headers */,
 				0BCA2B2C1E8AA5CC00C5F0FE /* Resources */,
-				57CBB5531E8AEF06006E8B5F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -720,7 +722,6 @@
 				0BCA2B631E8AA99200C5F0FE /* Frameworks */,
 				0BCA2B641E8AA99200C5F0FE /* Headers */,
 				0BCA2B651E8AA99200C5F0FE /* Resources */,
-				577F12791E8AF17700612851 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -758,7 +759,6 @@
 				CC0C237A1C3DA36400408177 /* Frameworks */,
 				CC0C237B1C3DA36400408177 /* Headers */,
 				CC0C237C1C3DA36400408177 /* Resources */,
-				57CBB54A1E8AEDD6006E8B5F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -886,7 +886,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC9F47B21C4076DB005243FE /* WeDeploy.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -901,22 +900,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		577F12791E8AF17700612851 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/tvOS/PromiseKit.framework",
-				"$(SRCROOT)/Carthage/Build/tvOS/PromiseKit.framework",
-				"$(SRCROOT)/Carthage/Build/tvOS/PromiseKit.framework",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
 		577F127A1E8AF1BE00612851 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -949,22 +932,6 @@
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
-		57CBB54A1E8AEDD6006E8B5F /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/PromiseKit.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/SocketIO.framework",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
 		57CBB54F1E8AEE95006E8B5F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -974,22 +941,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SocketIO.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/PromiseKit.framework",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
-		57CBB5531E8AEF06006E8B5F /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/Mac/PromiseKit.framework",
-				"$(SRCROOT)/Carthage/Build/Mac/RxSwift.framework",
-				"$(SRCROOT)/Carthage/Build/Mac/SocketIO.framework",
 			);
 			outputPaths = (
 			);
@@ -1038,14 +989,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BBD1B801E97BF8500EA5474 /* Constants.swift in Sources */,
-				0BCD53AB1E977FCE00F31845 /* EmailServiceTest.swift in Sources */,
 				0BCA2B851E8AAA5000C5F0FE /* WeDeployAuthTest.swift in Sources */,
 				0BCA2B891E8AAA5000C5F0FE /* FilterTest.swift in Sources */,
 				0BCA2B841E8AAA5000C5F0FE /* RequestBuilderTest.swift in Sources */,
 				0BCA2B8B1E8AAA5000C5F0FE /* WatchTest.swift in Sources */,
 				0BCA2B8D1E8AAA5000C5F0FE /* XCTestCaseExtension.swift in Sources */,
 				0BCA2B8C1E8AAA5000C5F0FE /* ResponseTest.swift in Sources */,
-				0BCD53B01E97883000F31845 /* PromiseKitExtensionsTest.swift in Sources */,
 				0BCA2B821E8AAA5000C5F0FE /* BaseTest.swift in Sources */,
 				0BCA2B861E8AAA5000C5F0FE /* WeDeployEmailTest.swift in Sources */,
 				0BCA2B881E8AAA5000C5F0FE /* DictionaryExtensionTest.swift in Sources */,
@@ -1101,7 +1050,6 @@
 				0BCA2B9A1E8AAA5100C5F0FE /* XCTestCaseExtension.swift in Sources */,
 				0BCA2B991E8AAA5100C5F0FE /* ResponseTest.swift in Sources */,
 				0BBD1B851E97DAEA00EA5474 /* Constants.swift in Sources */,
-				0BCD53B11E97883100F31845 /* PromiseKitExtensionsTest.swift in Sources */,
 				0BCA2B8F1E8AAA5100C5F0FE /* BaseTest.swift in Sources */,
 				0BCA2B931E8AAA5100C5F0FE /* WeDeployEmailTest.swift in Sources */,
 				0BCA2B951E8AAA5100C5F0FE /* DictionaryExtensionTest.swift in Sources */,
@@ -1149,7 +1097,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BCD53AA1E977FCD00F31845 /* EmailServiceTest.swift in Sources */,
 				0BE1D1341E0D3C9500FFE689 /* XCTestCaseExtension.swift in Sources */,
 				0BF2B5D31E1254A4004A4DF1 /* WeDeployDataTest.swift in Sources */,
 				0BE1D1331E0D3C2700FFE689 /* FilterTest.swift in Sources */,
@@ -1213,7 +1160,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.WeDeploy-macOS";
 				PRODUCT_NAME = WeDeploy;
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 3.0;
 			};
@@ -1243,7 +1190,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.WeDeploy-macOS";
 				PRODUCT_NAME = WeDeploy;
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -1316,11 +1263,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.WeDeploy-tvOS";
 				PRODUCT_NAME = WeDeploy;
 				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
+				TVOS_DEPLOYMENT_TARGET = 10.2;
 			};
 			name = Debug;
 		};
@@ -1345,10 +1292,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.WeDeploy-tvOS";
 				PRODUCT_NAME = WeDeploy;
 				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
+				TVOS_DEPLOYMENT_TARGET = 10.2;
 			};
 			name = Release;
 		};
@@ -1405,8 +1352,8 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(inherited)",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
@@ -1415,7 +1362,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.liferay.WeDeploy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -1430,8 +1377,8 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(inherited)",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
@@ -1440,7 +1387,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.liferay.WeDeploy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
