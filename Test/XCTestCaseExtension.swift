@@ -16,14 +16,16 @@ import XCTest
 
 extension XCTestCase {
 
-	func assertJSON(_ expected: String, _ result: [String: Any]) {
+	func assertJSON(_ expected: String, _ result: [String: Any],
+		file: StaticString = #file, line: UInt = #line) {
+
 		let dic1 = try! JSONSerialization.jsonObject(with:
 			expected.data(using: .utf8)!,
 			options: .allowFragments) as! [String: Any]
 
 		let dic2 = NSDictionary(dictionary: result)
 
-		XCTAssertEqual(NSDictionary(dictionary: dic1), dic2)
+		XCTAssertEqual(NSDictionary(dictionary: dic1), dic2, file: file, line: line)
 	}
 
 	func expect(description: String!) -> XCTestExpectation {
