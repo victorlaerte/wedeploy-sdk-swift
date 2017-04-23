@@ -177,7 +177,7 @@ public class Filter: CustomStringConvertible, ExpressibleByStringLiteral {
 	}
 
 	public static func prefix(field: String, value: Any) -> Filter {
-		return Filter(field: field, op: "pre", value: value)
+		return Filter(field: field, op: "prefix", value: value)
 	}
 
 	public static func missing(field: String) -> Filter {

@@ -320,4 +320,10 @@ class FilterTest: XCTestCase {
 					"}", filter.filter)
 	}
 
+	func testPrefix() {
+		let filter = Filter.prefix(field: "name", value: "an")
+
+		assertJSON(
+			"{\"name\":{\"operator\":\"prefix\",\"value\":\"an\"}}", filter.filter)
+	}
 }
