@@ -100,7 +100,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "exec &gt; /tmp/${PROJECT_NAME}_archive.log 2&gt;&amp;1&#10;if [ &quot;true&quot; == ${ALREADYINVOKED:-false} ]&#10;then&#10;echo &quot;RECURSION: Detected, stopping&quot;&#10;else&#10;mkdir -p &quot;${PROJECT_DIR}/Mac&quot;&#10;&#10;yes | cp -Rf &quot;${ARCHIVE_PRODUCTS_PATH}${INSTALL_PATH}/${FULL_PRODUCT_NAME}&quot; &quot;${PROJECT_DIR}/Mac&quot;&#10;&#10;open &quot;${PROJECT_DIR}&quot;&#10;&#10;fi">
+               scriptText = "exec &gt; /tmp/${PROJECT_NAME}_archive.log 2&gt;&amp;1&#10;if [ &quot;true&quot; == ${ALREADYINVOKED:-false} ]&#10;then&#10;echo &quot;RECURSION: Detected, stopping&quot;&#10;else&#10;MAC_BUILD_DIR=&quot;${PROJECT_DIR}/build-dir/Mac&quot;&#10;mkdir -p &quot;${MAC_BUILD_DIR}&quot;&#10;&#10;yes | cp -Rf &quot;${ARCHIVE_PRODUCTS_PATH}${INSTALL_PATH}/${FULL_PRODUCT_NAME}&quot; &quot;${MAC_BUILD_DIR}&quot;&#10;&#10;fi">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"

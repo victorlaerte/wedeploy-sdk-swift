@@ -1,0 +1,41 @@
+fastlane_version "2.27.0"
+
+default_platform :ios
+
+platform :ios do
+
+  desc "Archive all the frameworks and zip them"
+  lane :build_all do |lane|
+
+    if !lane[:version]
+      raise "No version specified!".red
+    end
+
+    version = lane[:version]
+
+    # Delete build directory if exists
+    FileUtils::rm_rf "../build-dir"
+
+    # Archive all the frameworks
+    xcodebuild(
+      archive: true,
+      scheme: "WeDeploy",
+      archive_path: "./build-dir/WeDeploy.xcarchive"
+    )
+    xcodebuild(
+      archive: true,
+      scheme: "WeDeploy-tvOS",
+      archive_path: "./build-dir/WeDeploy.xcarchive"
+    )
+    xcodebuild(
+      archive: true,
+      scheme: "WeDeploy-macOS",
+      archive_path: "./build-dir/WeDeploy.xcarchive"
+    )
+    
+    # Construct 
+    sh "cd ../build-dir
+    zip -r WeDeploy-#{version}.zip iOS tvOS Mac ../LICENSE"
+  end
+
+end

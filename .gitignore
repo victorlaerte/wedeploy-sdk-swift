@@ -1,6 +1,7 @@
 Pods/
 xcuserdata/
 Carthage/
+build-dir/
 
 **/.DS_Store
 
