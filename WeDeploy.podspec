@@ -1,23 +1,25 @@
 Pod::Spec.new do |s|
 	s.name					= "WeDeploy"
-	s.version				= "0.3.0"
-	s.summary				= "Swift API Client for Launchpad Project."
-	s.homepage				= "https://github.com/wedeploy/api.swift"
-	s.license				= "MIT"
+	s.version				= "0.4.0"
+	s.summary				= "Swift API Client for WeDeploy Project."
+	s.homepage				= "http://wedeploy.com/"
+	s.license				= {
+								"text": "Copyright 2017 Liferay Inc.",
+								"type": "Copyright"
+							}
 	s.author				= {
 								"Bruno Farache" => "bruno.farache@liferay.com",
 								"Victor Galán" => "victor.galan@liferay.com"
 							}
-	s.platform				= :ios
-	s.ios.deployment_target	= '8.0'
 	s.source				= {
-								:git => "https://github.com/wedeploy/api.swift.git",
-								:tag => s.version.to_s
+								:http => "http://cdn.wedeploy.com/api-swift/0.4.0/WeDeploy.zip"
 							}
-	s.ios.deployment_target = '8.0'
-	s.osx.deployment_target = '10.10'
+	s.ios.deployment_target = '9.0'
+	s.osx.deployment_target = '10.11'
 	s.tvos.deployment_target = '9.0'
-	s.source_files			= "Source/**/*.swift"
+	s.ios.vendored_frameworks = 'iOS/WeDeploy.framework'
+	s.tvos.vendored_frameworks = 'tvOS/WeDeploy.framework'
+	s.osx.vendored_frameworks = 'Mac/WeDeploy.framework'
 	s.dependency			"PromiseKit", "~> 4.0"
 	s.dependency			"Socket.IO-Client-Swift", "~> 8.1"
 	s.dependency			"RxSwift", "~> 3.0"
