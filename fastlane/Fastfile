@@ -34,8 +34,9 @@ platform :ios do
     )
     
     # Construct 
+    sh "cp ../LICENSE ../build-dir"
     sh "cd ../build-dir
-    zip -r WeDeploy-#{version}.zip iOS tvOS Mac ../LICENSE"
+    zip -r WeDeploy-#{version}.zip iOS tvOS Mac LICENSE"
   end
 
 end
