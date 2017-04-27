@@ -1,3 +1,3 @@
-github "victorg1991/PromiseKit" "4.1.9"
+github "mxcl/PromiseKit" "4.2.0"
 github "ReactiveX/RxSwift" "3.4.0"
 github "socketio/socket.io-client-swift" "v8.3.3"
