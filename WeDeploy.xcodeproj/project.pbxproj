@@ -28,6 +28,9 @@
 		0B74EDBB1DE6E797007AE62C /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF69EA11C46BA7100961988 /* DictionaryExtension.swift */; };
 		0B74EDBC1DE6E797007AE62C /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23AA1C3F0B8600408177 /* Filter.swift */; };
 		0B74EDBD1DE6E797007AE62C /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23AB1C3F0B8600408177 /* Query.swift */; };
+		0B9977771EB1D21700C4B04D /* Documentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9977751EB1D20700C4B04D /* Documentation.swift */; };
+		0B9977781EB1D21700C4B04D /* Documentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9977751EB1D20700C4B04D /* Documentation.swift */; };
+		0B9977791EB1D21800C4B04D /* Documentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9977751EB1D20700C4B04D /* Documentation.swift */; };
 		0BAC8D701E14F28500E75548 /* QueryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23BD1C3F0D3300408177 /* QueryTest.swift */; };
 		0BAC8D711E15018600E75548 /* DictionaryExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF69EA31C46C77900961988 /* DictionaryExtensionTest.swift */; };
 		0BB0C2BC1DE8333D00CACDE1 /* TokenAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB0C2BB1DE8333D00CACDE1 /* TokenAuth.swift */; };
@@ -189,6 +192,7 @@
 		0B46BA151DEEDB7300EB28CF /* WeDeployEmailTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployEmailTest.swift; sourceTree = "<group>"; };
 		0B575EDF1E6F0A7500A8B021 /* Aggregation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aggregation.swift; sourceTree = "<group>"; };
 		0B5802321DED9FF7002C3E7A /* WeDeployError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployError.swift; sourceTree = "<group>"; };
+		0B9977751EB1D20700C4B04D /* Documentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Documentation.swift; sourceTree = "<group>"; };
 		0BB0C2BB1DE8333D00CACDE1 /* TokenAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenAuth.swift; sourceTree = "<group>"; };
 		0BB0C2C01DE83C1200CACDE1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0BB3BE771DE8565E00FA90EE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -365,6 +369,14 @@
 				0B43AB151E0C0E8500701E52 /* AuthProvider.swift */,
 			);
 			path = Providers;
+			sourceTree = "<group>";
+		};
+		0B9977741EB1D0D500C4B04D /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				0B9977751EB1D20700C4B04D /* Documentation.swift */,
+			);
+			name = Documentation;
 			sourceTree = "<group>";
 		};
 		0BCA2B3A1E8AA5CC00C5F0FE /* WeDeploy-macOSTests */ = {
@@ -612,6 +624,7 @@
 		CCA17B9E1ADEC3D7000BF430 /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				0B9977741EB1D0D500C4B04D /* Documentation */,
 				0BCD53A71E977F9F00F31845 /* Services */,
 				0BE1D12F1E0D33AE00FFE689 /* Providers */,
 				CC0C23C61C3F0EC700408177 /* Integration */,
@@ -990,6 +1003,7 @@
 			files = (
 				0BBD1B801E97BF8500EA5474 /* Constants.swift in Sources */,
 				0BCA2B851E8AAA5000C5F0FE /* WeDeployAuthTest.swift in Sources */,
+				0B9977791EB1D21800C4B04D /* Documentation.swift in Sources */,
 				0BCA2B891E8AAA5000C5F0FE /* FilterTest.swift in Sources */,
 				0BCA2B841E8AAA5000C5F0FE /* RequestBuilderTest.swift in Sources */,
 				0BCA2B8B1E8AAA5000C5F0FE /* WatchTest.swift in Sources */,
@@ -1050,6 +1064,7 @@
 				0BCA2B9A1E8AAA5100C5F0FE /* XCTestCaseExtension.swift in Sources */,
 				0BCA2B991E8AAA5100C5F0FE /* ResponseTest.swift in Sources */,
 				0BBD1B851E97DAEA00EA5474 /* Constants.swift in Sources */,
+				0B9977781EB1D21700C4B04D /* Documentation.swift in Sources */,
 				0BCA2B8F1E8AAA5100C5F0FE /* BaseTest.swift in Sources */,
 				0BCA2B931E8AAA5100C5F0FE /* WeDeployEmailTest.swift in Sources */,
 				0BCA2B951E8AAA5100C5F0FE /* DictionaryExtensionTest.swift in Sources */,
@@ -1105,6 +1120,7 @@
 				0BAC8D701E14F28500E75548 /* QueryTest.swift in Sources */,
 				0BBD1B841E97DAE900EA5474 /* Constants.swift in Sources */,
 				0BCD53AF1E97883000F31845 /* PromiseKitExtensionsTest.swift in Sources */,
+				0B9977771EB1D21700C4B04D /* Documentation.swift in Sources */,
 				0B46BA141DEED48B00EB28CF /* WeDeployAuthTest.swift in Sources */,
 				0BAC8D711E15018600E75548 /* DictionaryExtensionTest.swift in Sources */,
 				0BDABE911DEAEA27001B02BF /* ResponseTest.swift in Sources */,
@@ -1156,7 +1172,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.WeDeploy-macOS";
 				PRODUCT_NAME = WeDeploy;
 				SDKROOT = macosx;
@@ -1186,7 +1202,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.WeDeploy-macOS";
 				PRODUCT_NAME = WeDeploy;
 				SDKROOT = macosx;
@@ -1267,7 +1283,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.2;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -1295,7 +1311,7 @@
 				SKIP_INSTALL = NO;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.2;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
