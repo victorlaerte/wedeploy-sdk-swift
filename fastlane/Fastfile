@@ -39,4 +39,11 @@ platform :ios do
     zip -r WeDeploy-#{version}.zip iOS tvOS Mac LICENSE"
   end
 
+desc "Runs all the tests"
+  lane :test_all_schemes do
+    scan(scheme: "WeDeploy", clean: true)
+    scan(scheme: "WeDeploy-macOS", clean: true, destination: 'platform=macOS')
+    scan(scheme: "WeDeploy-tvOS", clean: true)
+  end
+
 end
