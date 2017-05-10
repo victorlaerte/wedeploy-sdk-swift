@@ -22,7 +22,7 @@ import Foundation
 import PromiseKit
 import RxSwift
 
-public class WeDeployAuth: WeDeployService<WeDeployAuth> {
+public class WeDeployAuth: WeDeployService {
 
 	public static var urlRedirect = PublishSubject<URL>()
 	public static var tokenSubscription: Disposable?

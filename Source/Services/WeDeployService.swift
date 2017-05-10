@@ -14,7 +14,7 @@
 
 import Foundation
 
-public class WeDeployService<T> {
+public class WeDeployService {
 
 	var authorization: Auth?
 	let url: String
@@ -24,8 +24,8 @@ public class WeDeployService<T> {
 		self.authorization = authorization
 	}
 
-	public func authorize(auth: Auth?) -> T {
+	public func authorize(auth: Auth?) -> Self {
 		authorization = auth
-		return self as! T
+		return self
 	}
 }

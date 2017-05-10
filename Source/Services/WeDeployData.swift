@@ -16,7 +16,7 @@ import Foundation
 import PromiseKit
 import SocketIO
 
-public class WeDeployData: WeDeployService<WeDeployData> {
+public class WeDeployData: WeDeployService {
 
 	var query = Query()
 	var filter: Filter?
