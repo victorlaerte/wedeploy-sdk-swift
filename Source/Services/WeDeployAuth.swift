@@ -27,8 +27,16 @@ public class WeDeployAuth: WeDeployService {
 	public static var urlRedirect = PublishSubject<URL>()
 	public static var tokenSubscription: Disposable?
 
+	public override func authorize(auth: Auth?) -> WeDeployAuth {
+		return super.authorize(auth: auth) as! WeDeployAuth
+	}
+
+	public override func header(name: String, value: String) -> WeDeployAuth {
+		return super.header(name: name, value: value) as! WeDeployAuth
+	}
+
 	public func signInWith(username: String, password: String) -> Promise<Auth> {
-		return RequestBuilder.url(self.url).path("/oauth/token")
+		return requestBuilder.path("/oauth/token")
 			.param(name: "grant_type", value: "password")
 			.param(name: "username", value: username)
 			.param(name: "password", value: password)
@@ -43,10 +51,7 @@ public class WeDeployAuth: WeDeployService {
 	}
 
 	public func getCurrentUser() -> Promise<User> {
-		return RequestBuilder
-			.url(self.url)
-			.path("/user")
-			.authorize(auth: self.authorization)
+		return requestBuilder.path("/user")
 			.get()
 			.then { (response: Response) -> User in
 				let body = try response.validate()
@@ -101,8 +106,7 @@ public class WeDeployAuth: WeDeployService {
 			body[key] = element
 		}
 
-		return RequestBuilder
-				.url(self.url)
+		return requestBuilder
 				.path("/users")
 				.post(body: body as AnyObject?)
 				.then { response -> User in
@@ -136,11 +140,9 @@ public class WeDeployAuth: WeDeployService {
 			body[key] = element
 		}
 
-		return RequestBuilder
-			.url(self.url)
+		return requestBuilder
 			.path("/users")
 			.path("/\(id)")
-			.authorize(auth: authorization)
 			.patch(body: body)
 			.then { response in
 				try response.validateEmptyBody()
@@ -148,11 +150,9 @@ public class WeDeployAuth: WeDeployService {
 	}
 
 	public func deleteUser(id: String) -> Promise<Void> {
-		return RequestBuilder
-			.url(self.url)
+		return requestBuilder
 			.path("/users")
 			.path("/\(id)")
-			.authorize(auth: authorization)
 			.delete()
 			.then { response  in
 				try response.validateEmptyBody()
@@ -160,11 +160,9 @@ public class WeDeployAuth: WeDeployService {
 	}
 
 	public func getUser(id: String) -> Promise<User> {
-		return RequestBuilder
-				.url(self.url)
+		return requestBuilder
 				.path("/users")
 				.path("/\(id)")
-				.authorize(auth: authorization)
 				.get()
 				.then { response -> User in
 					let body = try response.validate()
@@ -173,8 +171,7 @@ public class WeDeployAuth: WeDeployService {
 	}
 
 	public func sendPasswordReset(email: String) -> Promise<Void> {
-		return RequestBuilder
-				.url(self.url)
+		return requestBuilder
 				.path("/user/recover")
 				.form(name: "email", value: email)
 				.post()
@@ -188,8 +185,7 @@ public class WeDeployAuth: WeDeployService {
 				"you have to have an authentication to sign out")
 
 		let token = (self.authorization as! TokenAuth).token
-		return RequestBuilder
-				.url(self.url)
+		return requestBuilder
 				.path("/oauth/revoke")
 				.param(name: "token", value: token)
 				.get()
