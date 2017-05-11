@@ -16,9 +16,17 @@ import Foundation
 import PromiseKit
 import RxSwift
 
-public class WeDeployEmail: WeDeployService<WeDeployEmail> {
+public class WeDeployEmail: WeDeployService {
 
 	var params: [(name: String, value: String)] = []
+
+	public override func authorize(auth: Auth?) -> WeDeployEmail {
+		return super.authorize(auth: auth) as! WeDeployEmail
+	}
+
+	public override func header(name: String, value: String) -> WeDeployEmail {
+		return super.header(name: name, value: value) as! WeDeployEmail
+	}
 
 	public func from(_ from: String) -> Self {
 		params.append(("from", from))
@@ -61,10 +69,8 @@ public class WeDeployEmail: WeDeployService<WeDeployEmail> {
 	}
 
 	public func send() -> Promise<String> {
-		var builder = RequestBuilder
-				.url(self.url)
+		var builder = requestBuilder
 				.path("/emails")
-				.authorize(auth: authorization)
 
 		for param in params {
 			builder = builder.form(name: param.name, value: param.value)
@@ -77,10 +83,8 @@ public class WeDeployEmail: WeDeployService<WeDeployEmail> {
 	}
 
 	public func checkEmailStatus(id: String) -> Promise<String> {
-		return RequestBuilder
-			.url(self.url)
+		return requestBuilder
 			.path("/emails/\(id)/status")
-			.authorize(auth: authorization)
 			.get()
 			.then { response in
 				try response.validateBody(bodyType: String.self)

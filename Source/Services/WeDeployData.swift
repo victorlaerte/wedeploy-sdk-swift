@@ -16,10 +16,18 @@ import Foundation
 import PromiseKit
 import SocketIO
 
-public class WeDeployData: WeDeployService<WeDeployData> {
+public class WeDeployData: WeDeployService {
 
 	var query = Query()
 	var filter: Filter?
+
+	public override func authorize(auth: Auth?) -> WeDeployData {
+		return super.authorize(auth: auth) as! WeDeployData
+	}
+
+	public override func header(name: String, value: String) -> WeDeployData {
+		return super.header(name: name, value: value) as! WeDeployData
+	}
 
 	public func create(resource: String, object: [String : Any]) -> Promise<[String : AnyObject]> {
 
@@ -38,8 +46,7 @@ public class WeDeployData: WeDeployService<WeDeployData> {
 	}
 
 	public func update(resourcePath: String, updatedAttributes: [String: Any]) -> Promise<Void> {
-		return RequestBuilder.url(self.url)
-			.authorize(auth: self.authorization)
+		return requestBuilder
 			.path("/\(resourcePath)")
 			.patch(body: updatedAttributes)
 			.then { response in
@@ -48,8 +55,7 @@ public class WeDeployData: WeDeployService<WeDeployData> {
 	}
 
 	public func replace(resourcePath: String, replacedAttributes: [String: Any]) -> Promise<Void> {
-		return RequestBuilder.url(self.url)
-			.authorize(auth: self.authorization)
+		return requestBuilder
 			.path("/\(resourcePath)")
 			.put(body: replacedAttributes)
 			.then { response in
@@ -58,9 +64,8 @@ public class WeDeployData: WeDeployService<WeDeployData> {
 	}
 
 	public func delete(collectionOrResourcePath: String) ->Promise<Response> {
-		return RequestBuilder.url(self.url)
+		return requestBuilder
 			.path("/\(collectionOrResourcePath)")
-			.authorize(auth: self.authorization)
 			.delete()
 	}
 
@@ -248,7 +253,7 @@ public class WeDeployData: WeDeployService<WeDeployData> {
 			query = query.filter(filter: filter)
 		}
 
-		let request = RequestBuilder.url(self.url)
+		let request = requestBuilder
 
 		if query.query.count != 0 {
 			request.params =  query.query.asQueryItems
@@ -257,8 +262,7 @@ public class WeDeployData: WeDeployService<WeDeployData> {
 		query = Query()
 		filter = nil
 
-		return request.authorize(auth: self.authorization)
-			.path("/\(resourcePath)")
+		return request.path("/\(resourcePath)")
 			.get()
 	}
 
@@ -271,9 +275,7 @@ public class WeDeployData: WeDeployService<WeDeployData> {
 	}
 
 	func doCreateRequest(resource: String, object: Any) -> Promise<Response> {
-		return RequestBuilder.url(self.url)
-			.authorize(auth: self.authorization)
-			.path("/\(resource)")
+		return requestBuilder.path("/\(resource)")
 			.post(body: object)
 	}
 }

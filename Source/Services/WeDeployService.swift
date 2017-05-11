@@ -14,18 +14,35 @@
 
 import Foundation
 
-public class WeDeployService<T> {
+public class WeDeployService {
 
 	var authorization: Auth?
+	var headers = [String: String]()
 	let url: String
+
+	var requestBuilder: RequestBuilder {
+		let requestBuilder = RequestBuilder(url).authorize(auth: authorization)
+		requestBuilder.headers = headers
+
+		return requestBuilder
+	}
 
 	init(_ url: String, authorization: Auth? = nil) {
 		self.url = url
 		self.authorization = authorization
 	}
 
-	public func authorize(auth: Auth?) -> T {
+	public func authorize(auth: Auth?) -> Self {
 		authorization = auth
-		return self as! T
+		return self
+	}
+
+	public func header(name: String, value: String) -> Self {
+		var newValue = value
+		if let currentValue = headers[name] {
+			newValue = "\(currentValue), \(value)"
+		}
+		headers[name] = newValue
+		return self
 	}
 }
