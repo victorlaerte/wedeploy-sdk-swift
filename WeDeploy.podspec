@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 	s.name					= "WeDeploy"
-	s.version				= "0.4.0"
+	s.version				= "0.4.1"
 	s.summary				= "Swift API Client for WeDeploy Project."
 	s.homepage				= "http://wedeploy.com/"
 	s.license				= {
@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
 								"Victor Galán" => "victor.galan@liferay.com"
 							}
 	s.source				= {
-								:http => "http://cdn.wedeploy.com/api-swift/0.4.0/WeDeploy.zip"
+								:http => "http://cdn.wedeploy.com/api-swift/#{s.version.to_s}/WeDeploy.zip"
 							}
 	s.ios.deployment_target = '9.0'
 	s.osx.deployment_target = '10.11'
