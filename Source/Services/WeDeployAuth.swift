@@ -180,6 +180,17 @@ public class WeDeployAuth: WeDeployService {
 				}
 	}
 
+	public func getAllUsers() -> Promise<[User]> {
+		return requestBuilder
+				.path("/users")
+				.get()
+				.then { response -> [User] in
+					let body = try response.validateBody(bodyType: [[String: AnyObject]].self)
+					return body.map(User.init)
+				}
+
+	}
+
 	public func signOut() -> Promise<Void> {
 		precondition(self.authorization != nil && self.authorization is TokenAuth,
 				"you have to have an authentication to sign out")
