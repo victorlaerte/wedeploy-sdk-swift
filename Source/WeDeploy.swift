@@ -41,7 +41,7 @@ public class WeDeploy: RequestBuilder {
 	class func validate(url: String) -> String {
 		var finalUrl = url
 		if !url.hasPrefix("http://") && !url.hasPrefix("https://") {
-			finalUrl = "http://" + finalUrl
+			finalUrl = "https://" + finalUrl
 		}
 
 		if url.hasSuffix("/") {
