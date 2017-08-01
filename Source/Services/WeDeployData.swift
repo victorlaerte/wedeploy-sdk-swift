@@ -37,11 +37,11 @@ public class WeDeployData: WeDeployService {
 			}
 	}
 
-	public func create(resource: String, object: [[String : Any]]) -> Promise<[[String : AnyObject]]> {
+	public func create(resource: String, object: [[String : Any]]) -> Promise<[String : AnyObject]> {
 
 		return doCreateRequest(resource: resource, object: object)
 			.then { response in
-				try response.validateBody(bodyType: [[String: AnyObject]].self)
+				try response.validateBody(bodyType: [String: AnyObject].self)
 			}
 	}
 
