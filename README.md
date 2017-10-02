@@ -1,49 +1,5 @@
-[![Build Status](https://travis-ci.org/launchpad-project/api.swift.svg?branch=master)](https://travis-ci.org/launchpad-project/api.swift)
 
-## Connect to your API
+## WeDeploy SDK for Swift
 
-```ruby
-pod 'WeDeploy'
-```
+An SDK that gives you access to the powerful WeDeploy cloud platforma from your iOS, macOS or tvOS app. For more information on WeDeploy and its features, see [the website](https://wedeploy.com) or [the guides](https://wedeploy.com/docs).
 
-```swift
-import WeDeploy
-```
-
-## Login
-
-```swift
-WeDeploy.auth("http://<YOUR-SERVICE>.<YOUR-PROJECT>/wedeploy.io)
-	.signInWith(username: "yourusername", password: "yourpassword")
-	.done { user, error in 
-		print(user)
-	} 
-```
-
-```swift
-WeDeploy.auth("http://<YOUR-SERVICE>.<YOUR-PROJECT>/wedeploy.io)
-	.signInWith(username: "yourusername", password: "yourpassword")
-	.toObservable()
-	.subscribe(onNext: { user in
-		print(user)
-	})
-	.addDisposableTo(disposeBag)
-```
-
-```swift
-WeDeploy.auth("http://<YOUR-SERVICE>.<YOUR-PROJECT>/wedeploy.io)
-	.signInWith(username: "yourusername", password: "yourpassword")
-	.toCallback { user, error in
-		print(user)
-	} 
-```
-
-## Send Email
-
-```swift
-WeDeploy.email("http://<YOUR-SERVICE>.<YOUR-PROJECT>/wedeploy.io)
-	.sendEmail(from: "from@from.com", to: "to@to.com", subject: "aSubject", body: "aBody")
-	.done { emailId in 
-		print(emailId)
-	} 
-```
