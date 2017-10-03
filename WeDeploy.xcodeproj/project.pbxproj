@@ -18,6 +18,8 @@
 		0B381C551F83692100B02D61 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B381C4E1F8364BA00B02D61 /* Starscream.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0B381C561F83692E00B02D61 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B381C4E1F8364BA00B02D61 /* Starscream.framework */; };
 		0B381C581F836F2E00B02D61 /* CollectionFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B381C571F836F2E00B02D61 /* CollectionFieldType.swift */; };
+		0B381C591F83787B00B02D61 /* CollectionFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B381C571F836F2E00B02D61 /* CollectionFieldType.swift */; };
+		0B381C5A1F83787B00B02D61 /* CollectionFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B381C571F836F2E00B02D61 /* CollectionFieldType.swift */; };
 		0B43AB161E0C0E8500701E52 /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B43AB151E0C0E8500701E52 /* AuthProvider.swift */; };
 		0B45FB021E8E58A000CBB073 /* PromiseKitTestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B45FB001E8E588A00CBB073 /* PromiseKitTestExtension.swift */; };
 		0B45FB031E8E58A000CBB073 /* PromiseKitTestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B45FB001E8E588A00CBB073 /* PromiseKitTestExtension.swift */; };
@@ -994,6 +996,7 @@
 				0BCA2B9B1E8AAB2D00C5F0FE /* PromiseKitExtensions.swift in Sources */,
 				57ED48691E9BCA4000B4D097 /* DistanceUnit.swift in Sources */,
 				0BCA2BA61E8AAB2D00C5F0FE /* DictionaryExtension.swift in Sources */,
+				0B381C591F83787B00B02D61 /* CollectionFieldType.swift in Sources */,
 				0BCA2BAE1E8AAB2D00C5F0FE /* Response.swift in Sources */,
 				0BCA2BA91E8AAB2D00C5F0FE /* Aggregation.swift in Sources */,
 				0BCA2B9D1E8AAB2D00C5F0FE /* WeDeployAuth.swift in Sources */,
@@ -1049,6 +1052,7 @@
 				0BCA2BB31E8AAB2D00C5F0FE /* PromiseKitExtensions.swift in Sources */,
 				57ED486A1E9BCA4000B4D097 /* DistanceUnit.swift in Sources */,
 				0BCA2BBE1E8AAB2D00C5F0FE /* DictionaryExtension.swift in Sources */,
+				0B381C5A1F83787B00B02D61 /* CollectionFieldType.swift in Sources */,
 				0BCA2BC61E8AAB2D00C5F0FE /* Response.swift in Sources */,
 				0BCA2BC11E8AAB2D00C5F0FE /* Aggregation.swift in Sources */,
 				0BCA2BB51E8AAB2D00C5F0FE /* WeDeployAuth.swift in Sources */,
