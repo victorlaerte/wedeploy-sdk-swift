@@ -4,8 +4,8 @@ Pod::Spec.new do |s|
 	s.summary				= "Swift API Client for WeDeploy Project."
 	s.homepage				= "http://wedeploy.com/"
 	s.license				= {
-								"text": "Copyright 2017 Liferay Inc.",
-								"type": "Copyright"
+								:type => "BSD", 
+								:file => "LICENSE"
 							}
 	s.author				= {
 								"Bruno Farache" => "bruno.farache@liferay.com",
