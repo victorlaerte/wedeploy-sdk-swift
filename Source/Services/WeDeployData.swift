@@ -79,10 +79,36 @@ public class WeDeployData: WeDeployService {
 			}
 	}
 
-	public func delete(collectionOrResourcePath: String) ->Promise<Response> {
+	public func delete(collectionOrResourcePath: String) -> Promise<Response> {
 		return requestBuilder
 			.path("/\(collectionOrResourcePath)")
 			.delete()
+	}
+
+	public func createCollection(name: String, fieldTypes: [String : CollectionFieldType]) -> Promise<[String : Any]> {
+		let body: [String : Any] = [
+			"mappings": fieldTypes.mapValues { $0.rawValue },
+			"name": name
+		]
+
+		return requestBuilder
+			.post(body: body)
+			.then { response in
+				try response.validateBody(bodyType: [String: Any].self)
+			}
+	}
+
+	public func updateCollection(name: String, fieldTypes: [String : CollectionFieldType]) -> Promise<Void> {
+		let body: [String : Any] = [
+			"mappings": fieldTypes.mapValues { $0.rawValue },
+			"name": name
+		]
+
+		return requestBuilder
+			.patch(body: body)
+			.then { response in
+				try response.validateEmptyBody()
+			}
 	}
 
 	public func filter(filter: Filter) -> Self {
