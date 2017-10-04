@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
 	s.name					= "WeDeploy"
-	s.version				= "0.5.0"
+	s.version				= "1.0.0"
 	s.summary				= "Swift API Client for WeDeploy Project."
 	s.homepage				= "http://wedeploy.com/"
 	s.license				= {
 								:type => "BSD", 
-								:file => "LICENSE"
+								:file => "LICENSE.md"
 							}
 	s.author				= {
 								"Bruno Farache" => "bruno.farache@liferay.com",
@@ -21,6 +21,6 @@ Pod::Spec.new do |s|
 	s.tvos.vendored_frameworks = 'tvOS/WeDeploy.framework'
 	s.osx.vendored_frameworks = 'Mac/WeDeploy.framework'
 	s.dependency			"PromiseKit", "~> 4.0"
-	s.dependency			"Socket.IO-Client-Swift", "~> 8.1"
-	s.dependency			"RxSwift", "~> 3.0"
+	s.dependency			"Socket.IO-Client-Swift", "~> 12.1"
+	s.dependency			"RxSwift", "4.0.0-beta.1"
 end
