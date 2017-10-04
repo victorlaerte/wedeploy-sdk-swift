@@ -5,4 +5,4 @@ An SDK that gives you access to the powerful WeDeploy cloud platforma from your 
 
 ## License
 
-[BSD-3-Clause](https://spdx.org/licenses/BSD-3-Clause.html)
+[BSD-3-Clause](https://spdx.org/licenses/BSD-3-Clause.html), © Liferay, Inc.
