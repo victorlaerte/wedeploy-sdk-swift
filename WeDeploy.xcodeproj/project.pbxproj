@@ -13,6 +13,13 @@
 		0B01B7E71E8CD54800B76E71 /* Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B34CD8A1E8BF34300E12884 /* Range.swift */; };
 		0B34CD8B1E8BF34300E12884 /* Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B34CD8A1E8BF34300E12884 /* Range.swift */; };
 		0B34CD8D1E8C024C00E12884 /* Geo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B34CD8C1E8C024C00E12884 /* Geo.swift */; };
+		0B381C511F8364E200B02D61 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B381C4E1F8364BA00B02D61 /* Starscream.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		0B381C521F83658300B02D61 /* WeDeploy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCA2B2E1E8AA5CC00C5F0FE /* WeDeploy.framework */; };
+		0B381C551F83692100B02D61 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B381C4E1F8364BA00B02D61 /* Starscream.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		0B381C561F83692E00B02D61 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B381C4E1F8364BA00B02D61 /* Starscream.framework */; };
+		0B381C581F836F2E00B02D61 /* CollectionFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B381C571F836F2E00B02D61 /* CollectionFieldType.swift */; };
+		0B381C591F83787B00B02D61 /* CollectionFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B381C571F836F2E00B02D61 /* CollectionFieldType.swift */; };
+		0B381C5A1F83787B00B02D61 /* CollectionFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B381C571F836F2E00B02D61 /* CollectionFieldType.swift */; };
 		0B43AB161E0C0E8500701E52 /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B43AB151E0C0E8500701E52 /* AuthProvider.swift */; };
 		0B45FB021E8E58A000CBB073 /* PromiseKitTestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B45FB001E8E588A00CBB073 /* PromiseKitTestExtension.swift */; };
 		0B45FB031E8E58A000CBB073 /* PromiseKitTestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B45FB001E8E588A00CBB073 /* PromiseKitTestExtension.swift */; };
@@ -20,9 +27,9 @@
 		0B46BA141DEED48B00EB28CF /* WeDeployAuthTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B46BA131DEED48B00EB28CF /* WeDeployAuthTest.swift */; };
 		0B46BA161DEEDB7300EB28CF /* WeDeployEmailTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B46BA151DEEDB7300EB28CF /* WeDeployEmailTest.swift */; };
 		0B46BA171DEEDD9900EB28CF /* BaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23C71C3F0EC700408177 /* BaseTest.swift */; };
-		0B520EA21EA74347001AB43B /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CBB56B1E8AEF57006E8B5F /* PromiseKit.framework */; };
-		0B520EA31EA74347001AB43B /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CBB56C1E8AEF57006E8B5F /* RxSwift.framework */; };
-		0B520EA41EA74347001AB43B /* SocketIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CBB56D1E8AEF57006E8B5F /* SocketIO.framework */; };
+		0B520EA21EA74347001AB43B /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CBB56B1E8AEF57006E8B5F /* PromiseKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		0B520EA31EA74347001AB43B /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CBB56C1E8AEF57006E8B5F /* RxSwift.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		0B520EA41EA74347001AB43B /* SocketIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57CBB56D1E8AEF57006E8B5F /* SocketIO.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0B575EE01E6F0A7500A8B021 /* Aggregation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B575EDF1E6F0A7500A8B021 /* Aggregation.swift */; };
 		0B5802331DED9FF7002C3E7A /* WeDeployError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5802321DED9FF7002C3E7A /* WeDeployError.swift */; };
 		0B74EDBB1DE6E797007AE62C /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF69EA11C46BA7100961988 /* DictionaryExtension.swift */; };
@@ -36,11 +43,15 @@
 		0BB0C2BC1DE8333D00CACDE1 /* TokenAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB0C2BB1DE8333D00CACDE1 /* TokenAuth.swift */; };
 		0BB0C2C11DE83C1200CACDE1 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BB0C2C01DE83C1200CACDE1 /* XCTest.framework */; };
 		0BB3BE781DE8565E00FA90EE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB3BE771DE8565E00FA90EE /* User.swift */; };
+		0BB84F571F82AC220049FD71 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BB84F561F82AC220049FD71 /* Starscream.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0BBD1B801E97BF8500EA5474 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBD1B7D1E97BF3100EA5474 /* Constants.swift */; };
 		0BBD1B841E97DAE900EA5474 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBD1B7D1E97BF3100EA5474 /* Constants.swift */; };
 		0BBD1B851E97DAEA00EA5474 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBD1B7D1E97BF3100EA5474 /* Constants.swift */; };
 		0BBF702C1DEC93FC00C94DA8 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF702B1DEC93FC00C94DA8 /* RequestBuilder.swift */; };
 		0BBF702F1DECA19800C94DA8 /* RequestBuilderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF702D1DECA14400C94DA8 /* RequestBuilderTest.swift */; };
+		0BC979A01F84B9C60006AC31 /* CollectionFieldTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B52FF471F8415E100D68CAD /* CollectionFieldTypeTests.swift */; };
+		0BC979A11F84BAA30006AC31 /* CollectionFieldTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B52FF471F8415E100D68CAD /* CollectionFieldTypeTests.swift */; };
+		0BC979A21F84BAA30006AC31 /* CollectionFieldTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B52FF471F8415E100D68CAD /* CollectionFieldTypeTests.swift */; };
 		0BCA2B811E8AAA5000C5F0FE /* AuthProviderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1D1301E0D33C600FFE689 /* AuthProviderTest.swift */; };
 		0BCA2B821E8AAA5000C5F0FE /* BaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23C71C3F0EC700408177 /* BaseTest.swift */; };
 		0BCA2B831E8AAA5000C5F0FE /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC0C23CB1C3F0EC700408177 /* settings.plist */; };
@@ -129,9 +140,9 @@
 		0BF2B5D31E1254A4004A4DF1 /* WeDeployDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF2B5D11E12548E004A4DF1 /* WeDeployDataTest.swift */; };
 		0BF2B5DA1E12635C004A4DF1 /* PromiseKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF2B5D81E12635C004A4DF1 /* PromiseKitExtensions.swift */; };
 		0BF2B5DB1E12635C004A4DF1 /* SocketIOExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF2B5D91E12635C004A4DF1 /* SocketIOExtensions.swift */; };
-		577F12761E8AF0FF00612851 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F12731E8AF0EF00612851 /* PromiseKit.framework */; };
-		577F12771E8AF0FF00612851 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F12741E8AF0EF00612851 /* RxSwift.framework */; };
-		577F12781E8AF0FF00612851 /* SocketIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F12751E8AF0EF00612851 /* SocketIO.framework */; };
+		577F12761E8AF0FF00612851 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F12731E8AF0EF00612851 /* PromiseKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		577F12771E8AF0FF00612851 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F12741E8AF0EF00612851 /* RxSwift.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		577F12781E8AF0FF00612851 /* SocketIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F12751E8AF0EF00612851 /* SocketIO.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		577F127B1E8AF1ED00612851 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F12731E8AF0EF00612851 /* PromiseKit.framework */; };
 		577F127C1E8AF1ED00612851 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F12741E8AF0EF00612851 /* RxSwift.framework */; };
 		577F127D1E8AF1ED00612851 /* SocketIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 577F12751E8AF0EF00612851 /* SocketIO.framework */; };
@@ -160,12 +171,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0BCA2B381E8AA5CC00C5F0FE /* PBXContainerItemProxy */ = {
+		0B381C531F8365A600B02D61 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CC6004E41ADEC22200B8F2E5 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 0BCA2B2D1E8AA5CC00C5F0FE;
-			remoteInfo = "WeDeploy-macOS";
+			remoteGlobalIDString = CC0C237D1C3DA36400408177;
+			remoteInfo = WeDeploy;
 		};
 		0BCA2B711E8AA99200C5F0FE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -186,16 +197,20 @@
 /* Begin PBXFileReference section */
 		0B34CD8A1E8BF34300E12884 /* Range.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Range.swift; sourceTree = "<group>"; };
 		0B34CD8C1E8C024C00E12884 /* Geo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geo.swift; sourceTree = "<group>"; };
+		0B381C4E1F8364BA00B02D61 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/Mac/Starscream.framework; sourceTree = "<group>"; };
+		0B381C571F836F2E00B02D61 /* CollectionFieldType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionFieldType.swift; sourceTree = "<group>"; };
 		0B43AB151E0C0E8500701E52 /* AuthProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
 		0B45FB001E8E588A00CBB073 /* PromiseKitTestExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseKitTestExtension.swift; sourceTree = "<group>"; };
 		0B46BA131DEED48B00EB28CF /* WeDeployAuthTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployAuthTest.swift; sourceTree = "<group>"; };
 		0B46BA151DEEDB7300EB28CF /* WeDeployEmailTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployEmailTest.swift; sourceTree = "<group>"; };
+		0B52FF471F8415E100D68CAD /* CollectionFieldTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionFieldTypeTests.swift; sourceTree = "<group>"; };
 		0B575EDF1E6F0A7500A8B021 /* Aggregation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aggregation.swift; sourceTree = "<group>"; };
 		0B5802321DED9FF7002C3E7A /* WeDeployError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployError.swift; sourceTree = "<group>"; };
 		0B9977751EB1D20700C4B04D /* Documentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Documentation.swift; sourceTree = "<group>"; };
 		0BB0C2BB1DE8333D00CACDE1 /* TokenAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenAuth.swift; sourceTree = "<group>"; };
 		0BB0C2C01DE83C1200CACDE1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0BB3BE771DE8565E00FA90EE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0BB84F561F82AC220049FD71 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
 		0BBD1B7D1E97BF3100EA5474 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0BBF702B1DEC93FC00C94DA8 /* RequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestBuilder.swift; path = ../RequestBuilder.swift; sourceTree = "<group>"; };
 		0BBF702D1DECA14400C94DA8 /* RequestBuilderTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilderTest.swift; sourceTree = "<group>"; };
@@ -300,6 +315,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B381C551F83692100B02D61 /* Starscream.framework in Frameworks */,
 				0B520EA21EA74347001AB43B /* PromiseKit.framework in Frameworks */,
 				0B520EA31EA74347001AB43B /* RxSwift.framework in Frameworks */,
 				0B520EA41EA74347001AB43B /* SocketIO.framework in Frameworks */,
@@ -310,7 +326,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B381C521F83658300B02D61 /* WeDeploy.framework in Frameworks */,
 				577F127E1E8AF4E000612851 /* PromiseKit.framework in Frameworks */,
+				0B381C561F83692E00B02D61 /* Starscream.framework in Frameworks */,
 				577F127F1E8AF4E000612851 /* RxSwift.framework in Frameworks */,
 				577F12801E8AF4E000612851 /* SocketIO.framework in Frameworks */,
 				0BE4A57A1E8AAEB700375F91 /* XCTest.framework in Frameworks */,
@@ -323,6 +341,7 @@
 			files = (
 				577F12761E8AF0FF00612851 /* PromiseKit.framework in Frameworks */,
 				577F12771E8AF0FF00612851 /* RxSwift.framework in Frameworks */,
+				0B381C511F8364E200B02D61 /* Starscream.framework in Frameworks */,
 				577F12781E8AF0FF00612851 /* SocketIO.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,6 +361,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BB84F571F82AC220049FD71 /* Starscream.framework in Frameworks */,
 				57CBB5471E8AED4E006E8B5F /* PromiseKit.framework in Frameworks */,
 				57CBB5481E8AED4E006E8B5F /* RxSwift.framework in Frameworks */,
 				57CBB5491E8AED4E006E8B5F /* SocketIO.framework in Frameworks */,
@@ -398,6 +418,7 @@
 		0BCD53A71E977F9F00F31845 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				0B52FF471F8415E100D68CAD /* CollectionFieldTypeTests.swift */,
 				0BCD53A81E977FAF00F31845 /* EmailServiceTest.swift */,
 			);
 			name = Services;
@@ -489,6 +510,7 @@
 				88EB6CDD1DF1A7EF00FE7362 /* WeDeployEmail.swift */,
 				0BF2B5CF1E12518E004A4DF1 /* WeDeployData.swift */,
 				0BE2859F1E7057BB00E56EDE /* WeDeployService.swift */,
+				0B381C571F836F2E00B02D61 /* CollectionFieldType.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -642,6 +664,8 @@
 		D96E3C835BA597F43766E24B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0BB84F561F82AC220049FD71 /* Starscream.framework */,
+				0B381C4E1F8364BA00B02D61 /* Starscream.framework */,
 				577F12611E8AF0EF00612851 /* tvOS */,
 				577F12731E8AF0EF00612851 /* PromiseKit.framework */,
 				577F12741E8AF0EF00612851 /* RxSwift.framework */,
@@ -720,7 +744,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				0BCA2B391E8AA5CC00C5F0FE /* PBXTargetDependency */,
+				0B381C541F8365A600B02D61 /* PBXTargetDependency */,
 			);
 			name = "WeDeploy-macOSTests";
 			productName = "WeDeploy-macOSTests";
@@ -809,7 +833,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Liferay Inc.";
 				TargetAttributes = {
 					0BCA2B2D1E8AA5CC00C5F0FE = {
@@ -922,6 +946,7 @@
 				"$(SRCROOT)/Carthage/Build/tvOS/PromiseKit.framework",
 				"$(SRCROOT)/Carthage/Build/tvOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/tvOS/SocketIO.framework",
+				"$(SRCROOT)/Carthage/Build/tvOS/Starscream.framework",
 			);
 			outputPaths = (
 			);
@@ -938,6 +963,7 @@
 				"$(SRCROOT)/Carthage/Build/Mac/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/Mac/SocketIO.framework",
 				"$(SRCROOT)/Carthage/Build/Mac/PromiseKit.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/Starscream.framework",
 			);
 			outputPaths = (
 			);
@@ -954,6 +980,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SocketIO.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/PromiseKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Starscream.framework",
 			);
 			outputPaths = (
 			);
@@ -974,6 +1001,7 @@
 				0BCA2B9B1E8AAB2D00C5F0FE /* PromiseKitExtensions.swift in Sources */,
 				57ED48691E9BCA4000B4D097 /* DistanceUnit.swift in Sources */,
 				0BCA2BA61E8AAB2D00C5F0FE /* DictionaryExtension.swift in Sources */,
+				0B381C591F83787B00B02D61 /* CollectionFieldType.swift in Sources */,
 				0BCA2BAE1E8AAB2D00C5F0FE /* Response.swift in Sources */,
 				0BCA2BA91E8AAB2D00C5F0FE /* Aggregation.swift in Sources */,
 				0BCA2B9D1E8AAB2D00C5F0FE /* WeDeployAuth.swift in Sources */,
@@ -1015,6 +1043,7 @@
 				0BCA2B871E8AAA5000C5F0FE /* WeDeployDataTest.swift in Sources */,
 				0B45FB031E8E58A000CBB073 /* PromiseKitTestExtension.swift in Sources */,
 				0BCA2B8A1E8AAA5000C5F0FE /* QueryTest.swift in Sources */,
+				0BC979A11F84BAA30006AC31 /* CollectionFieldTypeTests.swift in Sources */,
 				0BCA2B811E8AAA5000C5F0FE /* AuthProviderTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1029,6 +1058,7 @@
 				0BCA2BB31E8AAB2D00C5F0FE /* PromiseKitExtensions.swift in Sources */,
 				57ED486A1E9BCA4000B4D097 /* DistanceUnit.swift in Sources */,
 				0BCA2BBE1E8AAB2D00C5F0FE /* DictionaryExtension.swift in Sources */,
+				0B381C5A1F83787B00B02D61 /* CollectionFieldType.swift in Sources */,
 				0BCA2BC61E8AAB2D00C5F0FE /* Response.swift in Sources */,
 				0BCA2BC11E8AAB2D00C5F0FE /* Aggregation.swift in Sources */,
 				0BCA2BB51E8AAB2D00C5F0FE /* WeDeployAuth.swift in Sources */,
@@ -1068,6 +1098,7 @@
 				0BCA2B8F1E8AAA5100C5F0FE /* BaseTest.swift in Sources */,
 				0BCA2B931E8AAA5100C5F0FE /* WeDeployEmailTest.swift in Sources */,
 				0BCA2B951E8AAA5100C5F0FE /* DictionaryExtensionTest.swift in Sources */,
+				0BC979A01F84B9C60006AC31 /* CollectionFieldTypeTests.swift in Sources */,
 				0BCA2B941E8AAA5100C5F0FE /* WeDeployDataTest.swift in Sources */,
 				0B45FB041E8E58A100CBB073 /* PromiseKitTestExtension.swift in Sources */,
 				0BCA2B971E8AAA5100C5F0FE /* QueryTest.swift in Sources */,
@@ -1085,6 +1116,7 @@
 				0B74EDBB1DE6E797007AE62C /* DictionaryExtension.swift in Sources */,
 				0BB0C2BC1DE8333D00CACDE1 /* TokenAuth.swift in Sources */,
 				0B34CD8D1E8C024C00E12884 /* Geo.swift in Sources */,
+				0B381C581F836F2E00B02D61 /* CollectionFieldType.swift in Sources */,
 				0B34CD8B1E8BF34300E12884 /* Range.swift in Sources */,
 				0BDA424A1E13B19000533412 /* SocketIOClientFactory.swift in Sources */,
 				0BF2B5D01E12518E004A4DF1 /* WeDeployData.swift in Sources */,
@@ -1124,6 +1156,7 @@
 				0B46BA141DEED48B00EB28CF /* WeDeployAuthTest.swift in Sources */,
 				0BAC8D711E15018600E75548 /* DictionaryExtensionTest.swift in Sources */,
 				0BDABE911DEAEA27001B02BF /* ResponseTest.swift in Sources */,
+				0BC979A21F84BAA30006AC31 /* CollectionFieldTypeTests.swift in Sources */,
 				0BBF702F1DECA19800C94DA8 /* RequestBuilderTest.swift in Sources */,
 				0B45FB021E8E58A000CBB073 /* PromiseKitTestExtension.swift in Sources */,
 				0BE1D1311E0D33C600FFE689 /* AuthProviderTest.swift in Sources */,
@@ -1134,10 +1167,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0BCA2B391E8AA5CC00C5F0FE /* PBXTargetDependency */ = {
+		0B381C541F8365A600B02D61 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0BCA2B2D1E8AA5CC00C5F0FE /* WeDeploy-macOS */;
-			targetProxy = 0BCA2B381E8AA5CC00C5F0FE /* PBXContainerItemProxy */;
+			target = CC0C237D1C3DA36400408177 /* WeDeploy */;
+			targetProxy = 0B381C531F8365A600B02D61 /* PBXContainerItemProxy */;
 		};
 		0BCA2B721E8AA99200C5F0FE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1217,7 +1250,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1241,7 +1274,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1272,6 +1305,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1301,6 +1335,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1454,14 +1489,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1504,14 +1545,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

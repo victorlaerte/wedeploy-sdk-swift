@@ -85,8 +85,10 @@ public class Response {
 			throw WeDeployError.errorFrom(response: self)
 		}
 		guard let body = body as? T else {
-				print("Trying to cast \(String(describing: self.body.self)) into \(T.self)")
-				throw WeDeployError.errorFrom(response: self)
+			let message = "You are trying to cast the body of response into \(type(of: T.self)), " +
+				"but it can't be done, please check the type of the response"
+
+			throw WeDeployError(code: -1, message: message,errors: [])
 		}
 
 		return body

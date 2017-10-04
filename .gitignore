@@ -2,7 +2,11 @@ Pods/
 xcuserdata/
 Carthage/
 build-dir/
-
+Mac/
+iOS/
+tvOS/
+cdn/
+WeDeploy.zip
 **/.DS_Store
 
 *.xccheckout
