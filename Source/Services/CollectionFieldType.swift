@@ -30,7 +30,8 @@
 
 import Foundation
 
-public enum CollectionFieldType: String {
+public enum CollectionFieldType {
+	
 	case string
 	case integer
 	case long
@@ -38,7 +39,41 @@ public enum CollectionFieldType: String {
 	case double
 	case boolean
 	case date
-	case geoPoint = "geo_point"
-	case geoShape = "geo_shape"
+	case geoPoint
+	case geoShape
 	case binary
+	case collectionFieldType(fields: [String : CollectionFieldType])
+
+}
+
+extension Dictionary where Key == String, Value == CollectionFieldType {
+
+	func toJsonConvertible() -> [String : Any] {
+		return self.mapValues { collectionFieldType in
+			switch collectionFieldType {
+			case .string:
+				return "string"
+			case .integer:
+				return "integer"
+			case .long:
+				return "long"
+			case .float:
+				return "float"
+			case .double:
+				return "double"
+			case .boolean:
+				return "boolean"
+			case .date:
+				return "date"
+			case .geoPoint:
+				return "geo_point"
+			case .geoShape:
+				return "geo_shape"
+			case .binary:
+				return "binary"
+			case .collectionFieldType(let fields):
+				return fields.toJsonConvertible()
+			}
+		}
+	}
 }

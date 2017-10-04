@@ -87,7 +87,7 @@ public class WeDeployData: WeDeployService {
 
 	public func createCollection(name: String, fieldTypes: [String : CollectionFieldType]) -> Promise<[String : Any]> {
 		let body: [String : Any] = [
-			"mappings": fieldTypes.mapValues { $0.rawValue },
+			"mappings": fieldTypes.toJsonConvertible(),
 			"name": name
 		]
 
@@ -100,7 +100,7 @@ public class WeDeployData: WeDeployService {
 
 	public func updateCollection(name: String, fieldTypes: [String : CollectionFieldType]) -> Promise<Void> {
 		let body: [String : Any] = [
-			"mappings": fieldTypes.mapValues { $0.rawValue },
+			"mappings": fieldTypes.toJsonConvertible(),
 			"name": name
 		]
 
