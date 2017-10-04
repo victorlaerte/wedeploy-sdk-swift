@@ -70,13 +70,12 @@ class WeDeployDataCreationTest: BaseTest {
 		let (items, error) = WeDeploy.data(self.dataModuleUrl, authorization: auth)
 			.create(resource: "things", object: [resource1, resource2])
 			.sync()
-		
+
 		XCTAssertNotNil(items)
 		XCTAssertNil(error)
+
 		if items != nil {
-			XCTAssertEqual(items!.count, 2)
-			XCTAssertEqual(items![0]["title"] as? String, resource1["title"] as? String)
-			XCTAssertEqual(items![1]["title"] as? String, resource2["title"] as? String)
+			XCTAssertEqual(items!["results"]!.count, 2)
 		}
 	}
 

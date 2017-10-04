@@ -49,6 +49,9 @@
 		0BBD1B851E97DAEA00EA5474 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBD1B7D1E97BF3100EA5474 /* Constants.swift */; };
 		0BBF702C1DEC93FC00C94DA8 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF702B1DEC93FC00C94DA8 /* RequestBuilder.swift */; };
 		0BBF702F1DECA19800C94DA8 /* RequestBuilderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF702D1DECA14400C94DA8 /* RequestBuilderTest.swift */; };
+		0BC979A01F84B9C60006AC31 /* CollectionFieldTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B52FF471F8415E100D68CAD /* CollectionFieldTypeTests.swift */; };
+		0BC979A11F84BAA30006AC31 /* CollectionFieldTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B52FF471F8415E100D68CAD /* CollectionFieldTypeTests.swift */; };
+		0BC979A21F84BAA30006AC31 /* CollectionFieldTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B52FF471F8415E100D68CAD /* CollectionFieldTypeTests.swift */; };
 		0BCA2B811E8AAA5000C5F0FE /* AuthProviderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1D1301E0D33C600FFE689 /* AuthProviderTest.swift */; };
 		0BCA2B821E8AAA5000C5F0FE /* BaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C23C71C3F0EC700408177 /* BaseTest.swift */; };
 		0BCA2B831E8AAA5000C5F0FE /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC0C23CB1C3F0EC700408177 /* settings.plist */; };
@@ -200,6 +203,7 @@
 		0B45FB001E8E588A00CBB073 /* PromiseKitTestExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseKitTestExtension.swift; sourceTree = "<group>"; };
 		0B46BA131DEED48B00EB28CF /* WeDeployAuthTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployAuthTest.swift; sourceTree = "<group>"; };
 		0B46BA151DEEDB7300EB28CF /* WeDeployEmailTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployEmailTest.swift; sourceTree = "<group>"; };
+		0B52FF471F8415E100D68CAD /* CollectionFieldTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionFieldTypeTests.swift; sourceTree = "<group>"; };
 		0B575EDF1E6F0A7500A8B021 /* Aggregation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aggregation.swift; sourceTree = "<group>"; };
 		0B5802321DED9FF7002C3E7A /* WeDeployError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeDeployError.swift; sourceTree = "<group>"; };
 		0B9977751EB1D20700C4B04D /* Documentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Documentation.swift; sourceTree = "<group>"; };
@@ -414,6 +418,7 @@
 		0BCD53A71E977F9F00F31845 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				0B52FF471F8415E100D68CAD /* CollectionFieldTypeTests.swift */,
 				0BCD53A81E977FAF00F31845 /* EmailServiceTest.swift */,
 			);
 			name = Services;
@@ -1038,6 +1043,7 @@
 				0BCA2B871E8AAA5000C5F0FE /* WeDeployDataTest.swift in Sources */,
 				0B45FB031E8E58A000CBB073 /* PromiseKitTestExtension.swift in Sources */,
 				0BCA2B8A1E8AAA5000C5F0FE /* QueryTest.swift in Sources */,
+				0BC979A11F84BAA30006AC31 /* CollectionFieldTypeTests.swift in Sources */,
 				0BCA2B811E8AAA5000C5F0FE /* AuthProviderTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1092,6 +1098,7 @@
 				0BCA2B8F1E8AAA5100C5F0FE /* BaseTest.swift in Sources */,
 				0BCA2B931E8AAA5100C5F0FE /* WeDeployEmailTest.swift in Sources */,
 				0BCA2B951E8AAA5100C5F0FE /* DictionaryExtensionTest.swift in Sources */,
+				0BC979A01F84B9C60006AC31 /* CollectionFieldTypeTests.swift in Sources */,
 				0BCA2B941E8AAA5100C5F0FE /* WeDeployDataTest.swift in Sources */,
 				0B45FB041E8E58A100CBB073 /* PromiseKitTestExtension.swift in Sources */,
 				0BCA2B971E8AAA5100C5F0FE /* QueryTest.swift in Sources */,
@@ -1149,6 +1156,7 @@
 				0B46BA141DEED48B00EB28CF /* WeDeployAuthTest.swift in Sources */,
 				0BAC8D711E15018600E75548 /* DictionaryExtensionTest.swift in Sources */,
 				0BDABE911DEAEA27001B02BF /* ResponseTest.swift in Sources */,
+				0BC979A21F84BAA30006AC31 /* CollectionFieldTypeTests.swift in Sources */,
 				0BBF702F1DECA19800C94DA8 /* RequestBuilderTest.swift in Sources */,
 				0B45FB021E8E58A000CBB073 /* PromiseKitTestExtension.swift in Sources */,
 				0BE1D1311E0D33C600FFE689 /* AuthProviderTest.swift in Sources */,
