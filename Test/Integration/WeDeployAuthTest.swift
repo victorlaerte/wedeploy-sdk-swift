@@ -34,42 +34,64 @@ import Foundation
 
 class WeDeployAuthTest: BaseTest {
 
+	func createUser() -> User {
+		let (user, _) = WeDeploy.auth(authModuleUrl, authorization: anAuth)
+			.createUser(email: username, password: password, name: nil).sync()
+
+		return user!
+	}
+
+	func removeUser(id: String) {
+		_ = WeDeploy.auth(authModuleUrl, authorization: anAuth).deleteUser(id: id).sync()
+	}
+
 	func testSignIn() {
+		let user = createUser()
+
 		let (auth, error) = WeDeploy.auth(authModuleUrl)
 			.signInWith(username: username, password: password).sync()
 
 		XCTAssertNotNil(auth)
 		XCTAssertNil(error)
+
+		removeUser(id: user.id)
 	}
 
 	func testCurrentUser() {
-		let auth = givenAnAuth()
-		let authService = WeDeploy.auth(authModuleUrl, authorization: auth)
+		let defaultUser = createUser()
 
-		let (user, error) = authService.getCurrentUser().sync()
+		let (auth, _) = WeDeploy.auth(authModuleUrl)
+			.signInWith(username: username, password: password).sync()
+
+		let (user, error) = WeDeploy.auth(authModuleUrl, authorization: auth).getCurrentUser().sync()
 
 		XCTAssertNotNil(user)
 		XCTAssertNil(error)
 		if user != nil {
 			XCTAssertEqual(user!.email, username)
 		}
+
+		removeUser(id: defaultUser.id)
 	}
 
 	func testGetUser() {
-		let auth = givenAnAuth()
-		let authService = WeDeploy.auth(authModuleUrl, authorization: auth)
+		let defaultUser = createUser()
 
-		let (user, error) = authService.getUser(id: userId).sync()
+		let (user, error) = WeDeploy.auth(authModuleUrl, authorization: anAuth).getUser(id: defaultUser.id).sync()
 
 		XCTAssertNotNil(user)
 		XCTAssertNil(error)
+
 		if user != nil {
 			XCTAssertEqual(user!.email, username)
 		}
+
+		removeUser(id: defaultUser.id)
 	}
 
 	func testUpdateUser() {
-		let auth = givenAnAuth()
+		let defaultUser = createUser()
+		let (auth, _) = WeDeploy.auth(authModuleUrl).signInWith(username: username, password: password).sync()
 		let authService = WeDeploy.auth(authModuleUrl, authorization: auth)
 
 		// Get current user
@@ -98,24 +120,32 @@ class WeDeployAuthTest: BaseTest {
 			XCTAssertEqual(userUpdated!.name, "new")
 			XCTAssertEqual(userUpdated!.photoUrl, "http://somephoto.com")
 		}
+
+		removeUser(id: defaultUser.id)
 	}
 
 	func testSendRecoverPasswordEmail() {
+		let defaultUser = createUser()
 		let authService = WeDeploy.auth(authModuleUrl)
 
 		let (voidResponse, error): (Void?, Error?) = authService.sendPasswordReset(email: username).sync()
 
 		XCTAssertNotNil(voidResponse)
 		XCTAssertNil(error)
+
+		removeUser(id: defaultUser.id)
 	}
 
 	func testSignOut() {
-		let auth = givenAnAuth()
+		let defaultUser = createUser()
+		let (auth, _) = WeDeploy.auth(authModuleUrl).signInWith(username: username, password: password).sync()
 		let authService = WeDeploy.auth(authModuleUrl, authorization: auth)
 
 		let (voidResponse, error): (Void?, Error?) = authService.signOut().sync()
 
 		XCTAssertNotNil(voidResponse)
 		XCTAssertNil(error)
+
+		removeUser(id: defaultUser.id)
 	}
 }

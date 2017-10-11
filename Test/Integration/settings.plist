@@ -3,16 +3,12 @@
 <plist version="1.0">
 <dict>
 	<key>dataModuleUrl</key>
-	<string>http://data.easley84.wedeploy.io</string>
+	<string>https://data-apiswift.wedeploy.io</string>
 	<key>authModuleUrl</key>
-	<string>http://auth.easley84.wedeploy.io</string>
+	<string>https://auth-apiswift.wedeploy.io</string>
 	<key>emailModuleUrl</key>
-	<string>http://email.easley84.wedeploy.io</string>
-	<key>userId</key>
-	<string>191510224485334880</string>
-	<key>password</key>
-	<string>test</string>
-	<key>username</key>
-	<string>test@test.com</string>
+	<string>https://email-apiswift.wedeploy.io</string>
+	<key>masterToken</key>
+	<string>23b02662-ee50-4177-9491-10aee0399257</string>
 </dict>
 </plist>

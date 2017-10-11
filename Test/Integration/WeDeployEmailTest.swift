@@ -35,8 +35,7 @@ import XCTest
 class WeDeployEmailTest: BaseTest {
 
 	func testSendEmail() {
-		let auth = givenAnAuth()
-		let emailService = WeDeploy.email(self.emailModuleUrl, authorization: auth)
+		let emailService = WeDeploy.email(self.emailModuleUrl, authorization: anAuth)
 			.from(self.username)
 			.to(self.username)
 			.message("some message")
@@ -48,10 +47,14 @@ class WeDeployEmailTest: BaseTest {
 	}
 
 	func testGetEmailStatus() {
-		let auth = givenAnAuth()
-		let emailServide = WeDeploy.email(self.emailModuleUrl, authorization: auth)
+		let emailService = WeDeploy.email(self.emailModuleUrl, authorization: anAuth)
+			.from(self.username)
+			.to(self.username)
+			.message("some message")
+		let (emailId, _) = emailService.send().sync()
+		let emailServide = WeDeploy.email(self.emailModuleUrl, authorization: anAuth)
 
-		let (emailStatus, error) = emailServide.checkEmailStatus(id: "202605176596079530").sync()
+		let (emailStatus, error) = emailServide.checkEmailStatus(id: emailId!).sync()
 
 		XCTAssertNotNil(emailStatus)
 		XCTAssertNil(error)

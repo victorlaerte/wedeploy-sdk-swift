@@ -136,6 +136,10 @@
 		0BE285A01E7057BB00E56EDE /* WeDeployService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE2859F1E7057BB00E56EDE /* WeDeployService.swift */; };
 		0BE4A57A1E8AAEB700375F91 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BE4A5791E8AAEB700375F91 /* XCTest.framework */; };
 		0BE4A57C1E8AAEBD00375F91 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BE4A57B1E8AAEBD00375F91 /* XCTest.framework */; };
+		0BED82061F8E206F0097D479 /* EmailServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCD53A81E977FAF00F31845 /* EmailServiceTest.swift */; };
+		0BED82071F8E20700097D479 /* EmailServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCD53A81E977FAF00F31845 /* EmailServiceTest.swift */; };
+		0BED82081F8E20770097D479 /* PromiseKitExtensionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCD53AD1E97881700F31845 /* PromiseKitExtensionsTest.swift */; };
+		0BED82091F8E20780097D479 /* PromiseKitExtensionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCD53AD1E97881700F31845 /* PromiseKitExtensionsTest.swift */; };
 		0BF2B5D01E12518E004A4DF1 /* WeDeployData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF2B5CF1E12518E004A4DF1 /* WeDeployData.swift */; };
 		0BF2B5D31E1254A4004A4DF1 /* WeDeployDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF2B5D11E12548E004A4DF1 /* WeDeployDataTest.swift */; };
 		0BF2B5DA1E12635C004A4DF1 /* PromiseKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF2B5D81E12635C004A4DF1 /* PromiseKitExtensions.swift */; };
@@ -1038,6 +1042,8 @@
 				0BCA2B8D1E8AAA5000C5F0FE /* XCTestCaseExtension.swift in Sources */,
 				0BCA2B8C1E8AAA5000C5F0FE /* ResponseTest.swift in Sources */,
 				0BCA2B821E8AAA5000C5F0FE /* BaseTest.swift in Sources */,
+				0BED82061F8E206F0097D479 /* EmailServiceTest.swift in Sources */,
+				0BED82081F8E20770097D479 /* PromiseKitExtensionsTest.swift in Sources */,
 				0BCA2B861E8AAA5000C5F0FE /* WeDeployEmailTest.swift in Sources */,
 				0BCA2B881E8AAA5000C5F0FE /* DictionaryExtensionTest.swift in Sources */,
 				0BCA2B871E8AAA5000C5F0FE /* WeDeployDataTest.swift in Sources */,
@@ -1096,6 +1102,7 @@
 				0BBD1B851E97DAEA00EA5474 /* Constants.swift in Sources */,
 				0B9977781EB1D21700C4B04D /* Documentation.swift in Sources */,
 				0BCA2B8F1E8AAA5100C5F0FE /* BaseTest.swift in Sources */,
+				0BED82091F8E20780097D479 /* PromiseKitExtensionsTest.swift in Sources */,
 				0BCA2B931E8AAA5100C5F0FE /* WeDeployEmailTest.swift in Sources */,
 				0BCA2B951E8AAA5100C5F0FE /* DictionaryExtensionTest.swift in Sources */,
 				0BC979A01F84B9C60006AC31 /* CollectionFieldTypeTests.swift in Sources */,
@@ -1146,6 +1153,7 @@
 			files = (
 				0BE1D1341E0D3C9500FFE689 /* XCTestCaseExtension.swift in Sources */,
 				0BF2B5D31E1254A4004A4DF1 /* WeDeployDataTest.swift in Sources */,
+				0BED82071F8E20700097D479 /* EmailServiceTest.swift in Sources */,
 				0BE1D1331E0D3C2700FFE689 /* FilterTest.swift in Sources */,
 				0BDA424C1E13F2CA00533412 /* WatchTest.swift in Sources */,
 				0B46BA171DEEDD9900EB28CF /* BaseTest.swift in Sources */,

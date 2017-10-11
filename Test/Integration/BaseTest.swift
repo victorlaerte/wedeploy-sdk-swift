@@ -38,17 +38,8 @@ enum TestError: Error {
 
 class BaseTest: XCTestCase {
 
-	var username: String {
-		return Constants.username
-	}
-
-	var password: String {
-		return Constants.password
-	}
-
-	var userId: String {
-		return Constants.userId
-	}
+	let username = "test@test.com"
+	let password = "test"
 
 	var authModuleUrl: String {
 		return Constants.authModuleUrl
@@ -62,24 +53,11 @@ class BaseTest: XCTestCase {
 		return Constants.dataModuleUrl
 	}
 
-	func executeAuthenticated(block: @escaping (Auth) -> Void) {
-		WeDeploy.auth(authModuleUrl)
-			.signInWith(username: username, password: password)
-			.tap { auth in
-				if case let .fulfilled(auth) = auth {
-					block(auth)
-				}
-		}
+	var masterToken: String {
+		return Constants.masterToken
 	}
 
-	func givenAnAuth() -> Auth? {
-		let (auth, _) = WeDeploy.auth(authModuleUrl).signInWith(username: username, password: password).sync()
-		if let auth = auth {
-			return auth
-		}
-
-		XCTFail("Error retrieving the authentication")
-		
-		return nil
+	var anAuth: Auth {
+		return TokenAuth(token: masterToken)
 	}
 }

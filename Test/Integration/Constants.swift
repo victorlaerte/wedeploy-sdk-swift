@@ -32,9 +32,7 @@ import Foundation
 
 class Constants: NSObject {
 
-	private(set) static var username: String!
-	private(set) static var password: String!
-	private(set) static var userId: String!
+	private(set) static var masterToken: String!
 
 	private(set) static var authModuleUrl: String!
 	private(set) static var emailModuleUrl: String!
@@ -50,9 +48,7 @@ class Constants: NSObject {
 		let file = bundle.path(forResource: "settings", ofType: "plist")
 		let settings = NSDictionary(contentsOfFile: file!) as! [String: String]
 
-		Constants.username = settings["username"]
-		Constants.password = settings["password"]
-		Constants.userId = settings["userId"]
+		Constants.masterToken = settings["masterToken"]
 
 		Constants.authModuleUrl = settings["authModuleUrl"]
 		Constants.emailModuleUrl = settings["emailModuleUrl"]

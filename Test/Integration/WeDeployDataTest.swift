@@ -39,9 +39,8 @@ class WeDeployDataCreationTest: BaseTest {
 			"title": "a title",
 			"description": "a description"
 		]
-		let auth = givenAnAuth()
 		
-		let (item, error) = WeDeploy.data(self.dataModuleUrl, authorization: auth)
+		let (item, error) = WeDeploy.data(self.dataModuleUrl)
 				.create(resource: "things", object: resource)
 				.sync()
 		
@@ -64,10 +63,8 @@ class WeDeployDataCreationTest: BaseTest {
 			"title": "another title",
 			"description": "another description"
 		]
-		let auth = givenAnAuth()
 
-		
-		let (items, error) = WeDeploy.data(self.dataModuleUrl, authorization: auth)
+		let (items, error) = WeDeploy.data(self.dataModuleUrl)
 			.create(resource: "things", object: [resource1, resource2])
 			.sync()
 
