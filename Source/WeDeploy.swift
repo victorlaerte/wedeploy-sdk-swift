@@ -62,7 +62,7 @@ public class WeDeploy: RequestBuilder {
 
 		if url.hasSuffix("/") {
 			let slashIndex = finalUrl.index(finalUrl.endIndex, offsetBy: -1)
-			finalUrl = finalUrl.substring(to: slashIndex)
+			finalUrl = String(finalUrl[..<slashIndex])
 		}
 
 		return finalUrl
