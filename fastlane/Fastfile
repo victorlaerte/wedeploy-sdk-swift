@@ -68,7 +68,7 @@ desc "Runs all the tests"
       git remote add mine https://github.com/victorg1991/cdn
       git add .
       git commit -m \"Release version #{version} of api-swift\"
-      git push mine master:release-#{version}"
+      git push mine gh-pages:release-#{version}"
 
   end
 
