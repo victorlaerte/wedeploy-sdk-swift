@@ -47,8 +47,8 @@ class PromiseKitExtensionsTest: XCTestCase {
 
 	func testCallbackExtension_withPromiseWithFulfill() {
 		let expect = XCTestExpectation(description: "should call callback method")
-		let promise = Promise { fulfill, _ in
-			fulfill()
+		let promise = Promise<Void> { fulfill, _ in
+			fulfill(())
 		}
 
 		promise.toCallback { value, error in
@@ -57,7 +57,7 @@ class PromiseKitExtensionsTest: XCTestCase {
 			expect.fulfill()
 		}
 
-		XCTWaiter.wait(for: [expect], timeout: 1)
+		_ = XCTWaiter.wait(for: [expect], timeout: 1)
 	}
 
 	func testCallbackExtension_withPromiseWithReject() {
@@ -72,7 +72,7 @@ class PromiseKitExtensionsTest: XCTestCase {
 			expect.fulfill()
 		}
 
-		XCTWaiter.wait(for: [expect], timeout: 1)
+		_ = XCTWaiter.wait(for: [expect], timeout: 1)
 	}
 
 	func testCallbackExtension_withPromiseWithFulfillAndReject() {
@@ -90,13 +90,14 @@ class PromiseKitExtensionsTest: XCTestCase {
 			expect.fulfill()
 		}
 
-		XCTWaiter.wait(for: [expect], timeout: 1)
+		_ = XCTWaiter.wait(for: [expect], timeout: 1)
 	}
 
 	func testObservableExtension_withPromiseWithFulfill() {
 		let expect = XCTestExpectation(description: "should call observable method")
-		let promise = Promise { fulfill, _ in
-			fulfill()
+		let promise = Promise<()> { fulfill, _ in
+			fulfill(())
+			return
 		}
 
 		promise.toObservable().subscribe(onNext: { value in
@@ -108,7 +109,7 @@ class PromiseKitExtensionsTest: XCTestCase {
 		})
 		.disposed(by: bag)
 
-		XCTWaiter.wait(for: [expect], timeout: 1)
+		_ = XCTWaiter.wait(for: [expect], timeout: 1)
 	}
 
 	func testObservableExtension_withPromiseWithReject() {
@@ -126,7 +127,7 @@ class PromiseKitExtensionsTest: XCTestCase {
 		})
 		.disposed(by: bag)
 
-		XCTWaiter.wait(for: [expect], timeout: 1)
+		_ = XCTWaiter.wait(for: [expect], timeout: 1)
 	}
 
 	func testObservableExtension_withPromiseWithFulfillAndReject() {
@@ -147,7 +148,7 @@ class PromiseKitExtensionsTest: XCTestCase {
 		})
 		.disposed(by: bag)
 
-		XCTWaiter.wait(for: [expect], timeout: 1)
+		_ = XCTWaiter.wait(for: [expect], timeout: 1)
 	}
 
 }
