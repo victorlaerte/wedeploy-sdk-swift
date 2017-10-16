@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 
 Nothing added yet
 
-## [1.0.0] - 2017-08-04
+## [1.0.0] - 2017-10-04
 
 ### Added
 - `createCollection` and `updateCollection` methods in WeDeployData that allow you to create and update collections in your data service
