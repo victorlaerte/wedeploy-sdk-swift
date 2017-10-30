@@ -224,7 +224,7 @@ public class WeDeployAuth: WeDeployService {
 	#if os(macOS)
 
 	func open(_ url: URL) {
-		NSWorkspace.shared().open(url)
+		NSWorkspace.shared.open(url)
 	}
 
 	#else

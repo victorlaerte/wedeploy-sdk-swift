@@ -1,7 +1,7 @@
-osx_image: xcode8.2
+osx_image: xcode9
 language: objective-c
 
 
 script:
-   - set -o pipefail
-   - xcodebuild clean test -project WeDeploy.xworkspace -scheme WeDeploy -destination "platform=iOS Simulator,name=iPhone 7 Plus" | xcpretty
+   - carthage bootstrap
+   - fastlane test_travis

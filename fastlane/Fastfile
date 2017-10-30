@@ -3,98 +3,21 @@ fastlane_version "2.27.0"
 default_platform :ios
 
 platform :ios do
-
-  desc "Archive all the frameworks and zip them"
-  lane :build_all do |lane|
-
-    if !lane[:version]
-      raise "No version specified!".red
-    end
-
-    version = lane[:version]
-
-    increment_version_number(version_number: version)
-    version_bump_podspec(path: "WeDeploy.podspec", version_number: version)
-
-    # Delete build directory if exists
-    FileUtils::rm_rf "../iOS"
-    FileUtils::rm_rf "../Mac"
-    FileUtils::rm_rf "../tvOS"
-
-    # Archive all the frameworks
-    xcodebuild(
-      archive: true,
-      scheme: "WeDeploy",
-      archive_path: "/tmp/WeDeploy.xcarchive"
-    )
-    xcodebuild(
-      archive: true,
-      scheme: "WeDeploy-tvOS",
-      archive_path: "/tmp/WeDeploy.xcarchive"
-    )
-    xcodebuild(
-      archive: true,
-      scheme: "WeDeploy-macOS",
-      archive_path: "/tmp/WeDeploy.xcarchive"
-    )
-    
-    # Construct
-    sh "cd ..
-      zip -r WeDeploy.zip iOS tvOS Mac LICENSE"
-
-    upload_zip(version: version)
+  desc "Runs all the tests"
+  lane :test_travis do
+    scan(scheme: "WeDeploy", clean: true, skip_testing: ['Tests/WeDeployAuthTest', 'Tests/WeDeployDataTest', 'Tests/WeDeployDataCreationTest', 'Tests/WeDeployEmailTest'])
+    scan(scheme: "WeDeploy-macOS", clean: true, destination: 'platform=macOS', skip_testing: ['WeDeploy-macOSTests/WeDeployAuthTest', 'WeDeploy-macOSTests/WeDeployDataTest', 'WeDeploy-macOSTests/WeDeployDataCreationTest', 'WeDeploy-macOSTests/WeDeployEmailTest'])
+    scan(scheme: "WeDeploy-tvOS", clean: true, skip_testing: ['WeDeploy-tvOSTests/WeDeployAuthTest', 'WeDeploy-tvOSTests/WeDeployDataTest', 'WeDeploy-tvOSTests/WeDeployDataCreationTest', 'WeDeploy-tvOSTests/WeDeployEmailTest'])
   end
 
-desc "Runs all the tests"
   lane :test_all_schemes do
     scan(scheme: "WeDeploy", clean: true)
-    scan(scheme: "WeDeploy-macOS", clean: true, destination: 'platform=macOS')
+    scan(scheme: "WeDeploy-macOS", clean: true)
     scan(scheme: "WeDeploy-tvOS", clean: true)
-  end
-
-  lane :upload_zip do |lane|
-    if !lane[:version]
-      raise "No version specified!".red
-    end
-
-    version = lane[:version]
-
-    sh "cd .. 
-      rm -rf cdn
-      git clone https://github.com/wedeploy/cdn
-      mkdir -p cdn/public/api-swift/#{version}
-      cp WeDeploy.zip cdn/public/api-swift/#{version}
-      cd cdn
-      git remote add mine https://github.com/victorg1991/cdn
-      git add .
-      git commit -m \"Release version #{version} of api-swift\"
-      git push mine gh-pages:release-#{version}"
-
   end
 
   lane :pod_lib_lint do
     pod_lib_lint(verbose: true)
   end
-
-  # lane :create_pr do |lane|
-  #   if !lane[:version]
-  #     raise "No version specified!".red
-  #   end
-
-  #   version = lane[:version]
-
-  #   fastlane_require 'json'
-  #   body_obj = {
-  #     'title' => "Release version #{version} of api-swift",
-  #     'head' => "victorg1991:release-#{version}",
-  #     'base' => "master"
-  #   }
-
-  #   body = body_obj.to_json
-  #   fastlane_require 'excon'
-  #   response = Excon.post("https://api.github.com/repos/victorg1991/cdn/pulls", body: body)
-  #   puts response
-
-  #   end
 
 end
