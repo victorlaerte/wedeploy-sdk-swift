@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 	s.name					= "WeDeploy"
-	s.version				= "1.0.0"
+	s.version				= "1.0.1"
 	s.summary				= "Swift API Client for WeDeploy Project."
 	s.homepage				= "http://wedeploy.com/"
 	s.license				= {
