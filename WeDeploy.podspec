@@ -11,16 +11,18 @@ Pod::Spec.new do |s|
 								"Bruno Farache" => "bruno.farache@liferay.com",
 								"Victor Galán" => "victor.galan@liferay.com"
 							}
-	s.source				= {
-								:http => "http://cdn.wedeploy.com/api-swift/#{s.version.to_s}/WeDeploy.zip"
+							
+	s.source 				= {
+								:git => 'https://github.com/liferay/liferay-screens.git',
+								:tag => s.version.to_s
 							}
+	s.source_files			= [
+								'Source/**/*.swift'
+	]
 	s.ios.deployment_target = '9.0'
 	s.osx.deployment_target = '10.11'
 	s.tvos.deployment_target = '9.0'
-	s.ios.vendored_frameworks = 'iOS/WeDeploy.framework'
-	s.tvos.vendored_frameworks = 'tvOS/WeDeploy.framework'
-	s.osx.vendored_frameworks = 'Mac/WeDeploy.framework'
 	s.dependency			"PromiseKit", "~> 4.0"
 	s.dependency			"Socket.IO-Client-Swift", "~> 12.1"
-	s.dependency			"RxSwift", "4.0.0-beta.1"
+	s.dependency			"RxSwift", "4.0.0"
 end

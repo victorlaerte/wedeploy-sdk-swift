@@ -102,7 +102,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "export PLATFORM=tvOS&#10;sh ${PROJECT_DIR}/scripts/build_fat_frameworks.sh">
+               scriptText = "">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
