@@ -13,12 +13,10 @@ Pod::Spec.new do |s|
 							}
 							
 	s.source 				= {
-								:git => 'https://github.com/liferay/liferay-screens.git',
+								:git => 'https://github.com/wedeploy/wedeploy-sdk-swift.git',
 								:tag => s.version.to_s
 							}
-	s.source_files			= [
-								'Source/**/*.swift'
-	]
+	s.source_files			= 'Source/**/*.swift'
 	s.ios.deployment_target = '9.0'
 	s.osx.deployment_target = '10.11'
 	s.tvos.deployment_target = '9.0'
