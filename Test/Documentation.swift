@@ -391,6 +391,122 @@ public class Documentation {
 		}
 	}
 
+	func data_filteringData_operators() {
+		_ = WeDeploy
+			.data("https://<serviceID>-<projectID>.wedeploy.io")
+			.where(field: "ratings", op: ">", value: 8.3)
+			.get(resourcePath: "movies")
+
+		_ = WeDeploy
+			.data("https://<serviceID>-<projectID>.wedeploy.io")
+			.where(field: "ratings", op: ">", value: 8.3)
+			.where(field: "theaer", op: "=", value: "Regal")
+			.get(resourcePath: "movies")
+
+		_ = WeDeploy
+			.data("https://<serviceID>-<projectID>.wedeploy.io")
+			.where(field: "theater", op: "=", value: "Regal")
+			.or(field: "theater", op: "=", value: "CMA")
+			.get(resourcePath: "movies")
+
+		_ = WeDeploy
+			.data("https://<serviceID>-<projectID>.wedeploy.io")
+			.gt(field: "ratings", value: "7")
+			.lte(field: "ratings", value: "9.5")
+			.get(resourcePath: "movies")
+
+		_ = WeDeploy
+			.data("https://<serviceID>-<projectID>.wedeploy.io")
+			.range(field: "ratings", range: Range(from: 4, to: 8))
+			.get(resourcePath: "movies")
+
+		_ = WeDeploy
+			.data("https://<serviceID>-<projectID>.wedeploy.io")
+			.none(field: "theaters", value: ["Regal", "AMC"])
+			.get(resourcePath: "movies")
+
+		_ = WeDeploy
+			.data("https://<serviceID>-<projectID>.wedeploy.io")
+			.any(field: "theaters", value: ["CMA"])
+			.get(resourcePath: "movies")
+
+		_ = WeDeploy
+			.data("https://<serviceID>-<projectID>.wedeploy.io")
+			.any(field: "theaters", value: ["Regal", "AMC"])
+			.get(resourcePath: "movies")
+
+		_ = WeDeploy
+			.data("https://<serviceID>-<projectID>.wedeploy.io")
+			.exists(field: "theaters")
+			.get(resourcePath: "movies")
+	}
+
+	func data_filteringData_textQuery() {
+		_ = WeDeploy
+			.data("https://<serviceID>-<projectID>.wedeploy.io")
+			.match(field: "title", pattern: "sith +Reveng -jedi")
+			.get(resourcePath: "movies")
+
+		_ = WeDeploy
+			.data("https://<serviceID>-<projectID>.wedeploy.io")
+			.phrase(field: "title", value: "reven")
+			.get(resourcePath: "movies")
+
+		_ = WeDeploy
+			.data("https://<serviceID>-<projectID>.wedeploy.io")
+			.similar(field: "title", query: "sth")
+			.get(resourcePath: "movies")
+	}
+
+	func data_filteringData_geolocation() {
+		_ = WeDeploy
+			.data("https://<serviceID>-<projectID>.wedeploy.io")
+			.polygon(field: "location", points: [GeoPoint(lat: 20, long: 0), GeoPoint(lat: 0, long: 20)])
+			.get(resourcePath: "movies")
+
+		_ = WeDeploy
+			.data("https://<serviceID>-<projectID>.wedeploy.io")
+			.distance(field: "location", latitude: 20, longitude: 0, distance: .mile(40))
+			.get(resourcePath: "movies")
+	}
+
+	func data_filteringData_results() {
+		_ = WeDeploy
+			.data("https://<serviceID>-<projectID>.wedeploy.io")
+			.match(field: "title", pattern: "Revenge")
+			.limit(2)
+			.get(resourcePath: "movies")
+
+		_ = WeDeploy
+			.data("https://<serviceID>-<projectID>.wedeploy.io")
+			.match(field: "title", pattern: "Revenge")
+			.offset(5)
+			.get(resourcePath: "movies")
+
+		_ = WeDeploy
+			.data("https://<serviceID>-<projectID>.wedeploy.io")
+			.match(field: "title", pattern: "Revenge")
+			.highlight("title")
+			.get(resourcePath: "movies")
+
+		_ = WeDeploy
+			.data("https://<serviceID>-<projectID>.wedeploy.io")
+			.aggregate(name: "my_averages", field: "ratings", op: "avg")
+			.get(resourcePath: "movies")
+
+		_ = WeDeploy
+			.data("https://<serviceID>-<projectID>.wedeploy.io")
+			.where(field: "ratings", op: ">", value: 8.5)
+			.count()
+			.get(resourcePath: "movies")
+
+		_ = WeDeploy
+			.data("https://<serviceID>-<projectID>.wedeploy.io")
+			.where(field: "ratings", op: ">", value: 8.5)
+			.orderBy(field: "title", order: .DESC)
+			.get(resourcePath: "movies")
+	}
+
 	func email_checkStatus() {
 		_ = WeDeploy.email("http://<serviceID>.<projectID>.wedeploy.io")
 			.checkEmailStatus(id: "202605176596079530")
