@@ -20,6 +20,20 @@
                ReferencedContainer = "container:WeDeploy.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0BCA2B6E1E8AA99200C5F0FE"
+               BuildableName = "WeDeploy-tvOSTests.xctest"
+               BlueprintName = "WeDeploy-tvOSTests"
+               ReferencedContainer = "container:WeDeploy.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
