@@ -42,7 +42,7 @@ public class Filter: CustomStringConvertible, ExpressibleByStringLiteral {
 	}
 
 	public convenience init(_ expression: String) {
-		var parts = expression.characters.split {
+		var parts = expression.split {
 			$0 == " "
 		}.map(String.init)
 
