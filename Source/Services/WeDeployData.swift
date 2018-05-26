@@ -254,6 +254,11 @@ public class WeDeployData: WeDeployService {
 		return self
 	}
 
+	public func fields(_ fields: String...) -> Self {
+		query = query.fields(fields: fields)
+		return self
+	}
+
 	public func search(resourcePath: String) -> Promise<[String: AnyObject]> {
 		query = query.search()
 		return doGetRequest(resourcePath: resourcePath)

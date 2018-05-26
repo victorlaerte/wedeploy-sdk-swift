@@ -124,4 +124,20 @@ class QueryTest: XCTestCase {
 			query.query)
 	}
 
+	func testFieldsQuery() {
+		let query = Query().fields(fields: ["field1"])
+
+		assertJSON(
+			"{\"fields\":[\"field1\"]}",
+			query.query)
+	}
+
+	func testMoreThanOneFieldsQuery() {
+		let query = Query().fields(fields: ["field1", "field2", "field3"])
+
+		assertJSON(
+			"{\"fields\":[\"field1\", \"field2\", \"field3\"]}",
+			query.query)
+	}
+
 }

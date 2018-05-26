@@ -59,7 +59,7 @@ class ResponseTest: XCTestCase {
 		let response = Response(statusCode: 200, headers: headers, body: data!)
 		let body = response.body as! [String: String]
 
-		XCTAssertEqual("bar", body["foo"] as String!)
+		XCTAssertEqual("bar", body["foo"] as? String)
 	}
 
 	func testMalformedJSON() {
