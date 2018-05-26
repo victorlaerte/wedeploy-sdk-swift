@@ -229,4 +229,36 @@ class WeDeployDataTest: BaseTest {
 		}
 	}
 
+	func testFieldsOperator() {
+		let (items, error) = WeDeploy.data(self.dataModuleUrl)
+			.fields("name")
+			.get(resourcePath: collectionName)
+			.sync()
+
+		XCTAssertNotNil(items)
+		XCTAssertNil(error)
+		if items != nil {
+			for item in items! {
+				XCTAssertNil(item["yearsOld"])
+				XCTAssertNotNil(item["name"])
+			}
+		}
+	}
+
+	func testFieldsOperatorWithMoreThanOneField() {
+		let (items, error) = WeDeploy.data(self.dataModuleUrl)
+			.fields("name", "yearsOld")
+			.get(resourcePath: collectionName)
+			.sync()
+
+		XCTAssertNotNil(items)
+		XCTAssertNil(error)
+		if items != nil {
+			for item in items! {
+				XCTAssertNotNil(item["yearsOld"])
+				XCTAssertNotNil(item["name"])
+			}
+		}
+	}
+
 }
