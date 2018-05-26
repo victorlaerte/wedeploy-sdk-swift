@@ -113,4 +113,14 @@ public class Query: CustomStringConvertible {
 		return self
 	}
 
+	public func fields(fields: [String]) -> Self {
+		var currentFields = query["fields"] as? [String] ?? [String]()
+
+		currentFields.append(contentsOf: fields)
+
+		query["fields"] = currentFields
+
+		return self
+	}
+
 }
