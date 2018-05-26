@@ -3,12 +3,12 @@
 <plist version="1.0">
 <dict>
 	<key>dataModuleUrl</key>
-	<string>https://data-apiswift.wedeploy.io</string>
+	<string>https://data-swiftsdk.wedeploy.io</string>
 	<key>authModuleUrl</key>
-	<string>https://auth-apiswift.wedeploy.io</string>
+	<string>https://auth-swiftsdk.wedeploy.io</string>
 	<key>emailModuleUrl</key>
-	<string>https://email-apiswift.wedeploy.io</string>
+	<string>https://email-swiftsdk.wedeploy.io</string>
 	<key>masterToken</key>
-	<string>23b02662-ee50-4177-9491-10aee0399257</string>
+	<string>c66a0869-34b9-4b5f-8d7a-117358f33b61</string>
 </dict>
 </plist>
