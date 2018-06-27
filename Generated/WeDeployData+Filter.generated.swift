@@ -89,6 +89,9 @@ extension WeDeployData {
 	public func fuzzy(field: String, query: Any, fuzziness: Int) -> Self {
 		return self.where(filter: Filter.fuzzy(field: field, query: query, fuzziness: fuzziness))
 	}
+
+	public func wildcard(field: String, value: String) -> Self {
+		return self.where(filter: Filter.wildcard(field: field, value: value))
 	}
 }
 

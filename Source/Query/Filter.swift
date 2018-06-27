@@ -212,6 +212,10 @@ public class Filter: CustomStringConvertible, ExpressibleByStringLiteral {
 		return Filter(field: field, op: "fuzzy", value: value)
 	}
 
+	public static func wildcard(field: String, value: String) -> Filter {
+		return Filter(field: field, op: "wildcard", value: value)
+	}
+
 	func and(_ filters: [Filter]) -> Self {
 		let ands: [[String: AnyObject]]
 		if self.filter.isEmpty {
