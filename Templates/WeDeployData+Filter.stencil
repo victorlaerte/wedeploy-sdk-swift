@@ -1,7 +1,7 @@
 // WeDeployData+Filter
 
-{% macro nameAndType method%}{% for parameter in method.parameters %} {{parameter.name}}: {{parameter.typeName}}{% if not forloop.last %},{% endif %}{% endfor %}{% endmacro %}
-{% macro nameAndName method%}{% for parameter in method.parameters %} {{parameter.name}}: {{parameter.name}}{% if not forloop.last %},{% endif %}{% endfor %}{% endmacro %}
+{% macro nameAndType method%}{% for parameter in method.parameters %}{{parameter.name}}: {{parameter.typeName}}{% if not forloop.last %}, {% endif %}{% endfor %}{% endmacro %}
+{% macro nameAndName method%}{% for parameter in method.parameters %}{{parameter.name}}: {{parameter.name}}{% if not forloop.last %}, {% endif %}{% endfor %}{% endmacro %}
 
 extension WeDeployData {
 {% for method in type.Filter.allMethods %}
