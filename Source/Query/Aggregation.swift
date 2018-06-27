@@ -39,7 +39,7 @@ public class Aggregation: CustomStringConvertible {
 	}
 
 	public init(name: String, field: String, op: String, value: Any? = nil) {
-		var innerDict: [String : Any] = [
+		var innerDict: [String: Any] = [
 			"name": name,
 			"operator": op
 		]

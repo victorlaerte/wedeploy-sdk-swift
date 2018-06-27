@@ -150,7 +150,7 @@ public class Filter: CustomStringConvertible, ExpressibleByStringLiteral {
 	public static func distance(field: String, latitude: Double,
 			longitude: Double, range: Range) -> Filter {
 
-		var value: [String : Any] = [
+		var value: [String: Any] = [
 			"location": [latitude, longitude]
 		]
 
@@ -183,7 +183,7 @@ public class Filter: CustomStringConvertible, ExpressibleByStringLiteral {
 		let value = [
 			"type": "geometrycollection",
 			"geometries": shapes.map({ $0.value })
-		] as [String : Any]
+		] as [String: Any]
 
 		return Filter(field: field, op: "gs", value: value)
 	}
@@ -205,7 +205,7 @@ public class Filter: CustomStringConvertible, ExpressibleByStringLiteral {
 	}
 
 	public static func fuzzy(field: String, query: Any, fuzziness: Int = 1) -> Filter {
-		let value: [String : Any] = [
+		let value: [String: Any] = [
 			"query": query,
 			"fuzziness": fuzziness
 		]

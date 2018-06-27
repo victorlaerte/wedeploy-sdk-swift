@@ -76,7 +76,7 @@ public class Response {
 		return string
 	}
 
-	func validate() throws -> [String : AnyObject] {
+	func validate() throws -> [String: AnyObject] {
 		return try validateBody(bodyType: [String: AnyObject].self)
 	}
 
@@ -88,7 +88,7 @@ public class Response {
 			let message = "You are trying to cast the body of response into \(type(of: T.self)), " +
 				"but it can't be done, please check the type of the response"
 
-			throw WeDeployError(code: -1, message: message,errors: [])
+			throw WeDeployError(code: -1, message: message, errors: [])
 		}
 
 		return body

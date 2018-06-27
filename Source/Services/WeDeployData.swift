@@ -45,7 +45,7 @@ public class WeDeployData: WeDeployService {
 		return super.header(name: name, value: value) as! WeDeployData
 	}
 
-	public func create(resource: String, object: [String : Any]) -> Promise<[String : AnyObject]> {
+	public func create(resource: String, object: [String: Any]) -> Promise<[String: AnyObject]> {
 
 		return doCreateRequest(resource: resource, object: object)
 			.then { response in
@@ -53,7 +53,7 @@ public class WeDeployData: WeDeployService {
 			}
 	}
 
-	public func create(resource: String, object: [[String : Any]]) -> Promise<[String : AnyObject]> {
+	public func create(resource: String, object: [[String: Any]]) -> Promise<[String: AnyObject]> {
 
 		return doCreateRequest(resource: resource, object: object)
 			.then { response in
@@ -85,8 +85,8 @@ public class WeDeployData: WeDeployService {
 			.delete()
 	}
 
-	public func createCollection(name: String, fieldTypes: [String : CollectionFieldType]) -> Promise<[String : Any]> {
-		let body: [String : Any] = [
+	public func createCollection(name: String, fieldTypes: [String: CollectionFieldType]) -> Promise<[String: Any]> {
+		let body: [String: Any] = [
 			"mappings": fieldTypes.toJsonConvertible(),
 			"name": name
 		]
@@ -98,8 +98,8 @@ public class WeDeployData: WeDeployService {
 			}
 	}
 
-	public func updateCollection(name: String, fieldTypes: [String : CollectionFieldType]) -> Promise<Void> {
-		let body: [String : Any] = [
+	public func updateCollection(name: String, fieldTypes: [String: CollectionFieldType]) -> Promise<Void> {
+		let body: [String: Any] = [
 			"mappings": fieldTypes.toJsonConvertible(),
 			"name": name
 		]

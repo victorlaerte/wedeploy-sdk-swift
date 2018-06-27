@@ -40,7 +40,7 @@ public class BasicAuth: Auth {
 		self.password = password
 	}
 
-	public var authHeaders: [String : String] {
+	public var authHeaders: [String: String] {
 		var credentials = "\(username):\(password)"
 		let data = credentials.data(using: .utf8)
 		credentials = data!.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
