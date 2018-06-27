@@ -35,8 +35,8 @@ class FilterTest: XCTestCase {
 
 	func testAnd() {
 		let filter = Filter
-			.gt("age", 12)
-			.and(Filter.lt("age", 15))
+			.gt(field: "age", value: 12)
+			.and(filters: Filter.lt(field: "age", value: 15))
 
 		assertJSON(
 			"{\"and\":[" +
@@ -47,7 +47,7 @@ class FilterTest: XCTestCase {
 	}
 
 	func testAnd_WithOneFilter() {
-		let filter = Filter().and(Filter.gt("age", 12))
+		let filter = Filter().and(filters: Filter.gt(field: "age", value: 12))
 
 		assertJSON(
 			"{\"and\":[" +
@@ -58,8 +58,8 @@ class FilterTest: XCTestCase {
 
 	func testAnd_Overloaded_Operator() {
 		let filter = Filter
-			.gt("age", 12) &&
-			Filter.lt("age", 15) &&
+			.gt(field: "age", value: 12) &&
+			Filter.lt(field: "age", value: 15) &&
 			"name = foo"
 
 		assertJSON(
@@ -73,9 +73,9 @@ class FilterTest: XCTestCase {
 
 	func testAnd_With_Three_Filters() {
 		let filter = Filter
-			.gt("age", 12)
-			.and(Filter.lt("age", 15))
-			.and(Filter.equal("name", "foo"))
+			.gt(field: "age", value: 12)
+			.and(filters: Filter.lt(field: "age", value: 15))
+			.and(filters: Filter.equal(field: "name", value: "foo"))
 
 		assertJSON(
 			"{\"and\":[" +
@@ -87,7 +87,7 @@ class FilterTest: XCTestCase {
 	}
 
 	func testAny() {
-		let filter = Filter.any("age", [12, 21, 25])
+		let filter = Filter.any(field: "age", value: [12, 21, 25])
 
 		assertJSON(
 			"{\"age\":{\"operator\":\"any\",\"value\":[12,21,25]}}",
@@ -96,9 +96,9 @@ class FilterTest: XCTestCase {
 
 	func testComposition() {
 		let filter = Filter
-			.gt("age", 12)
-			.or("age < 15" as Filter)
-			.and(Filter("name = foo"))
+			.gt(field: "age", value: 12)
+			.or(filters: "age < 15" as Filter)
+			.and(filters: Filter("name = foo"))
 
 		print(filter.filter)
 
@@ -124,28 +124,28 @@ class FilterTest: XCTestCase {
 	}
 
 	func testEqual() {
-		let filter = Filter.equal("age", 12)
+		let filter = Filter.equal(field: "age", value: 12)
 		assertJSON("{\"age\":{\"operator\":\"=\",\"value\":12}}", filter.filter)
 	}
 
 	func testGt() {
-		let filter = Filter.gt("age", 12)
+		let filter = Filter.gt(field: "age", value: 12)
 		assertJSON("{\"age\":{\"operator\":\">\",\"value\":12}}", filter.filter)
 	}
 
 	func testGte() {
-		let filter = Filter.gte("age", 12)
+		let filter = Filter.gte(field: "age", value: 12)
 		assertJSON(
 			"{\"age\":{\"operator\":\">=\",\"value\":12}}", filter.filter)
 	}
 
 	func testLt() {
-		let filter = Filter.lt("age", 12)
+		let filter = Filter.lt(field: "age", value: 12)
 		assertJSON("{\"age\":{\"operator\":\"<\",\"value\":12}}", filter.filter)
 	}
 
 	func testLte() {
-		let filter = Filter.lte("age", 12)
+		let filter = Filter.lte(field: "age", value: 12)
 
 		assertJSON(
 			"{\"age\":{\"operator\":\"<=\",\"value\":12}}",
@@ -153,7 +153,7 @@ class FilterTest: XCTestCase {
 	}
 
 	func testNone() {
-		let filter = Filter.none("age", [12, 21, 25])
+		let filter = Filter.none(field: "age", value: [12, 21, 25])
 
 		assertJSON(
 			"{\"age\":{\"operator\":\"none\",\"value\":[12,21,25]}}",
@@ -177,7 +177,7 @@ class FilterTest: XCTestCase {
 	}
 
 	func testNotEqual() {
-		let filter = Filter.notEqual("age", 12)
+		let filter = Filter.notEqual(field: "age", value: 12)
 
 		assertJSON(
 			"{\"age\":{\"operator\":\"!=\",\"value\":12}}", filter.filter)
@@ -185,8 +185,8 @@ class FilterTest: XCTestCase {
 
 	func testOr() {
 		let filter = Filter
-			.gt("age", 12)
-			.or(Filter.lt("age", 15))
+			.gt(field: "age", value: 12)
+			.or(filters: Filter.lt(field: "age", value: 15))
 
 		assertJSON(
 			"{\"or\":[" +
@@ -198,7 +198,7 @@ class FilterTest: XCTestCase {
 
 	func testOr_WithOneFilter() {
 		let filter = Filter()
-			.or(Filter.lt("age", 15))
+			.or(filters: Filter.lt(field: "age", value: 15))
 
 		assertJSON(
 			"{\"or\":[" +
@@ -209,8 +209,8 @@ class FilterTest: XCTestCase {
 
 	func testOr_Overloaded_Operator() {
 		let filter = Filter
-			.gt("age", 12) ||
-			Filter.lt("age", 15) ||
+			.gt(field: "age", value: 12) ||
+			Filter.lt(field: "age", value: 15) ||
 			"name = foo"
 
 		assertJSON(
@@ -224,9 +224,9 @@ class FilterTest: XCTestCase {
 
 	func testOr_With_Three_Filters() {
 		let filter = Filter
-			.gt("age", 12)
-			.or(Filter.lt("age", 15))
-			.or(Filter.equal("name", "foo"))
+			.gt(field: "age", value: 12)
+			.or(filters: Filter.lt(field: "age", value: 15))
+			.or(filters: Filter.equal(field: "name", value: "foo"))
 
 		assertJSON(
 			"{\"or\":[" +
@@ -238,7 +238,7 @@ class FilterTest: XCTestCase {
 	}
 
 	func testRegex() {
-		let filter = Filter.regex("age", 12)
+		let filter = Filter.regex(field: "age", value: 12)
 		assertJSON("{\"age\":{\"operator\":\"~\",\"value\":12}}", filter.filter)
 	}
 
@@ -274,7 +274,7 @@ class FilterTest: XCTestCase {
 
 	func testStringConvertible_With_And_Operator() {
 		let filter = Filter
-			.gt("age", 12) &&
+			.gt(field: "age", value: 12) &&
 			"age < 15"
 
 		assertJSON(
@@ -299,7 +299,7 @@ class FilterTest: XCTestCase {
 	}
 
 	func testMatchOperator() {
-		let filter = Filter.match(field: "age", value: 12)
+		let filter = Filter.match(field: "age", pattern: 12)
 
 		assertJSON("{\"age\":{\"operator\":\"match\",\"value\":12}}", filter.filter)
 	}

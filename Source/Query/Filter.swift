@@ -87,35 +87,35 @@ public class Filter: CustomStringConvertible, ExpressibleByStringLiteral {
 		self.init(unicodeScalarLiteral)
 	}
 
-	public func and(_ filters: Filter...) -> Self {
+	public func and(filters: Filter...) -> Self {
 		return self.and(filters)
 	}
 
-	public static func any(_ field: String, _ value: [Any]) -> Filter {
+	public static func any(field: String, value: [Any]) -> Filter {
 		return Filter(field: field, op: "any", value: value)
 	}
 
-	public static func equal(_ field: String, _ value: Any) -> Filter {
+	public static func equal(field: String, value: Any) -> Filter {
 		return Filter(field, value)
 	}
 
-	public static func gt(_ field: String, _ value: Any) -> Filter {
+	public static func gt(field: String, value: Any) -> Filter {
 		return Filter(field: field, op: ">", value: value)
 	}
 
-	public static func gte(_ field: String, _ value: Any) -> Filter {
+	public static func gte(field: String, value: Any) -> Filter {
 		return Filter(field: field, op: ">=", value: value)
 	}
 
-	public static func lt(_ field: String, _ value: Any) -> Filter {
+	public static func lt(field: String, value: Any) -> Filter {
 		return Filter(field: field, op: "<", value: value)
 	}
 
-	public static func lte(_ field: String, _ value: Any) -> Filter {
+	public static func lte(field: String, value: Any) -> Filter {
 		return Filter(field: field, op: "<=", value: value)
 	}
 
-	public static func none(_ field: String, _ value: [Any]) -> Filter {
+	public static func none(field: String, value: [Any]) -> Filter {
 		return Filter(field: field, op: "none", value: value)
 	}
 
@@ -127,20 +127,20 @@ public class Filter: CustomStringConvertible, ExpressibleByStringLiteral {
 		return self
 	}
 
-	public static func notEqual(_ field: String, _ value: Any) -> Filter {
+	public static func notEqual(field: String, value: Any) -> Filter {
 		return Filter(field: field, op: "!=", value: value)
 	}
 
-	public func or(_ filters: Filter...) -> Self {
+	public func or(filters: Filter...) -> Self {
 		return self.or(filters)
 	}
 
-	public static func regex(_ field: String, _ value: Any) -> Filter {
+	public static func regex(field: String, value: Any) -> Filter {
 		return Filter(field: field, op: "~", value: value)
 	}
 
-	public static func match(field: String, value: Any) -> Filter {
-		return Filter(field: field, op: "match", value: value)
+	public static func match(field: String, pattern: Any) -> Filter {
+		return Filter(field: field, op: "match", value: pattern)
 	}
 
 	public static func similar(field: String, query: Any) -> Filter {
@@ -247,11 +247,11 @@ public class Filter: CustomStringConvertible, ExpressibleByStringLiteral {
 }
 
 public func && (left: Filter, right: Filter) -> Filter {
-	return left.and(right)
+	return left.and(filters: right)
 }
 
 public func || (left: Filter, right: Filter) -> Filter {
-	return left.or(right)
+	return left.or(filters: right)
 }
 
 public prefix func ! (filter: Filter) -> Filter {

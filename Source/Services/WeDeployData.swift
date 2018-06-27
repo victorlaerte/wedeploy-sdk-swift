@@ -122,50 +122,50 @@ public class WeDeployData: WeDeployService {
 	}
 
 	public func `where`(field: String, op: String, value: Any) -> Self {
-		filter = getOrCreateFilter().and(Filter(field: field, op: op, value: value))
+		filter = getOrCreateFilter().and(filters: Filter(field: field, op: op, value: value))
 		return self
 	}
 
 	public func `where`(filter: Filter) -> Self {
-		self.filter = getOrCreateFilter().and(filter)
+		self.filter = getOrCreateFilter().and(filters: filter)
 		return self
 	}
 
 	public func or(field: String, op: String, value: Any) -> Self {
-		filter = getOrCreateFilter().or(Filter(field: field, op: op, value: value))
+		filter = getOrCreateFilter().or(filters: Filter(field: field, op: op, value: value))
 		return self
 	}
 
 	public func none(field: String, value: [Any]) -> Self {
-		return self.where(filter: Filter.none(field, value))
+		return self.where(filter: Filter.none(field: field, value: value))
 	}
 
 	public func lt(field: String, value: Any) -> Self {
-		return self.where(filter: Filter.lt(field, value))
+		return self.where(filter: Filter.lt(field: field, value: value))
 	}
 
 	public func lte(field: String, value: Any) -> Self {
-		return self.where(filter: Filter.lte(field, value))
+		return self.where(filter: Filter.lte(field: field, value: value))
 	}
 
 	public func gt(field: String, value: Any) -> Self {
-		return self.where(filter: Filter.gt(field, value))
+		return self.where(filter: Filter.gt(field: field, value: value))
 	}
 
 	public func gte(field: String, value: Any) -> Self {
-		return self.where(filter: Filter.gt(field, value))
+		return self.where(filter: Filter.gt(field: field, value: value))
 	}
 
 	public func equal(field: String, value: Any) -> Self {
-		return self.where(filter: Filter.equal(field, value))
+		return self.where(filter: Filter.equal(field: field, value: value))
 	}
 
 	public func any(field: String, value: [Any]) -> Self {
-		return self.where(filter: Filter.any(field, value))
+		return self.where(filter: Filter.any(field: field, value: value))
 	}
 
 	public func match(field: String, pattern: String) -> Self {
-		return self.where(filter: Filter.match(field: field, value: pattern))
+		return self.where(filter: Filter.match(field: field, pattern: pattern))
 	}
 
 	public func similar(field: String, query: String) -> Self {
