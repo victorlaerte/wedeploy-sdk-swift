@@ -172,6 +172,9 @@
 		CC2F36201C3FE50500902BD4 /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2F361F1C3FE50500902BD4 /* RequestMethod.swift */; };
 		CC70B5681CA485B70015F61F /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC70B5671CA485B70015F61F /* Auth.swift */; };
 		CC70B56A1CA485CB0015F61F /* BasicAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC70B5691CA485CB0015F61F /* BasicAuth.swift */; };
+		D65DDB2320E3C8DE008899FC /* WeDeployData+Filter.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65DDB2220E3C8DE008899FC /* WeDeployData+Filter.generated.swift */; };
+		D65DDB2420E3C8DE008899FC /* WeDeployData+Filter.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65DDB2220E3C8DE008899FC /* WeDeployData+Filter.generated.swift */; };
+		D65DDB2520E3C8DE008899FC /* WeDeployData+Filter.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65DDB2220E3C8DE008899FC /* WeDeployData+Filter.generated.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -312,6 +315,7 @@
 		CCA17B9F1ADEC3D7000BF430 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCF69EA11C46BA7100961988 /* DictionaryExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
 		CCF69EA31C46C77900961988 /* DictionaryExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensionTests.swift; sourceTree = "<group>"; };
+		D65DDB2220E3C8DE008899FC /* WeDeployData+Filter.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WeDeployData+Filter.generated.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -596,6 +600,7 @@
 		CC6004E31ADEC22200B8F2E5 = {
 			isa = PBXGroup;
 			children = (
+				D65DDB2120E3C8DE008899FC /* Generated */,
 				CCA17B991ADEC3CB000BF430 /* Source */,
 				CCA17B9E1ADEC3D7000BF430 /* Test */,
 				0BCA2B3A1E8AA5CC00C5F0FE /* WeDeploy-macOSTests */,
@@ -663,6 +668,14 @@
 				0BCD53AD1E97881700F31845 /* PromiseKitExtensionsTests.swift */,
 			);
 			path = Test;
+			sourceTree = "<group>";
+		};
+		D65DDB2120E3C8DE008899FC /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				D65DDB2220E3C8DE008899FC /* WeDeployData+Filter.generated.swift */,
+			);
+			path = Generated;
 			sourceTree = "<group>";
 		};
 		D96E3C835BA597F43766E24B /* Frameworks */ = {
@@ -796,6 +809,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CC0C238F1C3DA36400408177 /* Build configuration list for PBXNativeTarget "WeDeploy" */;
 			buildPhases = (
+				D65DDB2B20E3E7F6008899FC /* ShellScript */,
 				CC0C23791C3DA36400408177 /* Sources */,
 				CC0C237A1C3DA36400408177 /* Frameworks */,
 				CC0C237B1C3DA36400408177 /* Headers */,
@@ -992,6 +1006,19 @@
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
+		D65DDB2B20E3E7F6008899FC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = sourcery;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1014,6 +1041,7 @@
 				0BCA2BAC1E8AAB2D00C5F0FE /* Request.swift in Sources */,
 				0BCA2BB01E8AAB2D00C5F0FE /* User.swift in Sources */,
 				0BCA2BB11E8AAB2D00C5F0FE /* WeDeploy.swift in Sources */,
+				D65DDB2420E3C8DE008899FC /* WeDeployData+Filter.generated.swift in Sources */,
 				0BCA2BA41E8AAB2D00C5F0FE /* TokenAuth.swift in Sources */,
 				0B01B7E61E8CD54700B76E71 /* Range.swift in Sources */,
 				0BCA2BA81E8AAB2D00C5F0FE /* Query.swift in Sources */,
@@ -1073,6 +1101,7 @@
 				0BCA2BC41E8AAB2D00C5F0FE /* Request.swift in Sources */,
 				0BCA2BC81E8AAB2D00C5F0FE /* User.swift in Sources */,
 				0BCA2BC91E8AAB2D00C5F0FE /* WeDeploy.swift in Sources */,
+				D65DDB2520E3C8DE008899FC /* WeDeployData+Filter.generated.swift in Sources */,
 				0BCA2BBC1E8AAB2D00C5F0FE /* TokenAuth.swift in Sources */,
 				0B01B7E71E8CD54800B76E71 /* Range.swift in Sources */,
 				0BCA2BC01E8AAB2D00C5F0FE /* Query.swift in Sources */,
@@ -1132,6 +1161,7 @@
 				0BF2B5DA1E12635C004A4DF1 /* PromiseKitExtensions.swift in Sources */,
 				0B74EDBC1DE6E797007AE62C /* Filter.swift in Sources */,
 				CC0C23B61C3F0C1B00408177 /* Transport.swift in Sources */,
+				D65DDB2320E3C8DE008899FC /* WeDeployData+Filter.generated.swift in Sources */,
 				0B575EE01E6F0A7500A8B021 /* Aggregation.swift in Sources */,
 				CC0C23B41C3F0C1B00408177 /* Request.swift in Sources */,
 				0BF2B5DB1E12635C004A4DF1 /* SocketIOExtensions.swift in Sources */,
