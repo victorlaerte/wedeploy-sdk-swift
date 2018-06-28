@@ -342,4 +342,11 @@ class FilterTest: XCTestCase {
 		assertJSON(
 			"{\"name\":{\"operator\":\"prefix\",\"value\":\"an\"}}", filter.filter)
 	}
+
+	func testWildcard() {
+		let filter = Filter.wildcard(field: "name", value: "an*")
+
+		assertJSON(
+			"{\"name\":{\"operator\":\"wildcard\",\"value\":\"an*\"}}", filter.filter)
+	}
 }

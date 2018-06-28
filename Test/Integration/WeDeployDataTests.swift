@@ -261,4 +261,18 @@ class WeDeployDataTest: BaseTest {
 		}
 	}
 
+	func testWildcardOperator() {
+		let (items, error) = WeDeploy.data(self.dataModuleUrl)
+			.wildcard(field: "name", value: "*me1")
+			.get(resourcePath: collectionName)
+			.sync()
+
+		XCTAssertNotNil(items)
+		XCTAssertNil(error)
+		if items != nil {
+			XCTAssertEqual(1, items!.count)
+			XCTAssertEqual("aname1", items!.first!["name"] as! String)
+		}
+	}
+
 }
