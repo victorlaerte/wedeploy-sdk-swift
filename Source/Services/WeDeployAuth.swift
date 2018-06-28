@@ -132,7 +132,7 @@ public class WeDeployAuth: WeDeployService {
 	}
 
 	public func updateUser(id: String, email: String? = nil, password: String? = nil,
-			name: String? = nil, photoUrl: String? = nil, attrs: [String : Any] = [:] ) -> Promise<Void> {
+			name: String? = nil, photoUrl: String? = nil, attrs: [String: Any] = [:] ) -> Promise<Void> {
 
 		var body = [String: Any]()
 

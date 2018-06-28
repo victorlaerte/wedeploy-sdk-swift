@@ -35,9 +35,9 @@ public struct User {
 	public let name: String?
 	public let id: String
 	public let photoUrl: String?
-	public let attrs: [String : Any]
+	public let attrs: [String: Any]
 
-	public init(json: [String :AnyObject]) {
+	public init(json: [String: AnyObject]) {
 		email = json["email"] as? String
 		name = json["name"] as? String
 		id = json["id"] as! String
@@ -45,7 +45,7 @@ public struct User {
 		attrs = json
 	}
 
-	public init(email: String, name: String, photoUrl: String? = nil, attrs: [String : Any] = [:]) {
+	public init(email: String, name: String, photoUrl: String? = nil, attrs: [String: Any] = [:]) {
 		self.email = email
 		self.name = name
 		self.id = ""

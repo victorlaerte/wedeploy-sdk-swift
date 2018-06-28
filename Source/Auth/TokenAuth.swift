@@ -34,7 +34,7 @@ public struct TokenAuth: Auth {
 
 	public let token: String
 
-	public var authHeaders: [String : String] {
+	public var authHeaders: [String: String] {
 		return ["Authorization": "Bearer \(token)"]
 	}
 

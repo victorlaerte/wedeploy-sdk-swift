@@ -46,7 +46,7 @@ public enum RealTimeEventType: String {
 	}
 
 	public static func realTimeEvent(from type: RealTimeEventType, eventItems: [Any]) -> RealTimeEvent {
-		let document: [String : Any]
+		let document: [String: Any]
 		switch type {
 		case .create, .update, .delete:
 			let rawEvent = eventItems[0] as! [String: Any]
@@ -67,7 +67,7 @@ public enum RealTimeEventType: String {
 
 public struct RealTimeEvent {
 	public let type: RealTimeEventType
-	public let document: [String : Any]
+	public let document: [String: Any]
 
 	public init(type: RealTimeEventType, document: [String: Any]) {
 		self.type = type

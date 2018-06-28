@@ -1,0 +1,16 @@
+// WeDeployData+Filter
+
+{% macro nameAndType method%}{% for parameter in method.parameters %}{{parameter.name}}: {{parameter.typeName}}{% if not forloop.last %}, {% endif %}{% endfor %}{% endmacro %}
+{% macro nameAndName method%}{% for parameter in method.parameters %}{{parameter.name}}: {{parameter.name}}{% if not forloop.last %}, {% endif %}{% endfor %}{% endmacro %}
+
+extension WeDeployData {
+{% for method in type.Filter.allMethods %}
+	{% if not method.isInitializer and method.isStatic %}
+
+	public func {{method.shortName}}({% call nameAndType method %}) -> Self {
+		return self.where(filter: Filter.{{method.shortName}}({% call nameAndName method %}))
+	}
+	{% endif %}
+{% endfor %} 
+}
+

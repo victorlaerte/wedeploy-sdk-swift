@@ -45,7 +45,7 @@ public class WeDeployData: WeDeployService {
 		return super.header(name: name, value: value) as! WeDeployData
 	}
 
-	public func create(resource: String, object: [String : Any]) -> Promise<[String : AnyObject]> {
+	public func create(resource: String, object: [String: Any]) -> Promise<[String: AnyObject]> {
 
 		return doCreateRequest(resource: resource, object: object)
 			.then { response in
@@ -53,7 +53,7 @@ public class WeDeployData: WeDeployService {
 			}
 	}
 
-	public func create(resource: String, object: [[String : Any]]) -> Promise<[String : AnyObject]> {
+	public func create(resource: String, object: [[String: Any]]) -> Promise<[String: AnyObject]> {
 
 		return doCreateRequest(resource: resource, object: object)
 			.then { response in
@@ -85,8 +85,8 @@ public class WeDeployData: WeDeployService {
 			.delete()
 	}
 
-	public func createCollection(name: String, fieldTypes: [String : CollectionFieldType]) -> Promise<[String : Any]> {
-		let body: [String : Any] = [
+	public func createCollection(name: String, fieldTypes: [String: CollectionFieldType]) -> Promise<[String: Any]> {
+		let body: [String: Any] = [
 			"mappings": fieldTypes.toJsonConvertible(),
 			"name": name
 		]
@@ -98,8 +98,8 @@ public class WeDeployData: WeDeployService {
 			}
 	}
 
-	public func updateCollection(name: String, fieldTypes: [String : CollectionFieldType]) -> Promise<Void> {
-		let body: [String : Any] = [
+	public func updateCollection(name: String, fieldTypes: [String: CollectionFieldType]) -> Promise<Void> {
+		let body: [String: Any] = [
 			"mappings": fieldTypes.toJsonConvertible(),
 			"name": name
 		]
@@ -122,100 +122,18 @@ public class WeDeployData: WeDeployService {
 	}
 
 	public func `where`(field: String, op: String, value: Any) -> Self {
-		filter = getOrCreateFilter().and(Filter(field: field, op: op, value: value))
+		filter = getOrCreateFilter().and(filters: Filter(field: field, op: op, value: value))
 		return self
 	}
 
 	public func `where`(filter: Filter) -> Self {
-		self.filter = getOrCreateFilter().and(filter)
+		self.filter = getOrCreateFilter().and(filters: filter)
 		return self
 	}
 
 	public func or(field: String, op: String, value: Any) -> Self {
-		filter = getOrCreateFilter().or(Filter(field: field, op: op, value: value))
+		filter = getOrCreateFilter().or(filters: Filter(field: field, op: op, value: value))
 		return self
-	}
-
-	public func none(field: String, value: [Any]) -> Self {
-		return self.where(filter: Filter.none(field, value))
-	}
-
-	public func lt(field: String, value: Any) -> Self {
-		return self.where(filter: Filter.lt(field, value))
-	}
-
-	public func lte(field: String, value: Any) -> Self {
-		return self.where(filter: Filter.lte(field, value))
-	}
-
-	public func gt(field: String, value: Any) -> Self {
-		return self.where(filter: Filter.gt(field, value))
-	}
-
-	public func gte(field: String, value: Any) -> Self {
-		return self.where(filter: Filter.gt(field, value))
-	}
-
-	public func equal(field: String, value: Any) -> Self {
-		return self.where(filter: Filter.equal(field, value))
-	}
-
-	public func any(field: String, value: [Any]) -> Self {
-		return self.where(filter: Filter.any(field, value))
-	}
-
-	public func match(field: String, pattern: String) -> Self {
-		return self.where(filter: Filter.match(field: field, value: pattern))
-	}
-
-	public func similar(field: String, query: String) -> Self {
-		return self.where(filter: Filter.similar(field: field, query: query))
-	}
-
-	public func distance(field: String, latitude: Double,
-		longitude: Double, range: Range) -> Self {
-
-		return self.where(filter: Filter.distance(field: field,
-				latitude: latitude, longitude: longitude, range: range))
-	}
-
-	public func distance(field: String, latitude: Double, longitude: Double,
-		distance: DistanceUnit) -> Self {
-
-		return self.where(filter: Filter.distance(field: field,
-			latitude: latitude, longitude: longitude, distance: distance))
-	}
-
-	public func fuzzy(field: String, query: Any, fuzziness: Int = 0) -> Self {
-		return self.where(filter: Filter.fuzzy(field: field, query: query, fuzziness: fuzziness))
-	}
-
-	public func range(field: String, range: Range) -> Self {
-		return self.where(filter: Filter.range(field: field, range: range))
-	}
-
-	public  func polygon(field: String, points: [GeoPoint]) -> Self {
-		return self.where(filter: Filter.polygon(field: field, points: points))
-	}
-
-	public func shape(field: String, shapes: [Geo]) -> Self {
-		return self.where(filter: Filter.shape(field: field, shapes: shapes))
-	}
-
-	public func phrase(field: String, value: Any) -> Self {
-		return self.where(filter: Filter.phrase(field: field, value: value))
-	}
-
-	public func prefix(field: String, value: Any) -> Self {
-		return self.where(filter: Filter.prefix(field: field, value: value))
-	}
-
-	public func missing(field: String) -> Self {
-		return self.where(filter: Filter.missing(field: field))
-	}
-
-	public func exists(field: String) -> Self {
-		return self.where(filter: Filter.exists(field: field))
 	}
 
 	public func orderBy(field: String, order: Query.Order) -> Self {

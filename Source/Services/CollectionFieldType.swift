@@ -31,7 +31,7 @@
 import Foundation
 
 public enum CollectionFieldType {
-	
+
 	case string
 	case integer
 	case long
@@ -46,9 +46,10 @@ public enum CollectionFieldType {
 
 }
 
+// swiftlint:disable cyclomatic_complexity
 extension Dictionary where Key == String, Value == CollectionFieldType {
 
-	func toJsonConvertible() -> [String : Any] {
+	func toJsonConvertible() -> [String: Any] {
 		return self.mapValues { collectionFieldType in
 			switch collectionFieldType {
 			case .string:

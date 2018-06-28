@@ -35,7 +35,7 @@ class QueryTest: XCTestCase {
 
 	func testComplex_Query() {
 		let query = Query()
-			.filter(filter: Filter.gt("age", 12))
+			.filter(filter: Filter.gt(field: "age", value: 12))
 			.sort(name: "age", order: Query.Order.DESC)
 			.sort(name: "name")
 			.offset(offset: 5)
@@ -51,7 +51,7 @@ class QueryTest: XCTestCase {
 	}
 
 	func testFilter_With_Instance() {
-		let query = Query().filter(filter: Filter.gt("age", 12))
+		let query = Query().filter(filter: Filter.gt(field: "age", value: 12))
 
 		assertJSON(
 			"{\"filter\":[{\"age\":{\"operator\":\">\",\"value\":12}}]}",
@@ -60,7 +60,7 @@ class QueryTest: XCTestCase {
 
 	func testFilter_With_Multiple_Filters() {
 		let query = Query()
-			.filter(filter: Filter.gt("age", 12))
+			.filter(filter: Filter.gt(field: "age", value: 12))
 			.filter(field:"age", "<", 15)
 			.filter(field:"name", "Foo")
 

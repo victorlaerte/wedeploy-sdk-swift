@@ -37,10 +37,10 @@ public extension Promise {
 	func toCallback(callback: @escaping (T?, Error?) -> Void) {
 		self.tap { result in
 			switch result {
-				case .fulfilled(let value):
-					callback(value, nil)
-				case .rejected(let error):
-					callback(nil, error)
+			case .fulfilled(let value):
+				callback(value, nil)
+			case .rejected(let error):
+				callback(nil, error)
 			}
 		}
 	}
@@ -49,11 +49,11 @@ public extension Promise {
 		return Observable.create { observer in
 			self.tap { result in
 				switch result {
-					case .fulfilled(let value):
-						observer.onNext(value)
-						observer.onCompleted()
-					case .rejected(let error):
-						observer.onError(error)
+				case .fulfilled(let value):
+					observer.onNext(value)
+					observer.onCompleted()
+				case .rejected(let error):
+					observer.onError(error)
 				}
 			}
 

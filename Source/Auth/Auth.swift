@@ -34,7 +34,7 @@ public protocol Auth {
 
 	func authenticate(request: Request)
 
-	var authHeaders: [String : String] { get }
+	var authHeaders: [String: String] { get }
 
 }
 
