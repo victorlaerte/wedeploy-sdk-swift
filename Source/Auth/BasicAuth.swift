@@ -30,16 +30,19 @@
 
 import Foundation
 
+/// Authenticate a request using basic authentication
 public class BasicAuth: Auth {
 
 	public var password: String
 	public var username: String
 
+	/// Create a new basic authentication with username and password
 	public init(_ username: String, _ password: String) {
 		self.username = username
 		self.password = password
 	}
 
+	/// Basic HTTP headers
 	public var authHeaders: [String: String] {
 		var credentials = "\(username):\(password)"
 		let data = credentials.data(using: .utf8)

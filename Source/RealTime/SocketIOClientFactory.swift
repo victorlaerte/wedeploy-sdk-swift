@@ -31,9 +31,9 @@
 import Foundation
 import SocketIO
 
-public class SocketIOClientFactory {
+class SocketIOClientFactory {
 
-	public class func create(
+	class func create(
 			url: String, params: [URLQueryItem]? = [], auth: Auth? = nil,
 			options: inout SocketIOClientConfiguration)
 		-> SocketIOClient {

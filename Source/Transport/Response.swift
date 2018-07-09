@@ -30,16 +30,24 @@
 
 import Foundation
 
+/// Class representing a HTTP response
 public class Response {
 
+	/// Body of the request, if any.
 	public private(set) var body: Any?
+
+	/// Headers of the request.
 	public let headers: [String: String]
+
+	/// Status code of the request.
 	public let statusCode: Int
 
+	/// Content type of the request
 	public var contentType: String? {
 		return headers["Content-Type"]
 	}
 
+	/// Indicates if the response ins successful. 
 	public var succeeded: Bool {
 		return (statusCode >= 200) && (statusCode <= 399)
 	}

@@ -30,6 +30,7 @@
 
 import Foundation
 
+/// Represents a WeDeployError
 public struct WeDeployError: Error, CustomDebugStringConvertible {
 
 	let code: Int
@@ -37,11 +38,15 @@ public struct WeDeployError: Error, CustomDebugStringConvertible {
 
 	let errors: [(reason: String, message: String)]
 
+	/// The content of the error
 	public var debugDescription: String {
 		let errorsString = errors.map { "reason: \($0) message: \($1)" }
 		return "Code: \(code)\nmessage: \(message)\nErrors: \(errorsString)"
 	}
 
+	/// Extract the error from the response
+	///
+	/// - returns: wedeploy error
 	public static func errorFrom(response: Response?) -> WeDeployError {
 		guard let body = response?.body as? [String: AnyObject],
 			let code = response?.statusCode,
@@ -64,6 +69,7 @@ public struct WeDeployError: Error, CustomDebugStringConvertible {
 	}
 }
 
+/// WeDeploy error
 public enum WeDeployProviderError: Error {
 	case noAccessToken
 }

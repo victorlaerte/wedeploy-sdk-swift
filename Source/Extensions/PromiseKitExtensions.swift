@@ -32,8 +32,36 @@ import Foundation
 import PromiseKit
 import RxSwift
 
+
+/// All async methods in this SDK returns a Promise
+/// Use this extension in case you wan to convert to other return types
+///
+/// Converting to callback:
+/// ```
+/// WeDeploy.data("someurl.com")
+///		.get("things")
+///		.toCallback { result, error in
+///			// Do something with the result or error
+///		}
+/// ```
+/// Converting to callback:
+/// ```
+/// WeDeploy.data("someurl.com")
+///		.get("things")
+///		.toObservable()
+///		.subscribe(onNext: { result in
+///			// Do something with result
+///		},
+///		onError: { error in
+///			// Do something with the error
+///		})
+///		.disposed(by: bag)
+/// ```
 public extension Promise {
 
+	/// Convert the promise to a callback based termination.
+	///
+	/// - parameter callback: function executed when the promise is resolved.
 	func toCallback(callback: @escaping (T?, Error?) -> Void) {
 		self.tap { result in
 			switch result {
@@ -45,6 +73,7 @@ public extension Promise {
 		}
 	}
 
+	/// Convert the promise to an Observable
 	func toObservable() -> Observable<T> {
 		return Observable.create { observer in
 			self.tap { result in

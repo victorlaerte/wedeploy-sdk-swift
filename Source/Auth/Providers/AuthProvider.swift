@@ -30,18 +30,31 @@
 
 import Foundation
 
+/// Represent a 3rd party provider for authentication.
 public class AuthProvider {
 
+	/// 3rd party services supported for authentication.
 	public enum Provider: String {
+
+		/// Login with github.
 		case github
+
+		/// Login with facebook.
 		case facebook
+
+		/// Login with google.
 		case google
 	}
 
+	/// 3rd party provider
 	public let provider: Provider
+
+	/// Url where the browser has to redirect after a successful login.
 	public let redirectUri: String
 
+	/// WeDeploy scope that should be requested.
 	public var scope: String?
+	/// 3rd party scope that should be requested.
 	public var providerScope: String?
 
 	public init(provider: Provider, redirectUri: String) {

@@ -30,6 +30,8 @@
 
 import Foundation
 
+
+/// Represent a range between two numbers
 public struct Range {
 
 	public var from: Any?

@@ -38,19 +38,40 @@ import Foundation
 import PromiseKit
 import RxSwift
 
+/// Helper to communicate with Auth service in WeDeploy.
+///
+/// ```
+///	WeDeploy.email("auth-service-url")
+///		.signInWith(username: String, password: String)
+///		.then { auth -> Void in
+///			// Do something with the auth.
+/// 	}
+///		.catch { error in
+///			// Do something with the error.
+/// 	}
+/// ```
 public class WeDeployAuth: WeDeployService {
 
-	public static var urlRedirect = PublishSubject<URL>()
-	public static var tokenSubscription: Disposable?
+	static var urlRedirect = PublishSubject<URL>()
+	static var tokenSubscription: Disposable?
 
+	/// Authorize the request with the given authentication.
+	///
+	/// - returns: the object itself, so calls can be chained.
 	public override func authorize(auth: Auth?) -> WeDeployAuth {
 		return super.authorize(auth: auth) as! WeDeployAuth
 	}
 
+	/// Add a header to the request.
+	///
+	/// - returns: the object itself, so calls can be chained.
 	public override func header(name: String, value: String) -> WeDeployAuth {
 		return super.header(name: name, value: value) as! WeDeployAuth
 	}
 
+	/// Sign in using username and password.
+	///
+	/// - returns: a promise containing the authentication
 	public func signInWith(username: String, password: String) -> Promise<Auth> {
 		return requestBuilder.path("/oauth/token")
 			.param(name: "grant_type", value: "password")
@@ -66,6 +87,11 @@ public class WeDeployAuth: WeDeployService {
 			}
 	}
 
+	/// Get the user that is logged in.
+	///
+	/// - note: You should authenticate the request with the user logged token.
+	///
+	/// - returns: a promise containing the authentication
 	public func getCurrentUser() -> Promise<User> {
 		return requestBuilder.path("/user")
 			.get()
@@ -76,10 +102,11 @@ public class WeDeployAuth: WeDeployService {
 			}
 	}
 
-	public func handle(url: URL) {
-		WeDeployAuth.urlRedirect.on(.next(url))
-	}
-
+	/// Sign in using the given provider.
+	///
+	/// - parameter provider: 3rd party service using in the log in.
+	/// - parameter onSignIn: function that will be called after the login flow its finished.
+	///		Including after calling handle(url:) method of this class.
 	public func signInWithRedirect(provider: AuthProvider, onSignIn: @escaping (Auth?, Error?) -> Void) {
 		let authUrl = self.url
 		WeDeployAuth.tokenSubscription?.dispose()
@@ -102,6 +129,18 @@ public class WeDeployAuth: WeDeployService {
 		open(url.url!)
 	}
 
+	/// Handle the url given. This method is used in the Provider login method.
+	///
+	/// - note: this method should be called in the application
+	///		delegation after user clicked in a link that opened the application.
+	///
+	public func handle(url: URL) {
+		WeDeployAuth.urlRedirect.on(.next(url))
+	}
+
+	/// Create a user with the given arguments.
+	///
+	/// - returns: a promise containing the user
 	public func createUser(email: String, password: String, name: String?,
 		photoUrl: String? = nil, attrs: [String: Any] = [:]) -> Promise<User> {
 
@@ -131,6 +170,7 @@ public class WeDeployAuth: WeDeployService {
 				}
 	}
 
+	/// Update a user with the given arguments.
 	public func updateUser(id: String, email: String? = nil, password: String? = nil,
 			name: String? = nil, photoUrl: String? = nil, attrs: [String: Any] = [:] ) -> Promise<Void> {
 
@@ -165,6 +205,7 @@ public class WeDeployAuth: WeDeployService {
 			}
 	}
 
+	/// Delete a user with the given id.
 	public func deleteUser(id: String) -> Promise<Void> {
 		return requestBuilder
 			.path("/users")
@@ -175,6 +216,9 @@ public class WeDeployAuth: WeDeployService {
 			}
 	}
 
+	/// Get a user with the given id.
+	///
+	/// - returns: a promise containing the user
 	public func getUser(id: String) -> Promise<User> {
 		return requestBuilder
 				.path("/users")
@@ -186,6 +230,7 @@ public class WeDeployAuth: WeDeployService {
 				}
 	}
 
+	/// Trigger a email sent for resetting the password.
 	public func sendPasswordReset(email: String) -> Promise<Void> {
 		return requestBuilder
 				.path("/user/recover")
@@ -196,6 +241,9 @@ public class WeDeployAuth: WeDeployService {
 				}
 	}
 
+	/// Get all users of the service.
+	///
+	/// - returns: a promise containing an array of users
 	public func getAllUsers() -> Promise<[User]> {
 		return requestBuilder
 				.path("/users")
@@ -207,6 +255,7 @@ public class WeDeployAuth: WeDeployService {
 
 	}
 
+	/// Sign out. Invalidates the user token.
 	public func signOut() -> Promise<Void> {
 		precondition(self.authorization != nil && self.authorization is TokenAuth,
 				"you have to have an authentication to sign out")
@@ -223,12 +272,14 @@ public class WeDeployAuth: WeDeployService {
 
 	#if os(macOS)
 
+	/// Opens the given URL into safari
 	func open(_ url: URL) {
 		NSWorkspace.shared.open(url)
 	}
 
 	#else
 
+	/// Opens the given URL into safari
 	func open(_ url: URL) {
 		if #available(iOS 10.0, tvOS 10.0, *) {
 			UIApplication.shared.open(url, options: [:], completionHandler: nil)

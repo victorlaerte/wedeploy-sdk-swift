@@ -30,30 +30,43 @@
 
 import Foundation
 
+/// Class responsible for building queries.
 public class Query: CustomStringConvertible {
 
+	/// Components of the query
 	public private(set) var query = [String: Any]()
 
+	/// Ordering modes
 	public enum Order: String {
 		case ASC = "asc", DESC = "desc"
 	}
 
+	/// query in json format
 	public var description: String {
 		return query.asJSON
 	}
 
 	public init() {}
 
+	/// Adds a filter to this query.
+	///
+	/// - returns: Return the object itself, so calls can be chained.
 	public func filter(field: String, _ value: Any) -> Self {
 		return self.filter(filter: Filter(field, value))
 	}
 
+	/// Adds a filter to this query.
+	///
+	/// - returns: Return the object itself, so calls can be chained.
 	public func filter(field: String, _ op: String, _ value: Any)
 		-> Self {
 
 		return self.filter(filter: Filter(field: field, op: op, value: value))
 	}
 
+	/// Adds a filter to this query.
+	///
+	/// - returns: Return the object itself, so calls can be chained.
 	public func filter(filter: Filter) -> Self {
 		var filters = query["filter"] as? [[String: AnyObject]] ??
 			[[String: AnyObject]]()
@@ -65,6 +78,9 @@ public class Query: CustomStringConvertible {
 		return self
 	}
 
+	/// Adds an aggregation to this query.
+	///
+	/// - returns: Return the object itself, so calls can be chained.
 	public func aggregate(aggregation: Aggregation) -> Self {
 		var aggregations = query["aggregation"] as? [[String: AnyObject]] ?? [[String: AnyObject]]()
 
@@ -75,6 +91,9 @@ public class Query: CustomStringConvertible {
 		return self
 	}
 
+	/// Enable highlight. Fields passed to this method will be hightlighted in the request.
+	///
+	/// - returns: Return the object itself, so calls can be chained.
 	public func highlight(fields: [String]) -> Self {
 		var highlights = query["highlight"] as? [String] ?? [String]()
 
@@ -85,16 +104,25 @@ public class Query: CustomStringConvertible {
 		return self
 	}
 
+	/// Set the query limit.
+	///
+	/// - returns: Return the object itself, so calls can be chained.
 	public func limit(limit: Int) -> Self {
 		query["limit"] = limit
 		return self
 	}
 
+	/// Set the query offset in the returned list.
+	///
+	/// - returns: Return the object itself, so calls can be chained.
 	public func offset(offset: Int) -> Self {
 		query["offset"] = offset
 		return self
 	}
 
+	/// Set the query order.
+	///
+	/// - returns: Return the object itself, so calls can be chained.
 	public func sort(name: String, order: Order = .ASC) -> Self {
 		var sort = query["sort"] as? [[String: String]] ?? [[String: String]]()
 		sort.append([name: order.rawValue])
@@ -103,16 +131,25 @@ public class Query: CustomStringConvertible {
 		return self
 	}
 
+	/// Set the query type to return the number of elements.
+	///
+	/// - returns: Return the object itself, so calls can be chained.
 	public func count() -> Self {
 		query["type"] = "count"
 		return self
 	}
 
+	/// Set the query type to return the elements.
+	///
+	/// - returns: Return the object itself, so calls can be chained.
 	public func search() -> Self {
 		query["type"] = "search"
 		return self
 	}
 
+	/// Set the query fields. The response will only contain this fields
+	///
+	/// - returns: Return the object itself, so calls can be chained.
 	public func fields(fields: [String]) -> Self {
 		var currentFields = query["fields"] as? [String] ?? [String]()
 

@@ -30,6 +30,7 @@
 
 import Foundation
 
+/// HTTP request verbs
 public enum RequestMethod: String {
 	case DELETE,
 		GET,

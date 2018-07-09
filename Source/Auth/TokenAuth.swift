@@ -30,14 +30,18 @@
 
 import Foundation
 
+/// Authenticates a request using an OAuth2 token
 public struct TokenAuth: Auth {
 
+	/// OAuth2 token
 	public let token: String
 
+	/// HTTP Headers
 	public var authHeaders: [String: String] {
 		return ["Authorization": "Bearer \(token)"]
 	}
 
+	/// Creates a new TokenAuth
 	public init(token: String) {
 		self.token = token
 	}
