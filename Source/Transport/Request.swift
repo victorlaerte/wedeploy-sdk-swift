@@ -30,6 +30,7 @@
 
 import Foundation
 
+/// Class representing a HTTP Request
 public class Request {
 
 	var body: Any?

@@ -7,6 +7,7 @@ extension WeDeployData {
 {% for method in type.Filter.allMethods %}
 	{% if not method.isInitializer and method.isStatic %}
 
+	/// Apply the filter Filter.{{method.shortName}} to the data query
 	public func {{method.shortName}}({% call nameAndType method %}) -> Self {
 		return self.where(filter: Filter.{{method.shortName}}({% call nameAndName method %}))
 	}

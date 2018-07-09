@@ -34,6 +34,7 @@ public protocol Geo {
 	var value: Any { get }
 }
 
+/// A geographic point
 public struct GeoPoint: Geo {
 	public let lat: Double
 	public let long: Double
@@ -48,6 +49,7 @@ public struct GeoPoint: Geo {
 	}
 }
 
+/// A box formed with two geopoint
 public struct BoundingBox: Geo {
 	public let upperLeft: GeoPoint
 	public let lowerRight: GeoPoint
@@ -66,6 +68,7 @@ public struct BoundingBox: Geo {
 	}
 }
 
+/// A circle represented with a point and a radius
 public struct Circle: Geo {
 	public let center: GeoPoint
 	public let radius: Double
@@ -85,6 +88,7 @@ public struct Circle: Geo {
 	}
 }
 
+/// A line formed with geo points
 public struct Line: Geo {
 	public let coordinates: [GeoPoint]
 
@@ -101,6 +105,7 @@ public struct Line: Geo {
 	}
 }
 
+/// A polygon formed with geo points
 public struct Polygon: Geo {
 	public let coordinates: [GeoPoint]
 

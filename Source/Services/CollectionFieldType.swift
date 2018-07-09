@@ -30,20 +30,41 @@
 
 import Foundation
 
+/// Recursive type used to create collections in WeDeploy's data service
 public enum CollectionFieldType {
 
+	/// Field of type string.
 	case string
-	case integer
-	case long
-	case float
-	case double
-	case boolean
-	case date
-	case geoPoint
-	case geoShape
-	case binary
-	case collectionFieldType(fields: [String : CollectionFieldType])
 
+	/// Field of type integer
+	case integer
+
+	/// Field of type long.
+	case long
+
+	/// Field of type float.
+	case float
+
+	/// Field of type double.
+	case double
+
+	/// Field of type boolean.
+	case boolean
+
+	/// Field of type date.
+	case date
+
+	/// Field of type geo point.
+	case geoPoint
+
+	/// Field of type string.
+	case geoShape
+
+	/// Field of type binary.
+	case binary
+
+	/// Field with other fields inside.
+	case collectionFieldType(fields: [String : CollectionFieldType])
 }
 
 // swiftlint:disable cyclomatic_complexity

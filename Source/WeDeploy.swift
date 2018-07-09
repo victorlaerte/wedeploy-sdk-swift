@@ -30,24 +30,35 @@
 
 import Foundation
 
+/// Interact with the WeDeploy APIs or other endpoints in an easy way.
+///
+/// Use auth services: `WeDeploy.auth("auth-url")`
+/// Use data services: `WeDeploy.data("data-url")`
+/// Use email services: `WeDeploy.email("email-url")`
+///
+/// You can also execute arbitrary requests `WeDeploy.url("some-url")`
 public class WeDeploy: RequestBuilder {
 
+	/// Creates a WeDeplay instance to make arbitrary requests
 	override public class func url(_ url: String) -> WeDeploy {
 		return WeDeploy(url)
 	}
 
+	/// Creates a WeDeplay instance for calling auth services
 	public class func auth(_ url: String, authorization: Auth? = nil) -> WeDeployAuth {
 		let url = validate(url: url)
 
 		return WeDeployAuth(url, authorization: authorization)
 	}
 
+	/// Creates a WeDeplay instance for calling data services
 	public class func data(_ url: String, authorization: Auth? = nil) -> WeDeployData {
 		let dataUrl = validate(url: url)
 
 		return WeDeployData(dataUrl, authorization: authorization)
 	}
 
+	/// Creates a WeDeplay instance for calling email services
 	public class func email(_ url: String, authorization: Auth? = nil) -> WeDeployEmail {
 		let emailUrl = validate(url: url)
 

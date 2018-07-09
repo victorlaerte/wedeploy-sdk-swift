@@ -30,6 +30,7 @@
 
 import Foundation
 
+/// Represent a WeDeploy User.
 public struct User {
 	public let email: String?
 	public let name: String?
@@ -37,6 +38,7 @@ public struct User {
 	public let photoUrl: String?
 	public let attrs: [String: Any]
 
+	/// Creates a user from the json given.
 	public init(json: [String: AnyObject]) {
 		email = json["email"] as? String
 		name = json["name"] as? String
@@ -45,6 +47,7 @@ public struct User {
 		attrs = json
 	}
 
+	/// Creates a user.
 	public init(email: String, name: String, photoUrl: String? = nil, attrs: [String: Any] = [:]) {
 		self.email = email
 		self.name = name

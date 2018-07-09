@@ -32,58 +32,107 @@ import Foundation
 import PromiseKit
 import RxSwift
 
+/// Helper to communicate with Email service in WeDeploy.
+/// You can create a message and send it in a fluent way:
+///
+/// ```
+///	WeDeploy.email("auth-service-url")
+///		.authorize(auth: TokenAuth(token: "someToken"))
+///		.from("me@me.com")
+///		.to("you@you.com")
+///		.message("message")
+///		.send()
+/// ```
 public class WeDeployEmail: WeDeployService {
 
 	var params: [(name: String, value: String)] = []
 
+	/// Authorize the request with the given authentication.
+	///
+	/// - returns: Return the object itself, so calls can be chained.
 	public override func authorize(auth: Auth?) -> WeDeployEmail {
 		return super.authorize(auth: auth) as! WeDeployEmail
 	}
 
+	/// Add a header to the request.
+	///
+	/// - returns: Return the object itself, so calls can be chained.
 	public override func header(name: String, value: String) -> WeDeployEmail {
 		return super.header(name: name, value: value) as! WeDeployEmail
 	}
 
+	/// Set from attribute on params to be sent on email request.
+	///
+	/// - returns: Return the object itself, so calls can be chained.
 	public func from(_ from: String) -> Self {
 		params.append(("from", from))
 		return self
 	}
 
+	/// Set to attribute on params to be sent on email request.
+	///
+	/// - returns: Return the object itself, so calls can be chained.
 	public func to(_ to: String) -> Self {
 		params.append(("to", to))
 		return self
 	}
 
+	/// Set subject attribute on params to be sent on email request.
+	///
+	/// - returns: Return the object itself, so calls can be chained.
 	public func subject(_ subject: String) -> Self {
 		params.append(("subject", subject))
 		return self
 	}
 
+	/// Set message attribute on params to be sent on email request.
+	///
+	/// - returns: Return the object itself, so calls can be chained.
 	public func message(_ message: String) -> Self {
 		params.append(("message", message))
 		return self
 	}
 
+	/// Set priority attribute on params to be sent on email request.
+	///
+	/// - returns: Return the object itself, so calls can be chained.
 	public func priority(_ priority: Int) -> Self {
 		params.append(("priority", "\(priority)"))
 		return self
 	}
 
+	/// Set replyTo attribute on params to be sent on email request.
+	///
+	/// - returns: Return the object itself, so calls can be chained.
 	public func replyTo(_ replyTo: String) -> Self {
 		params.append(("replyTo", replyTo))
 		return self
 	}
 
+	/// Set cc attribute on params to be sent on email request.
+	///
+	/// - returns: Return the object itself, so calls can be chained.
 	public func cc(_ cc: String) -> Self {
 		params.append(("cc", cc))
 		return self
 	}
 
+	/// Set bcc attribute on params to be sent on email request.
+	///
+	/// - returns: Return the object itself, so calls can be chained.
 	public func bcc(_ bcc: String) -> Self {
 		params.append(("bcc", bcc))
 		return self
 	}
 
+	/// Send the created email.
+	/// - note: You have to configure the email properties using this class methods
+	/// ```
+	///  WeDeploy.service("service-url")
+	/// 	.to("some@email.com")
+	///		.message("this is a message")
+	/// 	.send()
+	/// ```
 	public func send() -> Promise<String> {
 		var builder = requestBuilder
 				.path("/emails")
@@ -98,6 +147,7 @@ public class WeDeployEmail: WeDeployService {
 			}
 	}
 
+	/// Check the status of a mail
 	public func checkEmailStatus(id: String) -> Promise<String> {
 		return requestBuilder
 			.path("/emails/\(id)/status")

@@ -30,13 +30,22 @@
 
 import Foundation
 
+
+/// Classes implemention this protocol should be able to send a request and obtain a response.
 public protocol Transport {
 
+	/// Send a request and obtain its response or its error otherwise
+	///
+	/// - parameter request: request to be sent
+	/// - parameter success: function that will be invoke if the request is executed correctly
+	/// - paramter failure: function that will be invoked if something fails
 	func send(
 		request: Request, success: @escaping ((Response) -> Void), failure: @escaping (Error) -> Void)
 
 }
 
+
+/// Transport implementation that uses NSURLSession to send the request
 public class NSURLSessionTransport: Transport {
 
 	public func send(

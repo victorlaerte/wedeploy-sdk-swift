@@ -30,6 +30,7 @@
 
 import Foundation
 
+/// Classes implementing auth can authenticate requests
 public protocol Auth {
 
 	func authenticate(request: Request)
@@ -40,6 +41,7 @@ public protocol Auth {
 
 public extension Auth {
 
+	/// Authenticate a request
 	public func authenticate(request: Request) {
 		for (key, value) in authHeaders {
 			request.headers[key] = value

@@ -32,6 +32,14 @@ import Foundation
 import PromiseKit
 import RxSwift
 
+/// Class for creating request in a fluent way.
+/// ```
+///	WeDeploy.url("some-url")
+///		.param(name: "name", value: "somename")
+///		.header(name: "Content-type", value: "application/json")
+///		.path("some-path")
+///		.get()
+/// ```
 public class RequestBuilder {
 
 	var authorization: Auth?
@@ -50,19 +58,29 @@ public class RequestBuilder {
 
 	var _url: String
 
+	/// Creates a request builder with the url given.
 	public init(_ url: String) {
 		self._url = url
 	}
 
+	/// Creates a request builder with the url given.
+	///
+	/// - returns: Return the object itself, so calls can be chained.
 	public class func url(_ url: String) -> RequestBuilder {
 		return RequestBuilder(url)
 	}
 
+	/// Adds a new query param to this request.
+	///
+	/// - returns: Return the object itself, so calls can be chained.
 	public func param(name: String, value: String) -> Self {
 		params.append(URLQueryItem(name: name, value: value))
 		return self
 	}
 
+	/// Adds a new header to the current request.
+	///
+	/// - returns: Return the object itself, so calls can be chained.
 	public func header(name: String, value: String) -> Self {
 		var newValue = value
 		if let currentValue = headers[name] {
@@ -72,21 +90,34 @@ public class RequestBuilder {
 		return self
 	}
 
+	/// Set the transport to be used to send this request.
+	///
+	/// - returns: Return the object itself, so calls can be chained.
 	public func transport(_ transport: Transport) -> Self {
 		self.transport = transport
 		return self
 	}
 
+	/// Set the authentication for this request.
+	///
+	/// - returns: Return the object itself, so calls can be chained.
 	public func authorize(auth: Auth?) -> Self {
 		self.authorization = auth
 		return self
 	}
 
+	/// Append a path to this request.
+	///
+	/// - returns: Return the object itself, so calls can be chained.
 	public func path(_ path: String) -> Self {
 		self.path += path
 		return self
 	}
 
+	/// Adds a new form parameter to this request.
+	///
+	/// - note: this also set the Content-type header to "application/x-www-form-urlencoded"
+	/// - returns: Return the object itself, so calls can be chained.
 	public func form(name: String, value: String) -> Self {
 		headers["Content-Type"] = "application/x-www-form-urlencoded"
 		formFields[name] = value
@@ -96,12 +127,14 @@ public class RequestBuilder {
 		return self
 	}
 
+	/// Performa get request with the parameters set.
 	public func get() -> Promise<Response> {
 		requestMethod = .GET
 
 		return doCall()
 	}
 
+	/// Perform a post request with the parameters set and the body given.
 	public func post(body: Any? = nil) -> Promise<Response> {
 		requestMethod = .POST
 
@@ -112,6 +145,7 @@ public class RequestBuilder {
 		return doCall()
 	}
 
+	/// Perform a patch request with the parameters set and the body given.
 	public func patch(body: Any? = nil) -> Promise<Response> {
 		requestMethod = .PATCH
 
@@ -122,6 +156,7 @@ public class RequestBuilder {
 		return doCall()
 	}
 
+	/// Perform a put request with the parameters set and the body given.
 	public func put(body: Any? = nil) -> Promise<Response> {
 		requestMethod = .PUT
 
@@ -132,6 +167,7 @@ public class RequestBuilder {
 		return doCall()
 	}
 
+	/// Performa delete request with the parameters set and the body given.
 	public func delete() -> Promise<Response> {
 		requestMethod = .DELETE
 

@@ -30,6 +30,7 @@
 
 import Foundation
 
+/// Distance unit used in the filters
 public enum DistanceUnit {
 	case mile(Int)
 	case yard(Int)

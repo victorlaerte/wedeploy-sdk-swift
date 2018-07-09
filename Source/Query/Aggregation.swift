@@ -30,14 +30,19 @@
 
 import Foundation
 
+/// Class responsible for building aggregations
 public class Aggregation: CustomStringConvertible {
 
+	/// Component of the aggregation.
 	public let aggregation: [String: AnyObject]
 
+	/// Aggregation in json form
 	public var description: String {
 		return aggregation.asJSON
 	}
 
+	/// Creates a new custom aggregation For creating standard aggregation you should use the convenience
+	/// function like `Aggrigation.avg, Aggregation.count`, etc.
 	public init(name: String, field: String, op: String, value: Any? = nil) {
 		var innerDict: [String: Any] = [
 			"name": name,

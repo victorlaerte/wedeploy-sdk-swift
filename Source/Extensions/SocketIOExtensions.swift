@@ -32,19 +32,44 @@ import Foundation
 import RxSwift
 import SocketIO
 
+/// Represent the type of a socketIO event.
 public enum RealTimeEventType: String {
+
+	/// Event triggered when something changes.
+	///
+	/// - note: if you want a fine grained control over what changed used create, update, delete types.
 	case changes
+
+	/// Event triggered when an error occurs.
 	case error
+
+	/// Event triggered when an entity is created.
 	case create
+
+	/// Event triggered when an entity is updated.
 	case update
+
+	/// Event triggered when an entity is deleted.
 	case delete
 
+	/// Create a realtime event from the type and the items.
+	///
+	/// - parameter from: type of the event, in string format.
+	/// - parameter eventItems: items sent in the event.
+	///
+	/// - returnss: A realtime event.
 	public static func realTimeEvent(from type: String, eventItems: [Any]) -> RealTimeEvent? {
 		guard let eventType = RealTimeEventType(rawValue: type) else { return nil }
 
 		return realTimeEvent(from: eventType, eventItems: eventItems)
 	}
 
+	/// Create a realtime event from the type and the items.
+	///
+	/// - parameter from: type of the event.
+	/// - parameter eventItems: items sent in the event.
+	///
+	/// - returnss: A realtime event.
 	public static func realTimeEvent(from type: RealTimeEventType, eventItems: [Any]) -> RealTimeEvent {
 		let document: [String: Any]
 		switch type {
@@ -65,10 +90,21 @@ public enum RealTimeEventType: String {
 	}
 }
 
+/// Represent a socketIO event.
 public struct RealTimeEvent {
+
+	/// Type of the event
 	public let type: RealTimeEventType
+
+	/// Content of the event.
+	/// The dictionary will be different depending on the type:
+	///
+	/// - create, update, delete: this would contain a json with the detail of the changes in a "document" key.
+	/// - changes: this would contain a json array with the changes in a "changes" key.
+	/// - error: this would contain a error in a "error" key.
 	public let document: [String: Any]
 
+	/// Creates a RealTimeEvent with the content of the websocket event
 	public init(type: RealTimeEventType, document: [String: Any]) {
 		self.type = type
 		self.document = document
@@ -77,6 +113,11 @@ public struct RealTimeEvent {
 
 public extension SocketIOClient {
 
+	/// Subscribes to the given event.
+	///
+	/// - parameter event: string representing the event to subscribe.
+	///
+	/// - returnss: An observable of the future events.
 	func on(_ event: String) -> Observable<RealTimeEvent> {
 		var selfRetained: SocketIOClient? = self
 
@@ -96,10 +137,20 @@ public extension SocketIOClient {
 		}
 	}
 
+	/// Subscribes to the given array of events.
+	///
+	/// - parameter events: event to subscribe.
+	/// - parameter callback: function that will be invoked upon receving a new event.
+	///
+	/// - returnss: An observable of the future events.
 	func on(_ events: [RealTimeEventType], callback: @escaping (RealTimeEvent) -> Void) {
 		events.forEach { on($0, callback: callback)}
 	}
 
+	/// Subscribes to the given event.
+	///
+	/// - parameter event: event to subscribe.
+	/// - parameter callback: function that will be invoked upon receving a new event.
 	func on(_ event: RealTimeEventType, callback: @escaping (RealTimeEvent) -> Void) {
 		self.on(event.rawValue) { items, _ in
 			let realTimeEvent = RealTimeEventType.realTimeEvent(from: event, eventItems: items)
@@ -108,10 +159,20 @@ public extension SocketIOClient {
 		}
 	}
 
+	/// Subscribes to the given event.
+	///
+	/// - parameter event: event to subscribe.
+	///
+	/// - returnss: An observable of the future events.
 	func on(_ event: RealTimeEventType) -> Observable<RealTimeEvent> {
 		return on(event.rawValue)
 	}
 
+	/// Subscribes to the given array of events.
+	///
+	/// - parameter events: event to subscribe.
+	///
+	/// - returnss: An observable of the future events.
 	func on(_ events: [RealTimeEventType]) -> Observable<RealTimeEvent> {
 		let realTimeEventsObservables = events.map { on($0) }
 

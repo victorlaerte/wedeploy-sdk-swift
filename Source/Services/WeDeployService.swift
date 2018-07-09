@@ -30,6 +30,8 @@
 
 import Foundation
 
+
+/// Superclass of all WeDeploy services
 public class WeDeployService {
 
 	var authorization: Auth?
@@ -48,11 +50,17 @@ public class WeDeployService {
 		self.authorization = authorization
 	}
 
+	/// Authorize the request with the given authentication.
+	///
+	/// - returns: the object itself, so calls can be chained.
 	public func authorize(auth: Auth?) -> Self {
 		authorization = auth
 		return self
 	}
 
+	/// Add a header to the request.
+	///
+	/// - returns: the object itself, so calls can be chained.
 	public func header(name: String, value: String) -> Self {
 		var newValue = value
 		if let currentValue = headers[name] {
