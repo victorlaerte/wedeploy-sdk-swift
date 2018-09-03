@@ -259,6 +259,9 @@ public class Filter: CustomStringConvertible, ExpressibleByStringLiteral {
 		return Filter(field: field, op: "wildcard", value: value)
 	}
 
+	public static func multiMatch(fields: [String], value: String) -> Filter {
+		return Filter(field: fields.joined(separator: ","), op: "multi_match", value: value)
+	}
 
 	/// Composes all given filter with the and operator.
 	func and(_ filters: [Filter]) -> Self {

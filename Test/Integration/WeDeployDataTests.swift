@@ -89,7 +89,7 @@ class WeDeployDataTest: BaseTest {
 		["name": "aname4", "yearsOld": "25" ],
 		["name": "aname5", "yearsOld": "35" ],
 		["name": "aname6", "yearsOld": "45" ],
-		["name": "aname7", "yearsOld": "55" ]
+		["name": "aname7", "yearsOld": "55", "name2": "aname1" ]
 	]
 
 	override func setUp() {
@@ -275,4 +275,16 @@ class WeDeployDataTest: BaseTest {
 		}
 	}
 
+	func testMultiMatchOperator() {
+		let (items, error) = WeDeploy.data(self.dataModuleUrl)
+			.multiMatch(fields: ["name", "name2"], value: "aname1")
+			.get(resourcePath: collectionName)
+			.sync()
+
+		XCTAssertNotNil(items)
+		XCTAssertNil(error)
+		if items != nil {
+			XCTAssertEqual(2, items!.count)
+		}
+	}
 }

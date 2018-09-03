@@ -349,4 +349,10 @@ class FilterTest: XCTestCase {
 		assertJSON(
 			"{\"name\":{\"operator\":\"wildcard\",\"value\":\"an*\"}}", filter.filter)
 	}
+
+	func testMultiMatch() {
+		let filter = Filter.multiMatch(fields: ["field1", "field2"], value: "value1")
+
+		assertJSON("{\"field1,field2\":{\"operator\":\"multi_match\",\"value\":\"value1\"}}", filter.filter)
+	}
 }

@@ -115,5 +115,10 @@ extension WeDeployData {
 	public func wildcard(field: String, value: String) -> Self {
 		return self.where(filter: Filter.wildcard(field: field, value: value))
 	}
+
+	/// Apply the filter Filter.multiMatch to the data query
+	public func multiMatch(fields: [String], value: String) -> Self {
+		return self.where(filter: Filter.multiMatch(fields: fields, value: value))
+	}
 }
 
