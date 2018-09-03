@@ -93,4 +93,8 @@ public class Aggregation: CustomStringConvertible {
 	public static func terms(name: String, field: String) -> Aggregation {
 		return Aggregation(name: name, field: field, op: "terms")
 	}
+
+	public static func cardinality(name: String, field: String) -> Aggregation {
+		return Aggregation(name: name, field: field, op: "cardinality")
+	}
 }
