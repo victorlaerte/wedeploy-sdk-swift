@@ -1,0 +1,12 @@
+{
+    "point": {
+        "operator": "gd",
+        "value": {
+            "location": [
+                0,
+                0
+            ],
+            "max": 2
+        }
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "filter": [
+        {
+            "age": {
+                "operator": ">",
+                "value": 12
+            }
+        }
+    ]
+}

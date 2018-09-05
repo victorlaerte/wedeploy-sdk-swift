@@ -1,0 +1,8 @@
+{
+    "age": {
+        "operator": "similar",
+        "value": {
+            "query": 12
+        }
+    }
+}

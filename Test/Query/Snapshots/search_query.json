@@ -1,0 +1,11 @@
+{
+    "filter": [
+        {
+            "age": {
+                "operator": "=",
+                "value": 12
+            }
+        }
+    ],
+    "type": "search"
+}

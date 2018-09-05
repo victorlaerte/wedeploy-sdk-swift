@@ -1,0 +1,10 @@
+{
+    "sort": [
+        {
+            "title": "asc"
+        },
+        {
+            "author": "desc"
+        }
+    ]
+}

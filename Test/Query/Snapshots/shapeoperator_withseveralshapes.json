@@ -1,0 +1,22 @@
+{
+    "shape": {
+        "operator": "gs",
+        "value": {
+            "type": "geometrycollection",
+            "geometries": [
+                {
+                    "coordinates": "0.0,0.0",
+                    "radius": 20,
+                    "type": "circle"
+                },
+                {
+                    "type": "envelope",
+                    "coordinates": [
+                        "20.0,0.0",
+                        "0.0,20.0"
+                    ]
+                }
+            ]
+        }
+    }
+}

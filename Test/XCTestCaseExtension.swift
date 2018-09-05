@@ -33,7 +33,7 @@ import XCTest
 extension XCTestCase {
 
 	func assertJSON(_ expected: String, _ result: [String: Any],
-		file: StaticString = #file, line: UInt = #line) {
+		file: StaticString = #file, line: UInt = #line, function: String = #function) {
 
 		let dic1 = try! JSONSerialization.jsonObject(with:
 			expected.data(using: .utf8)!,
@@ -61,6 +61,24 @@ extension XCTestCase {
 			self.fail(error: error )
 			assert?()
 		}
+	}
+
+	func matchSnapshot(_ result: [String: Any],
+		file: StaticString = #file, line: UInt = #line, function: String = #function) {
+
+		let start = function.range(of: "test")!.upperBound
+		let end = function.range(of: "()")!.lowerBound
+
+		let snapshotFileName = String(function[start..<end]).lowercased()
+
+		let fileUrl = Bundle.init(for: type(of: self)).url(forResource: snapshotFileName, withExtension: "json")
+
+		let content = try! Data(contentsOf: fileUrl!)
+
+		let expected = try! JSONSerialization.jsonObject(with:
+			content, options: .allowFragments) as! [String: Any]
+
+		XCTAssertEqual(NSDictionary(dictionary: expected), NSDictionary(dictionary: result), file: file, line: line)
 	}
 
 }
