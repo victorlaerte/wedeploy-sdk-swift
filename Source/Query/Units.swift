@@ -65,3 +65,40 @@ public enum DistanceUnit {
 		}
 	}
 }
+
+/// Time interval used in the aggregations
+public enum TimeInterval: String {
+	case year, quarter, month, week, day, hour, minute, second
+}
+
+/// Time unit used in the aggregations
+public enum TimeUnit {
+	case days(Int)
+	case hours(Int)
+	case minute(Int)
+	case seconds(Int)
+	case milliseconds(Int)
+	case microseconds(Int)
+	case nanoseconds(Int)
+
+	var rawValue: String {
+		switch self {
+			case .days(let unit):
+				return "\(unit)d"
+			case .hours(let unit):
+				return "\(unit)h"
+			case .minute(let unit):
+				return "\(unit)m"
+			case .seconds(let unit):
+				return "\(unit)s"
+			case .milliseconds(let unit):
+				return "\(unit)ms"
+			case .microseconds(let unit):
+				return "\(unit)micros"
+			case .nanoseconds(let unit):
+				return "\(unit)nanos"
+		}
+	}
+}
+
+

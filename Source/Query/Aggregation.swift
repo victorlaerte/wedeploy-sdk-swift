@@ -97,4 +97,12 @@ public class Aggregation: CustomStringConvertible {
 	public static func cardinality(name: String, field: String) -> Aggregation {
 		return Aggregation(name: name, field: field, op: "cardinality")
 	}
+
+	public static func histogram(name: String, field: String, interval: TimeInterval) -> Aggregation {
+		return Aggregation(name: name, field: field, op: "date_histogram", value: interval.rawValue)
+	}
+
+	public static func histogram(name: String, field: String, timeUnit: TimeUnit) -> Aggregation {
+		return Aggregation(name: name, field: field, op: "date_histogram", value: timeUnit.rawValue)
+	}
 }
