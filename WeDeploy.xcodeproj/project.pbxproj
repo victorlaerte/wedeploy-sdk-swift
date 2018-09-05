@@ -354,6 +354,10 @@
 		D6F1830E213ED74200C46F1C /* range.json in Resources */ = {isa = PBXBuildFile; fileRef = D6F18283213ED74200C46F1C /* range.json */; };
 		D6F1830F213ED74200C46F1C /* range.json in Resources */ = {isa = PBXBuildFile; fileRef = D6F18283213ED74200C46F1C /* range.json */; };
 		D6F18310213ED74200C46F1C /* range.json in Resources */ = {isa = PBXBuildFile; fileRef = D6F18283213ED74200C46F1C /* range.json */; };
+		D6F1831C213FF2F000C46F1C /* TermsAggregation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F1815F213D988600C46F1C /* TermsAggregation.swift */; };
+		D6F1831D213FF2F000C46F1C /* TermsAggregation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F1815F213D988600C46F1C /* TermsAggregation.swift */; };
+		D6F1831E213FF2F400C46F1C /* BucketOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F18161213E683B00C46F1C /* BucketOrder.swift */; };
+		D6F1831F213FF2F400C46F1C /* BucketOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F18161213E683B00C46F1C /* BucketOrder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1519,10 +1523,12 @@
 				57ED48691E9BCA4000B4D097 /* Units.swift in Sources */,
 				0BCA2BA61E8AAB2D00C5F0FE /* DictionaryExtension.swift in Sources */,
 				0B381C591F83787B00B02D61 /* CollectionFieldType.swift in Sources */,
+				D6F1831C213FF2F000C46F1C /* TermsAggregation.swift in Sources */,
 				0BCA2BAE1E8AAB2D00C5F0FE /* Response.swift in Sources */,
 				0BCA2BA91E8AAB2D00C5F0FE /* Aggregation.swift in Sources */,
 				0BCA2B9D1E8AAB2D00C5F0FE /* WeDeployAuth.swift in Sources */,
 				0BCA2BA31E8AAB2D00C5F0FE /* BasicAuth.swift in Sources */,
+				D6F1831E213FF2F400C46F1C /* BucketOrder.swift in Sources */,
 				0B01B7E41E8CD54400B76E71 /* Geo.swift in Sources */,
 				0BCA2BAC1E8AAB2D00C5F0FE /* Request.swift in Sources */,
 				0BCA2BB01E8AAB2D00C5F0FE /* User.swift in Sources */,
@@ -1579,10 +1585,12 @@
 				57ED486A1E9BCA4000B4D097 /* Units.swift in Sources */,
 				0BCA2BBE1E8AAB2D00C5F0FE /* DictionaryExtension.swift in Sources */,
 				0B381C5A1F83787B00B02D61 /* CollectionFieldType.swift in Sources */,
+				D6F1831D213FF2F000C46F1C /* TermsAggregation.swift in Sources */,
 				0BCA2BC61E8AAB2D00C5F0FE /* Response.swift in Sources */,
 				0BCA2BC11E8AAB2D00C5F0FE /* Aggregation.swift in Sources */,
 				0BCA2BB51E8AAB2D00C5F0FE /* WeDeployAuth.swift in Sources */,
 				0BCA2BBB1E8AAB2D00C5F0FE /* BasicAuth.swift in Sources */,
+				D6F1831F213FF2F400C46F1C /* BucketOrder.swift in Sources */,
 				0B01B7E51E8CD54500B76E71 /* Geo.swift in Sources */,
 				0BCA2BC41E8AAB2D00C5F0FE /* Request.swift in Sources */,
 				0BCA2BC81E8AAB2D00C5F0FE /* User.swift in Sources */,
