@@ -28,57 +28,34 @@
 * POSSIBILITY OF SUCH DAMAGE.
 */
 
-import XCTest
 
-extension XCTestCase {
+import Foundation
 
-	func assertJSON(_ expected: String, _ result: [String: Any],
-		file: StaticString = #file, line: UInt = #line, function: String = #function) {
+/// Represent an bucket order
+public enum BucketOrder {
+	case count(Query.Order)
+	case key(Query.Order)
+	case path(String, Query.Order)
 
-		let dic1 = try! JSONSerialization.jsonObject(with:
-			expected.data(using: .utf8)!,
-			options: .allowFragments) as! [String: Any]
+	/// Represent the json that will expect the server
+	var body: [String: Any] {
+		let key: String
+		let asc: Bool
 
-		let dic2 = NSDictionary(dictionary: result)
-
-		XCTAssertEqual(NSDictionary(dictionary: dic1), dic2, file: file, line: line)
-	}
-
-	func expect(description: String!) -> XCTestExpectation {
-		return expectation(description: description)
-	}
-
-	func fail(error: Error?) {
-		if error == nil {
-			return
+		switch self {
+		case .count:
+			key = "_count"
+		case .key:
+			key = "_key"
+		case .path(let path, _):
+			key = path
 		}
 
-		XCTFail(error!.localizedDescription)
-	}
-
-	func wait(timeout: Double? = 2, assert: (() -> Void)? = nil) {
-		waitForExpectations(timeout: timeout!) { error in
-			self.fail(error: error )
-			assert?()
+		switch self {
+		case .count(let order), .key(let order), .path(_, let order):
+			asc = order == .ASC
 		}
+
+		return ["key": key, "asc": asc]
 	}
-
-	func matchSnapshot(_ result: [String: Any],
-		file: StaticString = #file, line: UInt = #line, function: String = #function) {
-
-		let start = function.range(of: "test")!.upperBound
-		let end = function.range(of: "()")!.lowerBound
-
-		let snapshotFileName = String(function[start..<end]).lowercased()
-
-		let fileUrl = Bundle.init(for: type(of: self)).url(forResource: snapshotFileName, withExtension: "json")
-
-		let content = try! Data(contentsOf: fileUrl!)
-
-		let expected = try! JSONSerialization.jsonObject(with:
-			content, options: .allowFragments) as! [String: Any]
-
-		XCTAssertEqual(NSDictionary(dictionary: expected), NSDictionary(dictionary: result), file: file, line: line)
-	}
-
 }

@@ -38,22 +38,13 @@ class FilterTest: XCTestCase {
 			.gt(field: "age", value: 12)
 			.and(filters: Filter.lt(field: "age", value: 15))
 
-		assertJSON(
-			"{\"and\":[" +
-				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
-				"{\"age\":{\"operator\":\"<\",\"value\":15}}" +
-			"]}",
-			filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testAnd_WithOneFilter() {
 		let filter = Filter().and(filters: Filter.gt(field: "age", value: 12))
 
-		assertJSON(
-			"{\"and\":[" +
-				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
-			"]}",
-			filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testAnd_Overloaded_Operator() {
@@ -62,13 +53,7 @@ class FilterTest: XCTestCase {
 			Filter.lt(field: "age", value: 15) &&
 			"name = foo"
 
-		assertJSON(
-			"{\"and\":[" +
-				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
-				"{\"age\":{\"operator\":\"<\",\"value\":15}}," +
-				"{\"name\":{\"operator\":\"=\",\"value\":\"foo\"}}" +
-			"]}",
-			filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testAnd_With_Three_Filters() {
@@ -77,21 +62,13 @@ class FilterTest: XCTestCase {
 			.and(filters: Filter.lt(field: "age", value: 15))
 			.and(filters: Filter.equal(field: "name", value: "foo"))
 
-		assertJSON(
-			"{\"and\":[" +
-				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
-				"{\"age\":{\"operator\":\"<\",\"value\":15}}," +
-				"{\"name\":{\"operator\":\"=\",\"value\":\"foo\"}}" +
-			"]}",
-			filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testAny() {
 		let filter = Filter.any(field: "age", value: [12, 21, 25])
 
-		assertJSON(
-			"{\"age\":{\"operator\":\"any\",\"value\":[12,21,25]}}",
-			filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testComposition() {
@@ -102,85 +79,73 @@ class FilterTest: XCTestCase {
 
 		print(filter.filter)
 
-		assertJSON(
-			"{\"and\":[" +
-				"{\"or\":[" +
-					"{\"age\":{\"operator\":\">\",\"value\":12}}," +
-					"{\"age\":{\"operator\":\"<\",\"value\":15}}" +
-				"]}," +
-				"{\"name\":{\"operator\":\"=\",\"value\":\"foo\"}}" +
-			"]}",
-			filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testCustom() {
 		let filter = Filter(field: "age", op: ">", value: 12)
-		assertJSON("{\"age\":{\"operator\":\">\",\"value\":12}}", filter.filter)
+
+		matchSnapshot(filter.filter)
 	}
 
 	func testDefaultOperator() {
 		let filter = Filter("age", 12)
-		assertJSON("{\"age\":{\"operator\":\"=\",\"value\":12}}", filter.filter)
+
+		matchSnapshot(filter.filter)
 	}
 
 	func testEqual() {
 		let filter = Filter.equal(field: "age", value: 12)
-		assertJSON("{\"age\":{\"operator\":\"=\",\"value\":12}}", filter.filter)
+
+		matchSnapshot(filter.filter)
 	}
 
 	func testGt() {
 		let filter = Filter.gt(field: "age", value: 12)
-		assertJSON("{\"age\":{\"operator\":\">\",\"value\":12}}", filter.filter)
+
+		matchSnapshot(filter.filter)
 	}
 
 	func testGte() {
 		let filter = Filter.gte(field: "age", value: 12)
-		assertJSON(
-			"{\"age\":{\"operator\":\">=\",\"value\":12}}", filter.filter)
+
+		matchSnapshot(filter.filter)
 	}
 
 	func testLt() {
 		let filter = Filter.lt(field: "age", value: 12)
-		assertJSON("{\"age\":{\"operator\":\"<\",\"value\":12}}", filter.filter)
+
+		matchSnapshot(filter.filter)
 	}
 
 	func testLte() {
 		let filter = Filter.lte(field: "age", value: 12)
 
-		assertJSON(
-			"{\"age\":{\"operator\":\"<=\",\"value\":12}}",
-			filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testNone() {
 		let filter = Filter.none(field: "age", value: [12, 21, 25])
 
-		assertJSON(
-			"{\"age\":{\"operator\":\"none\",\"value\":[12,21,25]}}",
-			filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testNot() {
 		let filter = Filter("age", 12).not()
 
-		assertJSON(
-			"{\"not\":{\"age\":{\"operator\":\"=\",\"value\":12}}}",
-			filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testNot_With_Operation() {
 		let filter = !Filter("age", 12)
 
-		assertJSON(
-			"{\"not\":{\"age\":{\"operator\":\"=\",\"value\":12}}}",
-			filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testNotEqual() {
 		let filter = Filter.notEqual(field: "age", value: 12)
 
-		assertJSON(
-			"{\"age\":{\"operator\":\"!=\",\"value\":12}}", filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testOr() {
@@ -188,23 +153,14 @@ class FilterTest: XCTestCase {
 			.gt(field: "age", value: 12)
 			.or(filters: Filter.lt(field: "age", value: 15))
 
-		assertJSON(
-			"{\"or\":[" +
-				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
-				"{\"age\":{\"operator\":\"<\",\"value\":15}}" +
-			"]}",
-			filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testOr_WithOneFilter() {
 		let filter = Filter()
 			.or(filters: Filter.lt(field: "age", value: 15))
 
-		assertJSON(
-			"{\"or\":[" +
-				"{\"age\":{\"operator\":\"<\",\"value\":15}}" +
-			"]}",
-			filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testOr_Overloaded_Operator() {
@@ -213,13 +169,7 @@ class FilterTest: XCTestCase {
 			Filter.lt(field: "age", value: 15) ||
 			"name = foo"
 
-		assertJSON(
-			"{\"or\":[" +
-				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
-				"{\"age\":{\"operator\":\"<\",\"value\":15}}," +
-				"{\"name\":{\"operator\":\"=\",\"value\":\"foo\"}}" +
-			"]}",
-			filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testOr_With_Three_Filters() {
@@ -228,48 +178,37 @@ class FilterTest: XCTestCase {
 			.or(filters: Filter.lt(field: "age", value: 15))
 			.or(filters: Filter.equal(field: "name", value: "foo"))
 
-		assertJSON(
-			"{\"or\":[" +
-				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
-				"{\"age\":{\"operator\":\"<\",\"value\":15}}," +
-				"{\"name\":{\"operator\":\"=\",\"value\":\"foo\"}}" +
-			"]}",
-			filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testRegex() {
 		let filter = Filter.regex(field: "age", value: 12)
-		assertJSON("{\"age\":{\"operator\":\"~\",\"value\":12}}", filter.filter)
+
+		matchSnapshot(filter.filter)
 	}
 
 	func testDistance() {
 		let filter = Filter.distance(field: "point", latitude: 0, longitude: 0, range: Range(from: 0, to: 2))
 
-		assertJSON("{\"point\":{\"operator\":\"gd\",\"value\":" +
-		 "{\"location\": [0, 0], \"min\": 0, \"max\": 2}" +
-		"}}", filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testDistanceWithoutMin() {
 		let filter = Filter.distance(field: "point", latitude: 0, longitude: 0, range: Range(to: 2))
 
-		assertJSON("{\"point\":{\"operator\":\"gd\",\"value\":" +
-		 "{\"location\": [0, 0], \"max\": 2}" +
-			"}}", filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testRange() {
 		let filter = Filter.range(field: "age", range: Range(from: 10, to: 40))
 
-		assertJSON("{\"age\":{\"operator\":\"range\",\"value\":" +
-		 		"{\"from\": 10, \"to\": 40}" +
-		"}}", filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testStringConvertible() {
 		let filter: Filter = "age > 12"
 
-		assertJSON("{\"age\":{\"operator\":\">\",\"value\":12}}", filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testStringConvertible_With_And_Operator() {
@@ -277,48 +216,38 @@ class FilterTest: XCTestCase {
 			.gt(field: "age", value: 12) &&
 			"age < 15"
 
-		assertJSON(
-			"{\"and\":[" +
-				"{\"age\":{\"operator\":\">\",\"value\":12}}," +
-				"{\"age\":{\"operator\":\"<\",\"value\":15}}" +
-			"]}",
-			filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testStringConvertible_With_String_Value() {
 		let filter: Filter = "name = foo"
 
-		assertJSON(
-			"{\"name\":{\"operator\":\"=\",\"value\":\"foo\"}}", filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testSimilarOperator() {
 		let filter = Filter.similar(field: "age", query: 12)
 
-		assertJSON("{\"age\":{\"operator\":\"similar\",\"value\":{\"query\":12}}}", filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testMatchOperator() {
 		let filter = Filter.match(field: "age", pattern: 12)
 
-		assertJSON("{\"age\":{\"operator\":\"match\",\"value\":12}}", filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testPolygonOperator() {
 		let filter = Filter.polygon(field: "shape",
 				points: [GeoPoint(lat: 10, long: 10), GeoPoint(lat: 20, long:30.5)])
 
-		assertJSON("{\"shape\":{\"operator\":\"gp\",\"value\":[\"10.0,10.0\",\"20.0,30.5\"]}}", filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testShapeOperator_WithOneShape() {
 		let filter = Filter.shape(field: "shape", shapes: [Circle(center: GeoPoint(lat: 0, long: 0), radius: 20)])
 
-		assertJSON("{\"shape\":{\"operator\":\"gs\",\"value\":" +
-						"{\"type\": \"geometrycollection\",\"geometries\":" +
-								"[{\"coordinates\": \"0.0,0.0\", \"radius\": 20, \"type\": \"circle\"}]" +
-						"}}" +
-					"}", filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testShapeOperator_WithSeveralShapes() {
@@ -326,28 +255,19 @@ class FilterTest: XCTestCase {
 			Circle(center: GeoPoint(lat: 0, long: 0), radius: 20),
 			BoundingBox(upperLeft: GeoPoint(lat:20.0, long:0.0), lowerRight: GeoPoint(lat: 0.0, long: 20.0))])
 
-		assertJSON("{\"shape\":{\"operator\":\"gs\",\"value\":" +
-						"{\"type\": \"geometrycollection\",\"geometries\":" +
-							"[" +
-								"{\"coordinates\": \"0.0,0.0\", \"radius\": 20, \"type\": \"circle\"}," +
-								"{\"type\": \"envelope\",\"coordinates\": [\"20.0,0.0\",\"0.0,20.0\"]}" +
-							"]" +
-						"}}" +
-					"}", filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testPrefix() {
 		let filter = Filter.prefix(field: "name", value: "an")
 
-		assertJSON(
-			"{\"name\":{\"operator\":\"prefix\",\"value\":\"an\"}}", filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testWildcard() {
 		let filter = Filter.wildcard(field: "name", value: "an*")
 
-		assertJSON(
-			"{\"name\":{\"operator\":\"wildcard\",\"value\":\"an*\"}}", filter.filter)
+		matchSnapshot(filter.filter)
 	}
 
 	func testMultiMatch() {

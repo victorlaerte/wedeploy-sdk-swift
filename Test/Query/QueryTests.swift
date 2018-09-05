@@ -41,21 +41,13 @@ class QueryTest: XCTestCase {
 			.offset(offset: 5)
 			.limit(limit: 10)
 
-		assertJSON("{" +
-			"\"limit\":10," +
-			"\"sort\":[{\"age\":\"desc\"},{\"name\":\"asc\"}]," +
-			"\"offset\":5," +
-			"\"filter\":[{\"age\":{\"operator\":\">\",\"value\":12}}]," +
-			"}",
-			query.query)
+		matchSnapshot(query.query)
 	}
 
 	func testFilter_With_Instance() {
 		let query = Query().filter(filter: Filter.gt(field: "age", value: 12))
 
-		assertJSON(
-			"{\"filter\":[{\"age\":{\"operator\":\">\",\"value\":12}}]}",
-			query.query)
+		matchSnapshot(query.query)
 	}
 
 	func testFilter_With_Multiple_Filters() {
@@ -64,37 +56,29 @@ class QueryTest: XCTestCase {
 			.filter(field:"age", "<", 15)
 			.filter(field:"name", "Foo")
 
-		assertJSON(
-			"{\"filter\":[{\"age\":{\"operator\":\">\",\"value\":12}}," +
-			"{\"age\":{\"operator\":\"<\",\"value\":15}}," +
-			"{\"name\":{\"operator\":\"=\",\"value\":\"Foo\"}}]}",
-			query.query)
+		matchSnapshot(query.query)
 	}
 
 	func testFilter_With_Operator() {
 		let query = Query().filter(field: "age", ">", 12)
 
-		assertJSON(
-			"{\"filter\":[{\"age\":{\"operator\":\">\",\"value\":12}}]}",
-			query.query)
+		matchSnapshot(query.query)
 	}
 
 	func testFilter_With_Optional_Operator() {
 		let query = Query().filter(field: "age", 12)
 
-		assertJSON(
-			"{\"filter\":[{\"age\":{\"operator\":\"=\",\"value\":12}}]}",
-			query.query)
+		matchSnapshot(query.query)
 	}
 
 	func testOffset() {
 		let query = Query().offset(offset: 5)
-		assertJSON("{\"offset\":5}", query.query)
+		matchSnapshot(query.query)
 	}
 
 	func testLimit() {
 		let query = Query().limit(limit: 10)
-		assertJSON("{\"limit\":10}", query.query)
+		matchSnapshot(query.query)
 	}
 
 	func testSort() {
@@ -103,14 +87,13 @@ class QueryTest: XCTestCase {
 
 		_ = query.sort(name: "author", order: Query.Order.DESC)
 
-		assertJSON(
-			"{\"sort\":[{\"title\":\"asc\"},{\"author\":\"desc\"}]}",
-			query.query)
+		matchSnapshot(query.query)
 	}
 
 	func testType_Count() {
 		let query = Query().count()
-		assertJSON("{\"type\":\"count\"}", query.query)
+		
+		matchSnapshot(query.query)
 	}
 
 	func testSearch_Query() {
@@ -119,25 +102,19 @@ class QueryTest: XCTestCase {
 
 		_ = query.filter(field: "age", "=", 12)
 
-		assertJSON(
-			"{\"filter\":[{\"age\":{\"operator\":\"=\",\"value\":12}}], \"type\": \"search\"}",
-			query.query)
+		matchSnapshot(query.query)
 	}
 
 	func testFieldsQuery() {
 		let query = Query().fields(fields: ["field1"])
 
-		assertJSON(
-			"{\"fields\":[\"field1\"]}",
-			query.query)
+		matchSnapshot(query.query)
 	}
 
 	func testMoreThanOneFieldsQuery() {
 		let query = Query().fields(fields: ["field1", "field2", "field3"])
 
-		assertJSON(
-			"{\"fields\":[\"field1\", \"field2\", \"field3\"]}",
-			query.query)
+		matchSnapshot(query.query)
 	}
 
 }

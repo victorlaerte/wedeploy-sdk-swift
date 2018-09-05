@@ -1,0 +1,26 @@
+{
+    "and": [
+        {
+            "or": [
+                {
+                    "age": {
+                        "operator": ">",
+                        "value": 12
+                    }
+                },
+                {
+                    "age": {
+                        "operator": "<",
+                        "value": 15
+                    }
+                }
+            ]
+        },
+        {
+            "name": {
+                "operator": "=",
+                "value": "foo"
+            }
+        }
+    ]
+}

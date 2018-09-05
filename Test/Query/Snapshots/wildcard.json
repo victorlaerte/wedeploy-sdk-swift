@@ -1,0 +1,6 @@
+{
+    "name": {
+        "operator": "wildcard",
+        "value": "an*"
+    }
+}

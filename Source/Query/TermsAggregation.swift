@@ -28,57 +28,33 @@
 * POSSIBILITY OF SUCH DAMAGE.
 */
 
-import XCTest
+import Foundation
 
-extension XCTestCase {
+/// Class that represent a terms aggregation.
+public class TermsAggregation : Aggregation {
 
-	func assertJSON(_ expected: String, _ result: [String: Any],
-		file: StaticString = #file, line: UInt = #line, function: String = #function) {
+	public init(name: String, field: String, size: Int? = nil, buckerOrders: [BucketOrder]) {
+		super.init(name: name, field: field, op: "terms")
 
-		let dic1 = try! JSONSerialization.jsonObject(with:
-			expected.data(using: .utf8)!,
-			options: .allowFragments) as! [String: Any]
+		if let size = size {
+			var fieldMap = self.aggregation[field]! as! [String: Any]
 
-		let dic2 = NSDictionary(dictionary: result)
+			fieldMap["size"] = size
 
-		XCTAssertEqual(NSDictionary(dictionary: dic1), dic2, file: file, line: line)
-	}
-
-	func expect(description: String!) -> XCTestExpectation {
-		return expectation(description: description)
-	}
-
-	func fail(error: Error?) {
-		if error == nil {
-			return
+			self.aggregation[field] = fieldMap as AnyObject
 		}
 
-		XCTFail(error!.localizedDescription)
+		self.aggregation["order"] = calculateOrderBody(bucketOrders: buckerOrders) as AnyObject
 	}
 
-	func wait(timeout: Double? = 2, assert: (() -> Void)? = nil) {
-		waitForExpectations(timeout: timeout!) { error in
-			self.fail(error: error )
-			assert?()
-		}
+	/// Add order to the aggregation
+	public func add(bucketOrders: BucketOrder...) {
+		let currentOrders = self.aggregation["order"] as? [[String: Any]] ?? []
+
+		self.aggregation["order"] = currentOrders + calculateOrderBody(bucketOrders: bucketOrders) as AnyObject
 	}
 
-	func matchSnapshot(_ result: [String: Any],
-		file: StaticString = #file, line: UInt = #line, function: String = #function) {
-
-		let start = function.range(of: "test")!.upperBound
-		let end = function.range(of: "()")!.lowerBound
-
-		let snapshotFileName = String(function[start..<end]).lowercased()
-
-		let fileUrl = Bundle.init(for: type(of: self)).url(forResource: snapshotFileName, withExtension: "json")
-
-		let content = try! Data(contentsOf: fileUrl!)
-
-		let expected = try! JSONSerialization.jsonObject(with:
-			content, options: .allowFragments) as! [String: Any]
-
-		XCTAssertEqual(NSDictionary(dictionary: expected), NSDictionary(dictionary: result), file: file, line: line)
+	private func calculateOrderBody(bucketOrders: [BucketOrder]) -> [[String: Any]] {
+		return bucketOrders.map { $0.body }
 	}
-
 }

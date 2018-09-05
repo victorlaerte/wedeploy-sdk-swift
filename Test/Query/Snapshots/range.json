@@ -1,0 +1,9 @@
+{
+    "age": {
+        "operator": "range",
+        "value": {
+            "from": 10,
+            "to": 40
+        }
+    }
+}
