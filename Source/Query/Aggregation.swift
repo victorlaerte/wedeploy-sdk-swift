@@ -34,7 +34,7 @@ import Foundation
 public class Aggregation: CustomStringConvertible {
 
 	/// Component of the aggregation.
-	public let aggregation: [String: AnyObject]
+	public var aggregation: [String: AnyObject]
 
 	/// Aggregation in json form
 	public var description: String {
