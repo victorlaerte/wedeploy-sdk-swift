@@ -62,7 +62,7 @@ public class Aggregation: CustomStringConvertible {
 	public func add(nestedAggregations: Aggregation...) -> Aggregation {
 		let (field, aggregation) = self.aggregation.first!
 		var aggregationMap = aggregation as! [String: Any]
-		let currentNested = aggregation["aggregation"] as? [[String: Any]] ?? []
+		let currentNested = aggregation["aggregation"] as? [[String: AnyObject]] ?? []
 
 		aggregationMap["aggregation"] = currentNested + nestedAggregations.map { $0.aggregation } as AnyObject
 
