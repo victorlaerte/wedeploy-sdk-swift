@@ -58,6 +58,19 @@ public class Aggregation: CustomStringConvertible {
 		]
 	}
 
+	@discardableResult
+	public func add(nestedAggregations: Aggregation...) -> Aggregation {
+		let (field, aggregation) = self.aggregation.first!
+		var aggregationMap = aggregation as! [String: Any]
+		let currentNested = aggregation["aggregation"] as? [[String: Any]] ?? []
+
+		aggregationMap["aggregation"] = currentNested + nestedAggregations.map { $0.aggregation } as AnyObject
+
+		self.aggregation[field] = aggregationMap as AnyObject
+
+		return self
+	}
+
 	public static func avg(name: String, field: String) -> Aggregation {
 		return Aggregation(name: name, field: field, op: "avg")
 	}
