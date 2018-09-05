@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>WeDeployAuth Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/WeDeployAuth" class="dashAnchor"></a>
+    <a title="WeDeployAuth Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">WeDeploy Docs</a> (79% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">WeDeploy Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        WeDeployAuth Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Aggregation.html">Aggregation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AuthProvider.html">AuthProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AuthProvider/Provider.html">– Provider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BasicAuth.html">BasicAuth</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Filter.html">Filter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NSURLSessionTransport.html">NSURLSessionTransport</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Query.html">Query</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Query/Order.html">– Order</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/s:8WeDeploy7RequestC">Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RequestBuilder.html">RequestBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Response.html">Response</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/WeDeploy.html">WeDeploy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/WeDeployAuth.html">WeDeployAuth</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/WeDeployData.html">WeDeployData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/WeDeployEmail.html">WeDeployEmail</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/WeDeployService.html">WeDeployService</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/CollectionFieldType.html">CollectionFieldType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DistanceUnit.html">DistanceUnit</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RealTimeEventType.html">RealTimeEventType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RequestMethod.html">RequestMethod</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/WeDeployProviderError.html">WeDeployProviderError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Promise.html">Promise</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/SocketIOClient.html">SocketIOClient</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8WeDeploy1nopAA6FilterCADF">!(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8WeDeploy2aaoiAA6FilterCAD_ADtF">&amp;&amp;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8WeDeploy2oooiAA6FilterCAD_ADtF">||(_:_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Auth.html">Auth</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Geo.html">Geo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Transport.html">Transport</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/BoundingBox.html">BoundingBox</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Circle.html">Circle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/GeoPoint.html">GeoPoint</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Line.html">Line</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Polygon.html">Polygon</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Range.html">Range</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/RealTimeEvent.html">RealTimeEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TokenAuth.html">TokenAuth</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/User.html">User</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/WeDeployError.html">WeDeployError</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>WeDeployAuth</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">WeDeployAuth</span> <span class="p">:</span> <span class="kt"><a href="../Classes/WeDeployService.html">WeDeployService</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>Helper to communicate with Auth service in WeDeploy.</p>
+<pre class="highlight swift"><code><span class="kt">WeDeploy</span><span class="o">.</span><span class="nf">email</span><span class="p">(</span><span class="s">"auth-service-url"</span><span class="p">)</span>
+    <span class="o">.</span><span class="nf">signInWith</span><span class="p">(</span><span class="nv">username</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">password</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">then</span> <span class="p">{</span> <span class="n">auth</span> <span class="o">-&gt;</span> <span class="kt">Void</span> <span class="k">in</span>
+        <span class="c1">// Do something with the auth.</span>
+    <span class="p">}</span>
+    <span class="o">.</span><span class="k">catch</span> <span class="p">{</span> <span class="n">error</span> <span class="k">in</span>
+        <span class="c1">// Do something with the error.</span>
+    <span class="p">}</span>
+</code></pre>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4AuthC9authorizeAcA0C0_pSg4auth_tF"></a>
+                    <a name="//apple_ref/swift/Method/authorize(auth:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4AuthC9authorizeAcA0C0_pSg4auth_tF">authorize(auth:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Authorize the request with the given authentication.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">authorize</span><span class="p">(</span><span class="nv">auth</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Auth.html">Auth</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">WeDeployAuth</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the object itself, so calls can be chained.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4AuthC6headerACSS4name_SS5valuetF"></a>
+                    <a name="//apple_ref/swift/Method/header(name:value:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4AuthC6headerACSS4name_SS5valuetF">header(name:value:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Add a header to the request.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">header</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">WeDeployAuth</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the object itself, so calls can be chained.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4AuthC10signInWith10PromiseKit0G0CyAA0C0_pGSS8username_SS8passwordtF"></a>
+                    <a name="//apple_ref/swift/Method/signInWith(username:password:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4AuthC10signInWith10PromiseKit0G0CyAA0C0_pGSS8username_SS8passwordtF">signInWith(username:password:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sign in using username and password.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">signInWith</span><span class="p">(</span><span class="nv">username</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">password</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Promise</span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/Auth.html">Auth</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>a promise containing the authentication</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4AuthC14getCurrentUser10PromiseKit0G0CyAA0F0VGyF"></a>
+                    <a name="//apple_ref/swift/Method/getCurrentUser()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4AuthC14getCurrentUser10PromiseKit0G0CyAA0F0VGyF">getCurrentUser()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get the user that is logged in.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>You should authenticate the request with the user logged token.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getCurrentUser</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Promise</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/User.html">User</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>a promise containing the authentication</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4AuthC18signInWithRedirectyAA0C8ProviderC8provider_yAA0C0_pSg_s5Error_pSgtc06onSignE0tF"></a>
+                    <a name="//apple_ref/swift/Method/signInWithRedirect(provider:onSignIn:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4AuthC18signInWithRedirectyAA0C8ProviderC8provider_yAA0C0_pSg_s5Error_pSgtc06onSignE0tF">signInWithRedirect(provider:onSignIn:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sign in using the given provider.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">signInWithRedirect</span><span class="p">(</span><span class="nv">provider</span><span class="p">:</span> <span class="kt"><a href="../Classes/AuthProvider.html">AuthProvider</a></span><span class="p">,</span> <span class="nv">onSignIn</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Protocols/Auth.html">Auth</a></span><span class="p">?,</span> <span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>provider</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>3rd party service using in the log in.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>onSignIn</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>function that will be called after the login flow its finished.
+Including after calling handle(url:) method of this class.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4AuthC6handley10Foundation3URLV3url_tF"></a>
+                    <a name="//apple_ref/swift/Method/handle(url:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4AuthC6handley10Foundation3URLV3url_tF">handle(url:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Handle the url given. This method is used in the Provider login method.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    this method should be called in the application
+delegation after user clicked in a link that opened the application.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">handle</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4AuthC10createUser10PromiseKit0F0CyAA0E0VGSS5email_SS8passwordSSSg4nameAM8photoUrls10DictionaryVySSypG5attrstF"></a>
+                    <a name="//apple_ref/swift/Method/createUser(email:password:name:photoUrl:attrs:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4AuthC10createUser10PromiseKit0F0CyAA0E0VGSS5email_SS8passwordSSSg4nameAM8photoUrls10DictionaryVySSypG5attrstF">createUser(email:password:name:photoUrl:attrs:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a user with the given arguments.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">createUser</span><span class="p">(</span><span class="nv">email</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">password</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
+	<span class="nv">photoUrl</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">attrs</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[:])</span> <span class="o">-&gt;</span> <span class="kt">Promise</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/User.html">User</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>a promise containing the user</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4AuthC10updateUser10PromiseKit0F0CyytGSS2id_SSSg5emailAJ8passwordAJ4nameAJ8photoUrls10DictionaryVySSypG5attrstF"></a>
+                    <a name="//apple_ref/swift/Method/updateUser(id:email:password:name:photoUrl:attrs:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4AuthC10updateUser10PromiseKit0F0CyytGSS2id_SSSg5emailAJ8passwordAJ4nameAJ8photoUrls10DictionaryVySSypG5attrstF">updateUser(id:email:password:name:photoUrl:attrs:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Update a user with the given arguments.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">updateUser</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">email</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">password</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+		<span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">photoUrl</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">attrs</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[:]</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Promise</span><span class="o">&lt;</span><span class="kt">Void</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4AuthC10deleteUser10PromiseKit0F0CyytGSS2id_tF"></a>
+                    <a name="//apple_ref/swift/Method/deleteUser(id:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4AuthC10deleteUser10PromiseKit0F0CyytGSS2id_tF">deleteUser(id:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Delete a user with the given id.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">deleteUser</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Promise</span><span class="o">&lt;</span><span class="kt">Void</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4AuthC7getUser10PromiseKit0F0CyAA0E0VGSS2id_tF"></a>
+                    <a name="//apple_ref/swift/Method/getUser(id:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4AuthC7getUser10PromiseKit0F0CyAA0E0VGSS2id_tF">getUser(id:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get a user with the given id.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getUser</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Promise</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/User.html">User</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>a promise containing the user</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4AuthC17sendPasswordReset10PromiseKit0G0CyytGSS5email_tF"></a>
+                    <a name="//apple_ref/swift/Method/sendPasswordReset(email:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4AuthC17sendPasswordReset10PromiseKit0G0CyytGSS5email_tF">sendPasswordReset(email:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Trigger a email sent for resetting the password.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">sendPasswordReset</span><span class="p">(</span><span class="nv">email</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Promise</span><span class="o">&lt;</span><span class="kt">Void</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4AuthC11getAllUsers10PromiseKit0G0CySayAA4UserVGGyF"></a>
+                    <a name="//apple_ref/swift/Method/getAllUsers()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4AuthC11getAllUsers10PromiseKit0G0CySayAA4UserVGGyF">getAllUsers()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get all users of the service.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getAllUsers</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Promise</span><span class="o">&lt;</span><span class="p">[</span><span class="kt"><a href="../Structs/User.html">User</a></span><span class="p">]</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>a promise containing an array of users</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4AuthC7signOut10PromiseKit0F0CyytGyF"></a>
+                    <a name="//apple_ref/swift/Method/signOut()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4AuthC7signOut10PromiseKit0F0CyytGyF">signOut()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sign out. Invalidates the user token.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">signOut</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Promise</span><span class="o">&lt;</span><span class="kt">Void</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="http://wedeploy.com/" target="_blank" rel="external">Bruno Farache and Victor Galán</a>. All rights reserved. (Last updated: 2018-07-09)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

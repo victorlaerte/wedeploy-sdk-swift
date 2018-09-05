@@ -1,0 +1,28 @@
+{
+  'version': 0,
+  'case-sensitive': 'false',
+  'roots': [
+    {
+      'type': 'directory',
+      'name': "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/build/Release-iphoneos/WeDeploy.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "WeDeploy-Swift.h",
+          'external-contents': "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/build/Release-iphoneos/WeDeploy.framework/Headers/WeDeploy-Swift.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/build/Release-iphoneos/WeDeploy.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/build/WeDeploy.build/Release-iphoneos/WeDeploy.build/module.modulemap"
+        }
+      ]
+    }
+  ]
+}

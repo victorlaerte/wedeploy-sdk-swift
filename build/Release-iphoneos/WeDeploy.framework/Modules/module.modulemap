@@ -1,0 +1,4 @@
+framework module WeDeploy {
+    header "WeDeploy-Swift.h"
+    requires objc
+}

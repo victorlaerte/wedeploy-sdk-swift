@@ -1,0 +1,439 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Auth/Auth.swift",
+      "line": 36,
+      "symbol": "Auth.authenticate(request:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Auth/Auth.swift",
+      "line": 38,
+      "symbol": "Auth.authHeaders",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Auth/BasicAuth.swift",
+      "line": 36,
+      "symbol": "BasicAuth.password",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Auth/BasicAuth.swift",
+      "line": 37,
+      "symbol": "BasicAuth.username",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Auth/Providers/AuthProvider.swift",
+      "line": 60,
+      "symbol": "AuthProvider.init(provider:redirectUri:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Aggregation.swift",
+      "line": 36,
+      "symbol": "Aggregation.aggregation",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Aggregation.swift",
+      "line": 59,
+      "symbol": "Aggregation.avg(name:field:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Aggregation.swift",
+      "line": 63,
+      "symbol": "Aggregation.count(name:field:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Aggregation.swift",
+      "line": 67,
+      "symbol": "Aggregation.extendedStats(name:field:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Aggregation.swift",
+      "line": 71,
+      "symbol": "Aggregation.max(name:field:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Aggregation.swift",
+      "line": 75,
+      "symbol": "Aggregation.min(name:field:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Aggregation.swift",
+      "line": 79,
+      "symbol": "Aggregation.missing(name:field:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Aggregation.swift",
+      "line": 83,
+      "symbol": "Aggregation.stats(name:field:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Aggregation.swift",
+      "line": 87,
+      "symbol": "Aggregation.sum(name:field:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Aggregation.swift",
+      "line": 91,
+      "symbol": "Aggregation.terms(name:field:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/DistanceUnit.swift",
+      "line": 35,
+      "symbol": "DistanceUnit.mile",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/DistanceUnit.swift",
+      "line": 36,
+      "symbol": "DistanceUnit.yard",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/DistanceUnit.swift",
+      "line": 37,
+      "symbol": "DistanceUnit.feet",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/DistanceUnit.swift",
+      "line": 38,
+      "symbol": "DistanceUnit.inch",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/DistanceUnit.swift",
+      "line": 39,
+      "symbol": "DistanceUnit.kilometer",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/DistanceUnit.swift",
+      "line": 40,
+      "symbol": "DistanceUnit.meter",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/DistanceUnit.swift",
+      "line": 41,
+      "symbol": "DistanceUnit.centimeter",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/DistanceUnit.swift",
+      "line": 42,
+      "symbol": "DistanceUnit.millimeter",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/DistanceUnit.swift",
+      "line": 43,
+      "symbol": "DistanceUnit.nauticalMile",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Geo.swift",
+      "line": 33,
+      "symbol": "Geo",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Geo.swift",
+      "line": 34,
+      "symbol": "Geo.value",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Geo.swift",
+      "line": 39,
+      "symbol": "GeoPoint.lat",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Geo.swift",
+      "line": 40,
+      "symbol": "GeoPoint.long",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Geo.swift",
+      "line": 42,
+      "symbol": "GeoPoint.init(lat:long:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Geo.swift",
+      "line": 47,
+      "symbol": "GeoPoint.value",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Geo.swift",
+      "line": 54,
+      "symbol": "BoundingBox.upperLeft",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Geo.swift",
+      "line": 55,
+      "symbol": "BoundingBox.lowerRight",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Geo.swift",
+      "line": 57,
+      "symbol": "BoundingBox.init(upperLeft:lowerRight:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Geo.swift",
+      "line": 62,
+      "symbol": "BoundingBox.value",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Geo.swift",
+      "line": 73,
+      "symbol": "Circle.center",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Geo.swift",
+      "line": 74,
+      "symbol": "Circle.radius",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Geo.swift",
+      "line": 76,
+      "symbol": "Circle.init(center:radius:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Geo.swift",
+      "line": 81,
+      "symbol": "Circle.value",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Geo.swift",
+      "line": 93,
+      "symbol": "Line.coordinates",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Geo.swift",
+      "line": 95,
+      "symbol": "Line.init(coordinates:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Geo.swift",
+      "line": 99,
+      "symbol": "Line.value",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Geo.swift",
+      "line": 110,
+      "symbol": "Polygon.coordinates",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Geo.swift",
+      "line": 112,
+      "symbol": "Polygon.init(coordinates:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Geo.swift",
+      "line": 116,
+      "symbol": "Polygon.value",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Query.swift",
+      "line": 41,
+      "symbol": "Query.Order.ASC",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Query.swift",
+      "line": 41,
+      "symbol": "Query.Order.DESC",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Query.swift",
+      "line": 49,
+      "symbol": "Query.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Range.swift",
+      "line": 37,
+      "symbol": "Range.from",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Range.swift",
+      "line": 38,
+      "symbol": "Range.to",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Range.swift",
+      "line": 40,
+      "symbol": "Range.init(from:to:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Query/Range.swift",
+      "line": 45,
+      "symbol": "Range.value",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Transport/RequestMethod.swift",
+      "line": 35,
+      "symbol": "RequestMethod.DELETE",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Transport/RequestMethod.swift",
+      "line": 36,
+      "symbol": "RequestMethod.GET",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Transport/RequestMethod.swift",
+      "line": 37,
+      "symbol": "RequestMethod.PATCH",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Transport/RequestMethod.swift",
+      "line": 38,
+      "symbol": "RequestMethod.POST",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/Transport/RequestMethod.swift",
+      "line": 39,
+      "symbol": "RequestMethod.PUT",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/User.swift",
+      "line": 35,
+      "symbol": "User.email",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/User.swift",
+      "line": 36,
+      "symbol": "User.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/User.swift",
+      "line": 37,
+      "symbol": "User.id",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/User.swift",
+      "line": 38,
+      "symbol": "User.photoUrl",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/User.swift",
+      "line": 39,
+      "symbol": "User.attrs",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift/Source/WeDeployError.swift",
+      "line": 74,
+      "symbol": "WeDeployProviderError.noAccessToken",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/victorg/Documents/Liferay/wedeploy/wedeploy-sdk-swift"
+}

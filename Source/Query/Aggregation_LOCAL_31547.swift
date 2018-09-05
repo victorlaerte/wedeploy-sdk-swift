@@ -118,12 +118,4 @@ public class Aggregation: CustomStringConvertible {
 	public static func histogram(name: String, field: String, timeUnit: TimeUnit) -> Aggregation {
 		return Aggregation(name: name, field: field, op: "date_histogram", value: timeUnit.rawValue)
 	}
-
-	public static func script(name: String, path: String, script: String) -> Aggregation {
-		return Aggregation(name: name, field: path, op: "script", value: script)
-	}
-
-	public static func script(name: String, path: [String], script: String) -> Aggregation {
-		return Aggregation(name: name, field: path.joined(separator: ","), op: "script", value: script)
-	}
 }
