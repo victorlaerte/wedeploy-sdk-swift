@@ -62,7 +62,7 @@ public class Aggregation: CustomStringConvertible {
 	public func add(nestedAggregations: Aggregation...) -> Aggregation {
 		let (field, aggregation) = self.aggregation.first!
 		var aggregationMap = aggregation as! [String: Any]
-		let currentNested = aggregation["aggregation"] as? [[String: AnyObject]] ?? []
+		let currentNested = aggregation["aggregation"] as? [[String: Any]] ?? []
 
 		aggregationMap["aggregation"] = currentNested + nestedAggregations.map { $0.aggregation } as AnyObject
 
@@ -117,13 +117,5 @@ public class Aggregation: CustomStringConvertible {
 
 	public static func histogram(name: String, field: String, timeUnit: TimeUnit) -> Aggregation {
 		return Aggregation(name: name, field: field, op: "date_histogram", value: timeUnit.rawValue)
-	}
-
-	public static func script(name: String, path: String, script: String) -> Aggregation {
-		return Aggregation(name: name, field: path, op: "script", value: script)
-	}
-
-	public static func script(name: String, path: [String], script: String) -> Aggregation {
-		return Aggregation(name: name, field: path.joined(separator: ","), op: "script", value: script)
 	}
 }

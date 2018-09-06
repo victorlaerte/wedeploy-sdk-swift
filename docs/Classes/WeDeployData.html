@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>WeDeployData Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/WeDeployData" class="dashAnchor"></a>
+    <a title="WeDeployData Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">WeDeploy Docs</a> (79% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">WeDeploy Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        WeDeployData Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Aggregation.html">Aggregation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AuthProvider.html">AuthProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AuthProvider/Provider.html">– Provider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BasicAuth.html">BasicAuth</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Filter.html">Filter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NSURLSessionTransport.html">NSURLSessionTransport</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Query.html">Query</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Query/Order.html">– Order</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/s:8WeDeploy7RequestC">Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RequestBuilder.html">RequestBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Response.html">Response</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/WeDeploy.html">WeDeploy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/WeDeployAuth.html">WeDeployAuth</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/WeDeployData.html">WeDeployData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/WeDeployEmail.html">WeDeployEmail</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/WeDeployService.html">WeDeployService</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/CollectionFieldType.html">CollectionFieldType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DistanceUnit.html">DistanceUnit</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RealTimeEventType.html">RealTimeEventType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RequestMethod.html">RequestMethod</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/WeDeployProviderError.html">WeDeployProviderError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Promise.html">Promise</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/SocketIOClient.html">SocketIOClient</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8WeDeploy1nopAA6FilterCADF">!(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8WeDeploy2aaoiAA6FilterCAD_ADtF">&amp;&amp;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8WeDeploy2oooiAA6FilterCAD_ADtF">||(_:_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Auth.html">Auth</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Geo.html">Geo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Transport.html">Transport</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/BoundingBox.html">BoundingBox</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Circle.html">Circle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/GeoPoint.html">GeoPoint</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Line.html">Line</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Polygon.html">Polygon</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Range.html">Range</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/RealTimeEvent.html">RealTimeEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TokenAuth.html">TokenAuth</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/User.html">User</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/WeDeployError.html">WeDeployError</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>WeDeployData</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">WeDeployData</span> <span class="p">:</span> <span class="kt"><a href="../Classes/WeDeployService.html">WeDeployService</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>Helper to communicate with Email service in WeDeploy.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC9authorizeAcA4Auth_pSg4auth_tF"></a>
+                    <a name="//apple_ref/swift/Method/authorize(auth:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC9authorizeAcA4Auth_pSg4auth_tF">authorize(auth:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Authorize the request with the given authentication.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">authorize</span><span class="p">(</span><span class="nv">auth</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Auth.html">Auth</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">WeDeployData</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Return the object itself, so calls can be chained.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC6headerACSS4name_SS5valuetF"></a>
+                    <a name="//apple_ref/swift/Method/header(name:value:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC6headerACSS4name_SS5valuetF">header(name:value:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Add a header to the request.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">header</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">WeDeployData</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Return the object itself, so calls can be chained.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC6create10PromiseKit0E0Cys10DictionaryVySSyXlGGSS8resource_AIySSypG6objecttF"></a>
+                    <a name="//apple_ref/swift/Method/create(resource:object:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC6create10PromiseKit0E0Cys10DictionaryVySSyXlGGSS8resource_AIySSypG6objecttF">create(resource:object:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new resource.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">create</span><span class="p">(</span><span class="nv">resource</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Promise</span><span class="o">&lt;</span><span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">AnyObject</span><span class="p">]</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC6create10PromiseKit0E0Cys10DictionaryVySSyXlGGSS8resource_SayAIySSypGG6objecttF"></a>
+                    <a name="//apple_ref/swift/Method/create(resource:object:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC6create10PromiseKit0E0Cys10DictionaryVySSyXlGGSS8resource_SayAIySSypGG6objecttF">create(resource:object:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a list of resources.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">create</span><span class="p">(</span><span class="nv">resource</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="p">[[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kt">Promise</span><span class="o">&lt;</span><span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">AnyObject</span><span class="p">]</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC6update10PromiseKit0E0CyytGSS12resourcePath_s10DictionaryVySSypG17updatedAttributestF"></a>
+                    <a name="//apple_ref/swift/Method/update(resourcePath:updatedAttributes:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC6update10PromiseKit0E0CyytGSS12resourcePath_s10DictionaryVySSypG17updatedAttributestF">update(resourcePath:updatedAttributes:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Update a resource with the attributes passed</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">update</span><span class="p">(</span><span class="nv">resourcePath</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">updatedAttributes</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Promise</span><span class="o">&lt;</span><span class="kt">Void</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC7replace10PromiseKit0E0CyytGSS12resourcePath_s10DictionaryVySSypG18replacedAttributestF"></a>
+                    <a name="//apple_ref/swift/Method/replace(resourcePath:replacedAttributes:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC7replace10PromiseKit0E0CyytGSS12resourcePath_s10DictionaryVySSypG18replacedAttributestF">replace(resourcePath:replacedAttributes:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Replace a resource&rsquo;s attributes with the attributes passed</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    this will remove all the old attributes and add new ones
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">replace</span><span class="p">(</span><span class="nv">resourcePath</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">replacedAttributes</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Promise</span><span class="o">&lt;</span><span class="kt">Void</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC6delete10PromiseKit0E0CyAA8ResponseCGSS24collectionOrResourcePath_tF"></a>
+                    <a name="//apple_ref/swift/Method/delete(collectionOrResourcePath:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC6delete10PromiseKit0E0CyAA8ResponseCGSS24collectionOrResourcePath_tF">delete(collectionOrResourcePath:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Delete a resource</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">delete</span><span class="p">(</span><span class="nv">collectionOrResourcePath</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Promise</span><span class="o">&lt;</span><span class="kt"><a href="../Classes/Response.html">Response</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC16createCollection10PromiseKit0F0Cys10DictionaryVySSypGGSS4name_AIySSAA0E9FieldTypeOG10fieldTypestF"></a>
+                    <a name="//apple_ref/swift/Method/createCollection(name:fieldTypes:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC16createCollection10PromiseKit0F0Cys10DictionaryVySSypGGSS4name_AIySSAA0E9FieldTypeOG10fieldTypestF">createCollection(name:fieldTypes:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a new collection in the data service</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">createCollection</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">fieldTypes</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt"><a href="../Enums/CollectionFieldType.html">CollectionFieldType</a></span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Promise</span><span class="o">&lt;</span><span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC16updateCollection10PromiseKit0F0CyytGSS4name_s10DictionaryVySSAA0E9FieldTypeOG10fieldTypestF"></a>
+                    <a name="//apple_ref/swift/Method/updateCollection(name:fieldTypes:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC16updateCollection10PromiseKit0F0CyytGSS4name_s10DictionaryVySSAA0E9FieldTypeOG10fieldTypestF">updateCollection(name:fieldTypes:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Upadate a collection in the data service</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">updateCollection</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">fieldTypes</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt"><a href="../Enums/CollectionFieldType.html">CollectionFieldType</a></span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Promise</span><span class="o">&lt;</span><span class="kt">Void</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC6filterACXDAA6FilterCAD_tF"></a>
+                    <a name="//apple_ref/swift/Method/filter(filter:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC6filterACXDAA6FilterCAD_tF">filter(filter:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set a filter to the data request.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>If you want a more fluent way to specify the filter, all the filter are
+available in the the form of convencience methods in this class</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">filter</span><span class="p">(</span><span class="nv">filter</span><span class="p">:</span> <span class="kt"><a href="../Classes/Filter.html">Filter</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Return the object itself, so calls can be chained.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC5queryACXDAA5QueryCAD_tF"></a>
+                    <a name="//apple_ref/swift/Method/query(query:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC5queryACXDAA5QueryCAD_tF">query(query:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set a query to the data request.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>If you want a more fluent way to specify the query, all the query methods are
+avaible in the the form of convencience methods in this class.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">query</span><span class="p">(</span><span class="nv">query</span><span class="p">:</span> <span class="kt"><a href="../Classes/Query.html">Query</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Return the object itself, so calls can be chained.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC5whereACXDSS5field_SS2opyp5valuetF"></a>
+                    <a name="//apple_ref/swift/Method/where(field:op:value:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC5whereACXDSS5field_SS2opyp5valuetF">where(field:op:value:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Adds a filter to this request&rsquo;s query.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="err">`</span><span class="k">where</span><span class="err">`</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">op</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Return the object itself, so calls can be chained.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC5whereACXDAA6FilterC6filter_tF"></a>
+                    <a name="//apple_ref/swift/Method/where(filter:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC5whereACXDAA6FilterC6filter_tF">where(filter:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Adds a filter to this request&rsquo;s query.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="err">`</span><span class="k">where</span><span class="err">`</span><span class="p">(</span><span class="nv">filter</span><span class="p">:</span> <span class="kt"><a href="../Classes/Filter.html">Filter</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Return the object itself, so calls can be chained.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC2orACXDSS5field_SS2opyp5valuetF"></a>
+                    <a name="//apple_ref/swift/Method/or(field:op:value:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC2orACXDSS5field_SS2opyp5valuetF">or(field:op:value:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Adds a filter to be compose with this filter using the <q>or</q> operator.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">or</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">op</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Return the object itself, so calls can be chained.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC7orderByACXDSS5field_AA5QueryC5OrderO0D0tF"></a>
+                    <a name="//apple_ref/swift/Method/orderBy(field:order:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC7orderByACXDSS5field_AA5QueryC5OrderO0D0tF">orderBy(field:order:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">orderBy</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">order</span><span class="p">:</span> <span class="kt"><a href="../Classes/Query.html">Query</a></span><span class="o">.</span><span class="kt">Order</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Return the object itself, so calls can be chained.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC5limitACXDSiF"></a>
+                    <a name="//apple_ref/swift/Method/limit(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC5limitACXDSiF">limit(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the query to limit the elementes returned.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">limit</span><span class="p">(</span><span class="n">_</span> <span class="nv">limit</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Return the object itself, so calls can be chained.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC6offsetACXDSiF"></a>
+                    <a name="//apple_ref/swift/Method/offset(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC6offsetACXDSiF">offset(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set the query to set an offset in the returned list.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">offset</span><span class="p">(</span><span class="n">_</span> <span class="nv">offset</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Return the object itself, so calls can be chained.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC5countACXDyF"></a>
+                    <a name="//apple_ref/swift/Method/count()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC5countACXDyF">count()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set the query to return the count of the items that satisfied the filter.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">count</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Return the object itself, so calls can be chained.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC9aggregateACXDSS4name_SS5fieldSS2opypSg5valuetF"></a>
+                    <a name="//apple_ref/swift/Method/aggregate(name:field:op:value:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC9aggregateACXDSS4name_SS5fieldSS2opypSg5valuetF">aggregate(name:field:op:value:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Adds an aggregation to the request&rsquo;s query.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">aggregate</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">op</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Return the object itself, so calls can be chained.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC9aggregateACXDAA11AggregationC11aggregation_tF"></a>
+                    <a name="//apple_ref/swift/Method/aggregate(aggregation:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC9aggregateACXDAA11AggregationC11aggregation_tF">aggregate(aggregation:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Adds an aggregation to the request&rsquo;s query.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">aggregate</span><span class="p">(</span><span class="nv">aggregation</span><span class="p">:</span> <span class="kt"><a href="../Classes/Aggregation.html">Aggregation</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Return the object itself, so calls can be chained.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC9highlightACXDSSd_tF"></a>
+                    <a name="//apple_ref/swift/Method/highlight(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC9highlightACXDSSd_tF">highlight(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set a highlight query. Fields passed to this method will be hightlighted in the request.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">highlight</span><span class="p">(</span><span class="n">_</span> <span class="nv">fields</span><span class="p">:</span> <span class="kt">String</span><span class="o">...</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Return the object itself, so calls can be chained.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC6fieldsACXDSSd_tF"></a>
+                    <a name="//apple_ref/swift/Method/fields(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC6fieldsACXDSSd_tF">fields(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set a fields query. Use this method to select the fields of a resource
+that you want to receive from the server.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">fields</span><span class="p">(</span><span class="n">_</span> <span class="nv">fields</span><span class="p">:</span> <span class="kt">String</span><span class="o">...</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Return the object itself, so calls can be chained.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC6search10PromiseKit0E0Cys10DictionaryVySSyXlGGSS12resourcePath_tF"></a>
+                    <a name="//apple_ref/swift/Method/search(resourcePath:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC6search10PromiseKit0E0Cys10DictionaryVySSyXlGGSS12resourcePath_tF">search(resourcePath:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Retrieve data from a [document/field/collection] and put it in a search format.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">search</span><span class="p">(</span><span class="nv">resourcePath</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Promise</span><span class="o">&lt;</span><span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">AnyObject</span><span class="p">]</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC3get10PromiseKit0E0CySays10DictionaryVySSyXlGGGSS12resourcePath_tF"></a>
+                    <a name="//apple_ref/swift/Method/get(resourcePath:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC3get10PromiseKit0E0CySays10DictionaryVySSyXlGGGSS12resourcePath_tF">get(resourcePath:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Perform a get request to the path given.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">get</span><span class="p">(</span><span class="nv">resourcePath</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Promise</span><span class="o">&lt;</span><span class="p">[[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">AnyObject</span><span class="p">]]</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC3get10PromiseKit0E0CyxGSS12resourcePath_xm4typetlF"></a>
+                    <a name="//apple_ref/swift/Method/get(resourcePath:type:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC3get10PromiseKit0E0CyxGSS12resourcePath_xm4typetlF">get(resourcePath:type:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Perform a get request to the path given.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="k">get</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">resourcePath</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span> <span class="o">=</span> <span class="kt">T</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Promise</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>resoucercePath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>path of the collection.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>type that will be used to cast the response to that type.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC5watch8SocketIO0E8IOClientCSS12resourcePath_tF"></a>
+                    <a name="//apple_ref/swift/Method/watch(resourcePath:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC5watch8SocketIO0E8IOClientCSS12resourcePath_tF">watch(resourcePath:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new realtime request.</p>
+
+<ul>
+<li><p>returnss: socket instance. Use this instane to start listening to eventss</p></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">watch</span><span class="p">(</span><span class="nv">resourcePath</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">SocketIOClient</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>resoucercePath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>path of the collection.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC3anyACXDSS5field_SayypG5valuetF"></a>
+                    <a name="//apple_ref/swift/Method/any(field:value:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC3anyACXDSS5field_SayypG5valuetF">any(field:value:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply the filter Filter.any to the data query</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">any</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="p">[</span><span class="kt">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC5equalACXDSS5field_yp5valuetF"></a>
+                    <a name="//apple_ref/swift/Method/equal(field:value:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC5equalACXDSS5field_yp5valuetF">equal(field:value:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply the filter Filter.equal to the data query</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">equal</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC2gtACXDSS5field_yp5valuetF"></a>
+                    <a name="//apple_ref/swift/Method/gt(field:value:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC2gtACXDSS5field_yp5valuetF">gt(field:value:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply the filter Filter.gt to the data query</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">gt</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC3gteACXDSS5field_yp5valuetF"></a>
+                    <a name="//apple_ref/swift/Method/gte(field:value:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC3gteACXDSS5field_yp5valuetF">gte(field:value:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply the filter Filter.gte to the data query</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">gte</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC2ltACXDSS5field_yp5valuetF"></a>
+                    <a name="//apple_ref/swift/Method/lt(field:value:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC2ltACXDSS5field_yp5valuetF">lt(field:value:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply the filter Filter.lt to the data query</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">lt</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC3lteACXDSS5field_yp5valuetF"></a>
+                    <a name="//apple_ref/swift/Method/lte(field:value:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC3lteACXDSS5field_yp5valuetF">lte(field:value:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply the filter Filter.lte to the data query</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">lte</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC4noneACXDSS5field_SayypG5valuetF"></a>
+                    <a name="//apple_ref/swift/Method/none(field:value:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC4noneACXDSS5field_SayypG5valuetF">none(field:value:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply the filter Filter.none to the data query</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">none</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="p">[</span><span class="kt">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC8notEqualACXDSS5field_yp5valuetF"></a>
+                    <a name="//apple_ref/swift/Method/notEqual(field:value:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC8notEqualACXDSS5field_yp5valuetF">notEqual(field:value:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply the filter Filter.notEqual to the data query</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">notEqual</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC5regexACXDSS5field_yp5valuetF"></a>
+                    <a name="//apple_ref/swift/Method/regex(field:value:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC5regexACXDSS5field_yp5valuetF">regex(field:value:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply the filter Filter.regex to the data query</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">regex</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC5matchACXDSS5field_yp7patterntF"></a>
+                    <a name="//apple_ref/swift/Method/match(field:pattern:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC5matchACXDSS5field_yp7patterntF">match(field:pattern:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply the filter Filter.match to the data query</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">match</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">pattern</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC7similarACXDSS5field_yp5querytF"></a>
+                    <a name="//apple_ref/swift/Method/similar(field:query:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC7similarACXDSS5field_yp5querytF">similar(field:query:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply the filter Filter.similar to the data query</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">similar</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">query</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC8distanceACXDSS5field_Sd8latitudeSd9longitudeAA5RangeV5rangetF"></a>
+                    <a name="//apple_ref/swift/Method/distance(field:latitude:longitude:range:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC8distanceACXDSS5field_Sd8latitudeSd9longitudeAA5RangeV5rangetF">distance(field:latitude:longitude:range:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply the filter Filter.distance to the data query</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">distance</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">latitude</span><span class="p">:</span> <span class="kt">Double</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="kt">Double</span><span class="p">,</span> <span class="nv">range</span><span class="p">:</span> <span class="kt"><a href="../Structs/Range.html">Range</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC8distanceACXDSS5field_Sd8latitudeSd9longitudeAA12DistanceUnitOADtF"></a>
+                    <a name="//apple_ref/swift/Method/distance(field:latitude:longitude:distance:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC8distanceACXDSS5field_Sd8latitudeSd9longitudeAA12DistanceUnitOADtF">distance(field:latitude:longitude:distance:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply the filter Filter.distance to the data query</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">distance</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">latitude</span><span class="p">:</span> <span class="kt">Double</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="kt">Double</span><span class="p">,</span> <span class="nv">distance</span><span class="p">:</span> <span class="kt"><a href="../Enums/DistanceUnit.html">DistanceUnit</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC5rangeACXDSS5field_AA5RangeVADtF"></a>
+                    <a name="//apple_ref/swift/Method/range(field:range:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC5rangeACXDSS5field_AA5RangeVADtF">range(field:range:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply the filter Filter.range to the data query</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">range</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">range</span><span class="p">:</span> <span class="kt"><a href="../Structs/Range.html">Range</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC7polygonACXDSS5field_SayAA8GeoPointVG6pointstF"></a>
+                    <a name="//apple_ref/swift/Method/polygon(field:points:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC7polygonACXDSS5field_SayAA8GeoPointVG6pointstF">polygon(field:points:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply the filter Filter.polygon to the data query</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">polygon</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">points</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/GeoPoint.html">GeoPoint</a></span><span class="p">])</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC5shapeACXDSS5field_SayAA3Geo_pG6shapestF"></a>
+                    <a name="//apple_ref/swift/Method/shape(field:shapes:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC5shapeACXDSS5field_SayAA3Geo_pG6shapestF">shape(field:shapes:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply the filter Filter.shape to the data query</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">shape</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">shapes</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Geo.html">Geo</a></span><span class="p">])</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC6phraseACXDSS5field_yp5valuetF"></a>
+                    <a name="//apple_ref/swift/Method/phrase(field:value:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC6phraseACXDSS5field_yp5valuetF">phrase(field:value:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply the filter Filter.phrase to the data query</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">phrase</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC6prefixACXDSS5field_yp5valuetF"></a>
+                    <a name="//apple_ref/swift/Method/prefix(field:value:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC6prefixACXDSS5field_yp5valuetF">prefix(field:value:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply the filter Filter.prefix to the data query</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">prefix</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC7missingACXDSS5field_tF"></a>
+                    <a name="//apple_ref/swift/Method/missing(field:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC7missingACXDSS5field_tF">missing(field:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply the filter Filter.missing to the data query</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">missing</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC6existsACXDSS5field_tF"></a>
+                    <a name="//apple_ref/swift/Method/exists(field:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC6existsACXDSS5field_tF">exists(field:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply the filter Filter.exists to the data query</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">exists</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC5fuzzyACXDSS5field_yp5querySi9fuzzinesstF"></a>
+                    <a name="//apple_ref/swift/Method/fuzzy(field:query:fuzziness:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC5fuzzyACXDSS5field_yp5querySi9fuzzinesstF">fuzzy(field:query:fuzziness:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply the filter Filter.fuzzy to the data query</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">fuzzy</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">query</span><span class="p">:</span> <span class="kt">Any</span><span class="p">,</span> <span class="nv">fuzziness</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8WeDeploy0aB4DataC8wildcardACXDSS5field_SS5valuetF"></a>
+                    <a name="//apple_ref/swift/Method/wildcard(field:value:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8WeDeploy0aB4DataC8wildcardACXDSS5field_SS5valuetF">wildcard(field:value:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply the filter Filter.wildcard to the data query</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">wildcard</span><span class="p">(</span><span class="nv">field</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="http://wedeploy.com/" target="_blank" rel="external">Bruno Farache and Victor Galán</a>. All rights reserved. (Last updated: 2018-07-09)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
